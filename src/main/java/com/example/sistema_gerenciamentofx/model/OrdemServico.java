@@ -1,20 +1,44 @@
 package com.example.sistema_gerenciamentofx.model;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class OrdemServico {
     private static int id;
+    /*
     private static Date start;
     private static Date end;
+    */
+    private static LocalDate start;
+    private static LocalDate end;
     private static int clientId;
     private static String type;
-    private static ArrayList<String> itemsList;
+    //TROCAR ESSE DE BAIXO POR UM MAP - DICIONARIO
+    //private static ArrayList<String> itemsList;
+    /*Usando dicionario, coloca como chave a peca, e como valor a quantidade dela*/
+    private static Map<String, Integer> itemsList;
     private static double price;
     private static String paymentType;
     private static int clientSatisfaction;
     private static String status;
-    private static Date expendTime;
+    /*
+    Troca do expendTime de Date, para String, visando colocar um valor ja formatado
+    *
+    */
+    private static String expendTime;
     private static String description;
+
+    public OrdemServico() {
+        if(start == null){
+            start = LocalDate.now();
+        }
+        if(itemsList == null){
+            itemsList = new HashMap<String, Integer>();
+        }
+    }
 
     public static int getId() {
         return id;
@@ -24,20 +48,21 @@ public class OrdemServico {
         OrdemServico.id = id;
     }
 
-    public static Date getStart() {
+    public static LocalDate getStart() {
         return start;
     }
 
-    public static void setStart(Date start) {
+    public static void setStart(LocalDate start) {
         OrdemServico.start = start;
     }
 
-    public static Date getEnd() {
+    public static LocalDate getEnd() {
         return end;
     }
-
-    public static void setEnd(Date end) {
-        OrdemServico.end = end;
+    //LEMBRAR
+    //chamar a setEnd no metodo finalizar
+    public static void setEnd(LocalDate end) {
+        OrdemServico.end = LocalDate.now();
     }
 
     public static int getClientId() {
@@ -96,19 +121,76 @@ public class OrdemServico {
         OrdemServico.status = status;
     }
 
-    public static Date getExpendTime() {
+    public static String getExpendTime() {
         return expendTime;
     }
-
+/*
+    O SET TA SENDO PREENCHIDO PELO METODO CALCULATE EXPEND TIME
     public static void setExpendTime(Date expendTime) {
         OrdemServico.expendTime = expendTime;
     }
-
+*/
     public static String getDescription() {
         return description;
     }
 
     public static void setDescription(String description) {
         OrdemServico.description = description;
+    }
+
+    /*Faz o calculo da data de inicio e data final, por ser um metodo chamado
+    dentro do metodo de finalizar...ele pega a data final ja na sua chamada*/
+    public static String calculateExpendTime(LocalDate start, LocalDate end){
+        if (end == null){
+            end = LocalDate.now();
+        }
+        Period generateExpendTime = Period.between(start, end);
+        int days = generateExpendTime.getDays();
+        int months = generateExpendTime.getMonths();
+        if (months>0){
+            return "Foram gastos "+ days+" dias e " + months + "meses";
+        }
+        else{
+            return "Foram gastos " + days + "dias";
+        }
+    }
+
+    public static double calculatePrice(String type, HashMap itemsList){
+        Tabela prices = new Tabela();
+        double finalPrice=0;
+        if(type == "limpeza"){
+            return prices.getCleaningService();
+        }
+        else if(type == "formatacao"){
+            return prices.getFormattingService();
+        }
+        else if(type == "instalacao"){
+            int quant=0;
+            quant = (int)itemsList.get("instalacao");
+            return prices.getInstallationService() * quant;
+        }
+        else if(type == "montagem"){
+            for (String peca: itemsList.entrySet()) {
+                if(peca == "ram"){
+                    finalPrice+= prices.getRamPrice() * (double) itemsList.get(peca);
+                }
+                else if(peca == "placa_mae"){
+                    finalPrice+= prices.getMotherBoardPrice() * (double) itemsList.get(peca);
+                }
+                else if(peca == "placa_de_video"){
+                    finalPrice += prices.getGraphicBoardPrice() * (double) itemsList.get(peca);
+                }
+                else if(peca == "ssd"){
+                    finalPrice += prices.getSsdPrice() * (double) itemsList.get(peca);
+                }
+                else if(peca == "fonte"){
+                    finalPrice += prices.getFontPrice() * (double) itemsList.get(peca);
+                }
+            }
+            return finalPrice;
+        }
+        else{
+            return 0;
+        }
     }
 }
