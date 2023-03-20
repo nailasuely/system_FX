@@ -40,7 +40,9 @@ public class Estoque {
          */
 
         if(this.ssdAmount<=10 || this.ramAmount<=10 || this.motherBoardAmount<=10 || this.graphicBoardAmount <=10 || this.fontAmount <=10){
-            return "!!!ALERTA!!!\nNivel de reserva do estoque atingido\nRecomenda-se realizar reabastecimento";
+            return "!!!ALERTA!!!" +
+                    "\nNivel de reserva do estoque atingido" +
+                    "\nRecomenda-se realizar reabastecimento";
         }
         else{
             return null;

@@ -159,8 +159,10 @@ public class OrdemServico {
 
     }
 
-    /*Faz o calculo da data de inicio e data final, por ser um metodo chamado
-    dentro do metodo de finalizar...ele pega a data final ja na sua chamada*/
+    /*
+    Faz o cálculo da data de início e data final, por ser um metodo chamado
+    dentro do metodo de finalizar... ele pega a data final ja na sua chamada
+    */
     public static String calculateExpendTime(LocalDate start, LocalDate end){
         if (end == null){
             end = LocalDate.now();
@@ -214,4 +216,6 @@ public class OrdemServico {
             return 0;
         }
     }
+
+    public int findById()
 }
