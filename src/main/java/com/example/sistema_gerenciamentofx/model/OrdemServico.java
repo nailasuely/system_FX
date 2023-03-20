@@ -1,10 +1,7 @@
 package com.example.sistema_gerenciamentofx.model;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class OrdemServico {
     private static int id;
@@ -134,8 +131,32 @@ public class OrdemServico {
         return description;
     }
 
-    public static void setDescription(String description) {
-        OrdemServico.description = description;
+    public static String generateInvoice(String type, HashMap itemsList) {
+        double finalPrice = calculatePrice(String type, HashMap itemsList);
+        if (type == "instalacao" || type == "montagem"){
+            Collection <Integer> values = itemsList.values();
+            ArrayList<Integer> valuesList = new ArrayList<>(values);
+            Integer quantItems=0;
+            for (Integer quant: valuesList) {
+                quantItems +=quant;
+            }
+            if (type == "instalacao"){
+                return "Tipo do serviço: "+type + ", quantidade de programas: "+quantItems+", o custo total foi de: " + finalPrice;
+            }
+            else if(type == "montagem"){
+                String partsList = "";
+                for (String peca: itemsList.entrySet()){
+                    partsList +=peca;
+                    partsList +=", ";
+                }
+                return "Tipo do serviço: "+type + ", quantidade de pecas: "+quantItems+", lista de peças: "+partsList+"o custo total foi de: " + finalPrice;
+            }
+        }
+        else{
+            return "Tipo do serviço: "+type + ", o custo total foi de: " + finalPrice;
+        }
+
+
     }
 
     /*Faz o calculo da data de inicio e data final, por ser um metodo chamado
