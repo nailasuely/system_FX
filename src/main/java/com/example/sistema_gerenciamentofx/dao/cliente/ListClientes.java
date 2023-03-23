@@ -79,4 +79,9 @@ public class ListClientes implements ClienteDAO {
     public Cliente findByCPF(String cpf) {
         return null;
     }
+
+    @Override
+    public boolean findByCpfIsTrue(String cpf) {
+        return false;
+    }
 }
