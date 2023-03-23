@@ -23,7 +23,7 @@ public class ListClientes implements ClienteDAO {
         cliente.setId(newIDStrign);
         this.listaClientes.add(cliente);
 
-        return null;
+        return cliente;
     }
 
     @Override
@@ -36,10 +36,8 @@ public class ListClientes implements ClienteDAO {
                 return;
             }
         }
-        if (encontrado == false){
-            throw new IllegalArgumentException("Cliente não detectado no banco de dados");
+        throw new IllegalArgumentException("Cliente não detectado no banco de dados");
 
-        }
     }
 
     @Override
@@ -68,11 +66,10 @@ public class ListClientes implements ClienteDAO {
     }
 
     @Override
-    public Cliente listObjects(ArrayList list) {
+    public void listObjects(ArrayList list) {
         for (Cliente cliente : this.listaClientes) {
             System.out.println("ID do cliente: " + cliente.getId() );
         }
-        return null;
     }
 
     @Override

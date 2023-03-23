@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Tecnico extends Pessoa {
     private static ArrayList<OrdemServico> serviceOrders;
 
+
     /*
     Esse método é responsável por adicionar serviços para o tecnico. Dessa forma, pensando
     no requisito que um tecnico só pode aceitar uma ordem quando todas as suas ordens anteriores já

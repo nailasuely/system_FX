@@ -3,6 +3,7 @@ package com.example.sistema_gerenciamentofx.dao.ordemServico;
 import com.example.sistema_gerenciamentofx.model.OrdemServico;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class ListOrdensServico implements OrdemServicoDAO{
 
@@ -17,17 +18,18 @@ public class ListOrdensServico implements OrdemServicoDAO{
     }
 
     @Override
-    public void delete(OrdemServico objeto) {
+    public void delete(String ID) {
 
     }
 
     @Override
-    public OrdemServico findById(int id) {
+    public OrdemServico findById(String id) {
         return null;
     }
 
+
+
     @Override
-    public OrdemServico listObjects(ArrayList list) {
-        return null;
+    public void listObjects(ArrayList list) {
     }
 }
