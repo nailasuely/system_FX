@@ -11,7 +11,7 @@ segunda fase do PBL.
 public interface CRUD<T> {
     public T create(T objeto);
     public void update(T objeto);
-    public void delete(T objeto);
-    public T findById(int id);
+    public void delete(String ID);
+    public T findById(String id);
     public T listObjects(ArrayList list);
 }

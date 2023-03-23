@@ -1,17 +1,17 @@
 package com.example.sistema_gerenciamentofx.model;
 
 public abstract class Pessoa {
-    private int id;
+    private String id;
     private String fullName;
     private String address;
     private String cpf;
     private int telephone;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

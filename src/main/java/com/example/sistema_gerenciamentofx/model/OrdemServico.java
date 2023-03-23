@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
+
 public class OrdemServico {
     private static int id;
     /*
@@ -78,6 +79,7 @@ public class OrdemServico {
         OrdemServico.type = type;
     }
 
+    /*
     public static ArrayList<String> getItemsList() {
         return itemsList;
     }
@@ -85,6 +87,7 @@ public class OrdemServico {
     public static void setItemsList(ArrayList<String> itemsList) {
         OrdemServico.itemsList = itemsList;
     }
+    */
 
     public static double getPrice() {
         return price;
@@ -131,6 +134,7 @@ public class OrdemServico {
         return description;
     }
 
+    /*
     public static String generateInvoice(String type, HashMap itemsList) {
         double finalPrice = calculatePrice(String type, HashMap itemsList);
         if (type == "instalacao" || type == "montagem"){
@@ -157,7 +161,7 @@ public class OrdemServico {
         }
 
 
-    }
+    }*/
 
     /*
     Faz o cálculo da data de início e data final, por ser um metodo chamado
@@ -178,6 +182,8 @@ public class OrdemServico {
         }
     }
 
+
+    /*
     public static double calculatePrice(String type, HashMap itemsList){
         Tabela prices = new Tabela();
         double finalPrice=0;
@@ -216,6 +222,6 @@ public class OrdemServico {
             return 0;
         }
     }
+    */
 
-    public int findById()
 }
