@@ -5,14 +5,15 @@ import java.util.*;
 
 
 public class OrdemServico {
-    private static int id;
+    private static String id;
     /*
     private static Date start;
     private static Date end;
     */
     private static LocalDate start;
     private static LocalDate end;
-    private static int clientId;
+    private static String clientId;
+    private static String technicianID;
     private static String type;
     //TROCAR ESSE DE BAIXO POR UM MAP - DICIONARIO
     //private static ArrayList<String> itemsList;
@@ -38,11 +39,11 @@ public class OrdemServico {
         }
     }
 
-    public static int getId() {
+    public static String getId() {
         return id;
     }
 
-    public static void setId(int id) {
+    public static void setId(String id) {
         OrdemServico.id = id;
     }
 
@@ -63,12 +64,20 @@ public class OrdemServico {
         OrdemServico.end = LocalDate.now();
     }
 
-    public static int getClientId() {
+    public static String getClientId() {
         return clientId;
     }
 
-    public static void setClientId(int clientId) {
+    public static void setClientId(String clientId) {
         OrdemServico.clientId = clientId;
+    }
+
+    public static String getTechnicianID() {
+        return technicianID;
+    }
+
+    public static void setTechnicianID(String technicianID) {
+        OrdemServico.technicianID = technicianID;
     }
 
     public static String getType() {
@@ -223,5 +232,8 @@ public class OrdemServico {
         }
     }
     */
+
+
+
 
 }

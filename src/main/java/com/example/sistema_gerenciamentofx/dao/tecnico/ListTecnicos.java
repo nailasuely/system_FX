@@ -16,15 +16,18 @@ public class ListTecnicos implements TecnicoDAO {
 
     @Override
     public Tecnico create(Tecnico tecnico) {
-        // Gerar id pseudoaleatório;
-        UUID newID = UUID.randomUUID();
-        String newIDStrign= newID.toString();
+        if(findByCPF(tecnico.getCpf())){
+            // Gerar id pseudoaleatório;
+            UUID newID = UUID.randomUUID();
+            String newIDStrign= newID.toString();
 
-        //lembrar de verificar dps;
-        tecnico.setId(newIDStrign);
-        this.listaTecnicos.add(tecnico);
+            //lembrar de verificar dps;
+            tecnico.setId(newIDStrign);
+            this.listaTecnicos.add(tecnico);
 
-        return tecnico;
+            return tecnico;
+        }
+        return null;
     }
 
     @Override
