@@ -57,7 +57,7 @@ public class ListClientes implements ClienteDAO {
                 return;
             }
         }
-        if (encontrado = false) {
+        if (encontrado == false) {
             throw new IllegalArgumentException("Cliente não detectado no banco de dados");
         }
     }
@@ -94,6 +94,8 @@ public class ListClientes implements ClienteDAO {
     //Verificar necessidade do metodo abaixo, ja que pode colocar no IF, para verificar
     //colocaria tipo: if(FindByCPF){ logica que ocorrer apos a verificação}
     //pq ai se nao tiver aquele cpf, o retorno vai ser null e o IF nao vai rodar
+    //ATUALIZAÇÃO - É REALMENTE NECESSARIO kkkkkkkkkk
+
     @Override
     public boolean findByCpfIsTrue(String cpf) {
         for(Cliente cliente: this.listaClientes) {
@@ -102,5 +104,14 @@ public class ListClientes implements ClienteDAO {
             }
         }
         return false;
+    }
+
+    public String findIdbyCPF(String CPF){
+        for(Cliente cliente: this.listaClientes){
+            if(cliente.getCpf().equals(CPF)){
+                return cliente.getId();
+            }
+        }
+        throw new IllegalArgumentException("Cliente não detectado no banco de dados");
     }
 }

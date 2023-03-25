@@ -24,14 +24,32 @@ public class ListOrdensServico implements OrdemServicoDAO{
     }
 
     @Override
-    public void update(OrdemServico objeto) {
-
+    public void update(OrdemServico ordem) {
+        boolean status = false;
+        for (int i=0; i< this.listaOrdensServico.size();i++){
+            if(listaOrdensServico.get(i).getId() == ordem.getId()){
+                this.listaOrdensServico.set(i, ordem);
+                return;
+            }
+        }
+        if(!status){
+            throw new IllegalArgumentException("Cliente não detectado no banco de dados");
+        }
 
     }
 
     @Override
     public void delete(String ID) {
-
+        boolean status = false;
+        for (int i=0; i< this.listaOrdensServico.size();i++){
+            if(listaOrdensServico.get(i).getId() == ID){
+                this.listaOrdensServico.remove(i);
+                return;
+            }
+        }
+        if(!status){
+            throw new IllegalArgumentException("Cliente não detectado no banco de dados");
+        }
     }
 
     @Override
@@ -51,7 +69,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
         if(this.listaOrdensServico.size()>0){
             for(OrdemServico ordem: this.listaOrdensServico){
                 System.out.println("ID da ordem: "+ordem.getId());
-                System.out.println("Tecnico da ordem: " + ordem.);
+                System.out.println("Tecnico da ordem: " + ordem);
             }
         }
     }

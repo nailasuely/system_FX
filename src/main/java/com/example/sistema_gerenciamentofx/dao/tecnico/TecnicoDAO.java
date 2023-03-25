@@ -6,4 +6,5 @@ import com.example.sistema_gerenciamentofx.model.Tecnico;
 
 public interface TecnicoDAO extends CRUD<Tecnico> {
     public Tecnico findByCPF(String cpf);
+    public boolean findByCPFIsTrue(String cpf);
 }

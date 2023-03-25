@@ -27,6 +27,8 @@ public class main{
             System.out.println("2. LISTAR ID DOS TÉCNICOS");
             System.out.println("3. FAZER LOGIN DO TÉCNICO");
             System.out.println("3. GERAR RELATÓRIO");
+            System.out.println("4. PROCURAR CLIENTE PELO ID");
+            System.out.println("5. PROCURAR TECNICO");
             System.out.println("0. Parar");
             System.out.print("Digite uma opçao: ");
             escolha = input.nextInt();
@@ -34,13 +36,22 @@ public class main{
                 case 1:
                     String fullName; String CPF; // só vou pedir o nome por enquanto para testar mais rápido
                     Tecnico novoTecnico = new Tecnico();
-                    novoTecnico = (Tecnico) DAO.getTecnicoDAO().create(novoTecnico);
+
                     input.nextLine();
                     System.out.print("Digite o nome do tecnico: ");
                     fullName = input.nextLine();
+                    //LEVE BUG AQUI, PARA PODER PROSSEGUIR TEM Q DAR 2 ENTER PARA PODER IR PEDIR O CPF
+                    input.nextLine();
+                    System.out.print("Digite o CPF do tecnico: ");
+                    CPF = input.nextLine();
                     novoTecnico.setFullName(fullName);
-                    listaDeTecnicos.add(novoTecnico);
+                    novoTecnico.setCpf(CPF);
+                    System.out.println(novoTecnico.getCpf());
+                    //listaDeTecnicos.add(novoTecnico);
+
+                    novoTecnico = (Tecnico) DAO.getTecnicoDAO().create(novoTecnico);
                     break;
+
                 case 2:
                     DAO.getTecnicoDAO().listObjects(listaDeTecnicos);
                     break;
@@ -88,6 +99,15 @@ public class main{
                     novoC = DAO.getClienteDAO().findById(id);
                     System.out.println("ID do cliente encontrado: "+ novoC.getId());
 
+                    break;
+                case 5:
+                    Tecnico novoT;
+                    String cpf;
+                    input.nextLine();
+                    System.out.print("Digite o CPF do tecnico: ");
+                    cpf = input.nextLine();
+                    novoT = DAO.getTecnicoDAO().findByCPF(cpf);
+                    System.out.println("Nome do tecnico: "+novoT.getFullName());
                     break;
                 case 0:
                     System.out.println("Finalizando...");

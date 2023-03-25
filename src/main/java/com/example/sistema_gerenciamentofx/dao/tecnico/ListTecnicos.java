@@ -16,7 +16,7 @@ public class ListTecnicos implements TecnicoDAO {
 
     @Override
     public Tecnico create(Tecnico tecnico) {
-        if(findByCPF(tecnico.getCpf())){
+        if(!findByCPFIsTrue(tecnico.getCpf())){
             // Gerar id pseudoaleatório;
             UUID newID = UUID.randomUUID();
             String newIDStrign= newID.toString();
@@ -27,7 +27,12 @@ public class ListTecnicos implements TecnicoDAO {
 
             return tecnico;
         }
-        return null;
+        else{
+            throw new IllegalArgumentException("Cliente já existe no banco de dados");
+
+        }
+
+
     }
 
     @Override
@@ -80,10 +85,18 @@ public class ListTecnicos implements TecnicoDAO {
     @Override
     public Tecnico findByCPF(String cpf) {
         for (Tecnico tecnico : this.listaTecnicos) {
-            if (tecnico.getId().equals(cpf)) {
+            if (tecnico.getCpf().equals(cpf)) {
                 return tecnico;
             }
         }
         return null;
+    }
+    public boolean findByCPFIsTrue(String cpf) {
+        for (Tecnico tecnico : this.listaTecnicos) {
+            if (tecnico.getId().equals(cpf)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

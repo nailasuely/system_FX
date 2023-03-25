@@ -33,12 +33,10 @@ public class Tecnico extends Pessoa {
 
     public void finalizeServiceOrder(OrdemServico servico){
 
-
-
     }
 
-
-
-
-
+    @Override
+    public String toString() {
+        return "Nome do Tecnico: "+ getFullName() + "\nID do tecnico: "+ getId();
+    }
 }
