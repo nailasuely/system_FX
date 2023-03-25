@@ -113,5 +113,6 @@ public class ListClientes implements ClienteDAO {
             }
         }
         throw new IllegalArgumentException("Cliente não detectado no banco de dados");
+
     }
 }
