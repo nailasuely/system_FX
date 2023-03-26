@@ -60,31 +60,31 @@ public class OrdemServico {
     }
     //LEMBRAR
     //chamar a setEnd no metodo finalizar
-    public static void setEnd(LocalDate end) {
+    public void setEnd(LocalDate end) {
         OrdemServico.end = LocalDate.now();
     }
 
-    public static String getClientId() {
+    public  String getClientId() {
         return clientId;
     }
 
-    public static void setClientId(String clientId) {
+    public void setClientId(String clientId) {
         OrdemServico.clientId = clientId;
     }
 
-    public static String getTechnicianID() {
+    public String getTechnicianID() {
         return technicianID;
     }
 
-    public static void setTechnicianID(String technicianID) {
+    public void setTechnicianID(String technicianID) {
         OrdemServico.technicianID = technicianID;
     }
 
-    public static String getType() {
+    public String getType() {
         return type;
     }
 
-    public static void setType(String type) {
+    public void setType(String type) {
         OrdemServico.type = type;
     }
 
@@ -98,39 +98,39 @@ public class OrdemServico {
     }
     */
 
-    public static double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public static void setPrice(double price) {
+    public void setPrice(double price) {
         OrdemServico.price = price;
     }
 
-    public static String getPaymentType() {
+    public String getPaymentType() {
         return paymentType;
     }
 
-    public static void setPaymentType(String paymentType) {
+    public void setPaymentType(String paymentType) {
         OrdemServico.paymentType = paymentType;
     }
 
-    public static int getClientSatisfaction() {
+    public int getClientSatisfaction() {
         return clientSatisfaction;
     }
 
-    public static void setClientSatisfaction(int clientSatisfaction) {
+    public void setClientSatisfaction(int clientSatisfaction) {
         OrdemServico.clientSatisfaction = clientSatisfaction;
     }
 
-    public static String getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public static void setStatus(String status) {
+    public void setStatus(String status) {
         OrdemServico.status = status;
     }
 
-    public static String getExpendTime() {
+    public String getExpendTime() {
         return expendTime;
     }
 /*
@@ -139,7 +139,7 @@ public class OrdemServico {
         OrdemServico.expendTime = expendTime;
     }
 */
-    public static String getDescription() {
+    public String getDescription() {
         return description;
     }
 
@@ -176,7 +176,7 @@ public class OrdemServico {
     Faz o cálculo da data de início e data final, por ser um metodo chamado
     dentro do metodo de finalizar... ele pega a data final ja na sua chamada
     */
-    public static String calculateExpendTime(LocalDate start, LocalDate end){
+    public String calculateExpendTime(LocalDate start, LocalDate end){
         if (end == null){
             end = LocalDate.now();
         }

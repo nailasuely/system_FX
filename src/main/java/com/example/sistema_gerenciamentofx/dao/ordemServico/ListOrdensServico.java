@@ -3,6 +3,7 @@ package com.example.sistema_gerenciamentofx.dao.ordemServico;
 import com.example.sistema_gerenciamentofx.model.Cliente;
 import com.example.sistema_gerenciamentofx.model.OrdemServico;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -16,8 +17,10 @@ public class ListOrdensServico implements OrdemServicoDAO{
     public OrdemServico create(OrdemServico ordem) {
         UUID newID = UUID.randomUUID();
         String newIDStrign = newID.toString();
+        LocalDate inicio = LocalDate.now();
 
         ordem.setId(newIDStrign);
+        ordem.setStart(inicio);
         this.listaOrdensServico.add(ordem);
 
         return ordem;

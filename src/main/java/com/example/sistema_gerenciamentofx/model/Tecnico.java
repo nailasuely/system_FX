@@ -12,6 +12,10 @@ public class Tecnico extends Pessoa {
     contrário, um for percorre a lista para verificar se todas ordens estão finalizadas. Se sim, a nova
     ordem é adicionada.
      */
+
+    /*REVER LOGICA
+    pelo q tinhamos visto na aula do PBL falou q pode add, mas nao pode por o status em andamento
+     */
     public void addServiceOrder(OrdemServico servico) {
         int quantidadeServicos = serviceOrders.size();
         int servicosFinalizados = 0;

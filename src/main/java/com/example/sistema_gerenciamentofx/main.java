@@ -3,6 +3,7 @@ package com.example.sistema_gerenciamentofx;
 
 import com.example.sistema_gerenciamentofx.dao.DAO;
 import com.example.sistema_gerenciamentofx.model.Cliente;
+import com.example.sistema_gerenciamentofx.model.OrdemServico;
 import com.example.sistema_gerenciamentofx.model.Tecnico;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class main{
         int opcao=0;
         ArrayList<Cliente> listaDeClientes = new ArrayList<Cliente>();
         ArrayList<Tecnico> listaDeTecnicos = new ArrayList<Tecnico>();
+        ArrayList<Tecnico> listaDeOrdens = new ArrayList<Tecnico>();
 
         System.out.println("------- SISTEMA DE GERENCIAMENTO ------- ");
 
@@ -186,7 +188,72 @@ public class main{
                                     DAO.getClienteDAO().listObjects(listaDeClientes);
                                     break;
                                 case 5: //CRIAR ORDEM DE SERICO
-
+                                    String identificadorCliente;
+                                    String tipoServico = "";
+                                    String tipoPeca = "";
+                                    Integer quantidadePeca;
+                                    int escolhaPeca;
+                                    int escolhaTipo;
+                                    int quantidade=0;
+                                    OrdemServico ordem = new OrdemServico();
+                                    System.out.println("MENU DE CRIAÇÂO DE ORDEM");
+                                    input.nextLine();
+                                    System.out.println("Por favor identifique o cliente com seu CPF: ");
+                                    identificadorCliente = input.nextLine();
+                                    ordem.setClientId(DAO.getClienteDAO().findIdbyCPF(identificadorCliente));
+                                    ordem.setTechnicianID(id);
+                                    //estrutura para evitar que o tecnico digite errado o nome, e
+                                    //dê erro no resto do programa
+                                    do {
+                                        System.out.println("QUAL O TIPO DO SERVICO: \n" +
+                                                "1. FORMATACAO\n" +
+                                                "2. INSTALACAO\n" +
+                                                "3. MONTAGEM\n" +
+                                                "4. LIMPEZA\n");
+                                        escolhaTipo = input.nextInt();
+                                        if (escolhaTipo == 1) {
+                                            tipoServico = "formatacao";
+                                        } else if (escolhaTipo == 2) {
+                                            tipoServico = "instalacao";
+                                            System.out.println("Quantidade de programas: ");
+                                            quantidade = input.nextInt();
+                                        } else if (escolhaTipo == 3) {
+                                            tipoServico = "montagem";
+                                            int querMais =1;
+                                            while(querMais == 1) {
+                                                System.out.println("Informe a peça: \n" +
+                                                        "1. memoria Ram\n" +
+                                                        "2. placa mae\n" +
+                                                        "3. placa de video\n" +
+                                                        "4. hdd/ssd\n" +
+                                                        "5. fonte");
+                                                escolhaPeca = input.nextInt();
+                                                if (escolhaPeca == 1) {
+                                                    tipoPeca = "ram";
+                                                } else if (escolhaPeca == 2) {
+                                                    tipoPeca = "placa_mae";
+                                                } else if (escolhaPeca == 3) {
+                                                    tipoPeca = "placa_de_video";
+                                                } else if (escolhaPeca == 4) {
+                                                    tipoPeca = "ssd";
+                                                } else if (escolhaPeca == 5) {
+                                                    tipoPeca = "fonte";
+                                                }
+                                                System.out.println("Quantidade desejada: ");
+                                                quantidadePeca = input.nextInt();
+                                                System.out.println("Deseja incluir mais itens:\n" +
+                                                        "1. SIM\n" +
+                                                        "2. NAO");
+                                                querMais = input.nextInt();
+                                            }
+                                        } else if (escolhaTipo == 4) {
+                                            tipoServico = "limpeza";
+                                        }
+                                    }while (escolhaTipo != 1 | escolhaTipo != 2 | escolhaTipo != 3 | escolhaTipo !=4);
+                                    ordem.setType(tipoServico);
+                                    DAO.getOrdemServicoDAO().create(ordem);
+                                    System.out.println("Ordem criada com sucesso");
+                                    DAO.getOrdemServicoDAO().listObjects(listaDeOrdens);
                                     break;
                                 case 6: //atualizar ordem de servico
 
