@@ -17,10 +17,12 @@ public class ListClientes implements ClienteDAO {
     public Cliente create(Cliente cliente) {
 
         //VERIFICAÇÃO PARA NAO CRIAR CLIENTE JA EXISTENTE
-        if (findByCpfIsTrue(cliente.getCpf())) {
+        if (findByCpfIsTrue(cliente.getCpf()) == true) {
             //POR TRATATIVA PARA ISSO, SE O RETORNO AQUI FOR NULL
+
             return null;
-        } else {
+        }
+        else {
             // Gerar id pseudoaleatório;
             UUID newID = UUID.randomUUID();
             String newIDStrign = newID.toString();
