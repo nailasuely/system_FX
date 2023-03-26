@@ -27,7 +27,6 @@ public class main{
             System.out.println("1. CADASTRAR TÉCNICO");
             System.out.println("2. LISTAR ID DOS TÉCNICOS");
             System.out.println("3. FAZER LOGIN DO TÉCNICO");
-            System.out.println("4. GERAR RELATÓRIO");
             System.out.println("4. PROCURAR CLIENTE PELO ID");
             System.out.println("5. PROCURAR TECNICO");
             System.out.println("6. LISTAR ID DOS CLIENTES");
@@ -59,22 +58,25 @@ public class main{
                     break;
                 case 3:
                     input.nextLine();
-                    System.out.print("Digite o ID do técnico: ");
-                    id = input.nextLine();
-                    if (DAO.getTecnicoDAO().findById(id) != null){
+                    //mudança para login usando o CPF
+                    //pode voltar ao id, troquei so pra ficar mais pratico nos testes
+                    System.out.print("Digite o CPF do técnico: ");
+                    id = input.nextLine(); //VARIAVEL PARA SER TROCADA
+                    if (DAO.getTecnicoDAO().findIdbyCPF(id) != null){
 
                         do {
                             System.out.println("1. REGISTRAR CLIENTE");
                             System.out.println("2. ATUALIZAR CLIENTES");
                             System.out.println("3. DELETAR CLIENTE");
                             System.out.println("4. LISTAR CLIENTES");
-                            System.out.println("4. ATUALIZAR ORDENS DE SERVIÇO");
-                            System.out.println("4. GERENCIAR ESTOQUE");
+                            System.out.println("5. CRIAR ORDENS DE SERVIÇO");
+                            System.out.println("6. ATUALIZAR ORDEM DE SERVIÇO");
+                            System.out.println("7. GERENCIAR ESTOQUE");
                             System.out.println("0. Parar");
                             System.out.print("Digite uma opçao: ");
                             opcao = input.nextInt();
                             switch (opcao) {
-                                case 1:
+                                case 1: // registro de cliente
                                     String name;
                                     String cpf; // só vou pedir o nome por enquanto
                                     Cliente novoCliente = new Cliente();
@@ -94,16 +96,17 @@ public class main{
                                     novoCliente = (Cliente) DAO.getClienteDAO().create(novoCliente);
 
                                     break;
-                                case 2:
+                                case 2: //atualização de cliente
                                     String CpfClienteAtualizar;
                                     String idClienteAtualizar = "";
 
-                                    Cliente clienteAtt = new Cliente();
+                                    Cliente clienteAtt;
                                     input.nextLine();
                                     System.out.println("Primeiro digite o CPF do cliente:");
                                     CpfClienteAtualizar = input.nextLine();
                                     idClienteAtualizar = DAO.getClienteDAO().findIdbyCPF(CpfClienteAtualizar);
                                     if (idClienteAtualizar != "") {
+                                        clienteAtt = DAO.getClienteDAO().findById(idClienteAtualizar);
                                         input.nextLine();
                                         System.out.println("Cliente encontrado");
                                         System.out.println("Dado a se atualizar:");
@@ -116,41 +119,28 @@ public class main{
                                             case 1:
                                                 String newName;
                                                 input.nextLine();
-                                                System.out.println("Nome atual: " + DAO.getClienteDAO().findById(idClienteAtualizar).getFullName());
+                                                System.out.println("Nome atual: " + clienteAtt.getFullName());
                                                 System.out.println("Digite um novo nome: ");
                                                 newName = input.nextLine();
-                                                //pode haver outra logica melhor para essa operação
-                                                clienteAtt.setTelephone(DAO.getClienteDAO().findById(idClienteAtualizar).getTelephone());
-                                                clienteAtt.setCpf(DAO.getClienteDAO().findById(idClienteAtualizar).getCpf());
-                                                clienteAtt.setAddress(DAO.getClienteDAO().findById(idClienteAtualizar).getAddress());
-                                                clienteAtt.setId(idClienteAtualizar);
                                                 clienteAtt.setFullName(newName);
                                                 DAO.getClienteDAO().update(clienteAtt);
                                                 break;
                                             case 2:
                                                 int newTelefone;
                                                 input.nextInt();
-                                                System.out.println("Telefone atual: " + DAO.getClienteDAO().findById(idClienteAtualizar).getTelephone());
+                                                System.out.println("Telefone atual: " + clienteAtt.getTelephone());
                                                 System.out.println("Digite o novo telefone: ");
                                                 newTelefone = input.nextInt();
                                                 clienteAtt.setTelephone(newTelefone);
-                                                clienteAtt.setCpf(DAO.getClienteDAO().findById(idClienteAtualizar).getCpf());
-                                                clienteAtt.setAddress(DAO.getClienteDAO().findById(idClienteAtualizar).getAddress());
-                                                clienteAtt.setId(idClienteAtualizar);
-                                                clienteAtt.setFullName(DAO.getClienteDAO().findById(idClienteAtualizar).getFullName());
                                                 DAO.getClienteDAO().update(clienteAtt);
                                                 break;
                                             case 3:
                                                 String newAdress;
                                                 input.nextLine();
-                                                System.out.println("Endereço atual:"+ DAO.getClienteDAO().findById(idClienteAtualizar).getAddress());
+                                                System.out.println("Endereço atual:"+ clienteAtt.getAddress());
                                                 System.out.println("Digite o novo endereço: ");
                                                 newAdress = input.nextLine();
-                                                clienteAtt.setTelephone(DAO.getClienteDAO().findById(idClienteAtualizar).getTelephone());
-                                                clienteAtt.setCpf(DAO.getClienteDAO().findById(idClienteAtualizar).getCpf());
                                                 clienteAtt.setAddress(newAdress);
-                                                clienteAtt.setId(idClienteAtualizar);
-                                                clienteAtt.setFullName(DAO.getClienteDAO().findById(idClienteAtualizar).getFullName());
                                                 DAO.getClienteDAO().update(clienteAtt);
                                                 break;
                                             case 0:
@@ -162,7 +152,7 @@ public class main{
                                     }
 
                                     break;
-                                case 3:
+                                case 3: //deletar um cliente
                                     int escolhaDesejada = 0;
 
                                     System.out.println("Deseja deletar o cliente por:\n" +
@@ -191,6 +181,18 @@ public class main{
                                             System.out.println("Opcao invalida");
                                             break;
                                     }
+                                    break;
+                                case 4:
+                                    DAO.getClienteDAO().listObjects(listaDeClientes);
+                                    break;
+                                case 5: //CRIAR ORDEM DE SERICO
+
+                                    break;
+                                case 6: //atualizar ordem de servico
+
+                                    break;
+                                case 7: //gerenciar o estoque
+
                                     break;
                                 case 0:
                                     System.out.println("Finalizando...");

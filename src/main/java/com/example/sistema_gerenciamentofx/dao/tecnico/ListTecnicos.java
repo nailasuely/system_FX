@@ -99,4 +99,14 @@ public class ListTecnicos implements TecnicoDAO {
         }
         return false;
     }
+    public String findIdbyCPF(String CPF){
+        for(Tecnico tecnico: this.listaTecnicos){
+            if(tecnico.getCpf().equals(CPF)){
+                return tecnico.getId();
+            }
+        }
+        throw new IllegalArgumentException("Cliente não detectado no banco de dados");
+
+    }
+
 }
