@@ -2,7 +2,10 @@ package com.example.sistema_gerenciamentofx.model;
 import java.util.ArrayList;
 public class Tecnico extends Pessoa {
     private static ArrayList<OrdemServico> serviceOrders;
-
+    public Tecnico(){}
+    public Tecnico(String nome, String address, String cpf, int telephone) {
+        super(nome, address, cpf, telephone);
+    }
 
     /*
     Esse método é responsável por adicionar serviços para o tecnico. Dessa forma, pensando

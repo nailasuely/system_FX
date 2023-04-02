@@ -18,6 +18,7 @@ public class main{
     public static void main(String[] args) {
         int escolha = 1; String id;
         int opcao=0;
+
         ArrayList<Cliente> listaDeClientes = new ArrayList<Cliente>();
         ArrayList<Tecnico> listaDeTecnicos = new ArrayList<Tecnico>();
         ArrayList<Tecnico> listaDeOrdens = new ArrayList<Tecnico>();
@@ -44,7 +45,7 @@ public class main{
                     System.out.print("Digite o nome do tecnico: ");
                     fullName = input.nextLine();
                     //LEVE BUG AQUI, PARA PODER PROSSEGUIR TEM Q DAR 2 ENTER PARA PODER IR PEDIR O CPF
-                    input.nextLine();
+                    //input.nextLine();
                     System.out.print("Digite o CPF do tecnico: ");
                     CpfTecnico = input.nextLine();
                     novoTecnico.setFullName(fullName);
@@ -219,7 +220,7 @@ public class main{
                                             quantidade = input.nextInt();
                                         } else if (escolhaTipo == 3) {
                                             tipoServico = "montagem";
-                                            int querMais =1;
+                                            int querMais = 1;
                                             while(querMais == 1) {
                                                 System.out.println("Informe a peça: \n" +
                                                         "1. memoria Ram\n" +

@@ -50,10 +50,10 @@ public class ListClientes implements ClienteDAO {
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(String cpf) {
         boolean encontrado = false;
         for (int i = 0; i < this.listaClientes.size(); i++) {
-            if (this.listaClientes.get(i).getId().equals(id)) {
+            if (this.listaClientes.get(i).getCpf().equals(cpf)) {
                 this.listaClientes.remove(i);
                 encontrado = true;
                 return;
@@ -97,6 +97,7 @@ public class ListClientes implements ClienteDAO {
     //colocaria tipo: if(FindByCPF){ logica que ocorrer apos a verificação}
     //pq ai se nao tiver aquele cpf, o retorno vai ser null e o IF nao vai rodar
     //ATUALIZAÇÃO - É REALMENTE NECESSARIO kkkkkkkkkk
+    // ( que tristeza kkkkkkkk - naila)
 
     @Override
     public boolean findByCpfIsTrue(String cpf) {
@@ -117,4 +118,14 @@ public class ListClientes implements ClienteDAO {
         throw new IllegalArgumentException("Cliente não detectado no banco de dados");
 
     }
+
+    @Override
+    public void deleteMany() {
+        this.listaClientes = new ArrayList<>();
+    }
+
+    public int amountItems() {
+        return listaClientes.size();
+    }
+
 }

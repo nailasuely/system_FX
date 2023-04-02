@@ -76,4 +76,14 @@ public class ListOrdensServico implements OrdemServicoDAO{
             }
         }
     }
+
+    @Override
+    public void deleteMany() {
+        this.listaOrdensServico = new ArrayList<>();
+    }
+
+    @Override
+    public int amountItems() {
+        return listaOrdensServico.size();
+    }
 }

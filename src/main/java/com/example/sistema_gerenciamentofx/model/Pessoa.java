@@ -7,6 +7,16 @@ public abstract class Pessoa {
     private String cpf;
     private int telephone;
 
+    // esse aqui é construtor apenas para nao resultar em erro para quando ocorrer a criação de uma
+    // classe sem atributos
+    public Pessoa(){}
+    public Pessoa(String nome, String address, String cpf, int telephone) {
+        this.fullName = nome;
+        this.address = address;
+        this.cpf = cpf;
+        this.telephone = telephone;
+    }
+
 
     public String getId() {
         return id;
@@ -39,6 +49,7 @@ public abstract class Pessoa {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
 
     public int getTelephone() {
         return telephone;

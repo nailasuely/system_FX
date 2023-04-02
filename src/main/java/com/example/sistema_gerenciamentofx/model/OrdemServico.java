@@ -122,7 +122,7 @@ public class OrdemServico {
         OrdemServico.clientSatisfaction = clientSatisfaction;
     }
 
-    public String getStatus() {
+    public static String getStatus() {
         return status;
     }
 

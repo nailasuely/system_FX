@@ -16,7 +16,10 @@ public class ListTecnicos implements TecnicoDAO {
 
     @Override
     public Tecnico create(Tecnico tecnico) {
-        if(!findByCPFIsTrue(tecnico.getCpf())){
+        if (findByCPFIsTrue(tecnico.getCpf())) {
+            return null;
+        }
+        else{
             // Gerar id pseudoaleatório;
             UUID newID = UUID.randomUUID();
             String newIDStrign= newID.toString();
@@ -24,15 +27,8 @@ public class ListTecnicos implements TecnicoDAO {
             //lembrar de verificar dps;
             tecnico.setId(newIDStrign);
             this.listaTecnicos.add(tecnico);
-
             return tecnico;
         }
-        else{
-            throw new IllegalArgumentException("Cliente já existe no banco de dados");
-
-        }
-
-
     }
 
     @Override
@@ -51,10 +47,10 @@ public class ListTecnicos implements TecnicoDAO {
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(String cpf) {
         boolean encontrado = false;
         for (int i = 0; i < this.listaTecnicos.size(); i++) {
-            if (this.listaTecnicos.get(i).getId().equals(id)) {
+            if (this.listaTecnicos.get(i).getCpf().equals(cpf)) {
                 this.listaTecnicos.remove(i);
                 encontrado = true;
                 return;
@@ -83,6 +79,16 @@ public class ListTecnicos implements TecnicoDAO {
     }
 
     @Override
+    public void deleteMany() {
+        this.listaTecnicos = new ArrayList<>();
+    }
+
+    @Override
+    public int amountItems() {
+        return listaTecnicos.size();
+    }
+
+    @Override
     public Tecnico findByCPF(String cpf) {
         for (Tecnico tecnico : this.listaTecnicos) {
             if (tecnico.getCpf().equals(cpf)) {
@@ -105,7 +111,7 @@ public class ListTecnicos implements TecnicoDAO {
                 return tecnico.getId();
             }
         }
-        throw new IllegalArgumentException("Cliente não detectado no banco de dados");
+        throw new IllegalArgumentException("Tecnico não detectado no banco de dados");
 
     }
 
