@@ -5,30 +5,31 @@ import java.util.*;
 
 
 public class OrdemServico {
-    private static String id;
+
+    private String id;
     /*
     private static Date start;
     private static Date end;
     */
-    private static LocalDate start;
-    private static LocalDate end;
-    private static String clientId;
-    private static String technicianID;
-    private static String type;
+    private LocalDate start;
+    private LocalDate end;
+    private String clientId;
+    private String technicianID;
+    private String type;
     //TROCAR ESSE DE BAIXO POR UM MAP - DICIONARIO
     //private static ArrayList<String> itemsList;
     /*Usando dicionario, coloca como chave a peca, e como valor a quantidade dela*/
     private static Map<String, Integer> itemsList;
-    private static double price;
-    private static String paymentType;
-    private static int clientSatisfaction;
+    private double price;
+    private String paymentType;
+    private int clientSatisfaction;
     private static String status;
     /*
     Troca do expendTime de Date, para String, visando colocar um valor ja formatado
     *
     */
-    private static String expendTime;
-    private static String description;
+    private String expendTime;
+    private String description;
 
     public OrdemServico() {
         if(start == null){
@@ -39,29 +40,31 @@ public class OrdemServico {
         }
     }
 
-    public static String getId() {
+
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public static void setId(String id) {
-        OrdemServico.id = id;
-    }
-
-    public static LocalDate getStart() {
+    public LocalDate getStart() {
         return start;
     }
 
-    public static void setStart(LocalDate start) {
-        OrdemServico.start = start;
+    public void setStart(LocalDate start) {
+        this.start = start;
     }
 
-    public static LocalDate getEnd() {
+    public LocalDate getEnd() {
         return end;
     }
     //LEMBRAR
     //chamar a setEnd no metodo finalizar
     public void setEnd(LocalDate end) {
-        OrdemServico.end = LocalDate.now();
+        this.end = LocalDate.now();
     }
 
     public  String getClientId() {
@@ -69,7 +72,7 @@ public class OrdemServico {
     }
 
     public void setClientId(String clientId) {
-        OrdemServico.clientId = clientId;
+        this.clientId = clientId;
     }
 
     public String getTechnicianID() {
@@ -77,7 +80,7 @@ public class OrdemServico {
     }
 
     public void setTechnicianID(String technicianID) {
-        OrdemServico.technicianID = technicianID;
+        this.technicianID = technicianID;
     }
 
     public String getType() {
@@ -85,7 +88,7 @@ public class OrdemServico {
     }
 
     public void setType(String type) {
-        OrdemServico.type = type;
+        this.type = type;
     }
 
     /*
@@ -103,7 +106,7 @@ public class OrdemServico {
     }
 
     public void setPrice(double price) {
-        OrdemServico.price = price;
+        this.price = price;
     }
 
     public String getPaymentType() {
@@ -111,7 +114,7 @@ public class OrdemServico {
     }
 
     public void setPaymentType(String paymentType) {
-        OrdemServico.paymentType = paymentType;
+        this.paymentType = paymentType;
     }
 
     public int getClientSatisfaction() {
@@ -119,7 +122,7 @@ public class OrdemServico {
     }
 
     public void setClientSatisfaction(int clientSatisfaction) {
-        OrdemServico.clientSatisfaction = clientSatisfaction;
+        this.clientSatisfaction = clientSatisfaction;
     }
 
     public static String getStatus() {

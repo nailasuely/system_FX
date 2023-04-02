@@ -13,6 +13,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
     public ListOrdensServico(){
         this.listaOrdensServico = new ArrayList<OrdemServico>();
     }
+
     @Override
     public OrdemServico create(OrdemServico ordem) {
         UUID newID = UUID.randomUUID();

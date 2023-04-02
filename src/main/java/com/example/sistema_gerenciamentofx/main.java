@@ -87,8 +87,8 @@ public class main{
                                     input.nextLine();
                                     System.out.print("Digite o nome do cliente: ");
                                     name = input.nextLine();
-                                    input.nextLine();
-                                    System.out.println("Digite o CPF do cliente: ");
+                                    //input.nextLine();
+                                    System.out.print("Digite o CPF do cliente: ");
                                     cpf = input.nextLine();
 
                                     novoCliente.setFullName(name);
@@ -210,15 +210,16 @@ public class main{
                                                 "1. FORMATACAO\n" +
                                                 "2. INSTALACAO\n" +
                                                 "3. MONTAGEM\n" +
-                                                "4. LIMPEZA\n");
+                                                "4. LIMPEZA\n"+
+                                                "5. NENHUM\n");
                                         escolhaTipo = input.nextInt();
                                         if (escolhaTipo == 1) {
-                                            tipoServico = "formatacao";
-                                        } else if (escolhaTipo == 2) {
+                                            tipoServico = "formatacao";}
+                                        else if (escolhaTipo == 2) {
                                             tipoServico = "instalacao";
                                             System.out.println("Quantidade de programas: ");
-                                            quantidade = input.nextInt();
-                                        } else if (escolhaTipo == 3) {
+                                            quantidade = input.nextInt();}
+                                        else if (escolhaTipo == 3) {
                                             tipoServico = "montagem";
                                             int querMais = 1;
                                             while(querMais == 1) {
@@ -250,13 +251,14 @@ public class main{
                                         } else if (escolhaTipo == 4) {
                                             tipoServico = "limpeza";
                                         }
-                                    }while (escolhaTipo != 1 | escolhaTipo != 2 | escolhaTipo != 3 | escolhaTipo !=4);
+                                    }while (escolhaTipo != 5);
                                     ordem.setType(tipoServico);
                                     DAO.getOrdemServicoDAO().create(ordem);
                                     System.out.println("Ordem criada com sucesso");
                                     DAO.getOrdemServicoDAO().listObjects(listaDeOrdens);
                                     break;
                                 case 6: //atualizar ordem de servico
+
 
                                     break;
                                 case 7: //gerenciar o estoque
@@ -280,8 +282,9 @@ public class main{
                     id = input.nextLine();
                     Cliente novoC = new Cliente();
                     novoC = DAO.getClienteDAO().findById(id);
-                    System.out.println("ID do cliente encontrado: "+ novoC.getId());
-
+                    if(novoC != null){
+                        System.out.println("ID do cliente encontrado: "+ novoC.getId());
+                    }
                     break;
                 case 5:
                     Tecnico novoT;
