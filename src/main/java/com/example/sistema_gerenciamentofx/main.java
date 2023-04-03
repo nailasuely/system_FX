@@ -200,7 +200,7 @@ public class main{
                                     String identificadorCliente;
                                     String tipoServico = "";
                                     String tipoPeca = "";
-                                    Map<String, Integer> itemsList = new HashMap<String, Integer>();
+                                    HashMap<String, Integer> itemsList = new HashMap<String, Integer>();
                                     Integer quantidadePeca;
                                     int escolhaPeca;
                                     int escolhaTipo;
@@ -270,7 +270,29 @@ public class main{
                                     DAO.getOrdemServicoDAO().listObjects(listaDeOrdens);
                                     break;
                                 case 6: //atualizar ordem de servico
-
+                                    OrdemServico ordemServico = null;
+                                    input.nextLine();
+                                    String pagamento;
+                                    int satisfaction;
+                                    String confirmacao;
+                                    System.out.println("Deseja finalizar a Ordem Atual? [s]im, [n]ão");
+                                    confirmacao = input.nextLine();
+                                    if(confirmacao.equals("s")){
+                                        ordemServico = DAO.getOrdemServicoDAO().openOrderByTechnician(id);
+                                        input.nextLine();
+                                        System.out.println("Forma de pagamento: ");
+                                        pagamento = input.nextLine();
+                                        System.out.println("Satisfação do cliente: ");
+                                        satisfaction = input.nextInt();
+                                        ordemServico.finalize(ordemServico.getStart(),satisfaction,pagamento);
+                                        DAO.getOrdemServicoDAO().update(ordemServico);
+                                    }
+                                    input.nextLine();
+                                    System.out.println("Imprimir o invoice? [s]im, [n]ão");
+                                    confirmacao = input.nextLine();
+                                    if(confirmacao.equals("s") & ordemServico !=null){
+                                        DAO.getOrdemServicoDAO().findById(ordemServico.getId()).generateInvoice(ordemServico.getType(), ordemServico.getItemsList());
+                                    }
 
                                     break;
                                 case 7: //gerenciar o estoque

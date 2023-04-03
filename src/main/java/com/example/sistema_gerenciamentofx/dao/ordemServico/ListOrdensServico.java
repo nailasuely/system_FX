@@ -1,5 +1,6 @@
 package com.example.sistema_gerenciamentofx.dao.ordemServico;
 
+import com.example.sistema_gerenciamentofx.dao.DAO;
 import com.example.sistema_gerenciamentofx.model.Cliente;
 import com.example.sistema_gerenciamentofx.model.OrdemServico;
 
@@ -86,5 +87,18 @@ public class ListOrdensServico implements OrdemServicoDAO{
     @Override
     public int amountItems() {
         return listaOrdensServico.size();
+    }
+
+    public OrdemServico openOrderByTechnician(String cpf){
+        String idTecnico;
+        idTecnico = DAO.getTecnicoDAO().findIdbyCPF(cpf);
+        if(this.listaOrdensServico.size()>0){
+            for(OrdemServico ordem: this.listaOrdensServico){
+                if(ordem.getTechnicianID().equals(idTecnico)){
+                    return ordem;
+                }
+            }
+        }
+        return null;
     }
 }

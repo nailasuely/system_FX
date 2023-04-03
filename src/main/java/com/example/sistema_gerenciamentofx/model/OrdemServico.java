@@ -19,7 +19,7 @@ public class OrdemServico {
     //TROCAR ESSE DE BAIXO POR UM MAP - DICIONARIO
     //private static ArrayList<String> itemsList;
     /*Usando dicionario, coloca como chave a peca, e como valor a quantidade dela*/
-    private static Map<String, Integer> itemsList;
+    private static HashMap<String, Integer> itemsList;
     private double price;
     private String paymentType;
     private int clientSatisfaction;
@@ -91,6 +91,15 @@ public class OrdemServico {
         this.type = type;
     }
 
+    public HashMap<String, Integer> getItemsList() {
+        return itemsList;
+    }
+
+    public void setItemsList(HashMap<String, Integer> itemsList) {
+        this.itemsList = itemsList;
+    }
+
+
     /*
     public static ArrayList<String> getItemsList() {
         return itemsList;
@@ -146,52 +155,86 @@ public class OrdemServico {
         return description;
     }
 
-    /*
-    public static String generateInvoice(String type, HashMap itemsList) {
-        double finalPrice = calculatePrice(String type, HashMap itemsList);
+
+    public String generateInvoice(String type, HashMap itemsList) {
+        //double finalPrice = calculatePrice(String type, HashMap itemsList);
         if (type == "instalacao" || type == "montagem"){
-            Collection <Integer> values = itemsList.values();
+            /*Collection <Integer> values = itemsList.values();
             ArrayList<Integer> valuesList = new ArrayList<>(values);
             Integer quantItems=0;
             for (Integer quant: valuesList) {
                 quantItems +=quant;
-            }
+            }*/
             if (type == "instalacao"){
-                return "Tipo do serviço: "+type + ", quantidade de programas: "+quantItems+", o custo total foi de: " + finalPrice;
+                //return "Tipo do serviço: "+type + ", quantidade de programas: "+quantItems+", o custo total foi de: " + finalPrice;
+                return "Tipo do serviço: "+type + ", quantidade de programas: "+0+", o custo total foi de: " + 0;
             }
             else if(type == "montagem"){
-                String partsList = "";
+                /*String partsList = "";
                 for (String peca: itemsList.entrySet()){
                     partsList +=peca;
                     partsList +=", ";
-                }
-                return "Tipo do serviço: "+type + ", quantidade de pecas: "+quantItems+", lista de peças: "+partsList+"o custo total foi de: " + finalPrice;
+                }*/
+                //return "Tipo do serviço: "+type + ", quantidade de pecas: "+quantItems+", lista de peças: "+partsList+"o custo total foi de: " + finalPrice;
+                return "Tipo do serviço: "+type + ", quantidade de pecas: "+ 0 +", lista de peças: "+ 0 +"o custo total foi de: " + 0;
             }
         }
         else{
-            return "Tipo do serviço: "+type + ", o custo total foi de: " + finalPrice;
+            //return "Tipo do serviço: "+type + ", o custo total foi de: " + finalPrice;
+            return "Tipo do serviço: "+type + ", o custo total foi de: " + 0;
         }
+        return null;
 
-
-    }*/
+    }
 
     /*
     Faz o cálculo da data de início e data final, por ser um metodo chamado
     dentro do metodo de finalizar... ele pega a data final ja na sua chamada
     */
-    public String calculateExpendTime(LocalDate start, LocalDate end){
+    public Period calculateExpendTime(LocalDate start){
+        LocalDate end = null;
         if (end == null){
             end = LocalDate.now();
         }
         Period generateExpendTime = Period.between(start, end);
         int days = generateExpendTime.getDays();
         int months = generateExpendTime.getMonths();
+         /*
         if (months>0){
             return "Foram gastos "+ days+" dias e " + months + "meses";
         }
         else{
             return "Foram gastos " + days + "dias";
         }
+        */
+        return generateExpendTime;
+    }
+
+    public void setExpendTime(String expendTime) {
+        this.expendTime = expendTime;
+    }
+
+    //AO FINALIZAR A ORDEM, CHAMA ESSE METODO PARA FAZER O PROCESSO DE FINALIZAÇÃO
+    public void finalize(LocalDate start, int satisfactionClient, String paymentForm){
+        Period tempo = calculateExpendTime(start);
+        int days = tempo.getDays();
+        int months = tempo.getMonths();
+        if (months>0){
+            this.setExpendTime("Foram gastos "+ days+" dias e " + months + "meses");
+        }
+        else{
+            this.setExpendTime("Foram gastos " + days + "dias");
+        }
+        this.setEnd(end = LocalDate.now());
+        this.setStatus("finalizada");
+        this.setClientSatisfaction(satisfactionClient);
+        this.setPaymentType(paymentForm);
+        //FALTA POR A PARTE DO PRECO PRA FUNCIONAR
+        /*
+        this.setPrice(this.calculatePrice(this.getType(), this.getItemsList()));
+         */
+
+
     }
 
 
