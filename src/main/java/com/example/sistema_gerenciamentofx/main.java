@@ -78,7 +78,7 @@ public class main{
                             System.out.println("3. DELETAR CLIENTE");
                             System.out.println("4. LISTAR CLIENTES");
                             System.out.println("5. CRIAR ORDENS DE SERVIÇO");
-                            System.out.println("6. ATUALIZAR ORDEM DE SERVIÇO");
+                            System.out.println("6. FINALIZAR ORDEM DE SERVIÇO");
                             System.out.println("7. GERENCIAR ESTOQUE");
                             System.out.println("0. Parar");
                             System.out.print("Digite uma opçao: ");
@@ -211,7 +211,7 @@ public class main{
                                     System.out.println("Por favor identifique o cliente com seu CPF: ");
                                     identificadorCliente = input.nextLine();
                                     ordem.setClientId(DAO.getClienteDAO().findIdbyCPF(identificadorCliente));
-                                    ordem.setTechnicianID(id);
+                                    ordem.setTechnicianID(DAO.getTecnicoDAO().findIdbyCPF(id));
                                     //estrutura para evitar que o tecnico digite errado o nome, e
                                     //dê erro no resto do programa
                                     do {
@@ -279,6 +279,7 @@ public class main{
                                     confirmacao = input.nextLine();
                                     if(confirmacao.equals("s")){
                                         ordemServico = DAO.getOrdemServicoDAO().openOrderByTechnician(id);
+                                        System.out.println(ordemServico);
                                         input.nextLine();
                                         System.out.println("Forma de pagamento: ");
                                         pagamento = input.nextLine();
@@ -291,7 +292,7 @@ public class main{
                                     System.out.println("Imprimir o invoice? [s]im, [n]ão");
                                     confirmacao = input.nextLine();
                                     if(confirmacao.equals("s") & ordemServico !=null){
-                                        DAO.getOrdemServicoDAO().findById(ordemServico.getId()).generateInvoice(ordemServico.getType(), ordemServico.getItemsList());
+                                        System.out.println(ordemServico.generateInvoice(ordemServico.getType(), ordemServico.getItemsList()));
                                     }
 
                                     break;

@@ -3,6 +3,7 @@ package com.example.sistema_gerenciamentofx.dao.ordemServico;
 import com.example.sistema_gerenciamentofx.dao.DAO;
 import com.example.sistema_gerenciamentofx.model.Cliente;
 import com.example.sistema_gerenciamentofx.model.OrdemServico;
+import com.example.sistema_gerenciamentofx.model.Tecnico;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -72,9 +73,11 @@ public class ListOrdensServico implements OrdemServicoDAO{
     @Override
     public void listObjects(ArrayList list) {
         if(this.listaOrdensServico.size()>0){
+            Tecnico tecnico;
             for(OrdemServico ordem: this.listaOrdensServico){
                 System.out.println("ID da ordem: "+ordem.getId());
-                System.out.println("Tecnico da ordem: " + ordem);
+                tecnico = DAO.getTecnicoDAO().findById(ordem.getTechnicianID());
+                System.out.println("Tecnico da ordem: " + tecnico.getFullName());
             }
         }
     }

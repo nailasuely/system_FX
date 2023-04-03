@@ -158,7 +158,7 @@ public class OrdemServico {
 
     public String generateInvoice(String type, HashMap itemsList) {
         //double finalPrice = calculatePrice(String type, HashMap itemsList);
-        if (type == "instalacao" || type == "montagem"){
+        if (type.equals("instalacao") || type.equals("montagem")){
             /*Collection <Integer> values = itemsList.values();
             ArrayList<Integer> valuesList = new ArrayList<>(values);
             Integer quantItems=0;
@@ -176,7 +176,7 @@ public class OrdemServico {
                     partsList +=", ";
                 }*/
                 //return "Tipo do serviço: "+type + ", quantidade de pecas: "+quantItems+", lista de peças: "+partsList+"o custo total foi de: " + finalPrice;
-                return "Tipo do serviço: "+type + ", quantidade de pecas: "+ 0 +", lista de peças: "+ 0 +"o custo total foi de: " + 0;
+                return "Tipo do serviço: "+type + ", quantidade de pecas: "+ 0 +", lista de peças: "+ 0 +"o custo total foi de: " + 0+"tempo que durou: " + this.getExpendTime();
             }
         }
         else{
@@ -196,18 +196,7 @@ public class OrdemServico {
         if (end == null){
             end = LocalDate.now();
         }
-        Period generateExpendTime = Period.between(start, end);
-        int days = generateExpendTime.getDays();
-        int months = generateExpendTime.getMonths();
-         /*
-        if (months>0){
-            return "Foram gastos "+ days+" dias e " + months + "meses";
-        }
-        else{
-            return "Foram gastos " + days + "dias";
-        }
-        */
-        return generateExpendTime;
+        return Period.between(start, end);
     }
 
     public void setExpendTime(String expendTime) {
@@ -278,6 +267,17 @@ public class OrdemServico {
         }
     }
     */
+    public String toString() {
+        return "OrdemServico{\n" +
+                "id='" + id + '\n' +
+                ", start=" + start +'\n' +
+
+                ", clientId='" + clientId + '\n' +
+                ", technicianID='" + technicianID + '\n' +
+                ", type='" + type + '\n' +
+                ", itemsList=" + itemsList +
+                '}';
+    }
 
 
 
