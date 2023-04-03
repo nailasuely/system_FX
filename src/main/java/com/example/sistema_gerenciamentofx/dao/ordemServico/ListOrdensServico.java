@@ -37,7 +37,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
             }
         }
         if(!status){
-            throw new IllegalArgumentException("Cliente não detectado no banco de dados");
+            throw new IllegalArgumentException("Ordem não detectado no banco de dados");
         }
 
     }

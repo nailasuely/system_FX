@@ -43,10 +43,10 @@ class ListTecnicosTest {
 
 
         // se retornar null, significa que o sistema nao adiciona o cliente ja existente
-        //assertNull(teste); // tem errinho aqui
-        //DAO.getTecnicoDAO().create(tecnico1);
+        assertNull(teste); // tem errinho aqui
+        DAO.getTecnicoDAO().create(tecnico2);
         // Verifica se tem a quantidade de clientes esperada.
-        //assertEquals(2, DAO.getTecnicoDAO().amountItems());
+        assertEquals(2, DAO.getTecnicoDAO().amountItems());
     }
 
     @Test
@@ -88,5 +88,17 @@ class ListTecnicosTest {
         DAO.getTecnicoDAO().create(tecnico1);
         Tecnico testeEncontrar = DAO.getTecnicoDAO().findByCPF("123.789.101-10");
         assertEquals(tecnico1, testeEncontrar);
+    }
+
+    @Test
+    void findByCPFIsTrue() {
+        Tecnico teste;
+        boolean testando;
+        DAO.getTecnicoDAO().create(tecnico1);
+        assertTrue(DAO.getTecnicoDAO().findByCPFIsTrue("123.789.101-10"));
+
+
+
+
     }
 }
