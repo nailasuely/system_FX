@@ -19,7 +19,7 @@ public class OrdemServico {
     //TROCAR ESSE DE BAIXO POR UM MAP - DICIONARIO
     //private static ArrayList<String> itemsList;
     /*Usando dicionario, coloca como chave a peca, e como valor a quantidade dela*/
-    private static Map<String, Integer> itemsList;
+    private Map<String, Integer> itemsList;
     private double price;
     private String paymentType;
     private int clientSatisfaction;
@@ -175,10 +175,18 @@ public class OrdemServico {
 
     }*/
 
+    public Map<String, Integer> getItemsList() {
+        return itemsList;
+    }
+
+    public void setItemsList(Map<String, Integer> itemsList) {
+        this.itemsList = itemsList;
+    }
+
     /*
-    Faz o cálculo da data de início e data final, por ser um metodo chamado
-    dentro do metodo de finalizar... ele pega a data final ja na sua chamada
-    */
+        Faz o cálculo da data de início e data final, por ser um metodo chamado
+        dentro do metodo de finalizar... ele pega a data final ja na sua chamada
+        */
     public String calculateExpendTime(LocalDate start, LocalDate end){
         if (end == null){
             end = LocalDate.now();
@@ -236,7 +244,16 @@ public class OrdemServico {
     }
     */
 
+    @Override
+    public String toString() {
+        return "OrdemServico{\n" +
+                "id='" + id + '\n' +
+                ", start=" + start +'\n' +
 
-
-
+                ", clientId='" + clientId + '\n' +
+                ", technicianID='" + technicianID + '\n' +
+                ", type='" + type + '\n' +
+                ", itemsList=" + itemsList +
+                '}';
+    }
 }

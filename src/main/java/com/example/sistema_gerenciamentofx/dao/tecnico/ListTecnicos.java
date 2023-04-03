@@ -99,7 +99,7 @@ public class ListTecnicos implements TecnicoDAO {
     }
     public boolean findByCPFIsTrue(String cpf) {
         for (Tecnico tecnico : this.listaTecnicos) {
-            if (tecnico.getId().equals(cpf)) {
+            if (tecnico.getCpf().equals(cpf)) {
                 return true;
             }
         }

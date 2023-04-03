@@ -6,9 +6,7 @@ import com.example.sistema_gerenciamentofx.model.Cliente;
 import com.example.sistema_gerenciamentofx.model.OrdemServico;
 import com.example.sistema_gerenciamentofx.model.Tecnico;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /*
 Essa main foi criada de modo a realizar testes do programa
@@ -48,9 +46,16 @@ public class main{
                     //input.nextLine();
                     System.out.print("Digite o CPF do tecnico: ");
                     CpfTecnico = input.nextLine();
+                    if (DAO.getClienteDAO().findByCpfIsTrue(CpfTecnico)){
+                        System.out.println("Pessoa ja cadastrada como Cliente");
+                        //conferir se é a melhor opção fazer desse jeito
+                        System.out.println("Por favor deletar o cliente antes de continuar");
+                        break;
+                    }
+
                     novoTecnico.setFullName(fullName);
                     novoTecnico.setCpf(CpfTecnico);
-                    System.out.println(novoTecnico.getCpf());
+
                     //listaDeTecnicos.add(novoTecnico);
 
                     novoTecnico = (Tecnico) DAO.getTecnicoDAO().create(novoTecnico);
@@ -90,7 +95,10 @@ public class main{
                                     //input.nextLine();
                                     System.out.print("Digite o CPF do cliente: ");
                                     cpf = input.nextLine();
-
+                                    if(DAO.getTecnicoDAO().findByCPFIsTrue(cpf)){
+                                        System.out.println("Cliente ja registrado como Tecnico");
+                                        break;
+                                    }
                                     novoCliente.setFullName(name);
 
                                     novoCliente.setCpf(cpf);
@@ -192,6 +200,7 @@ public class main{
                                     String identificadorCliente;
                                     String tipoServico = "";
                                     String tipoPeca = "";
+                                    Map<String, Integer> itemsList = new HashMap<String, Integer>();
                                     Integer quantidadePeca;
                                     int escolhaPeca;
                                     int escolhaTipo;
@@ -243,6 +252,7 @@ public class main{
                                                 }
                                                 System.out.println("Quantidade desejada: ");
                                                 quantidadePeca = input.nextInt();
+                                                itemsList.put(tipoPeca, quantidadePeca);
                                                 System.out.println("Deseja incluir mais itens:\n" +
                                                         "1. SIM\n" +
                                                         "2. NAO");
@@ -253,6 +263,8 @@ public class main{
                                         }
                                     }while (escolhaTipo != 5);
                                     ordem.setType(tipoServico);
+                                    ordem.setStatus("em espera");
+                                    ordem.setItemsList(itemsList);
                                     DAO.getOrdemServicoDAO().create(ordem);
                                     System.out.println("Ordem criada com sucesso");
                                     DAO.getOrdemServicoDAO().listObjects(listaDeOrdens);
