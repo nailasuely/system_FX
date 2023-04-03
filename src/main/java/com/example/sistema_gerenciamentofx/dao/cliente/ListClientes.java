@@ -1,4 +1,5 @@
 package com.example.sistema_gerenciamentofx.dao.cliente;
+import com.example.sistema_gerenciamentofx.dao.DAO;
 import com.example.sistema_gerenciamentofx.model.Cliente;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class ListClientes implements ClienteDAO {
     public Cliente create(Cliente cliente) {
 
         //VERIFICAÇÃO PARA NAO CRIAR CLIENTE JA EXISTENTE
-        if (findByCpfIsTrue(cliente.getCpf()) == true) {
+        if (findByCpfIsTrue(cliente.getCpf()) | DAO.getTecnicoDAO().findByCPFIsTrue(cliente.getCpf())) {
             //POR TRATATIVA PARA ISSO, SE O RETORNO AQUI FOR NULL
 
             return null;

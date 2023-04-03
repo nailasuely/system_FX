@@ -1,5 +1,6 @@
 package com.example.sistema_gerenciamentofx.dao.tecnico;
 
+import com.example.sistema_gerenciamentofx.dao.DAO;
 import com.example.sistema_gerenciamentofx.model.Cliente;
 import com.example.sistema_gerenciamentofx.model.Tecnico;
 
@@ -16,7 +17,7 @@ public class ListTecnicos implements TecnicoDAO {
 
     @Override
     public Tecnico create(Tecnico tecnico) {
-        if (findByCPFIsTrue(tecnico.getCpf())) {
+        if (findByCPFIsTrue(tecnico.getCpf()) | DAO.getClienteDAO().findByCpfIsTrue(tecnico.getCpf())) {
             return null;
         }
         else{
