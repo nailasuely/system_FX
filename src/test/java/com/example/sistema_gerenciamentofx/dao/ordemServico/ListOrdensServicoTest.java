@@ -39,6 +39,7 @@ class ListOrdensServicoTest {
         DAO.getOrdemServicoDAO().create(ordem1);
         assertNotNull(ordem1.getId());
         id = ordem1.getId();
+
         //DAO.getOrdemServicoDAO().atualizarStatusAndamento("123.789.101-10", ordem1);
     }
 
