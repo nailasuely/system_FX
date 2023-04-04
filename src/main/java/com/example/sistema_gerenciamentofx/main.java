@@ -264,7 +264,7 @@ public class main{
                                     }while (escolhaTipo != 5);
                                     ordem.setType(tipoServico);
                                     ordem.setStatus("em espera");
-                                    ordem.setItemsList(itemsList);
+                                    //ordem.setItemsList(itemsList);
                                     DAO.getOrdemServicoDAO().create(ordem);
                                     System.out.println("Ordem criada com sucesso");
                                     DAO.getOrdemServicoDAO().listObjects(listaDeOrdens);
@@ -285,14 +285,14 @@ public class main{
                                         pagamento = input.nextLine();
                                         System.out.println("Satisfação do cliente: ");
                                         satisfaction = input.nextInt();
-                                        ordemServico.finalize(ordemServico.getStart(),satisfaction,pagamento);
+                                        //ordemServico.finalize(ordemServico.getStart(),satisfaction,pagamento);
                                         DAO.getOrdemServicoDAO().update(ordemServico);
                                     }
                                     input.nextLine();
                                     System.out.println("Imprimir o invoice? [s]im, [n]ão");
                                     confirmacao = input.nextLine();
                                     if(confirmacao.equals("s") & ordemServico !=null){
-                                        System.out.println(ordemServico.generateInvoice(ordemServico.getType(), ordemServico.getItemsList()));
+                                        //System.out.println(ordemServico.generateInvoice(ordemServico.getType(), ordemServico.getItemsList()));
                                     }
 
                                     break;

@@ -39,4 +39,15 @@ public class Produto {
         return new Produto("hd/ssd", 30.0);
     }
 
+    // aqui são os serviços
+    public static Produto servicoFormatar() {
+        return new Produto("formatacao", 50.0);
+    }
+    public static Produto servicoInstalar() {
+        return new Produto("instalacao", 10.0);
+    }
+    public static Produto servicoLimpeza() {
+        return new Produto("limpeza", 70.0);
+    }
+
 }

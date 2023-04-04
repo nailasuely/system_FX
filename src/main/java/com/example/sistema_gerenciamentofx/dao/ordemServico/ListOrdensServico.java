@@ -12,22 +12,46 @@ import java.util.UUID;
 
 public class ListOrdensServico implements OrdemServicoDAO{
     private List<OrdemServico> listaOrdensServico;
+    private int indiceClienteParaAtender = 0;
+
+
     public ListOrdensServico(){
         this.listaOrdensServico = new ArrayList<OrdemServico>();
     }
 
+
     @Override
     public OrdemServico create(OrdemServico ordem) {
-        UUID newID = UUID.randomUUID();
-        String newIDStrign = newID.toString();
+
         LocalDate inicio = LocalDate.now();
 
+        UUID newID = UUID.randomUUID();
+        String newIDStrign = newID.toString();
+        //lembrar de verificar dps;
         ordem.setId(newIDStrign);
+
         ordem.setStart(inicio);
         this.listaOrdensServico.add(ordem);
 
         return ordem;
     }
+
+    public void atualizarStatusAndamento(String cpfTecnico, OrdemServico ordem){
+       if (listaOrdensServico != null){
+           // aqui o método addservideorder retorna true se o tecnico está com a lista
+           // de serviços vazia ou todas finalizadas. Se estiver ele atualiza a ordem para
+           // andamento
+           if(DAO.getTecnicoDAO().findByCPF(cpfTecnico).addServiceOrder(ordem)){
+           listaOrdensServico.get(indiceClienteParaAtender).setStatus("andamento");
+           indiceClienteParaAtender++;
+           System.out.println(listaOrdensServico);
+           }
+       }
+       else{
+           throw new IllegalArgumentException("O técnico não pode aceitar novas ordens no momento");
+       }
+    }
+
 
     @Override
     public void update(OrdemServico ordem) {

@@ -19,13 +19,13 @@ public class Tecnico extends Pessoa {
     /*REVER LOGICA
     pelo q tinhamos visto na aula do PBL falou q pode add, mas nao pode por o status em andamento
      */
-    public void addServiceOrder(OrdemServico servico) {
+    public boolean addServiceOrder(OrdemServico servico) {
         int quantidadeServicos = serviceOrders.size();
         int servicosFinalizados = 0;
         if (serviceOrders.isEmpty()){
              serviceOrders.add(servico);
-         }
-         else{
+             return true;}
+        else{
             for(OrdemServico servicos: serviceOrders){
                 if (OrdemServico.getStatus() == "Finalizado"){
                     servicosFinalizados += 1;
@@ -33,12 +33,14 @@ public class Tecnico extends Pessoa {
             }
             if(quantidadeServicos == servicosFinalizados){
                 serviceOrders.add(servico);
+                return true;
             }
          }
+        return false;
 
     }
 
-    public void finalizeServiceOrder(OrdemServico servico){
+    public void finalizeServiceOrder(OrdemServico ordem){
 
     }
 

@@ -1,4 +1,7 @@
 package com.example.sistema_gerenciamentofx.model;
+import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.dao.estoque.SemEstoqueException;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
@@ -7,27 +10,21 @@ import java.util.*;
 public class OrdemServico {
 
     private String id;
-    /*
-    private static Date start;
-    private static Date end;
-    */
+
     private LocalDate start;
     private LocalDate end;
     private String clientId;
     private String technicianID;
     private String type;
-    //TROCAR ESSE DE BAIXO POR UM MAP - DICIONARIO
-    //private static ArrayList<String> itemsList;
+
     /*Usando dicionario, coloca como chave a peca, e como valor a quantidade dela*/
-    private static HashMap<String, Integer> itemsList;
-    private double price;
+    //private static HashMap<String, Integer> itemsList;
+
+    private List<Produto> listaServicos; // pode ser de itens também
+    private double price = 0;
     private String paymentType;
     private int clientSatisfaction;
     private static String status;
-    /*
-    Troca do expendTime de Date, para String, visando colocar um valor ja formatado
-    *
-    */
     private String expendTime;
     private String description;
 
@@ -35,12 +32,18 @@ public class OrdemServico {
         if(start == null){
             start = LocalDate.now();
         }
-        if(itemsList == null){
-            itemsList = new HashMap<String, Integer>();
+       if(listaServicos == null){
+            listaServicos = new ArrayList<>();
         }
     }
 
+    // nao sei se essa classe pode realmente ficar aqui pq vai ter manipulação de lista.
+    // aqui é tipo o setServiços
+    public void setListaServicos(Produto produto, int quantidade) throws SemEstoqueException {
+        listaServicos.add(produto);
+        DAO.getEstoqueDAO().retirarEstoque(produto, quantidade);
 
+    }
 
     public void setId(String id) {
         this.id = id;
@@ -91,13 +94,14 @@ public class OrdemServico {
         this.type = type;
     }
 
-    public HashMap<String, Integer> getItemsList() {
-        return itemsList;
-    }
 
-    public void setItemsList(HashMap<String, Integer> itemsList) {
+    /*public HashMap<String, Integer> getItemsList() {
+        return itemsList;
+    }*/
+
+    /*public void setItemsList(HashMap<String, Integer> itemsList) {
         this.itemsList = itemsList;
-    }
+    }*/
 
 
     /*
@@ -115,6 +119,10 @@ public class OrdemServico {
     }
 
     public void setPrice(double price) {
+        if (listaServicos.size() > 0) {
+        for (Produto item : listaServicos) {
+            price += item.getPreco(); }
+        }
         this.price = price;
     }
 
@@ -123,7 +131,15 @@ public class OrdemServico {
     }
 
     public void setPaymentType(String paymentType) {
-        this.paymentType = paymentType;
+        if (paymentType.equals("transferencia") ||
+            paymentType.equals("cartao") ||
+            paymentType.equals("dinheiro") ||
+            paymentType.equals("pix")) {
+            this.paymentType = paymentType;
+        } else {
+            throw new IllegalArgumentException("O tipo de pagamento que você " +
+                    "colocou não é válido no sistema" + paymentType);
+        }
     }
 
     public int getClientSatisfaction() {
@@ -139,7 +155,7 @@ public class OrdemServico {
     }
 
     public void setStatus(String status) {
-        OrdemServico.status = status;
+        OrdemServico.status = "espera";
     }
 
     public String getExpendTime() {
@@ -204,7 +220,7 @@ public class OrdemServico {
     }
 
     //AO FINALIZAR A ORDEM, CHAMA ESSE METODO PARA FAZER O PROCESSO DE FINALIZAÇÃO
-    public void finalize(LocalDate start, int satisfactionClient, String paymentForm){
+    public void finalize(int satisfactionClient, String paymentForm){
         Period tempo = calculateExpendTime(start);
         int days = tempo.getDays();
         int months = tempo.getMonths();
@@ -226,47 +242,6 @@ public class OrdemServico {
 
     }
 
-
-    /*
-    public static double calculatePrice(String type, HashMap itemsList){
-        Tabela prices = new Tabela();
-        double finalPrice=0;
-        if(type == "limpeza"){
-            return prices.getCleaningService();
-        }
-        else if(type == "formatacao"){
-            return prices.getFormattingService();
-        }
-        else if(type == "instalacao"){
-            int quant=0;
-            quant = (int)itemsList.get("instalacao");
-            return prices.getInstallationService() * quant;
-        }
-        else if(type == "montagem"){
-            for (String peca: itemsList.entrySet()) {
-                if(peca == "ram"){
-                    finalPrice+= prices.getRamPrice() * (double) itemsList.get(peca);
-                }
-                else if(peca == "placa_mae"){
-                    finalPrice+= prices.getMotherBoardPrice() * (double) itemsList.get(peca);
-                }
-                else if(peca == "placa_de_video"){
-                    finalPrice += prices.getGraphicBoardPrice() * (double) itemsList.get(peca);
-                }
-                else if(peca == "ssd"){
-                    finalPrice += prices.getSsdPrice() * (double) itemsList.get(peca);
-                }
-                else if(peca == "fonte"){
-                    finalPrice += prices.getFontPrice() * (double) itemsList.get(peca);
-                }
-            }
-            return finalPrice;
-        }
-        else{
-            return 0;
-        }
-    }
-    */
     public String toString() {
         return "OrdemServico{\n" +
                 "id='" + id + '\n' +
@@ -275,7 +250,7 @@ public class OrdemServico {
                 ", clientId='" + clientId + '\n' +
                 ", technicianID='" + technicianID + '\n' +
                 ", type='" + type + '\n' +
-                ", itemsList=" + itemsList +
+                ", itemsList=" + listaServicos +
                 '}';
     }
 

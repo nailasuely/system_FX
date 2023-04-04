@@ -5,4 +5,5 @@ import com.example.sistema_gerenciamentofx.model.OrdemServico;
 
 public interface OrdemServicoDAO extends CRUD<OrdemServico> {
     public OrdemServico openOrderByTechnician(String cpf);
+    public void atualizarStatusAndamento(String cpfTecnico, OrdemServico ordem);
 }

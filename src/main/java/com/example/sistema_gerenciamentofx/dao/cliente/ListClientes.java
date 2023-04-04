@@ -27,7 +27,6 @@ public class ListClientes implements ClienteDAO {
             // Gerar id pseudoaleatório;
             UUID newID = UUID.randomUUID();
             String newIDStrign = newID.toString();
-
             //lembrar de verificar dps;
             cliente.setId(newIDStrign);
             this.listaClientes.add(cliente);

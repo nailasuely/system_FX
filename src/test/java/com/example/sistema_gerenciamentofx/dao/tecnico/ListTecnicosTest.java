@@ -43,7 +43,7 @@ class ListTecnicosTest {
 
 
         // se retornar null, significa que o sistema nao adiciona o cliente ja existente
-        assertNull(teste); // tem errinho aqui
+        assertNull(teste);
         DAO.getTecnicoDAO().create(tecnico2);
         // Verifica se tem a quantidade de clientes esperada.
         assertEquals(2, DAO.getTecnicoDAO().amountItems());
