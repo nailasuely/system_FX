@@ -8,4 +8,5 @@ public interface TecnicoDAO extends CRUD<Tecnico> {
     public Tecnico findByCPF(String cpf);
     public boolean findByCPFIsTrue(String cpf);
     public String findIdbyCPF(String CPF);
+    public String balanceamento();
 }

@@ -95,7 +95,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
 
 
     @Override
-    public void listObjects(ArrayList list) {
+    public void listObjects() {
         if(this.listaOrdensServico.size()>0){
             Tecnico tecnico;
             for(OrdemServico ordem: this.listaOrdensServico){

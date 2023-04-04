@@ -17,8 +17,6 @@ public class OrdemServico {
     private String technicianID;
     private String type;
 
-    /*Usando dicionario, coloca como chave a peca, e como valor a quantidade dela*/
-    //private static HashMap<String, Integer> itemsList;
 
     private List<Produto> listaServicos; // pode ser de itens também
     private double price = 0;
@@ -64,8 +62,7 @@ public class OrdemServico {
     public LocalDate getEnd() {
         return end;
     }
-    //LEMBRAR
-    //chamar a setEnd no metodo finalizar
+
     public void setEnd(LocalDate end) {
         this.end = LocalDate.now();
     }
@@ -93,26 +90,6 @@ public class OrdemServico {
     public void setType(String type) {
         this.type = type;
     }
-
-
-    /*public HashMap<String, Integer> getItemsList() {
-        return itemsList;
-    }*/
-
-    /*public void setItemsList(HashMap<String, Integer> itemsList) {
-        this.itemsList = itemsList;
-    }*/
-
-
-    /*
-    public static ArrayList<String> getItemsList() {
-        return itemsList;
-    }
-
-    public static void setItemsList(ArrayList<String> itemsList) {
-        OrdemServico.itemsList = itemsList;
-    }
-    */
 
     public double getPrice() {
         return price;
@@ -161,12 +138,7 @@ public class OrdemServico {
     public String getExpendTime() {
         return expendTime;
     }
-/*
-    O SET TA SENDO PREENCHIDO PELO METODO CALCULATE EXPEND TIME
-    public static void setExpendTime(Date expendTime) {
-        OrdemServico.expendTime = expendTime;
-    }
-*/
+
     public String getDescription() {
         return description;
     }

@@ -73,7 +73,7 @@ public class ListTecnicos implements TecnicoDAO {
     }
 
     @Override
-    public void listObjects(ArrayList list) {
+    public void listObjects() {
         for (Tecnico tecnico : this.listaTecnicos) {
             System.out.println("ID do técnico: " + tecnico.getId() );
         }
@@ -114,6 +114,14 @@ public class ListTecnicos implements TecnicoDAO {
         }
         throw new IllegalArgumentException("Tecnico não detectado no banco de dados");
 
+    }
+
+    //trocar nome
+    public String balanceamento(){
+        //metodo para comparar e emitir aviso quando um tecnico quiser criar uma ordem
+        //porem este ja estiver sobrecarregado e ser a vez de outro
+        //fazer verificação no tamanho das listas de ordens de cada um dos tecnicos
+        //colocar valor max de diferença entre uma lista e outra
     }
 
 }

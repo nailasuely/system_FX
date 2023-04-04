@@ -13,7 +13,7 @@ public interface CRUD<T> {
     public void update(T objeto);
     public void delete(String ID);
     public T findById(String id);
-    public void listObjects(ArrayList list);
+    public void listObjects();
     public void deleteMany();
     public int amountItems();
 

@@ -17,9 +17,11 @@ public class main{
         int escolha = 1; String id;
         int opcao=0;
 
+        /*
         ArrayList<Cliente> listaDeClientes = new ArrayList<Cliente>();
         ArrayList<Tecnico> listaDeTecnicos = new ArrayList<Tecnico>();
         ArrayList<Tecnico> listaDeOrdens = new ArrayList<Tecnico>();
+        */
 
         System.out.println("------- SISTEMA DE GERENCIAMENTO ------- ");
 
@@ -62,7 +64,7 @@ public class main{
                     break;
 
                 case 2:
-                    DAO.getTecnicoDAO().listObjects(listaDeTecnicos);
+                    DAO.getTecnicoDAO().listObjects();
                     break;
                 case 3:
                     input.nextLine();
@@ -194,7 +196,7 @@ public class main{
                                     }
                                     break;
                                 case 4:
-                                    DAO.getClienteDAO().listObjects(listaDeClientes);
+                                    DAO.getClienteDAO().listObjects();
                                     break;
                                 case 5: //CRIAR ORDEM DE SERICO
                                     String identificadorCliente;
@@ -267,7 +269,7 @@ public class main{
                                     //ordem.setItemsList(itemsList);
                                     DAO.getOrdemServicoDAO().create(ordem);
                                     System.out.println("Ordem criada com sucesso");
-                                    DAO.getOrdemServicoDAO().listObjects(listaDeOrdens);
+                                    DAO.getOrdemServicoDAO().listObjects();
                                     break;
                                 case 6: //atualizar ordem de servico
                                     OrdemServico ordemServico = null;
@@ -331,7 +333,7 @@ public class main{
                     System.out.println("Nome do tecnico: "+novoT.getFullName());
                     break;
                 case 6:
-                    DAO.getClienteDAO().listObjects(listaDeClientes);
+                    DAO.getClienteDAO().listObjects();
                     break;
                 case 0:
                     System.out.println("Finalizando...");

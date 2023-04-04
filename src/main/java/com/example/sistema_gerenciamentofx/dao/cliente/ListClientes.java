@@ -75,7 +75,7 @@ public class ListClientes implements ClienteDAO {
     }
 
     @Override
-    public void listObjects(ArrayList list) {
+    public void listObjects() {
         for (Cliente cliente : this.listaClientes) {
             System.out.println("ID do cliente: " + cliente.getId());
         }
