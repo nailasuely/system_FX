@@ -5,6 +5,7 @@ public class Tecnico extends Pessoa {
     public Tecnico(){}
     public Tecnico(String nome, String address, String cpf, int telephone) {
         super(nome, address, cpf, telephone);
+        serviceOrders = new ArrayList<>();
     }
 
     /*
@@ -19,19 +20,22 @@ public class Tecnico extends Pessoa {
     /*REVER LOGICA
     pelo q tinhamos visto na aula do PBL falou q pode add, mas nao pode por o status em andamento
      */
-    public boolean addServiceOrder(OrdemServico servico) {
+    public boolean addServiceOrder(OrdemServico servico, String tecID) {
         int quantidadeServicos = serviceOrders.size();
         int servicosFinalizados = 0;
         if (serviceOrders.isEmpty()){
+             servico.setTechnicianID(tecID);
              serviceOrders.add(servico);
+
              return true;}
         else{
             for(OrdemServico servicos: serviceOrders){
-                if (OrdemServico.getStatus() == "Finalizado"){
+                if (servicos.getStatus() == "Finalizado"){
                     servicosFinalizados += 1;
                 }
             }
             if(quantidadeServicos == servicosFinalizados){
+                servico.setTechnicianID(tecID);
                 serviceOrders.add(servico);
                 return true;
             }

@@ -24,7 +24,7 @@ public class Produto {
     }
 
     public static Produto novaPlacaMae() {
-        return new Produto("placa mãe", 100.0);
+        return new Produto("placa mae", 100.0);
     }
 
     public static Produto novaFonte() {
@@ -40,6 +40,9 @@ public class Produto {
     }
 
     // aqui são os serviços
+    public static Produto servicoMontagem() {
+        return new Produto("montagem", 0);
+    }
     public static Produto servicoFormatar() {
         return new Produto("formatacao", 50.0);
     }
@@ -48,6 +51,13 @@ public class Produto {
     }
     public static Produto servicoLimpeza() {
         return new Produto("limpeza", 70.0);
+    }
+    @Override
+    public String toString() {
+        return "Produto/Serviço [\n" +
+                "nome='" + nome + '\n' +
+                ", preço=" + preco + '\n' +
+                ']';
     }
 
 }

@@ -1,8 +1,8 @@
 package com.example.sistema_gerenciamentofx.dao.ordemServico;
 
 import com.example.sistema_gerenciamentofx.dao.DAO;
-import com.example.sistema_gerenciamentofx.model.Cliente;
 import com.example.sistema_gerenciamentofx.model.OrdemServico;
+import com.example.sistema_gerenciamentofx.model.Produto;
 import com.example.sistema_gerenciamentofx.model.Tecnico;
 
 import java.time.LocalDate;
@@ -21,16 +21,15 @@ public class ListOrdensServico implements OrdemServicoDAO{
 
 
     @Override
-    public OrdemServico create(OrdemServico ordem) {
-
+    public OrdemServico create(OrdemServico ordem, String clienteID, Produto type) {
         LocalDate inicio = LocalDate.now();
-
         UUID newID = UUID.randomUUID();
         String newIDStrign = newID.toString();
         //lembrar de verificar dps;
         ordem.setId(newIDStrign);
-
         ordem.setStart(inicio);
+        ordem.setClientId(clienteID);
+        ordem.setType(type);
         this.listaOrdensServico.add(ordem);
 
         return ordem;
@@ -41,7 +40,8 @@ public class ListOrdensServico implements OrdemServicoDAO{
            // aqui o método addservideorder retorna true se o tecnico está com a lista
            // de serviços vazia ou todas finalizadas. Se estiver ele atualiza a ordem para
            // andamento
-           if(DAO.getTecnicoDAO().findByCPF(cpfTecnico).addServiceOrder(ordem)){
+           if(DAO.getTecnicoDAO().findByCPF(cpfTecnico).addServiceOrder(ordem,
+              DAO.getTecnicoDAO().findByCPF(cpfTecnico).getId())){
            listaOrdensServico.get(indiceClienteParaAtender).setStatus("andamento");
            indiceClienteParaAtender++;
            System.out.println(listaOrdensServico);
@@ -52,6 +52,18 @@ public class ListOrdensServico implements OrdemServicoDAO{
        }
     }
 
+    // essa classe é apenas para não gerar erros no crud;
+    @Override
+    public OrdemServico create(OrdemServico ordem) {
+        LocalDate inicio = LocalDate.now();
+        UUID newID = UUID.randomUUID();
+        String newIDStrign = newID.toString();
+        //lembrar de verificar dps;
+        ordem.setId(newIDStrign);
+        ordem.setStart(inicio);
+        this.listaOrdensServico.add(ordem);
+        return null;
+    }
 
     @Override
     public void update(OrdemServico ordem) {

@@ -15,14 +15,14 @@ public class OrdemServico {
     private LocalDate end;
     private String clientId;
     private String technicianID;
-    private String type;
+    private Produto type;
 
 
-    private List<Produto> listaServicos; // pode ser de itens também
+    private List<Produto> produtoLists; // pode ser de itens também
     private double price = 0;
     private String paymentType;
     private int clientSatisfaction;
-    private static String status;
+    private String status;
     private String expendTime;
     private String description;
 
@@ -30,17 +30,29 @@ public class OrdemServico {
         if(start == null){
             start = LocalDate.now();
         }
-       if(listaServicos == null){
-            listaServicos = new ArrayList<>();
+        if(produtoLists == null){
+            produtoLists = new ArrayList<>();
+        }
+        if(status == null){
+            this.status = "espera";
         }
     }
 
-    // nao sei se essa classe pode realmente ficar aqui pq vai ter manipulação de lista.
-    // aqui é tipo o setServiços
-    public void setListaServicos(Produto produto, int quantidade) throws SemEstoqueException {
-        listaServicos.add(produto);
-        DAO.getEstoqueDAO().retirarEstoque(produto, quantidade);
+    public void setListaProdutos(Produto produto, int quantidade) throws SemEstoqueException, ProdutoErradoException {
+        // caso seja outro tipo de produto, isso será adicionado no if depois
+        if(produto.getNome().equals("ram") ||produto.getNome().equals("placa mae") ||
+           produto.getNome().equals("fonte") || produto.getNome().equals("hd/ssd")) {
+            produtoLists.add(produto);
+            DAO.getEstoqueDAO().retirarEstoque(produto, quantidade);
+        }
+        else{
+            throw new ProdutoErradoException("Apenas produtos podem ser adicionados nessa lista. Você tentou adicionar: " + produto.getNome());
+        }
 
+    }
+
+    public List<Produto> getProdutoLists() {
+        return produtoLists;
     }
 
     public void setId(String id) {
@@ -83,12 +95,12 @@ public class OrdemServico {
         this.technicianID = technicianID;
     }
 
-    public String getType() {
+    public Produto getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setType(Produto type) {
+        this.type = new Produto();
     }
 
     public double getPrice() {
@@ -96,9 +108,16 @@ public class OrdemServico {
     }
 
     public void setPrice(double price) {
-        if (listaServicos.size() > 0) {
-        for (Produto item : listaServicos) {
-            price += item.getPreco(); }
+        // Lembrando que nessa lista só é adicionada PRODUTOS/PEÇAS, só vai ser maior doq
+        // zero se for uma montagem.
+        if(type.getNome().equals("montagem")){
+            if (produtoLists.size() > 0) {
+            for (Produto item : produtoLists) {
+                price += item.getPreco(); }
+            }
+        }
+        else if(type != null){
+            price += type.getPreco();
         }
         this.price = price;
     }
@@ -127,13 +146,14 @@ public class OrdemServico {
         this.clientSatisfaction = clientSatisfaction;
     }
 
-    public static String getStatus() {
+    public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
-        OrdemServico.status = "espera";
+        this.status = status;
     }
+
 
     public String getExpendTime() {
         return expendTime;
@@ -144,32 +164,32 @@ public class OrdemServico {
     }
 
 
-    public String generateInvoice(String type, HashMap itemsList) {
+    public String generateInvoice(Produto type) {
         //double finalPrice = calculatePrice(String type, HashMap itemsList);
-        if (type.equals("instalacao") || type.equals("montagem")){
+        if (type.getNome().equals("instalacao") || type.getNome().equals("montagem")){
             /*Collection <Integer> values = itemsList.values();
             ArrayList<Integer> valuesList = new ArrayList<>(values);
             Integer quantItems=0;
             for (Integer quant: valuesList) {
                 quantItems +=quant;
             }*/
-            if (type == "instalacao"){
+            if (type.getNome().equals("instalacao")){
                 //return "Tipo do serviço: "+type + ", quantidade de programas: "+quantItems+", o custo total foi de: " + finalPrice;
-                return "Tipo do serviço: "+type + ", quantidade de programas: "+0+", o custo total foi de: " + 0;
+                return "Tipo do serviço: "+type.getNome() + ", quantidade de programas: "+0+", o custo total foi de: " + 0;
             }
-            else if(type == "montagem"){
+            else if(type.getNome().equals("montagem")){
                 /*String partsList = "";
                 for (String peca: itemsList.entrySet()){
                     partsList +=peca;
                     partsList +=", ";
                 }*/
                 //return "Tipo do serviço: "+type + ", quantidade de pecas: "+quantItems+", lista de peças: "+partsList+"o custo total foi de: " + finalPrice;
-                return "Tipo do serviço: "+type + ", quantidade de pecas: "+ 0 +", lista de peças: "+ 0 +"o custo total foi de: " + 0+"tempo que durou: " + this.getExpendTime();
+                return "Tipo do serviço: "+type.getNome() + ", quantidade de pecas: "+ 0 +", lista de peças: "+ 0 +"o custo total foi de: " + 0+"tempo que durou: " + this.getExpendTime();
             }
         }
         else{
             //return "Tipo do serviço: "+type + ", o custo total foi de: " + finalPrice;
-            return "Tipo do serviço: "+type + ", o custo total foi de: " + 0;
+            return "Tipo do serviço: "+type.getNome() + ", o custo total foi de: " + 0;
         }
         return null;
 
@@ -216,13 +236,13 @@ public class OrdemServico {
 
     public String toString() {
         return "OrdemServico{\n" +
-                "id='" + id + '\n' +
-                ", start=" + start +'\n' +
-
-                ", clientId='" + clientId + '\n' +
-                ", technicianID='" + technicianID + '\n' +
-                ", type='" + type + '\n' +
-                ", itemsList=" + listaServicos +
+                "id=" + id + '\n' +
+                "start=" + start +'\n' +
+                "status=" + status +'\n' +
+                "clientId='" + clientId + '\n' +
+                "technicianID='" + technicianID + '\n' +
+                "type='" + type.getNome() + '\n' +
+                "itemsList=" + produtoLists +
                 '}';
     }
 

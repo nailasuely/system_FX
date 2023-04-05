@@ -58,4 +58,16 @@ public abstract class Pessoa {
     public void setTelephone(int telephone) {
         this.telephone = telephone;
     }
+
+    @Override
+    public String toString() {
+        return "Pessoa [\n" +
+                "id='" + id + '\n' +
+                ", nome=" + fullName + '\n' +
+
+                ", endereço='" + address + '\n' +
+                ", CPF='" + cpf + '\n' +
+                ", telefone='" + telephone + '\n' +
+                ']';
+    }
 }

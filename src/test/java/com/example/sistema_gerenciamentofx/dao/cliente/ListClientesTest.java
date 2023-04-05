@@ -46,7 +46,6 @@ class ListClientesTest {
 
         teste = DAO.getClienteDAO().create(cliente1);
 
-
         // se retornar null, significa que o sistema nao adiciona o cliente ja existente
         assertNull(teste);
         DAO.getClienteDAO().create(cliente2);

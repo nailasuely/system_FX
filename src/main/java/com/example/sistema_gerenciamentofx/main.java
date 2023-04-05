@@ -2,9 +2,8 @@ package com.example.sistema_gerenciamentofx;
 
 
 import com.example.sistema_gerenciamentofx.dao.DAO;
-import com.example.sistema_gerenciamentofx.model.Cliente;
-import com.example.sistema_gerenciamentofx.model.OrdemServico;
-import com.example.sistema_gerenciamentofx.model.Tecnico;
+import com.example.sistema_gerenciamentofx.dao.estoque.SemEstoqueException;
+import com.example.sistema_gerenciamentofx.model.*;
 
 import java.util.*;
 
@@ -13,7 +12,7 @@ Essa main foi criada de modo a realizar testes do programa
  */
 
 public class main{
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SemEstoqueException, ProdutoErradoException {
         int escolha = 1; String id;
         int opcao=0;
 
@@ -200,8 +199,8 @@ public class main{
                                     break;
                                 case 5: //CRIAR ORDEM DE SERICO
                                     String identificadorCliente;
-                                    String tipoServico = "";
-                                    String tipoPeca = "";
+                                    Produto tipoServico = null;
+                                    Produto tipoPeca = null;
                                     HashMap<String, Integer> itemsList = new HashMap<String, Integer>();
                                     Integer quantidadePeca;
                                     int escolhaPeca;
@@ -225,47 +224,49 @@ public class main{
                                                 "5. NENHUM\n");
                                         escolhaTipo = input.nextInt();
                                         if (escolhaTipo == 1) {
-                                            tipoServico = "formatacao";}
+                                            tipoServico = Produto.servicoFormatar();}
                                         else if (escolhaTipo == 2) {
-                                            tipoServico = "instalacao";
+                                            tipoServico = Produto.servicoInstalar();
                                             System.out.println("Quantidade de programas: ");
                                             quantidade = input.nextInt();}
                                         else if (escolhaTipo == 3) {
-                                            tipoServico = "montagem";
+                                            tipoServico = Produto.servicoMontagem();
                                             int querMais = 1;
                                             while(querMais == 1) {
                                                 System.out.println("Informe a peça: \n" +
                                                         "1. memoria Ram\n" +
                                                         "2. placa mae\n" +
                                                         "3. placa de video\n" +
-                                                        "4. hdd/ssd\n" +
+                                                        "4. hd/ssd\n" +
                                                         "5. fonte");
                                                 escolhaPeca = input.nextInt();
                                                 if (escolhaPeca == 1) {
-                                                    tipoPeca = "ram";
+                                                    tipoPeca = Produto.novaRam();
                                                 } else if (escolhaPeca == 2) {
-                                                    tipoPeca = "placa_mae";
+                                                    tipoPeca = Produto.novaPlacaMae();
                                                 } else if (escolhaPeca == 3) {
-                                                    tipoPeca = "placa_de_video";
+                                                    tipoPeca = Produto.novaPlacaDeVideo();
                                                 } else if (escolhaPeca == 4) {
-                                                    tipoPeca = "ssd";
+                                                    tipoPeca = Produto.novoHDSSD();
                                                 } else if (escolhaPeca == 5) {
-                                                    tipoPeca = "fonte";
+                                                    tipoPeca = Produto.novaFonte();
                                                 }
                                                 System.out.println("Quantidade desejada: ");
                                                 quantidadePeca = input.nextInt();
-                                                itemsList.put(tipoPeca, quantidadePeca);
+                                                if (tipoPeca != null){
+                                                ordem.setListaProdutos(tipoPeca, quantidadePeca);}
+                                                //itemsList.put(tipoPeca, quantidadePeca);
                                                 System.out.println("Deseja incluir mais itens:\n" +
                                                         "1. SIM\n" +
                                                         "2. NAO");
                                                 querMais = input.nextInt();
                                             }
                                         } else if (escolhaTipo == 4) {
-                                            tipoServico = "limpeza";
+                                            tipoServico = Produto.servicoLimpeza();
                                         }
                                     }while (escolhaTipo != 5);
                                     ordem.setType(tipoServico);
-                                    ordem.setStatus("em espera");
+                                    ordem.setStatus("espera");
                                     //ordem.setItemsList(itemsList);
                                     DAO.getOrdemServicoDAO().create(ordem);
                                     System.out.println("Ordem criada com sucesso");
