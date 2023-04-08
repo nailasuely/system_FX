@@ -6,21 +6,104 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
+/**
+ * Classe que contém as informações a respeito de uma ordem de serviço, como:
+ * <ul>
+ *     <li>
+ *         id da ordem
+ *     </li>
+ *     <li>
+ *         datas de inicio e fim, assim como tempo de duração do serviço
+ *     </li>
+ *     <li>
+ *         id tanto do cliente, como do tecnico
+ *     </li>
+ *     <li>
+ *         listagem do(s) produto(s), ou serviço escolhido pelo cliente
+ *     </li>
+ *     <li>
+ *         satisfação do cliente
+ *     </li>
+ *     <li>
+ *         status do procedimento daquela ordme, assim como a forma de pagamento
+ *     </li>
+ * </ul>
+ * @author Naila Suele e Rhian Pablo
+ * @since 2023
+ */
 
 public class OrdemServico {
-
+    /**
+     * O atributo <b>id</b> serve para salvar a identificação unica da ordem de serviço<br>
+     * Cada ordem possui o seu ID gerado aleatoriamente pela biblioteca <i>UUID</i>
+     */
     private String id;
-
+    /**
+     * O atributo <b>start</b> serve para salvar a data em que a ordem foi criada<br>
+     * Preenchido automaticamente pelo construtor da classe
+     */
     private LocalDate start;
+    /**
+     * O atributo <b>end</b> serve para salvar a data em que a ordem de serviço recebeu o status de finalizada<br>
+     * Valor preenchido automaticamente ao realizar a mudança de status para <i>finalizado</i>
+     */
     private LocalDate end;
+    /**
+     * O atributo <b>clienteId</b> serve para salvar o <i>ID</i> do cliente, e assim poder identifica-lo, que fez a contratação dos serviços contidos na ordem de serviço
+     */
     private String clientId;
+    /**
+     * O atributo <b>technicianID</b> serve para salvar o <i>ID</i> do tecnico que está
+     * responsável pela realização daquela ordem de serviço, permitindo a identicação do mesmo
+     */
     private String technicianID;
+    /**
+     * O atributo <b>>type</b> serve para poder identificar o tipo da ordem, seja ela:<br>
+     * <ul>
+     *     <li>
+     *         Formatação;
+     *     </li>
+     *     <li>
+     *         Instalação de programas;
+     *     </li>
+     *     <li>
+     *         Montagem/instalação;
+     *     </li>
+     *     <li>
+     *         Limpeza
+     *     </li>
+     * </ul>
+     */
     private Produto type;
 
-
+    /**
+     * O atributo <b>produtoLists</b> serve para armazenar a lista de itens, ou serviço, desejados pelo cliente para serem realizados
+     */
     private List<Produto> produtoLists; // pode ser de itens também
+    /**
+     * O atributo <b>price</b> serve para poder armazenar o preço total daquele serviço, o qual vai ser cobrado para o cliente ao finalizar a ordem de serviço
+     */
     private double price = 0;
+    /**
+     * O atributo <b>paymentType</b> serve para poder armazenar a forma de pagamento escolhida pelo cliente<br>
+     * Formas que são permitidas:
+     * <ul>
+     *     <li>
+     *          "transferencia"
+     *     </li>
+     *     <li>
+     *         "dinheiro"
+     *     </li>
+     *     <li>
+     *         "cartão"
+     *     </li>
+     *     <li>
+     *         "pix"
+     *     </li>
+     * </ul>
+     */
     private String paymentType;
+    
     private int clientSatisfaction;
     private String status;
     private String expendTime;
