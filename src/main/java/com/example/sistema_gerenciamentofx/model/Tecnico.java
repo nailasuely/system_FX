@@ -55,11 +55,12 @@ public class Tecnico extends Pessoa {
      */
 
     /**
-     * Método para realizar verificação se o tecnico pode adicionar uma ordem de serviço a sua lista<br>
+     * Método para realizar adição de uma ordem de serviço a lista de ordens do proprio tecnico<br>
      *
      * @param servico Objeto do tipo <i>OrdemServico</i>, que contém as informações de uma ordem de serviço criada
      * @param tecID String para receber o id do tecnico e então realizar procuras na base de dados do sistema
-     * @return True ou False, a depender se o tecnico pode pegar aquela ordem de serviço para si, ou precisa passar para outro tecnico
+     * @return True ou False, a depender se o tecnico pode pegar aquela ordem de serviço para si, ou
+     * precisa passar para outro tecnico caso o retorno seja falso
      */
     public boolean addServiceOrder(OrdemServico servico, String tecID) {
         int quantidadeServicos = serviceOrders.size();
@@ -84,6 +85,10 @@ public class Tecnico extends Pessoa {
         return false;
 
     }
+    /**
+     * Método para poder obter a lista de Ordens de Serviço associadas àquele tecnico
+     * @return Uma <i>ArrayList</i> contendo objetos do tipo <i>OrdemServico</i>
+     */
     public static ArrayList<OrdemServico> getServiceOrders() {
         return serviceOrders;
     }

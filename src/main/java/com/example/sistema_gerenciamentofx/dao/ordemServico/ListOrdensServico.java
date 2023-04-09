@@ -209,7 +209,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
      * Método para encontrar a ordem em que o tecnico esta trabalhando no momento, ou seja a ordem registrada a ele e que tem
      * o status "em andamento"
      * @param cpf <i>String</i> contendo o CPF do tecnico o qual deseja realizar a busca
-     * @return Objeto do tipo <i>OrdemServico</i>, o
+     * @return Objeto do tipo <i>OrdemServico</i> que esta com o status "em andamento", e associada ao tecnico do cpf passado
      */
     public OrdemServico openOrderByTechnician(String cpf){
         String idTecnico;

@@ -10,7 +10,12 @@ import java.util.*;
 /*
 Essa main foi criada de modo a realizar testes do programa
  */
-
+/**
+ * Está classe foi criada com o intuito de realização de testes interativos por meio do terminal.
+ * Afim de simular a utilização do programa como se fosse o usuário final, não permanecendo unicamente nos testes
+ * "sintéticos", prontos e sem interação com o sistema, e então analisar conexões entre classes
+ * e banco de dados, o DAO, verificando se o funcionamento está como esperado.
+ */
 public class main{
     public static void main(String[] args) throws SemEstoqueException, ProdutoErradoException {
         int escolha = 1; String id;
