@@ -10,16 +10,52 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Está classe é parte da forma de armazenamento de dados, sendo utilizado lista para tal, nessa classe em que utiliza o padrão DAO.<br>
+ * Está salva uma lista de Ordens de Serviço, e contém métodos, padrões ao CRUD (Create, Read, Update, Delete), além de outros
+ * métodso necessários para desenvolvimento das funções do sistema dentre eles:<ul>
+ *     <li>
+ *         <b>openOrderByTechnician</b> - devolve a ordem em aberto de determinado tecnico a partir do cpf do mesmo.
+ *     </li>
+ *     <li>
+ *          <b>atualizarStatusAndamento</b> - para atualizar o status da ordem de serviço para "em andamento".
+ *     </li>
+ * </ul>
+ * @author Naila Suele e Rhian Pablo
+ * @since 2023
+ */
 public class ListOrdensServico implements OrdemServicoDAO{
+    /**
+     * O atributo <b>listaOrdensServico</b> é do tipo <i>List</i>, e armazena a lista contendo objetos do tipo <i>OrdemServico</i>
+     */
     private List<OrdemServico> listaOrdensServico;
+    /**
+     * O atributo <b>indiceClienteParaAtender</b> é do tipo <i>Int</i>
+     */
     private int indiceClienteParaAtender = 0;
 
-
+    /**
+     * Método construtor da classe, em que inicializa a lista que irá conter as ordens de serviço do sistema
+     */
     public ListOrdensServico(){
         this.listaOrdensServico = new ArrayList<OrdemServico>();
     }
 
-
+    /**
+     * Método para poder criar e adicionar uma nova ordem de serviço ao sistema de dados.<br>
+     * Nesse momento de criação alguns atributos são preenchidos automaticamente:<ul>
+     *     <li>
+     *         Data de inicio da ordem de serviço
+     *     </li>
+     *     <li>
+     *         ID da ordem gerado aleatoriamente pela biblioteca UUID
+     *     </li>
+     * </ul>
+     * @param ordem
+     * @param clienteID
+     * @param type
+     * @return
+     */
     @Override
     public OrdemServico create(OrdemServico ordem, String clienteID, Produto type) {
         LocalDate inicio = LocalDate.now();
@@ -53,6 +89,21 @@ public class ListOrdensServico implements OrdemServicoDAO{
     }
 
     // essa classe é apenas para não gerar erros no crud;
+
+    /**
+     * Método para poder criar e adicionar uma nova ordem de serviço ao sistema de dados.<br>
+     * Nesse momento de criação alguns atributos são preenchidos automaticamente:<ul>
+     *     <li>
+     *         Data de inicio da ordem de serviço
+     *     </li>
+     *     <li>
+     *         ID da ordem gerado aleatoriamente pela biblioteca UUID
+     *     </li>
+     * </ul>
+     * @param ordem Objeto do tipo <i>OrdemServico</i> contendo os atributos necessários para o cadastro da ordem de serviço,
+     *              excluindo os elementos que são gerados automaticamente
+     * @return
+     */
     @Override
     public OrdemServico create(OrdemServico ordem) {
         LocalDate inicio = LocalDate.now();
@@ -65,11 +116,16 @@ public class ListOrdensServico implements OrdemServicoDAO{
         return null;
     }
 
+    /**
+     * Método para poder atualizar a ordem de serviço já registrado no sistema, contendo novas informações sobre este.<br>
+     * Caso a ordem de serviço passado não esteja no banco de dados é gerado uma exceção
+     * @param ordem Objeto do tipo <i>OrdemServico</i> para ser trocada de lugar o objeto anterior com informações antigas, e adicionar o novo atualizado.
+     */
     @Override
     public void update(OrdemServico ordem) {
         boolean status = false;
         for (int i=0; i< this.listaOrdensServico.size();i++){
-            if(listaOrdensServico.get(i).getId() == ordem.getId()){
+            if(listaOrdensServico.get(i).getId().equals(ordem.getId())){
                 this.listaOrdensServico.set(i, ordem);
                 return;
             }
@@ -80,11 +136,16 @@ public class ListOrdensServico implements OrdemServicoDAO{
 
     }
 
+    /**
+     * Método para poder deletar a ordem de serviço da base de dados, partindo do ID da ordem de serviço
+     * @param ID <i>String</i> contendo o ID do ordem de serviço para encontra-la, e poder realizar a operação.<br>
+     *          Caso não seja encontrada a ordem de serviço, é gerado uma exceção
+     */
     @Override
     public void delete(String ID) {
         boolean status = false;
         for (int i=0; i< this.listaOrdensServico.size();i++){
-            if(listaOrdensServico.get(i).getId() == ID){
+            if(listaOrdensServico.get(i).getId().equals(ID)){
                 this.listaOrdensServico.remove(i);
                 return;
             }
@@ -94,6 +155,11 @@ public class ListOrdensServico implements OrdemServicoDAO{
         }
     }
 
+    /**
+     * Método para procurar a ordem de serviço partindo da informação do seu ID
+     * @param id <i>String</i> contendo o ID que foi associado a ordem de serviço
+     * @return Objeto do tipo <i>OrdemServico</i>, que foi encontrado no sistema, a partir do ID passado
+     */
     @Override
     public OrdemServico findById(String id) {
         for(OrdemServico ordem: this.listaOrdensServico){
@@ -104,8 +170,12 @@ public class ListOrdensServico implements OrdemServicoDAO{
         return null;
     }
 
-
-
+    /**
+     * Método realiza a impressão dos clientes cadastrados presentes na lista deles.<br>
+     * Impressão segue o modelo:<br>
+     * "ID da ordem: id associado a ordem de serviço"
+     * "Tecnico da ordem: nome completo do tecnico responsavel pela aquela ordem"
+     */
     @Override
     public void listObjects() {
         if(this.listaOrdensServico.size()>0){
@@ -118,16 +188,29 @@ public class ListOrdensServico implements OrdemServicoDAO{
         }
     }
 
+    /**
+     * Método para deletar todos as ordens presentes no sistema, logo a lista de ordens se torna vazia
+     */
     @Override
     public void deleteMany() {
         this.listaOrdensServico = new ArrayList<>();
     }
 
+    /**
+     * Método para verificar a quantidade de ordens que estão cadastrados no sistema
+     * @return <i>Int</i> contendo o tamanho da lista de ordens de serviço
+     */
     @Override
     public int amountItems() {
         return listaOrdensServico.size();
     }
 
+    /**
+     * Método para encontrar a ordem em que o tecnico esta trabalhando no momento, ou seja a ordem registrada a ele e que tem
+     * o status "em andamento"
+     * @param cpf <i>String</i> contendo o CPF do tecnico o qual deseja realizar a busca
+     * @return Objeto do tipo <i>OrdemServico</i>, o
+     */
     public OrdemServico openOrderByTechnician(String cpf){
         String idTecnico;
         idTecnico = DAO.getTecnicoDAO().findIdbyCPF(cpf);

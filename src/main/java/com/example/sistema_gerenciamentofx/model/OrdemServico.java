@@ -367,20 +367,58 @@ public class OrdemServico {
         return status;
     }
 
+    /**
+     * Serve para preencher o atributo <b>status</b> com a informação a respeito do status atual da ordem, dentre 4 possibilidades: "em espera", "em andamento", "cancelada", "finalizada"
+     * @param status <i>String</i> que contém o status da ordem
+     */
     public void setStatus(String status) {
         this.status = status;
     }
 
-
+    /**
+     * Método para obter o tempo em que a ordem levou do momento da sua criação, até a sua finalização
+     * @return <i>String</i> padrão para caso tenha levado dias, ou levado meses.
+     * <ul>
+     *     <li>
+     *         Duração menor que 1 mês: "Foram gastos 5 dias"
+     *     </li>
+     *     <li>
+     *         Duração maior que 1 mês: "Foram gastos 5 dias e 2 meses"
+     *     </li>
+     * </ul>
+     */
     public String getExpendTime() {
         return expendTime;
     }
 
+    /**
+     * Método para obter a descrição do serviço, obtida após a finalização da ordem de serviço.<br>
+     * Caso a ordem ainda não esteja com status de finalizada, o retorno é nulo
+     * @return <i>String</i> contendo a descrição da ordem de maneira detalhada e formatada
+     */
     public String getDescription() {
         return description;
     }
 
-
+    /**
+     * Método para gerar a descrição da ordem de serviço, contendo as principais informações que estão contidas na ordem.<br>
+     * Dentre as informações:<ul>
+     *     <li>
+     *         ID do cliente e do tecnico
+     *     </li>
+     *     <li>
+     *         Produtos, e/ou serviço contratado pelo cliente
+     *     </li>
+     *     <li>
+     *         Tempo de duração da ordem, até ela ser finalizada
+     *     </li>
+     *     <li>
+     *         Preço total da ordem de serviço
+     *     </li>
+     * </ul>
+     * @param type Objeto do tipo <i>Produto</i>, que contém informação sobre o tipo do serviço contratado
+     * @return <i>String</i> contendo as informações citadas, de maneira formatada para ser apresentada no sistema
+     */
     public String generateInvoice(Produto type) {
         //double finalPrice = calculatePrice(String type, HashMap itemsList);
         if (type.getNome().equals("instalacao") || type.getNome().equals("montagem")){
@@ -416,28 +454,48 @@ public class OrdemServico {
     Faz o cálculo da data de início e data final, por ser um metodo chamado
     dentro do metodo de finalizar... ele pega a data final ja na sua chamada
     */
-    public Period calculateExpendTime(LocalDate start){
+
+    /**
+     * Método para realizar o cálculo de tempo entre a criação da ordem de serviço, até o momento da sua finalização
+     * @return Objeto do tipo <i>Period</i>, o qual contém o valor de tempo em quantidade de dias, meses, e anos.<br>
+     */
+    public Period calculateExpendTime(){
         LocalDate end = null;
         if (end == null){
             end = LocalDate.now();
         }
-        return Period.between(start, end);
+        return Period.between(this.start, end);
     }
 
+    /**
+     * Serve para poder preencher o atributo <i>expendTime</i>, que é responsavel por armazenar o tempo de duração daquela ordem de serviço
+     * @param expendTime <i>String</i> que contém uma frase informando o tempo que levou para realizar tal procedimento.<br>
+     * Duração menor que 1 mês: "Foram gastos 5 dias"<br>
+     * Duração maior que 1 mês: "Foram gastos 5 dias e 2 meses"
+     *
+     */
     public void setExpendTime(String expendTime) {
         this.expendTime = expendTime;
     }
 
     //AO FINALIZAR A ORDEM, CHAMA ESSE METODO PARA FAZER O PROCESSO DE FINALIZAÇÃO
+
+    /**
+     * Método que serve para realizar os procedimentos finais e padrões de quando se finaliza uma ordem de serviço.<br>
+     * Este facilita o processo, ao chamar um método e ele gerenciar outros
+     * @param satisfactionClient <i>Int</i>, que guarda a nota de satisfação do cliente com relação ao serviço prestado
+     *                           </u>
+     * @param paymentForm <i>String</i> que contém a escolha do cliente com relação a forma de pagamento, qual tipo de pagamento ela vai querer usar
+     */
     public void finalize(int satisfactionClient, String paymentForm){
-        Period tempo = calculateExpendTime(start);
+        Period tempo = calculateExpendTime();
         int days = tempo.getDays();
         int months = tempo.getMonths();
         if (months>0){
-            this.setExpendTime("Foram gastos "+ days+" dias e " + months + "meses");
+            this.setExpendTime("Foram gastos "+ days+" dias e " + months + " meses");
         }
         else{
-            this.setExpendTime("Foram gastos " + days + "dias");
+            this.setExpendTime("Foram gastos " + days + " dias");
         }
         this.setEnd(LocalDate.now());
         this.setStatus("finalizada");
@@ -451,6 +509,11 @@ public class OrdemServico {
 
     }
 
+    /**
+     * Metodo que é sobrescrito ao metodo original.<br>
+     * Serve para personalizar a mensagem de saida, ao chamar a impressão do objeto sem mais outras informações
+     * @return <i>String</i> contendo algumas informações sobre uma ordem de serviço
+     */
     public String toString() {
         return "OrdemServico{\n" +
                 "id=" + id + '\n' +

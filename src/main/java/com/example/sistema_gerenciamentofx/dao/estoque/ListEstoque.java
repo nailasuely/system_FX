@@ -6,6 +6,9 @@ import java.util.Map;
 
 // coloquei o nome list só para padronizar, mas na vdd aqui vamos usar map;
 
+/**
+ *
+ */
 public class ListEstoque implements EstoqueDAO {
     private Map<Produto, Integer> estoque;
 
