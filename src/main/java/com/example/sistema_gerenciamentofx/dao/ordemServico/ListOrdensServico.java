@@ -80,7 +80,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
               DAO.getTecnicoDAO().findByCPF(cpfTecnico).getId())){
            listaOrdensServico.get(indiceClienteParaAtender).setStatus("andamento");
            indiceClienteParaAtender++;
-           System.out.println(listaOrdensServico);
+           //System.out.println(listaOrdensServico);
            }
        }
        else{

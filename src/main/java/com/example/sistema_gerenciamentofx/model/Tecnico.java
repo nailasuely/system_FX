@@ -92,6 +92,9 @@ public class Tecnico extends Pessoa {
 
     }
 
+    public void gerarRelatorioFinal() {
+
+    }
 
     /**
      * Método para obter uma impressão personalizada ao utilizar o comando <i>System.out.println(tecnico);</i> em que "tecnico" é uma instância da classe Tecnico

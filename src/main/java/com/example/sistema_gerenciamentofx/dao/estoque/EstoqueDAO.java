@@ -7,5 +7,6 @@ public interface EstoqueDAO {
     public int getQuantidade(Produto produto);
     public void retirarEstoque(Produto produto, int quantidade) throws SemEstoqueException;
     void ordemDeCompraAutomatica();
+    public void AdicionarEstoqueInicial();
 
 }

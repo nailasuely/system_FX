@@ -23,6 +23,7 @@ public class Cliente extends Pessoa {
      * @param cpf String para armazenar o cpf da pessoa
      * @param telephone String para armazenar o telefone da pessoa
      */
+
     public Cliente(String nome, String address, String cpf, int telephone) {
         super(nome, address, cpf, telephone);
     }

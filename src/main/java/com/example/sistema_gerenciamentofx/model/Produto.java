@@ -137,8 +137,8 @@ public class Produto {
     public String toString() {
 
         return "Produto/Serviço [\n" +
-                "nome= " + nome + '\n' +
-                "preço= " + preco + '\n' +
+                "nome= " + this.nome + '\n' +
+                "preço= " + this.preco + '\n' +
                 ']';
     }
 

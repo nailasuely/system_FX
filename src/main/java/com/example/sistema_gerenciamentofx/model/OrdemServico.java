@@ -79,7 +79,7 @@ public class OrdemServico {
     /**
      * O atributo <b>produtoLists</b> serve para armazenar a lista de itens, ou serviço, desejados pelo cliente para serem realizados
      */
-    private List<Produto> produtoLists;
+    HashMap<Produto, Integer> produtoLists;
     /**
      * O atributo <b>price</b> serve para poder armazenar o preço total daquele serviço, o qual vai ser cobrado para o cliente ao finalizar a ordem de serviço
      */
@@ -167,7 +167,7 @@ public class OrdemServico {
             end = null;
         }
         if(produtoLists == null){
-            produtoLists = new ArrayList<>();
+            produtoLists = new HashMap<>();
         }
         if(status == null){
             this.status = "espera";
@@ -177,22 +177,25 @@ public class OrdemServico {
     //PERGUNTAR A NAI
     public void setListaProdutos(Produto produto, int quantidade) throws SemEstoqueException, ProdutoErradoException {
         // caso seja outro tipo de produto, isso será adicionado no if depois
-        if(produto.getNome().equals("ram") ||produto.getNome().equals("placa mae") ||
-           produto.getNome().equals("fonte") || produto.getNome().equals("hd/ssd")) {
-            produtoLists.add(produto);
+        if (produto.getNome().equals("ram") || produto.getNome().equals("placa mae") ||
+            produto.getNome().equals("fonte") || produto.getNome().equals("hd/ssd")) {
+            Integer qtdAtual = produtoLists.get(produto);
+            if (qtdAtual == null) {
+                produtoLists.put(produto, quantidade);
+            } else {
+                produtoLists.put(produto, qtdAtual + quantidade);
+            }
             DAO.getEstoqueDAO().retirarEstoque(produto, quantidade);
-        }
-        else{
+        } else {
             throw new ProdutoErradoException("Apenas produtos podem ser adicionados nessa lista. Você tentou adicionar: " + produto.getNome());
         }
-
     }
 
     /**
      * Método para obter a lista de produtos presente na ordem de serviço
      * @return <i>List</i> que contém os produtos presente na lista. Lembrando que ela pode estar vazia a depender do serviço escolhido
      */
-    public List<Produto> getProdutoLists() {
+    public HashMap<Produto, Integer> getProdutoLists() {
         return produtoLists;
     }
 
@@ -269,7 +272,7 @@ public class OrdemServico {
     }
     /**
      * Serve para preencher o atributo do ID do tecnico que vai trabalhar na ordem de serviço
-     * @param clientId <i>String</i> contendo o valor do ID do cliente
+     * @param technicianID <i>String</i> contendo o valor do ID do tecnico.
      */
     public void setTechnicianID(String technicianID) {
         this.technicianID = technicianID;
@@ -288,7 +291,7 @@ public class OrdemServico {
      * @param type Objeto do tipo <i>Produto</i> contendo informação do tipo do serviço
      */
     public void setType(Produto type) {
-        this.type = new Produto();
+        this.type = type;
     }
 
     /**
@@ -296,27 +299,31 @@ public class OrdemServico {
      * @return <i>Double</i> contendo um valor que representa o preço daquele serviço
      */
     public double getPrice() {
+        // Lembrando que nessa lista só é adicionada PRODUTOS/PEÇAS, só vai ser maior doq
+        // zero se for uma montagem.
+        double price = 0.0;
+        if (this.type.getNome().equals("montagem")) {
+            if (!this.produtoLists.isEmpty()) {
+                for (Produto produto : this.produtoLists.keySet()) {
+                    int quantidade = this.produtoLists.get(produto);
+                    price += produto.getPreco() * quantidade;
+                }
+            }
+        } else if (this.type != null) {
+            price += type.getPreco();
+        }
         return price;
     }
+
 
     /**
      * Serve para preencher o atributo <b>price</b>, que guarda o preço do serviço
      * @param price Variavel do tipo <i>double</i>, para ser trabalhada na lógica interna de preenchimento do preço
      */
     public void setPrice(double price) {
-        // Lembrando que nessa lista só é adicionada PRODUTOS/PEÇAS, só vai ser maior doq
-        // zero se for uma montagem.
-        if(type.getNome().equals("montagem")){
-            if (produtoLists.size() > 0) {
-            for (Produto item : produtoLists) {
-                price += item.getPreco(); }
-            }
-        }
-        else if(type != null){
-            price += type.getPreco();
-        }
         this.price = price;
     }
+
 
     /**
      * Método para obter o tipo do pagamento que foi escolhido pelo cliente, para pagar pelo serviço contratado
@@ -501,6 +508,7 @@ public class OrdemServico {
         this.setStatus("finalizada");
         this.setClientSatisfaction(satisfactionClient);
         this.setPaymentType(paymentForm);
+        this.getPrice();
         //FALTA POR A PARTE DO PRECO PRA FUNCIONAR
         /*
         this.setPrice(this.calculatePrice(this.getType(), this.getItemsList()));
@@ -516,13 +524,18 @@ public class OrdemServico {
      */
     public String toString() {
         return "OrdemServico{\n" +
-                "id=" + id + '\n' +
-                "start=" + start +'\n' +
-                "status=" + status +'\n' +
-                "clientId='" + clientId + '\n' +
-                "technicianID='" + technicianID + '\n' +
-                "type='" + type + '\n' +
-                "itemsList=" + produtoLists +
+                "id: " + id + '\n' +
+                "start: " + start +'\n' +
+                "end: " + end + '\n' +
+                "status: " + status +'\n' +
+                "clientId: " + clientId + '\n' +
+                "technicianID: " + technicianID + '\n' +
+                "type: " + type + '\n' +
+                "itemsList: " + produtoLists + '\n' +
+                "paymentType: " + paymentType + '\n' +
+                "ExpendTime: " + expendTime + '\n' +
+                "ClientSatisfaction: " + clientSatisfaction + '\n' +
+                "Description: " + description +
                 '}';
     }
 

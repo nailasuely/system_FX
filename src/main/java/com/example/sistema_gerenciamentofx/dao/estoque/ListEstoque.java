@@ -25,6 +25,7 @@ public class ListEstoque implements EstoqueDAO {
         estoque.put(Produto.novoHDSSD(), 20);
     }
 
+
     // essa classe também funciona como ordem de compra.
     public void adicionarProduto(Produto produto, int quantidade) {
         if (estoque.containsKey(produto)) {
@@ -36,7 +37,30 @@ public class ListEstoque implements EstoqueDAO {
             estoque.put(produto, quantidade);
         }
     }
+
     public void retirarEstoque(Produto produto, int quantidade) throws SemEstoqueException {
+        boolean produtoEncontrado = false;
+        for (Produto produto1 : estoque.keySet()) {
+            if (produto1.getNome().equals(produto.getNome())) {
+                produtoEncontrado = true;
+                int quantidadeAtual = estoque.get(produto1);
+                if (quantidadeAtual > 0 && quantidadeAtual >= quantidade) {
+                    estoque.put(produto1, quantidadeAtual - quantidade);
+                    break;
+                } else {
+                    throw new SemEstoqueException("O produto " + produto.getNome() + " não está no estoque.");
+                }
+            }
+        }
+        if (!produtoEncontrado) {
+            throw new SemEstoqueException("O produto " + produto.getNome() + " não foi encontrado no estoque.");
+        }
+    }
+
+    public void retirarEstoqueTeste(Produto produto, int quantidade) throws SemEstoqueException {
+        //System.out.println(produto.getNome());
+        //System.out.println(estoque);
+        //System.out.println(estoque.containsKey(Produto.novaRam()));
         if (estoque.containsKey(produto)) {
             int quantidadeAtual = estoque.get(produto);
             if (quantidadeAtual > 0 && quantidadeAtual > quantidade) {
@@ -45,6 +69,8 @@ public class ListEstoque implements EstoqueDAO {
                 throw new SemEstoqueException("O produto " + produto.getNome() + " não está no estoque.");
             }
         } else {
+            //System.out.println(estoque);
+            //System.out.println(produto.getNome());
             throw new SemEstoqueException("O produto " + produto.getNome() + " não foi encontrado no estoque.");
         }
     }

@@ -1,10 +1,12 @@
 package com.example.sistema_gerenciamentofx.model;
 
 import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.dao.estoque.SemEstoqueException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -27,12 +29,23 @@ class OrdemServicoTest {
 
     }
     @Test
-    void getPrice() {
-        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.novaPlacaMae());
+    void getPriceServico() {
+        // Adicionado um serviço, ou seja, o preço deve ser apenas o preço do serviço.
+        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.servicoFormatar());
         DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.789.101-10", ordem1);
+        assertEquals(50, ordem1.getPrice());
 
-        Produto produto1 = Produto.novaPlacaDeVideo();
-        Produto produto2 = Produto.novaFonte();
+    }
+
+    // esse cálculo do preço difere, pois, ele requer o uso de uma lista com os produtos utilizados na montagem.
+    @Test
+    void getPriceMontagem() throws SemEstoqueException, ProdutoErradoException {
+        DAO.getEstoqueDAO().AdicionarEstoqueInicial();
+        // Adicionado uma montagem, ou seja o preço deve ser calculado com a quantidade.
+        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.servicoMontagem());
+        DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.789.101-10", ordem1);
+        ordem1.setListaProdutos(Produto.novaPlacaMae(), 10);
+        assertEquals(1000, ordem1.getPrice());
 
     }
     @Test
@@ -69,11 +82,15 @@ class OrdemServicoTest {
     void calculateExpendTime() {
         LocalDate start = LocalDate.now();
         Period periodo = Period.between(start, LocalDate.now());
-        assertEquals(periodo, ordem1.calculateExpendTime(start));
+        assertEquals(periodo, ordem1.calculateExpendTime());
     }
 
     @Test
     void testFinalize() {
+        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.servicoFormatar());
+        DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.789.101-10", ordem1);
+        ordem1.finalize(3, "pix");
+        System.out.println(ordem1);
     }
 
     @Test
