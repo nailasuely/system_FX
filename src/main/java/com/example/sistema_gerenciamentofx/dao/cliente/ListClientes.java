@@ -188,6 +188,11 @@ public class ListClientes implements ClienteDAO {
 
     }
 
+    @Override
+    public List<Cliente> getList() {
+        return this.listaClientes;
+    }
+
     /**
      * Método para deletar todos os clientes presentes no sistema, logo a lista de clientes se torna vazia
      */

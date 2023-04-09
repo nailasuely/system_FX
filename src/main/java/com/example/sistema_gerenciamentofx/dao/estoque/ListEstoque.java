@@ -59,6 +59,11 @@ public class ListEstoque implements EstoqueDAO {
         estoque.put(Produto.novoHDSSD(), 20);
     }
 
+    @Override
+    public Map<Produto, Integer> getList() {
+        return this.estoque;
+    }
+
 
     // essa classe também funciona como ordem de compra.
     /**

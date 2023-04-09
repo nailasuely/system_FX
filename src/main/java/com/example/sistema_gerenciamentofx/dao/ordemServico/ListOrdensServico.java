@@ -88,6 +88,11 @@ public class ListOrdensServico implements OrdemServicoDAO{
        }
     }
 
+    @Override
+    public List<OrdemServico> getList() {
+        return this.listaOrdensServico;
+    }
+
     // essa classe é apenas para não gerar erros no crud;
 
     /**

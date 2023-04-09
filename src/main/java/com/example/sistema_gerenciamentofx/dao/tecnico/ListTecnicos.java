@@ -212,4 +212,9 @@ public class ListTecnicos implements TecnicoDAO {
         return null;
     }
 
+    @Override
+    public List<Tecnico> getList() {
+        return this.listaTecnicos;
+    }
+
 }

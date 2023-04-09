@@ -1,4 +1,7 @@
 package com.example.sistema_gerenciamentofx.model;
+import com.example.sistema_gerenciamentofx.dao.DAO;
+
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 /**
@@ -97,8 +100,40 @@ public class Tecnico extends Pessoa {
 
     }
 
-    public void gerarRelatorioFinal() {
+    public String gerarRelatorioFinal() {
+        int qntServicosFinalizados = 0;
+        int qntServicosAndamento = 0;
+        int qntServicosEspera = 0;
+        double totalObtido = 0;
+        double sastifacao = 0;
+        double mediaSastifacao = 0;
+        long quantidadeDias = 0;
+        long mediaQuantidadeDias = 0;
 
+        for(OrdemServico servico: DAO.getOrdemServicoDAO().getList()){
+            if(servico.getStatus().equals("finalizada")) {
+                quantidadeDias = ChronoUnit.DAYS.between(servico.getStart(), servico.getEnd());
+                qntServicosFinalizados += 1;
+                totalObtido += servico.getPrice();
+                sastifacao += servico.getClientSatisfaction();
+            }
+            else if(servico.getStatus().equals("andamento")){
+                qntServicosAndamento += 1;
+            }
+            else if(servico.getStatus().equals("espera")){
+                qntServicosEspera += 1;
+            }
+            }
+        if (qntServicosFinalizados > 0){
+            mediaSastifacao = sastifacao / qntServicosFinalizados;
+            mediaQuantidadeDias = quantidadeDias / qntServicosFinalizados;
+        }
+        return "Quantidade de serviços finalizados: "+ qntServicosFinalizados +
+               "\nQuantidade de serviços em andamento: "+ qntServicosAndamento +
+               "\nQuantidade de serviços em espera: "+ qntServicosEspera +
+               "\nTotal de lucro obtido: "+ totalObtido +
+               "\nQuantidade de dias "+ quantidadeDias +
+               "\nMédia de sastifação: "+ mediaSastifacao;
     }
 
     /**

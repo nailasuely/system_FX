@@ -1,5 +1,6 @@
 package com.example.sistema_gerenciamentofx.model;
 
+import com.example.sistema_gerenciamentofx.dao.DAO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,11 +10,22 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TecnicoTest {
-    Tecnico tecnico1;
+    private static Tecnico tecnico1;
+    private static OrdemServico ordem1;
+    private static Cliente cliente1;
 
     @BeforeEach
     void setUp() {
         tecnico1 = new Tecnico();
+
+        // dps eu posso tirar isso, é apenas para um teste
+        ordem1 = new OrdemServico();
+        cliente1 = new Cliente("Maria Sobrenome", "Rua ABC, Bahia",
+                "123.789.101-10", 75);
+        tecnico1 = new Tecnico("João Sobrenome", "Rua XYZ, Bahia",
+                "456.789.101-10", 81);
+        DAO.getClienteDAO().create(cliente1);
+        DAO.getTecnicoDAO().create(tecnico1);
     }
 
     @Test
@@ -86,7 +98,19 @@ class TecnicoTest {
         assertEquals(2, Tecnico.getServiceOrders().size());
     }
 
+    // Essa classe foi feita em OrdemDeServiço, ela pode ser apagada dq;
     @Test
     void finalizeServiceOrder() {
     }
+
+    @Test
+    void geraRelatorioFinal(){
+        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.servicoFormatar());
+        DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.789.101-10", ordem1);
+        ordem1.finalize(3, "pix");
+        System.out.println(tecnico1.gerarRelatorioFinal());
+    }
+
+
+
 }
