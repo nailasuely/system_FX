@@ -79,14 +79,14 @@ public class OrdemServico {
     /**
      * O atributo <b>produtoLists</b> serve para armazenar a lista de itens, ou serviço, desejados pelo cliente para serem realizados
      */
-    private List<Produto> produtoLists; // pode ser de itens também
+    private List<Produto> produtoLists;
     /**
      * O atributo <b>price</b> serve para poder armazenar o preço total daquele serviço, o qual vai ser cobrado para o cliente ao finalizar a ordem de serviço
      */
     private double price = 0;
     /**
      * O atributo <b>paymentType</b> serve para poder armazenar a forma de pagamento escolhida pelo cliente<br>
-     * Formas que são permitidas:
+     * Formas permitidas:
      * <ul>
      *     <li>
      *          "transferencia"
@@ -339,7 +339,7 @@ public class OrdemServico {
             this.paymentType = paymentType;
         } else {
             throw new IllegalArgumentException("O tipo de pagamento que você " +
-                    "colocou não é válido no sistema" + paymentType);
+                    "colocou não é válido no sistema: " + paymentType);
         }
     }
 
@@ -521,7 +521,7 @@ public class OrdemServico {
                 "status=" + status +'\n' +
                 "clientId='" + clientId + '\n' +
                 "technicianID='" + technicianID + '\n' +
-                "type='" + type.getNome() + '\n' +
+                "type='" + type + '\n' +
                 "itemsList=" + produtoLists +
                 '}';
     }

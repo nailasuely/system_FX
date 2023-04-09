@@ -26,22 +26,29 @@ class OrdemServicoTest {
         DAO.getTecnicoDAO().create(tecnico1);
 
     }
-    @AfterEach
-    void tearDown() {
-    }
-
-
     @Test
     void getPrice() {
         DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.novaPlacaMae());
         DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.789.101-10", ordem1);
 
-    }
+        Produto produto1 = Produto.novaPlacaDeVideo();
+        Produto produto2 = Produto.novaFonte();
 
+    }
     @Test
     void getPaymentType() {
+        ordem1.setPaymentType("transferencia");
+        assertEquals("transferencia", ordem1.getPaymentType());
     }
-
+    @Test
+    public void InvalidPaymentType() {
+        try {
+            ordem1.setPaymentType("cheque");
+            fail("Expected an IllegalArgumentException to be thrown");}
+        catch (IllegalArgumentException teste) {
+            assertEquals("O tipo de pagamento que você colocou não é válido no sistema: cheque", teste.getMessage());
+        }
+    }
     @Test
     void setStatus() {
         DAO.getOrdemServicoDAO().create(ordem1);
