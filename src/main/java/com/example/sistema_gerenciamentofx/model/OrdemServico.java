@@ -241,7 +241,7 @@ public class OrdemServico {
      * Serve para definir a data em que a ordem foi finalizada, ou cancelada.<br>
      * Valor preenchido automaticamente ao chamar o método
      */
-    public void setEnd() {
+    public void setEnd(LocalDate end) {
         this.end = LocalDate.now();
     }
 
@@ -439,7 +439,7 @@ public class OrdemServico {
         else{
             this.setExpendTime("Foram gastos " + days + "dias");
         }
-        this.setEnd(end = LocalDate.now());
+        this.setEnd(LocalDate.now());
         this.setStatus("finalizada");
         this.setClientSatisfaction(satisfactionClient);
         this.setPaymentType(paymentForm);

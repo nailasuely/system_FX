@@ -84,10 +84,14 @@ public class Tecnico extends Pessoa {
         return false;
 
     }
+    public static ArrayList<OrdemServico> getServiceOrders() {
+        return serviceOrders;
+    }
 
     public void finalizeServiceOrder(OrdemServico ordem){
 
     }
+
 
     /**
      * Método para obter uma impressão personalizada ao utilizar o comando <i>System.out.println(tecnico);</i> em que "tecnico" é uma instância da classe Tecnico
