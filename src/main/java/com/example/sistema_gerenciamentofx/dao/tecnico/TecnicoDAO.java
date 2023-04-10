@@ -55,11 +55,5 @@ public interface TecnicoDAO extends CRUD<Tecnico> {
      * @return Uma <i>Lista</i> de objetos do tipo <i>Tecnico</i>
      */
     public List<Tecnico> getList();
-
-    /**
-     * Assinatura de método que serve para acesso ao método contido na implementação.<br>
-     * Tal método serve para obter a lista de ordens de serviço associadas ao tecnico
-     * @return Uma lista, do tipo <i>ArrayList</i> com objetos do tipo <i>OrdemServico</i>
-     */
-    public ArrayList<OrdemServico> getServiceOrders();
 }
+

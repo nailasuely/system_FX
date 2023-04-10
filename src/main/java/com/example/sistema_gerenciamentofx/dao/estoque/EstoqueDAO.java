@@ -75,4 +75,6 @@ public interface EstoqueDAO {
      * @return <i>Map</i> contendo as informações dos produtos e suas quantidades
      */
     public Map<Produto, Integer> getList();
+
+    public void deleteMany();
 }

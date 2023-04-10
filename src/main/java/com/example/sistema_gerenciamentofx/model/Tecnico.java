@@ -92,7 +92,7 @@ public class Tecnico extends Pessoa {
      * Método para poder obter a lista de Ordens de Serviço associadas àquele tecnico
      * @return Uma <i>ArrayList</i> contendo objetos do tipo <i>OrdemServico</i>
      */
-    public ArrayList<OrdemServico> getServiceOrders() {
+    public static ArrayList<OrdemServico> getServiceOrders() {
         return serviceOrders;
     }
 

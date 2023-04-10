@@ -1,6 +1,7 @@
 package com.example.sistema_gerenciamentofx.dao.estoque;
 import com.example.sistema_gerenciamentofx.model.Produto;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,7 +76,7 @@ public class ListEstoque implements EstoqueDAO {
      * @param produto Objeto do tipo <i>Produto</i> o qual ja contém o nome do produto a ser adicionado.
      * @param quantidade <i>Int</i> que contém o valor que vai ser adicionado ao estoque
      */
-    public void adicionarProduto(Produto produto, int quantidade) {
+    public void adicionarProdutotest(Produto produto, int quantidade) {
         if (estoque.containsKey(produto)) {
             int quantidadeAtual = estoque.get(produto);
             System.out.println(quantidadeAtual);
@@ -84,6 +85,17 @@ public class ListEstoque implements EstoqueDAO {
         else {
             estoque.put(produto, quantidade);
         }
+    }
+
+    public void adicionarProduto(Produto produto, int quantidade) {
+        for (Produto pd1 : this.estoque.keySet()) {
+            if (pd1.getNome().equals(produto.getNome())) {
+                int quantidadeAtual = estoque.get(pd1);
+                estoque.put(pd1, quantidadeAtual + quantidade);
+                return;
+            }
+        }
+        estoque.put(produto, quantidade);
     }
     /**
      * Método responsável por fazer a retirada do produto do estoque, para ser utilizado/instalado na realização da ordem de serviço.<br>
@@ -123,23 +135,6 @@ public class ListEstoque implements EstoqueDAO {
         }
     }
 
-    public void retirarEstoqueTeste(Produto produto, int quantidade) throws SemEstoqueException {
-        //System.out.println(produto.getNome());
-        //System.out.println(estoque);
-        //System.out.println(estoque.containsKey(Produto.novaRam()));
-        if (estoque.containsKey(produto)) {
-            int quantidadeAtual = estoque.get(produto);
-            if (quantidadeAtual > 0 && quantidadeAtual > quantidade) {
-                estoque.put(produto, quantidadeAtual - quantidade);
-            } else {
-                throw new SemEstoqueException("O produto " + produto.getNome() + " não está no estoque.");
-            }
-        } else {
-            //System.out.println(estoque);
-            //System.out.println(produto.getNome());
-            throw new SemEstoqueException("O produto " + produto.getNome() + " não foi encontrado no estoque.");
-        }
-    }
     /**
      * Método que realiza a "compra" automaticamente, preenchendo o estoque com novos produtos, para isso ele primeiro
      * percorre todos os elementos presentes no estoque, e verifica qual contém um valor abaixo de 5 unidades, se houver
@@ -160,9 +155,20 @@ public class ListEstoque implements EstoqueDAO {
      * @param produto Objeto do tipo <i>Produto</i> que serve para identificar qual produto está sendo referido para obter a quantidade.
      * @return <i>Int</i> com a quantidade do produto presente no estoque, caso não tenha nenhum daqueles produtos, é retornado o valor 0
      */
-    public int getQuantidade(Produto produto) {
+    public int getQuantidadetest(Produto produto) {
         return estoque.getOrDefault(produto, 0);
     }
-
-
+    public int getQuantidade(Produto produto) {
+        for (Produto pd1 : this.estoque.keySet()) {
+            if (pd1.getNome().equals(produto.getNome())) {
+                int quantidade = this.estoque.get(pd1);
+                return quantidade;
+            }
+        }
+        return 0;
+    }
+    @Override
+    public void deleteMany() {
+        this.estoque = new HashMap<>();
+    }
 }
