@@ -77,7 +77,7 @@ public class OrdemServico {
     private Produto type;
 
     /**
-     * O atributo <b>produtoLists</b> serve para armazenar a lista de itens, ou serviço, desejados pelo cliente para serem realizados
+     * O atributo <b>produtoLists</b> serve para armazenar, por meio de um dicionário (<i>HashMap</i>), a lista de itens, ou serviço, desejados pelo cliente para serem realizados
      */
     HashMap<Produto, Integer> produtoLists;
     /**
@@ -174,7 +174,18 @@ public class OrdemServico {
         }
     }
 
-    //PERGUNTAR A NAI
+    /**
+     * Método serve para poder adicionar itens a lista de produtos que serão utilizados na ordem de serviço.<br>
+     * Há verificação interna para conferir se o produto a ser adicionado, esta na lista dos produtos padrão presente no
+     * sistema. Além disso ainda é executado o método para poder realizar a retirada do produto do estoque.<br>
+     * Caso tenha sido passado um objeto do tipo <i>Produto</i> representando algo diferente de produto, é gerado uma exceção.
+     * @param produto Objeto do tipo <i>Produto</i> que indica qual produto está desejando inserir na "lista" de produtos da ordem
+     * @param quantidade <i>Int</i> que indica a quantidade daquele produto que vai ser adicionada na "lista"
+     * @throws SemEstoqueException Representa a classe de erros, em que pode ser apresentada a mensagem de erro
+     * caso o produto não seja encontrado no estoque, ou caso não tenha quantidade daquele produto no estoque
+     * @throws ProdutoErradoException Representa a classe de erros, em que pode ser apresentada a mensagem de erro caso
+     * tente adicionar na "lista" algo que não seja um produto.
+     */
     public void setListaProdutos(Produto produto, int quantidade) throws SemEstoqueException, ProdutoErradoException {
         // caso seja outro tipo de produto, isso será adicionado no if depois
         if (produto.getNome().equals("ram") || produto.getNome().equals("placa mae") ||

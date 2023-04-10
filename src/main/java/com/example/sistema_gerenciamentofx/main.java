@@ -16,6 +16,7 @@ Essa main foi criada de modo a realizar testes do programa
  * "sintéticos", prontos e sem interação com o sistema, e então analisar conexões entre classes
  * e banco de dados, o DAO, verificando se o funcionamento está como esperado.
  * @author Naila Suele e Rhian Pablo
+ * @since 2023
  */
 public class main{
     public static void main(String[] args) throws SemEstoqueException, ProdutoErradoException {

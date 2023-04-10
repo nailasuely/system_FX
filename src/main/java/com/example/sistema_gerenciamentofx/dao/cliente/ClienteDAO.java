@@ -11,13 +11,13 @@ import java.util.List;
  * Essa interface contém os métodos implementados relativos ao Cliente, sendo eles:
  * <ul>
  *     <li>
- *         <i><b>findByCPF</b></i> - realiza a busca do objeto <i>Cliente</i> partindo de um CPF
+ *         <b>findByCPF</b> - realiza a busca do objeto <i>Cliente</i> partindo de um CPF
  *     </li>
  *     <li>
- *         <i><b>findByCPFIsTrue</b></i> - realiza a conferencia se existe um cliente com aquele CPF no sistema
+ *         <b>findByCPFIsTrue</b> - realiza a conferencia se existe um cliente com aquele CPF no sistema
  *     </li>
  *    <li>
- *        <i><b>findIdbyCPF</b></i> - realiza a busca do ID do objeto <i>Cliente</i> partindo de um CPF
+ *        <b>findIdbyCPF</b> - realiza a busca do ID do objeto <i>Cliente</i> partindo de um CPF
  *    </li>
  * </ul>
  * @author Naila Suele e Rhian Pablo

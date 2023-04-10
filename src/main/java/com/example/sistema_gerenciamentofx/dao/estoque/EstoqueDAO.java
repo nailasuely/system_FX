@@ -8,16 +8,16 @@ import java.util.Map;
  * A interface criada para conter os métodos implementados relativos ao Estoque, sendo eles:
  * <ul>
  *     <li>
- *         <i><b>adicionarProduto</b></i> - para adicionar produtos ao estoque
+ *         <b>adicionarProduto</b> - para adicionar produtos ao estoque
  *     </li>
  *     <li>
- *         <i><b>getQuantidade</b></i> - para obter a quantidade no estoque de determinado produto
+ *         <b>getQuantidade</b> - para obter a quantidade no estoque de determinado produto
  *     </li>
  *      <li>
- *         <i><b>retirarEstoque</b></i> - para retirar determinada quantidade de produtos do estoque para usar na realização da ordem de serviço
+ *         <b>retirarEstoque</b> - para retirar determinada quantidade de produtos do estoque para usar na realização da ordem de serviço
  *     </li>
  *     <li>
- *         <i><b>ordemDeCompraAutomatica</b></i> - para adicionar produtos automaticamente ao estoque, quando detectado baixo nível no estoque
+ *         <b>ordemDeCompraAutomatica</b> - para adicionar produtos automaticamente ao estoque, quando detectado baixo nível no estoque
  *     </li>
  * </ul>
  * @author Naila Suele e Rhian Pablo
@@ -69,7 +69,7 @@ public interface EstoqueDAO {
      */
     public void AdicionarEstoqueInicial();
 
-    /**]
+    /**
      * Assinatura de método que serve para acesso ao método contido na implementação<br>
      * Tal método serve para poder obter o dicionário em que está salvo as informações do estoque
      * @return <i>Map</i> contendo as informações dos produtos e suas quantidades

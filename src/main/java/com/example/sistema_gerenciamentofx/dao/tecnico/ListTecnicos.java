@@ -13,16 +13,16 @@ import java.util.UUID;
  * Está salva uma lista de tecnicos, e contém métodos, padrões ao CRUD (Create, Read, Update, Delete), além de outros
  * métodos necessários para desenvolvimento das funções do sistema dentre eles: <ul>
  *     <li>
- *          findById - procurar o tecnico a partir do seu ID
+ *          <b>findById</b> - procurar o tecnico a partir do seu ID
  *      </li>
  *      <li>
- *          findByCPF - procurar o tecnico a partir do seu CPF
+ *          <b>findByCPF</b> - procurar o tecnico a partir do seu CPF
  *      </li>
  *      <li>
- *          findByCpfIsTrue - verificar se aquele CPF existe no sistema
+ *          <b>findByCpfIsTrue</b> - verificar se aquele CPF existe no sistema
  *      </li>
  *      <li>
- *        findIdbyCPF -  procurar o ID do tecnico, partindo do seu CPF
+ *        <b>findIdbyCPF</b> -  procurar o ID do tecnico, partindo do seu CPF
  *      </li>
  * </ul>
  * @author Naila Suele e Rhian Pablo

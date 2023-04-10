@@ -13,6 +13,7 @@ segunda fase do PBL.
  * Essa interface contém o nome dos métodos os quais a implementação é específica de cada uma das classes que utilizada essa interface
  * @param <T> Parametro a ser preenchido com o tipo do objeto em que a classe que faz a implementação da interface faz uso
  * @author Naila Suele e Rhian Pablo
+ * @since 2023
  */
 public interface CRUD<T> {
     /**

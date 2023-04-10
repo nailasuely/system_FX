@@ -11,16 +11,17 @@ import java.util.List;
  * Essa interface contém os métodos implementados relativos ao Tecnico, sendo eles:
  * <ul>
  *     <li>
- *         <i><b>findByCPF</b></i> - realiza a busca do objeto <i>Tecnico</i> partindo de um CPF
+ *         <b>findByCPF</b> - realiza a busca do objeto <i>Tecnico</i> partindo de um CPF
  *     </li>
  *     <li>
- *         <i><b>findByCPFIsTrue</b></i> - realiza a conferencia se existe um Tecnico com aquele CPF no sistema
+ *         <b>findByCPFIsTrue</b> - realiza a conferencia se existe um Tecnico com aquele CPF no sistema
  *     </li>
  *    <li>
- *        <i><b>findIdbyCPF</b></i> - realiza a busca do ID do objeto <i>Tecnico</i> partindo de um CPF
+ *        <b>findIdbyCPF</b> - realiza a busca do ID do objeto <i>Tecnico</i> partindo de um CPF
  *    </li>
  * </ul>
  * @author Naila Suele e Rhian Pablo
+ * @since 2023
  */
 public interface TecnicoDAO extends CRUD<Tecnico> {
     /**

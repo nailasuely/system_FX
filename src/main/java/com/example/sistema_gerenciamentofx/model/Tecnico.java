@@ -100,6 +100,33 @@ public class Tecnico extends Pessoa {
 
     }
 
+    /**
+     * Método para poder gerar relátorios gerais ao sistema, contendo informações com médias de todos os valores obtidos ao
+     * longo do funcionamento do programa.<br>
+     * Dentre as informações presentes nesse relátorio:
+     * <ul>
+     *     <li>
+     *         <b>Quantidade de serviços finalizados</b> - serviços que ja ficaram prontos
+     *     </li>
+     *     <li>
+     *         <b>Quantidade de serviços em andamento</b> - serviços que estão sendo realizados no momento
+     *     </li>
+     *     <li>
+     *         <b>Quantidade de serviços em espera</b> - serviços cadastrados que estão na fila para serem realizados
+     *     </li>
+     *     <li>
+     *         <b>Faturamento obtido</b> - representa o valor total que entrou em caixa a partir da realização de ordens de serviço
+     *     </li>
+     *     <li>
+     *         <b>Media de dias para realização de uma ordem</b> - média de tempo entre o inicio da ordem, até ela receber o status de finalizada
+     *     </li>
+     *     <li>
+     *         <b>Média de satisfação</b> - media das satisfações dadas pelos clientes com relação aos serviços prestados
+     *     </li>
+     * </ul>
+     *
+     * @return <i>String</i> contendo as informações citadas acima
+     */
     public String gerarRelatorioFinal() {
         int qntServicosFinalizados = 0;
         int qntServicosAndamento = 0;
@@ -131,8 +158,8 @@ public class Tecnico extends Pessoa {
         return "Quantidade de serviços finalizados: "+ qntServicosFinalizados +
                "\nQuantidade de serviços em andamento: "+ qntServicosAndamento +
                "\nQuantidade de serviços em espera: "+ qntServicosEspera +
-               "\nTotal de lucro obtido: "+ totalObtido +
-               "\nQuantidade de dias "+ quantidadeDias +
+               "\nTotal de faturamento obtido: "+ totalObtido +
+               "\nQuantidade média de dias de ordem aberta"+ mediaQuantidadeDias +
                "\nMédia de sastifação: "+ mediaSastifacao;
     }
 

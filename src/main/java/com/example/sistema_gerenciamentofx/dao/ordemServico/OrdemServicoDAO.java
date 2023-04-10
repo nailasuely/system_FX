@@ -10,10 +10,10 @@ import java.util.List;
  * Essa interface contém os métodos implementados relativos a OrdemServico, sendo eles:
  * <ul>
  *     <li>
- *         <i><b>openOrderByTechnician</b></i> - encontra a ordem em aberto de determinado tecnico, a partir do seu cpf
+ *         <b>openOrderByTechnician</b> - encontra a ordem em aberto de determinado tecnico, a partir do seu cpf
  *     </li>
  *     <li>
- *         <i><b>atualizarStatusAndamento</b></i> - atualiza o status da ordem de "em espera", para "em andamento", a partir
+ *         <b>atualizarStatusAndamento</b> - atualiza o status da ordem de "em espera", para "em andamento", a partir
  *do cpf do tecnico, adjunto ao objeto do tipo <i>OrdemServico</i> que este irá trabalhar, logo que fez a retirada da fila de espera.
  *     </li>
  * </ul>
