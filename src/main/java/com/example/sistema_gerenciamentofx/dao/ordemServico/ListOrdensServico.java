@@ -239,4 +239,44 @@ public class ListOrdensServico implements OrdemServicoDAO{
         }
         return null;
     }
+
+    /**
+     * Método responsável por informar sobre:
+     * <ul>
+     *     <li>
+     *         Ordens que se encontram em aberto;
+     *     </li>
+     *     <li>
+     *         Fila de ordens para serem realizadas por cada tecnico
+     *     </li>
+     * </ul>
+     * @return <i>String</i> contendo as informações da agenda
+     */
+    public String agendaAtendimento(){
+        OrdemServico aberta = null;
+        String agendaSaida = "";
+        ArrayList<OrdemServico> esperando = new ArrayList<>();
+        for (Tecnico tecnico: DAO.getTecnicoDAO().getList()) {
+            for (OrdemServico ordem: tecnico.getServiceOrders()) {
+                if(ordem.getStatus().equals("andamento")){
+                    aberta = ordem;
+                }
+                else if(ordem.getStatus().equals("espera")){
+                    esperando.add(ordem);
+                }
+            }
+            agendaSaida += "Tecnico: " + tecnico.getFullName() + "\n";
+            agendaSaida += "Ordem em aberto: \n" +
+                    "ID da ordem: " + aberta.getId() + "\n"+
+                    "Nome do cliente: " + DAO.getClienteDAO().findById(aberta.getClientId()).getFullName()+"\n";
+
+            agendaSaida += "Ordem em espera: \n";
+            for(OrdemServico ordemEspera: esperando){
+                agendaSaida += "ID da ordem: " + ordemEspera.getId() + "\n" +
+                        "Nome do cliente: " + DAO.getClienteDAO().findById(ordemEspera.getId()).getFullName() + "\n";
+            }
+            agendaSaida += "\n";
+        }
+        return agendaSaida;
+    }
 }

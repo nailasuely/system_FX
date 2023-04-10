@@ -52,4 +52,12 @@ public interface OrdemServicoDAO extends CRUD<OrdemServico> {
      * @return Uma <i>Lista</i> de objetos do tipo <i>OrdemServico</i>
      */
     public List<OrdemServico> getList();
+
+    /**
+     * Assinatura de método que serve para acesso ao método contido na implementação.<br>
+     * Tal método serve para obter uma apresentação da agenda de atendimento, com as ordens que estão em aberto
+     * e as ordens que estão em espera, separadas por cada um dos tecnicos cadastrados
+     * @return <i>String</i> contendo as informações, para apresentação na tela
+     */
+    public String agendaAtendimento();
 }
