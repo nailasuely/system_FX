@@ -52,11 +52,6 @@ public class Tecnico extends Pessoa {
     contrário, um for percorre a lista para verificar se todas ordens estão finalizadas. Se sim, a nova
     ordem é adicionada.
      */
-
-    /*REVER LOGICA
-    pelo q tinhamos visto na aula do PBL falou q pode add, mas nao pode por o status em andamento
-     */
-
     /**
      * Método para realizar adição de uma ordem de serviço a lista de ordens do proprio tecnico<br>
      *

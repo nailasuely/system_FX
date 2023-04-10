@@ -46,7 +46,7 @@ class OrdemServicoTest {
     @Test
     void getPriceMontagem() throws SemEstoqueException, ProdutoErradoException {
         DAO.getEstoqueDAO().AdicionarEstoqueInicial();
-        // Adicionado uma montagem, ou seja o preço deve ser calculado com a quantidade.
+        // Adicionado uma montagem, ou seja, o preço deve ser calculado com a quantidade.
         DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.servicoMontagem());
         DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.789.101-10", ordem1);
         ordem1.setListaProdutos(Produto.novaPlacaMae(), 10);

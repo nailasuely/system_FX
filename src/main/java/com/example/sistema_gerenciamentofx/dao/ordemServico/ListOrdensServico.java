@@ -80,14 +80,13 @@ public class ListOrdensServico implements OrdemServicoDAO{
      */
     public void atualizarStatusAndamento(String cpfTecnico, OrdemServico ordem){
        if (listaOrdensServico != null){
-           // aqui o método addservideorder retorna true se o tecnico está com a lista
+           // Aqui o método addservideorder retorna true se o tecnico está com a lista
            // de serviços vazia ou todas finalizadas. Se estiver ele atualiza a ordem para
            // andamento
            if(DAO.getTecnicoDAO().findByCPF(cpfTecnico).addServiceOrder(ordem,
               DAO.getTecnicoDAO().findByCPF(cpfTecnico).getId())){
            listaOrdensServico.get(indiceClienteParaAtender).setStatus("andamento");
            indiceClienteParaAtender++;
-           //System.out.println(listaOrdensServico);
            }
        }
        else{
@@ -252,31 +251,27 @@ public class ListOrdensServico implements OrdemServicoDAO{
      * </ul>
      * @return <i>String</i> contendo as informações da agenda
      */
-    public String agendaAtendimento(){
-        OrdemServico aberta = null;
-        String agendaSaida = "";
-        ArrayList<OrdemServico> esperando = new ArrayList<>();
-        for (Tecnico tecnico: DAO.getTecnicoDAO().getList()) {
-            for (OrdemServico ordem: tecnico.getServiceOrders()) {
-                if(ordem.getStatus().equals("andamento")){
-                    aberta = ordem;
-                }
-                else if(ordem.getStatus().equals("espera")){
-                    esperando.add(ordem);
-                }
-            }
-            agendaSaida += "Tecnico: " + tecnico.getFullName() + "\n";
-            agendaSaida += "Ordem em aberto: \n" +
-                    "ID da ordem: " + aberta.getId() + "\n"+
-                    "Nome do cliente: " + DAO.getClienteDAO().findById(aberta.getClientId()).getFullName()+"\n";
-
-            agendaSaida += "Ordem em espera: \n";
-            for(OrdemServico ordemEspera: esperando){
-                agendaSaida += "ID da ordem: " + ordemEspera.getId() + "\n" +
-                        "Nome do cliente: " + DAO.getClienteDAO().findById(ordemEspera.getId()).getFullName() + "\n";
-            }
-            agendaSaida += "\n";
-        }
-        return agendaSaida;
+   public String agendaAtendimento(){
+       String agendaSaida = "";
+       ArrayList<OrdemServico> esperando = new ArrayList<>();
+       ArrayList<OrdemServico> andamento = new ArrayList<>();
+       for (OrdemServico ordem : DAO.getOrdemServicoDAO().getList()) {
+           if (ordem.getStatus().equals("andamento") && !(andamento.contains(ordem))) {
+               agendaSaida += "Tecnico: " + DAO.getTecnicoDAO().findById(ordem.getTechnicianID()).getFullName() + "\n";
+               agendaSaida += "Ordem em andamento: \n" +
+                       "ID da ordem: " + ordem.getId() + "\n" +
+                       "Nome do cliente: " + DAO.getClienteDAO().findById(ordem.getClientId()).getFullName() + "\n\n";
+               andamento.add(ordem);
+           } else if (ordem.getStatus().equals("espera")) {
+               esperando.add(ordem);
+           }
+       }
+       agendaSaida += "Ordem em espera: \n";
+       for (OrdemServico ordemEspera : esperando) {
+           agendaSaida += "ID da ordem: " + ordemEspera.getId() + "\n" +
+                   "Nome do cliente: " + DAO.getClienteDAO().findById(ordemEspera.getClientId()).getFullName() + "\n";
+       }
+       agendaSaida += "\n";
+       return agendaSaida;
     }
 }

@@ -19,8 +19,6 @@ class ListOrdensServicoTest {
     private static Cliente cliente1;
     private static Tecnico tecnico1;
 
-    private Produto produto1;
-
 
     @BeforeEach
     void setUp() {
@@ -37,6 +35,10 @@ class ListOrdensServicoTest {
 
     @AfterEach
     void tearDown() {
+        DAO.getOrdemServicoDAO().deleteMany();
+        DAO.getEstoqueDAO().deleteMany();
+        DAO.getTecnicoDAO().deleteMany();
+        DAO.getClienteDAO().deleteMany();
     }
 
     @Test
@@ -113,5 +115,30 @@ class ListOrdensServicoTest {
         DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
         DAO.getOrdemServicoDAO().create(ordem2, cliente2.getId(), Produto.servicoFormatar());
         assertEquals(2,  DAO.getOrdemServicoDAO().amountItems());
+    }
+
+    @Test
+    void agendaAtendimento() {
+        ordem2 = new OrdemServico();
+        Cliente cliente2 = new Cliente("Ana Sobrenome", "Rua ABC, Bahia",
+                "111.739.101-10", 81);
+        DAO.getClienteDAO().create(cliente2);
+        DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
+        DAO.getOrdemServicoDAO().create(ordem2, cliente2.getId(), Produto.servicoInstalar());
+        //System.out.println(DAO.getTecnicoDAO().getList());
+        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("456.789.101-10"), Produto.servicoFormatar());
+        DAO.getOrdemServicoDAO().atualizarStatusAndamento("123.789.101-10", ordem1);
+        System.out.println(DAO.getOrdemServicoDAO().agendaAtendimento());
+        assertEquals("Tecnico: Rhian Sobrenome\n" +
+                "Ordem em andamento: \n" +
+                "ID da ordem: "+ ordem1.getId()+"\n" +
+                "Nome do cliente: Maria Sobrenome\n" +
+                "\n" +
+                "Ordem em espera: \n" +
+                "ID da ordem: "+ ordem2.getId()+"\n" +
+                "Nome do cliente: Ana Sobrenome\n" +
+                "\n",DAO.getOrdemServicoDAO().agendaAtendimento() );
+
+
     }
 }
