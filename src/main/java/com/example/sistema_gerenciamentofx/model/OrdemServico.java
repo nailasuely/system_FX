@@ -461,7 +461,7 @@ public class OrdemServico {
             }
             this.description = "-------NOTA FISCAL DA ORDEM-------" + "\n"+
                     "Peça/produto   Quantidade   Preço un." + "\n"+
-                    partsList + "\n"+
+                    partsList +
                     "======================================" +"\n"+
                     "Quantidade total de itens: " + quantidadeItens+ "\n"+
                     "Preço total da ordem de serviço: R$" + this.price +"\n"+
@@ -470,9 +470,11 @@ public class OrdemServico {
                     "Forma de pagamento: "+ this.paymentType +"\n"+
                     "Tempo de duração da ordem: " + this.expendTime +"\n"+
                     "ID da ordem de serviço: " + this.id;
+
+
             return "-------NOTA FISCAL DA ORDEM-------" + "\n"+
                     "Peça/produto   Quantidade   Preço un." + "\n"+
-                    partsList + "\n"+
+                    partsList +
                     "======================================" +"\n"+
                     "Quantidade total de itens: " + quantidadeItens+ "\n"+
                     "Preço total da ordem de serviço: R$" + this.price +"\n"+
@@ -493,6 +495,8 @@ public class OrdemServico {
                     "Forma de pagamento: "+ this.paymentType +"\n"+
                     "Tempo de duração da ordem: " + this.expendTime + "\n"+
                     "ID da ordem de serviço: "+ this.id;
+
+
             return "------NOTA FISCAL DA ORDEM------" + "\n"+
                     "Serviço                    Preço un." + "\n"+
                     type.getNome()+" --------------- R$" + type.getPreco()+"\n"+
@@ -557,7 +561,8 @@ public class OrdemServico {
         this.setStatus("finalizada");
         this.setClientSatisfaction(satisfactionClient);
         this.setPaymentType(paymentForm);
-        this.getPrice();
+
+        this.setPrice(this.getPrice());
         //FALTA POR A PARTE DO PRECO PRA FUNCIONAR
         /*
         this.setPrice(this.calculatePrice(this.getType(), this.getItemsList()));
