@@ -79,9 +79,28 @@ class ListClientesTest {
 
     @Test
     void findByCpfIsTrue() {
+        DAO.getClienteDAO().create(cliente1);
+        DAO.getClienteDAO().create(cliente2);
+        // Teste com um cpf de um cliente presente na lista.
+        assertTrue(DAO.getClienteDAO().findByCpfIsTrue("123.789.101-10"));
+        //Teste com um cpf de um cliente NÃO presente na lista.
+        assertFalse(DAO.getClienteDAO().findByCpfIsTrue("111.123.456.10"));
     }
 
     @Test
     void findIdbyCPF() {
+        DAO.getClienteDAO().create(cliente1);
+        DAO.getClienteDAO().create(cliente2);
+        String id1 = cliente1.getId();
+        //Verificar primeiro com um cliente presente no sistema.
+        assertEquals(id1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"));
+        // Verificar se a exception foi lançada pelo método.
+        try {
+            DAO.getClienteDAO().findIdbyCPF("111.123.456.10");
+            fail("Erro, pois a exception não foi lançada");
+        } catch (IllegalArgumentException excep) {
+            assertEquals("Cliente não detectado no banco de dados", excep.getMessage());
+        }
+
     }
 }

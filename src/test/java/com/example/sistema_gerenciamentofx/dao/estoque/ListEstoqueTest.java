@@ -47,7 +47,6 @@ class ListEstoqueTest {
     }
     @Test
     void retirarEstoque() throws SemEstoqueException {
-        DAO.getEstoqueDAO().adicionarProduto(produto1, 20);
         DAO.getEstoqueDAO().retirarEstoque(produto1, 5);
         assertEquals(15, DAO.getEstoqueDAO().getQuantidade(produto1));
 
