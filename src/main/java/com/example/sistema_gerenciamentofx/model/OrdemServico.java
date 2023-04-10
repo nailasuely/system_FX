@@ -465,7 +465,8 @@ public class OrdemServico {
                     "Quantidade total de itens: " + quantidadeItens+ "\n"+
                     "Preço total da ordem de serviço: R$" + this.price +"\n"+
                     "Tecnico responsável: " + DAO.getTecnicoDAO().findById(this.technicianID).getFullName() +"\n"+
-                    "Cliente requisitante: " + DAO.getClienteDAO().findById(this.clientId).getFullName() +"\n"+
+                    "Cliente requisitante: " + DAO.getClienteDAO().findById(this.clientId).getFullName() +"\n" +
+                    "Forma de pagamento: "+ this.paymentType +"\n"+
                     "Tempo de duração da ordem: " + this.expendTime +"\n"+
                     "ID da ordem de serviço: " + this.id;
         }
@@ -478,6 +479,7 @@ public class OrdemServico {
                     "Preço total da ordem de serviço: R$" + type.getPreco()+ "\n"+
                     "Tecnico responsável: " + DAO.getTecnicoDAO().findById(this.technicianID).getFullName() +"\n"+
                     "Cliente requisitante: " + DAO.getClienteDAO().findById(this.clientId).getFullName() +"\n"+
+                    "Forma de pagamento: "+ this.paymentType +"\n"+
                     "Tempo de duração da ordem: " + this.expendTime + "\n"+
                     "ID da ordem de serviço: "+ this.id;
         }
