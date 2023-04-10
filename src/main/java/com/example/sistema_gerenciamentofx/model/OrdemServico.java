@@ -422,7 +422,7 @@ public class OrdemServico {
      * Método para gerar a descrição da ordem de serviço, contendo as principais informações que estão contidas na ordem.<br>
      * Dentre as informações:<ul>
      *     <li>
-     *         ID do cliente e do tecnico
+     *         Nome do cliente e do tecnico
      *     </li>
      *     <li>
      *         Produtos, e/ou serviço contratado pelo cliente
@@ -434,38 +434,53 @@ public class OrdemServico {
      *         Preço total da ordem de serviço
      *     </li>
      * </ul>
+     * Exemplo de apresentação quando o cliente escolhe o serviço de montagem:<br>
+     *"------NOTA FISCAL DA ORDEM------<br>
+     * Peça/produto   Quantidade     Preço un.<br>
+     * Placa mãe -------- 2 ------- R$100.0<br>
+     * ram -------- 2 ------- R$20.0<br>
+     * ======================================<br>
+     * Quantidade total de itens: 4<br>
+     * Preço total da ordem de serviço: R$120<br>
+     * Tecnico responsável: Rhian Pablo<br>
+     * Cliente requisitante: Naila Suele<br>
+     * Tempo de duração da ordem: Foram gastos 5 dias<br>
+     * ID da ordem de serviço: "<br>
      * @param type Objeto do tipo <i>Produto</i>, que contém informação sobre o tipo do serviço contratado
      * @return <i>String</i> contendo as informações citadas, de maneira formatada para ser apresentada no sistema
      */
     public String generateInvoice(Produto type) {
-        //double finalPrice = calculatePrice(String type, HashMap itemsList);
-        if (type.getNome().equals("instalacao") || type.getNome().equals("montagem")){
-            /*Collection <Integer> values = itemsList.values();
-            ArrayList<Integer> valuesList = new ArrayList<>(values);
-            Integer quantItems=0;
-            for (Integer quant: valuesList) {
-                quantItems +=quant;
-            }*/
-            if (type.getNome().equals("instalacao")){
-                //return "Tipo do serviço: "+type + ", quantidade de programas: "+quantItems+", o custo total foi de: " + finalPrice;
-                return "Tipo do serviço: "+type.getNome() + ", quantidade de programas: "+0+", o custo total foi de: " + 0;
+        if (type.getNome().equals("montagem")){
+            String partsList = "";
+            Integer quantidadeItens = 0;
+            for (Produto peca: this.produtoLists.keySet()) {
+                partsList += peca.getNome();
+                partsList += " ------- "+this.produtoLists.get(peca)+" ------- R$"+peca.getPreco() + "\n";
+                quantidadeItens +=this.produtoLists.get(peca);
             }
-            else if(type.getNome().equals("montagem")){
-                /*String partsList = "";
-                for (String peca: itemsList.entrySet()){
-                    partsList +=peca;
-                    partsList +=", ";
-                }*/
-                //return "Tipo do serviço: "+type + ", quantidade de pecas: "+quantItems+", lista de peças: "+partsList+"o custo total foi de: " + finalPrice;
-                return "Tipo do serviço: "+type.getNome() + ", quantidade de pecas: "+ 0 +", lista de peças: "+ 0 +"o custo total foi de: " + 0+"tempo que durou: " + this.getExpendTime();
-            }
+            return "-------NOTA FISCAL DA ORDEM-------" + "\n"+
+                    "Peça/produto   Quantidade   Preço un." + "\n"+
+                    partsList + "\n"+
+                    "======================================" +"\n"+
+                    "Quantidade total de itens: " + quantidadeItens+ "\n"+
+                    "Preço total da ordem de serviço: R$" + this.price +"\n"+
+                    "Tecnico responsável: " + DAO.getTecnicoDAO().findById(this.technicianID).getFullName() +"\n"+
+                    "Cliente requisitante: " + DAO.getClienteDAO().findById(this.clientId).getFullName() +"\n"+
+                    "Tempo de duração da ordem: " + this.expendTime +"\n"+
+                    "ID da ordem de serviço: " + this.id;
         }
         else{
-            //return "Tipo do serviço: "+type + ", o custo total foi de: " + finalPrice;
-            return "Tipo do serviço: "+type.getNome() + ", o custo total foi de: " + 0;
-        }
-        return null;
 
+            return "------NOTA FISCAL DA ORDEM------" + "\n"+
+                    "Serviço                    Preço un." + "\n"+
+                    type.getNome()+" --------------- R$" + type.getPreco()+"\n"+
+                    "======================================" +"\n"+
+                    "Preço total da ordem de serviço: R$" + type.getPreco()+ "\n"+
+                    "Tecnico responsável: " + DAO.getTecnicoDAO().findById(this.technicianID).getFullName() +"\n"+
+                    "Cliente requisitante: " + DAO.getClienteDAO().findById(this.clientId).getFullName() +"\n"+
+                    "Tempo de duração da ordem: " + this.expendTime + "\n"+
+                    "ID da ordem de serviço: "+ this.id;
+        }
     }
 
     /*
