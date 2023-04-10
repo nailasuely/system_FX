@@ -44,6 +44,15 @@ class ListClientesTest {
         //verifica se o ID foi realmente criado
         assertNotNull(cliente1.getId());
 
+        //teste se o sistema permite criar um cliente, ja cadastrado como tecnico
+        Tecnico tecnico1 = new Tecnico("Guilherme Sobrenome", "Rua XYZ, Bahia",
+                "456.789.101-10", 81);
+        Tecnico testeTecnico;
+        testeTecnico = DAO.getTecnicoDAO().create(tecnico1);
+        //se retornar null funcionou
+        assertNull(DAO.getClienteDAO().create(cliente2));
+        DAO.getTecnicoDAO().delete(testeTecnico.getCpf());
+
         teste = DAO.getClienteDAO().create(cliente1);
 
         // se retornar null, significa que o sistema nao adiciona o cliente ja existente
@@ -51,6 +60,7 @@ class ListClientesTest {
         DAO.getClienteDAO().create(cliente2);
         // Verifica se tem a quantidade de clientes esperada.
         assertEquals(2, DAO.getClienteDAO().amountItems());
+
 
     }
 

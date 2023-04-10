@@ -34,7 +34,8 @@ public interface CRUD<T> {
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação.<br>
      * Tal método serve para retirar um objeto do sistema de armazenamento
-     * @param ID <i>String</i> contendo um valor de ID
+     * @param ID <i>String</i> contendo um valor de ID ao se referir a ordem de serviço, e ao se referir tanto a <b>tecnico</b>,
+     *           como a <b>cliente</b>, tem de ser passado o <i><b>CPF</b></i>
      */
     public void delete(String ID);
     /**

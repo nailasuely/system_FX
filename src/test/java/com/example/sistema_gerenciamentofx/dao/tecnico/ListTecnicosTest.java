@@ -41,6 +41,12 @@ class ListTecnicosTest {
 
         teste = DAO.getTecnicoDAO().create(tecnico1);
 
+        Cliente teste1 = new Cliente("João Sobrenome", "Rua XYZ, Bahia",
+                "456.789.101-10", 81);
+        Cliente testeConflito;
+        testeConflito = DAO.getClienteDAO().create(teste1);
+        assertNull(DAO.getTecnicoDAO().create(tecnico2));
+        DAO.getClienteDAO().delete(testeConflito.getCpf());
 
         // se retornar null, significa que o sistema nao adiciona o cliente ja existente
         assertNull(teste);

@@ -446,10 +446,11 @@ public class OrdemServico {
      * Cliente requisitante: Naila Suele<br>
      * Tempo de duração da ordem: Foram gastos 5 dias<br>
      * ID da ordem de serviço: "<br>
-     * @param type Objeto do tipo <i>Produto</i>, que contém informação sobre o tipo do serviço contratado
+
      * @return <i>String</i> contendo as informações citadas, de maneira formatada para ser apresentada no sistema
      */
-    public String generateInvoice(Produto type) {
+    public String generateInvoice() {
+
         if (type.getNome().equals("montagem")){
             String partsList = "";
             Integer quantidadeItens = 0;
@@ -458,6 +459,17 @@ public class OrdemServico {
                 partsList += " ------- "+this.produtoLists.get(peca)+" ------- R$"+peca.getPreco() + "\n";
                 quantidadeItens +=this.produtoLists.get(peca);
             }
+            this.description = "-------NOTA FISCAL DA ORDEM-------" + "\n"+
+                    "Peça/produto   Quantidade   Preço un." + "\n"+
+                    partsList + "\n"+
+                    "======================================" +"\n"+
+                    "Quantidade total de itens: " + quantidadeItens+ "\n"+
+                    "Preço total da ordem de serviço: R$" + this.price +"\n"+
+                    "Tecnico responsável: " + DAO.getTecnicoDAO().findById(this.technicianID).getFullName() +"\n"+
+                    "Cliente requisitante: " + DAO.getClienteDAO().findById(this.clientId).getFullName() +"\n" +
+                    "Forma de pagamento: "+ this.paymentType +"\n"+
+                    "Tempo de duração da ordem: " + this.expendTime +"\n"+
+                    "ID da ordem de serviço: " + this.id;
             return "-------NOTA FISCAL DA ORDEM-------" + "\n"+
                     "Peça/produto   Quantidade   Preço un." + "\n"+
                     partsList + "\n"+
@@ -471,7 +483,16 @@ public class OrdemServico {
                     "ID da ordem de serviço: " + this.id;
         }
         else{
-
+            this.description = "------NOTA FISCAL DA ORDEM------" + "\n"+
+                    "Serviço                    Preço un." + "\n"+
+                    type.getNome()+" --------------- R$" + type.getPreco()+"\n"+
+                    "======================================" +"\n"+
+                    "Preço total da ordem de serviço: R$" + type.getPreco()+ "\n"+
+                    "Tecnico responsável: " + DAO.getTecnicoDAO().findById(this.technicianID).getFullName() +"\n"+
+                    "Cliente requisitante: " + DAO.getClienteDAO().findById(this.clientId).getFullName() +"\n"+
+                    "Forma de pagamento: "+ this.paymentType +"\n"+
+                    "Tempo de duração da ordem: " + this.expendTime + "\n"+
+                    "ID da ordem de serviço: "+ this.id;
             return "------NOTA FISCAL DA ORDEM------" + "\n"+
                     "Serviço                    Preço un." + "\n"+
                     type.getNome()+" --------------- R$" + type.getPreco()+"\n"+

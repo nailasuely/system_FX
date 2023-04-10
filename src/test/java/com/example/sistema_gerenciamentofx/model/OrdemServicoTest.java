@@ -74,6 +74,22 @@ class OrdemServicoTest {
 
     @Test
     void getDescription() {
+
+        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.servicoFormatar());
+        DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.789.101-10", ordem1);
+        OrdemServico teste;
+        teste =DAO.getOrdemServicoDAO().openOrderByTechnician("456.789.101-10");
+        
+        assertEquals("------NOTA FISCAL DA ORDEM------" + "\n"+
+                "Serviço                    Preço un." + "\n"+
+                "formatacao"+" --------------- R$" + 50.0+"\n"+
+                "======================================" +"\n"+
+                "Preço total da ordem de serviço: R$" + 50.0+ "\n"+
+                "Tecnico responsável: " + "João Sobrenome" +"\n"+
+                "Cliente requisitante: " + "Maria Sobrenome" +"\n"+
+                "Forma de pagamento: "+ "pix" +"\n"+
+                "Tempo de duração da ordem: " + "Foram gastos 0 dias" + "\n"+
+                "ID da ordem de serviço: "+ teste.getId(), DAO.getOrdemServicoDAO().openOrderByTechnician("456.789.101-10").generateInvoice() );
     }
 
     @Test
