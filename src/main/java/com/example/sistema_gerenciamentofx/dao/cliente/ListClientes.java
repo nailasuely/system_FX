@@ -188,6 +188,10 @@ public class ListClientes implements ClienteDAO {
 
     }
 
+    /**
+     * Método para poder obter a lista de clientes salva no sistema
+     * @return List contendo objetos do tipo <i>Cliente</i>
+     */
     @Override
     public List<Cliente> getList() {
         return this.listaClientes;

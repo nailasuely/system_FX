@@ -3,6 +3,8 @@ package com.example.sistema_gerenciamentofx.dao.tecnico;
 import com.example.sistema_gerenciamentofx.dao.CRUD;
 import com.example.sistema_gerenciamentofx.model.Cliente;
 import com.example.sistema_gerenciamentofx.model.Tecnico;
+
+import java.util.List;
 /**
  * Interface criada para conter os métodos que não estão presentes na interface geral, o CRUD, já que os métodos do CRUD
  * são extendidos para essa interface.<br>
@@ -18,9 +20,8 @@ import com.example.sistema_gerenciamentofx.model.Tecnico;
  *        <i><b>findIdbyCPF</b></i> - realiza a busca do ID do objeto <i>Tecnico</i> partindo de um CPF
  *    </li>
  * </ul>
+ * @author Naila Suele e Rhian Pablo
  */
-import java.util.List;
-
 public interface TecnicoDAO extends CRUD<Tecnico> {
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação<br>
@@ -44,5 +45,11 @@ public interface TecnicoDAO extends CRUD<Tecnico> {
      */
     public String findIdbyCPF(String CPF);
     public String balanceamento();
+
+    /**
+     * Assinatura de método que serve para acesso ao método contido na implementação.<br>
+     * Tal método serve para obter a lista de Tecnicos
+     * @return Uma <i>Lista</i> de objetos do tipo <i>Tecnico</i>
+     */
     public List<Tecnico> getList();
 }

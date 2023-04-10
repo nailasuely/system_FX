@@ -212,6 +212,10 @@ public class ListTecnicos implements TecnicoDAO {
         return null;
     }
 
+    /**
+     * Método para poder obter a lista de Tecnicos
+     * @return Uma <i>List</i> contendo objetos do tipo <i>Tecnico</i>
+     */
     @Override
     public List<Tecnico> getList() {
         return this.listaTecnicos;

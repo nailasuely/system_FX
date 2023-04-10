@@ -41,7 +41,6 @@ public class ListEstoque implements EstoqueDAO {
      * Método construtor da classe, em que ocorre a inicialização do dicionário que irá conter informações sobre o estoque, a
      * respeito do tipo do produto e sua quantidade em estoque.
      */
-
     public ListEstoque() {
         estoque = new HashMap<>();
     }
@@ -59,6 +58,10 @@ public class ListEstoque implements EstoqueDAO {
         estoque.put(Produto.novoHDSSD(), 20);
     }
 
+    /**
+     * Método responsavel para poder obter o dicionário que contém salvo as informações sobre o estoque
+     * @return Dicionario, <i>Map</i>, com as informações dos produtos contidos no estoque, adjuntos com suas quantidades
+     */
     @Override
     public Map<Produto, Integer> getList() {
         return this.estoque;

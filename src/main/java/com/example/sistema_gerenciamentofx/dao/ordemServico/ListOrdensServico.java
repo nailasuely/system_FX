@@ -71,6 +71,13 @@ public class ListOrdensServico implements OrdemServicoDAO{
         return ordem;
     }
 
+    /**
+     * Método para poder atualizar o status da ordem de serviço, colocando ela com o status "em andamento", e com isso
+     * tira da fila de espera.<br>
+     * Caso ocorra do Tecnico não poder aceitar aquela ordem, é gerado uma exceção.
+     * @param cpfTecnico <i>String</i> contendo o CPF do tecnico o qual deseja procurar a ordem na fila de espera
+     * @param ordem Objeto do tipo <i>OrdemServico</i> para ser atualizada
+     */
     public void atualizarStatusAndamento(String cpfTecnico, OrdemServico ordem){
        if (listaOrdensServico != null){
            // aqui o método addservideorder retorna true se o tecnico está com a lista
@@ -88,6 +95,10 @@ public class ListOrdensServico implements OrdemServicoDAO{
        }
     }
 
+    /**
+     * Metodo para poder obter a lista de ordens de serviço presente no sistema
+     * @return Uma lista com objetos do tipo <i>OrdemServiço</i>
+     */
     @Override
     public List<OrdemServico> getList() {
         return this.listaOrdensServico;

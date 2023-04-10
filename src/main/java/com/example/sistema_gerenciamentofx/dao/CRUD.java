@@ -12,6 +12,7 @@ segunda fase do PBL.
  * esses métodos são padrões as outras classes DAO, de armazenamento e manipulação, presentes no programa.<br>
  * Essa interface contém o nome dos métodos os quais a implementação é específica de cada uma das classes que utilizada essa interface
  * @param <T> Parametro a ser preenchido com o tipo do objeto em que a classe que faz a implementação da interface faz uso
+ * @author Naila Suele e Rhian Pablo
  */
 public interface CRUD<T> {
     /**

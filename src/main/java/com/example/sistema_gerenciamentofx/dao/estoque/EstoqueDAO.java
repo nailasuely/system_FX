@@ -1,6 +1,9 @@
 package com.example.sistema_gerenciamentofx.dao.estoque;
 
 import com.example.sistema_gerenciamentofx.model.Produto;
+
+
+import java.util.Map;
 /**
  * A interface criada para conter os métodos implementados relativos ao Estoque, sendo eles:
  * <ul>
@@ -17,10 +20,9 @@ import com.example.sistema_gerenciamentofx.model.Produto;
  *         <i><b>ordemDeCompraAutomatica</b></i> - para adicionar produtos automaticamente ao estoque, quando detectado baixo nível no estoque
  *     </li>
  * </ul>
+ * @author Naila Suele e Rhian Pablo
+ * @since 2023
  */
-
-import java.util.Map;
-
 public interface EstoqueDAO {
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação<br>
@@ -58,6 +60,19 @@ public interface EstoqueDAO {
      * Tal método serve para realização de uma compra automaticamente, quando detectado baixa quantidade no estoque
      */
     void ordemDeCompraAutomatica();
+
+    /**
+     * Assinatura de método que serve para acesso ao método contido na implementação<br>
+     * Tal método serve para adicionar itens ao estoque de forma rápida, já que para todos os produtos pré-definidos
+     * é adicionado a quantidade de 20 itens para o estoque.<br>
+     * Seu funcionamento é necessário, em prioridade na primeira inicialização do programa.
+     */
     public void AdicionarEstoqueInicial();
+
+    /**]
+     * Assinatura de método que serve para acesso ao método contido na implementação<br>
+     * Tal método serve para poder obter o dicionário em que está salvo as informações do estoque
+     * @return <i>Map</i> contendo as informações dos produtos e suas quantidades
+     */
     public Map<Produto, Integer> getList();
 }

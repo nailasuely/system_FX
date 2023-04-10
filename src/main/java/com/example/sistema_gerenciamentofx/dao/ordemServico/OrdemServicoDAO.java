@@ -3,6 +3,7 @@ package com.example.sistema_gerenciamentofx.dao.ordemServico;
 import com.example.sistema_gerenciamentofx.dao.CRUD;
 import com.example.sistema_gerenciamentofx.model.OrdemServico;
 import com.example.sistema_gerenciamentofx.model.Produto;
+import java.util.List;
 /**
  * Interface criada para conter os métodos que não estão presentes na interface geral, o CRUD, já que os métodos do CRUD
  * são extendidos para essa interface.<br>
@@ -16,10 +17,9 @@ import com.example.sistema_gerenciamentofx.model.Produto;
  *do cpf do tecnico, adjunto ao objeto do tipo <i>OrdemServico</i> que este irá trabalhar, logo que fez a retirada da fila de espera.
  *     </li>
  * </ul>
+ * @author Naila Suele e Rhian Pablo
+ * @since 2023
  */
-
-import java.util.List;
-
 public interface OrdemServicoDAO extends CRUD<OrdemServico> {
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação<br>
@@ -37,8 +37,19 @@ public interface OrdemServicoDAO extends CRUD<OrdemServico> {
      */
 
     public OrdemServico create(OrdemServico ordem, String clienteID, Produto type);
-
+    /**
+     * Assinatura de método que serve para acesso ao método contido na implementação<br>
+     * Tal método serve para atualizar o status da ordem, retirando-a da fila de espera e colocando com o status "em andamento"
+     * significando que vai ser iniciado o trabalho naquela ordem.
+     * @param cpfTecnico <i>String</i> contendo o CPF do tecnico o qual deseja procurar a ordem na fila de espera
+     * @param ordem Objeto do tipo <i>OrdemServico</i> para ser atualizada
+     */
     public void atualizarStatusAndamento(String cpfTecnico, OrdemServico ordem);
 
+    /**
+     * Assinatura de método que serve para acesso ao método contido na implementação.<br>
+     * Tal método serve para obter a lista de Ordens de Serviço
+     * @return Uma <i>Lista</i> de objetos do tipo <i>OrdemServico</i>
+     */
     public List<OrdemServico> getList();
 }

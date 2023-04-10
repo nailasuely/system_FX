@@ -2,6 +2,9 @@ package com.example.sistema_gerenciamentofx.dao.cliente;
 
 import com.example.sistema_gerenciamentofx.dao.CRUD;
 import com.example.sistema_gerenciamentofx.model.Cliente;
+
+import java.util.ArrayList;
+import java.util.List;
 /**
  * Interface criada para conter os métodos que não estão presentes na interface geral, o CRUD,
  * já que os métodos do CRUD são extendidos para essa interface.<br>
@@ -17,10 +20,9 @@ import com.example.sistema_gerenciamentofx.model.Cliente;
  *        <i><b>findIdbyCPF</b></i> - realiza a busca do ID do objeto <i>Cliente</i> partindo de um CPF
  *    </li>
  * </ul>
+ * @author Naila Suele e Rhian Pablo
+ * @since 2023
  */
-import java.util.ArrayList;
-import java.util.List;
-
 public interface ClienteDAO extends CRUD<Cliente> {
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação<br>
@@ -44,6 +46,12 @@ public interface ClienteDAO extends CRUD<Cliente> {
      * @return <i>String</i> contendo o ID do cliente, em caso de não encontrar é gerada uma exceção
      */
     public String findIdbyCPF(String CPF);
+
+    /**
+     * Assinatura de método que serve para acesso ao método contido na implementação<br>
+     * Tal método serve para obter a lista de clientes armazenada
+     * @return Um <i>List</i> contendo objetos do tipo <i>Cliente</i>
+     */
     public List<Cliente> getList();
 
 }
