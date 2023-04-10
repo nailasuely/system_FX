@@ -54,25 +54,64 @@ class ListOrdensServicoTest {
 
     @Test
     void update() {
+        OrdemServico ordemAtt;
+        Cliente cliente2 = new Cliente("Ana", "Rua A", "111.222.333-44", 72);
+        DAO.getClienteDAO().create(cliente2);
+        DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
+        ordemAtt = DAO.getOrdemServicoDAO().findById(ordem1.getId());
+        ordemAtt.setClientId(cliente2.getId());
+        // Atualiza o cliente da ordem.
+        DAO.getOrdemServicoDAO().update(ordemAtt);
+        assertEquals(ordemAtt, DAO.getOrdemServicoDAO().findById(ordemAtt.getId()));
+
+        // Tentando adicionar uma ordem não existente no DAO ordem.
+        OrdemServico ordem2 = new OrdemServico();
+        try {
+            DAO.getOrdemServicoDAO().update(ordem2);
+            fail("Uma exception deveria ter sido lançada");
+        } catch (IllegalArgumentException excep) {
+            assertEquals("Ordem não detectado no banco de dados", excep.getMessage());
+        }
     }
 
     @Test
     void delete() {
+        DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
+        // Verifica a quantidade depois de uma ordem adicionada.
+        assertEquals(1,DAO.getOrdemServicoDAO().getList().size());
+        DAO.getOrdemServicoDAO().delete(ordem1.getId());
+        // Verifica após a ordem ser deletada.
+        assertEquals(0,DAO.getOrdemServicoDAO().getList().size());
     }
 
     @Test
     void findById() {
-    }
-
-    @Test
-    void listObjects() {
+        DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
+        OrdemServico testeEncontrar = DAO.getOrdemServicoDAO().findById(ordem1.getId());
+        assertEquals(ordem1, testeEncontrar);
     }
 
     @Test
     void deleteMany() {
-    }
+        ordem2 = new OrdemServico();
+        Cliente cliente2 = new Cliente("Ana Sobrenome", "Rua ABC, Bahia",
+                "111.739.101-10", 81);
+        DAO.getClienteDAO().create(cliente2);
+        DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
+        DAO.getOrdemServicoDAO().create(ordem2, cliente2.getId(), Produto.servicoFormatar());
+        assertEquals(2,  DAO.getOrdemServicoDAO().getList().size());
+        DAO.getOrdemServicoDAO().deleteMany();
+        assertEquals(0,  DAO.getOrdemServicoDAO().getList().size());
 
+    }
     @Test
     void amountItems() {
+        ordem2 = new OrdemServico();
+        Cliente cliente2 = new Cliente("Ana Sobrenome", "Rua ABC, Bahia",
+                "111.739.101-10", 81);
+        DAO.getClienteDAO().create(cliente2);
+        DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
+        DAO.getOrdemServicoDAO().create(ordem2, cliente2.getId(), Produto.servicoFormatar());
+        assertEquals(2,  DAO.getOrdemServicoDAO().amountItems());
     }
 }

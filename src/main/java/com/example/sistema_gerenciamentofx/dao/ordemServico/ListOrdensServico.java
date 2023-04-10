@@ -139,7 +139,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
      */
     @Override
     public void update(OrdemServico ordem) {
-        boolean status = false;
+        boolean status  = false;
         for (int i=0; i< this.listaOrdensServico.size();i++){
             if(listaOrdensServico.get(i).getId().equals(ordem.getId())){
                 this.listaOrdensServico.set(i, ordem);
@@ -159,14 +159,14 @@ public class ListOrdensServico implements OrdemServicoDAO{
      */
     @Override
     public void delete(String ID) {
-        boolean status = false;
+        boolean deletado = false;
         for (int i=0; i< this.listaOrdensServico.size();i++){
             if(listaOrdensServico.get(i).getId().equals(ID)){
                 this.listaOrdensServico.remove(i);
                 return;
             }
         }
-        if(!status){
+        if(!deletado){
             throw new IllegalArgumentException("Cliente não detectado no banco de dados");
         }
     }
