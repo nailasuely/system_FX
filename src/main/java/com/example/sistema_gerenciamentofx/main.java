@@ -8,7 +8,8 @@ import com.example.sistema_gerenciamentofx.model.*;
 import java.util.*;
 
 /*
-Essa main foi criada de modo a realizar testes do programa
+Essa main foi criada de modo a realizar testes do programa, entretanto não foi completamente atualizada
+ao decorrer das versões.
  */
 /**
  * Está classe foi criada com o intuito de realização de testes interativos por meio do terminal.
