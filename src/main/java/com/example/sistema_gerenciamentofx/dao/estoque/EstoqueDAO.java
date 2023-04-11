@@ -47,10 +47,10 @@ public interface EstoqueDAO {
      * @throws SemEstoqueException Representa exceção que pode acontecer de 2 formas diferentes:
      * <ul>
      *     <li>
-     *          1ª - Caso o produto não tenha a quantidade adequada, ou não tenha nennhuma quantidade no sistema
+     *          1ª Caso o produto não tenha a quantidade adequada, ou não tenha nennhuma quantidade no sistema
      *     </li>
      *     <li>
-     *         2º - Caso o produto não foi encontrado no estoque, ou seja ele nunca foi cadastrado no estoque
+     *         2º Caso o produto não foi encontrado no estoque, ou seja ele nunca foi cadastrado no estoque
      *     </li>
      * </ul>
      */
@@ -76,5 +76,9 @@ public interface EstoqueDAO {
      */
     public Map<Produto, Integer> getList();
 
+    /**
+     * Assinatura de método que serve para acesso ao método contido na implementação<br>
+     * Tal método serve para poder deletar os dados armazenados
+     */
     public void deleteMany();
 }

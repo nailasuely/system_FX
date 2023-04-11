@@ -31,7 +31,6 @@ import java.util.*;
  * @author Naila Suele e Rhian Pablo
  * @since 2023
  */
-
 public class OrdemServico {
     /**
      * O atributo <b>id</b> serve para salvar a identificação unica da ordem de serviço<br>
@@ -58,7 +57,7 @@ public class OrdemServico {
      */
     private String technicianID;
     /**
-     * O atributo <b>>type</b> serve para poder identificar o tipo da ordem, seja ela:<br>
+     * O atributo <b>type</b> serve para poder identificar o tipo da ordem, seja ela:<br>
      * <ul>
      *     <li>
      *         Formatação;

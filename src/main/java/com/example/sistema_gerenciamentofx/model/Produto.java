@@ -127,10 +127,10 @@ public class Produto {
      * Produto produto;
      * produto = Produto.servicoInstalar();
      * System.out.println(produto);
-     * >>>Produto/Serviço [
-     * >>>nome= instação
-     * >>>preço= 10.0
-     * >>>]
+     * >>>Produto/Serviço [<br>
+     * >>>nome= instação<br>
+     * >>>preço= 10.0<br>
+     * >>>]<br>
      * @return <i>String</i> já formatada contendo o informações do nome e preço daquele objeto do tipo <i>Produto</i>
      */
     @Override

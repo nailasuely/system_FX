@@ -86,7 +86,12 @@ public class ListEstoque implements EstoqueDAO {
             estoque.put(produto, quantidade);
         }
     }
-
+    /**
+     * Método responsável por adicionar produtos ao estoque.<br>
+     * Um de seus usos ocorre na realização da "ordem de compra" dentro do sistema
+     * @param produto Objeto do tipo <i>Produto</i> o qual ja contém o nome do produto a ser adicionado.
+     * @param quantidade <i>Int</i> que contém o valor que vai ser adicionado ao estoque
+     */
     public void adicionarProduto(Produto produto, int quantidade) {
         for (Produto pd1 : this.estoque.keySet()) {
             if (pd1.getNome().equals(produto.getNome())) {
@@ -167,6 +172,10 @@ public class ListEstoque implements EstoqueDAO {
         }
         return 0;
     }
+
+    /**
+     * Método para deletar o estoque, criando um novo dicionário vazio e colocando no lugar do anterior
+     */
     @Override
     public void deleteMany() {
         this.estoque = new HashMap<>();

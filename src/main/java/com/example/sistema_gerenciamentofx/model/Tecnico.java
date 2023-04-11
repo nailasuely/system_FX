@@ -91,9 +91,6 @@ public class Tecnico extends Pessoa {
         return serviceOrders;
     }
 
-    public void finalizeServiceOrder(OrdemServico ordem){
-
-    }
 
     /**
      * Método para poder gerar relátorios gerais ao sistema, contendo informações com médias de todos os valores obtidos ao

@@ -30,12 +30,11 @@ public interface OrdemServicoDAO extends CRUD<OrdemServico> {
     public OrdemServico openOrderByTechnician(String cpf);
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação<br>
-     * Tal método serve para atualizar o status da ordem, retirando-a da fila de espera e colocando com o status "em andamento"
-     * significando que vai ser iniciado o trabalho naquela ordem.
-     * @param cpfTecnico <i>String</i> contendo o CPF do tecnico o qual deseja procurar a ordem na fila de espera
+     * Tal método serve para adicionar uma Ordem de Serviço ao sistema de dados, preenchendo com seu ID automaticamente
+     * @param clienteID <i>String</i> contendo o ID do cliente que requisitou a ordem
      * @param ordem Objeto do tipo <i>OrdemServico</i> para ser atualizada
+     * @param type Objeto do tipo <i>Produto</i> para indicar qual o tipo do serviço que está contido na ordem de serviço
      */
-
     public OrdemServico create(OrdemServico ordem, String clienteID, Produto type);
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação<br>
