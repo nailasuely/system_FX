@@ -4,7 +4,7 @@
 
 <div align="center">
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nailasuely/system_FX/blame/master/license)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nailasuely/system_FX/blob/master/license)
 
 </div>
 
