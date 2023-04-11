@@ -27,6 +27,16 @@ Em conformidade com o desenvolvimento do projeto, iremos atualizando as tecnolog
 * Padrão de projeto DAO (Data Access Object) para o CRUD
 * Desenvolvimento do Model e testes de unidade
 * Construção da interface gráfica com JavaFX
+## Estrutura 
+<p align="center">
+  <img width="350px" src="https://user-images.githubusercontent.com/98486996/231026436-f5114983-d338-4737-b40e-f855854d3e6f.png" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img width="350px" src="https://user-images.githubusercontent.com/98486996/231025721-2e91ce06-7169-4931-be71-975c293545d5.png" />
+</p>
 
 ## Diagrama de classes
 ![DIAGRAMA CLASSES (1)](https://user-images.githubusercontent.com/98486996/230784227-67d37f13-fcee-467b-9472-d21ee4429452.svg)
+
+## Autores
+- Naila Suele 
+- Rhian Pablo
