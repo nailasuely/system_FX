@@ -1,9 +1,19 @@
 <div align= "center" >
 <img width="200px" src="https://user-images.githubusercontent.com/98486996/230782930-ab1492bc-a037-4d87-a933-fe4ecb2c2871.png">
 <h1>🖥️ Sistema para gerenciamento</h1>
+
+<div align="center">
+
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nailasuely/system_FX/blame/master/license)
+
+</div>
+
+<div align="center"> 
+
+</div>
   
 Esse é um projeto da disciplina EXA 863 - MI Programação, no qual ocorre a criação de um sistema para gerenciamento de manutenção de microcomputadores.
-  
+ 
 <img width="900px" src="https://user-images.githubusercontent.com/98486996/226117202-3522e3cf-f762-4ee7-ad90-5a5eaf7e7d0c.gif"> 
 
 </div>
