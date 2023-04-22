@@ -2,6 +2,7 @@ package com.example.sistema_gerenciamentofx.model;
 import com.example.sistema_gerenciamentofx.dao.DAO;
 import com.example.sistema_gerenciamentofx.dao.estoque.SemEstoqueException;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
@@ -31,7 +32,7 @@ import java.util.*;
  * @author Naila Suele e Rhian Pablo
  * @since 2023
  */
-public class OrdemServico {
+public class OrdemServico implements Serializable {
     /**
      * O atributo <b>id</b> serve para salvar a identificação unica da ordem de serviço<br>
      * Cada ordem possui o seu ID gerado aleatoriamente pela biblioteca <i>UUID</i>

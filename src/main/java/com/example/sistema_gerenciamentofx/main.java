@@ -2,10 +2,13 @@ package com.example.sistema_gerenciamentofx;
 
 
 import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.dao.conexao.Connect;
 import com.example.sistema_gerenciamentofx.dao.estoque.SemEstoqueException;
 import com.example.sistema_gerenciamentofx.model.*;
 
+import java.io.IOException;
 import java.util.*;
+
 
 /*
 Essa main foi criada de modo a realizar testes do programa, entretanto não foi completamente atualizada
@@ -20,7 +23,7 @@ ao decorrer das versões.
  * @since 2023
  */
 public class main{
-    public static void main(String[] args) throws SemEstoqueException, ProdutoErradoException {
+    public static void main1(String[] args) throws SemEstoqueException, ProdutoErradoException {
         int escolha = 1; String id;
         int opcao=0;
 
@@ -353,6 +356,18 @@ public class main{
 
         }while(escolha != 0);
 
+    }
+    public static void main(String[] args) throws Exception {
+        Connect.generate();
+        Connect.saveCliente(DAO.getClienteDAO().getList());
+        Connect.openCliente();
+        Connect.saveTecnico(DAO.getTecnicoDAO().getList());
+        Connect.openTecnicos();
+
+        Connect.saveEstoque(DAO.getEstoqueDAO().getList());
+        Connect.openEstoque();
+        Connect.saveOrder(DAO.getOrdemServicoDAO().getList());
+        Connect.openOrdens();
     }
 
 }

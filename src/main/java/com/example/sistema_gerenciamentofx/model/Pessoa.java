@@ -1,12 +1,14 @@
 package com.example.sistema_gerenciamentofx.model;
 
+import java.io.Serializable;
+
 /**
  * Classe abstrata utilizada para melhor modularizar o codigo, ja que os elementos dela se compartilham nas classes <b>Cliente</b> e <b>Tecnico</b>
  *
  * @author Naila Suele e Rhian Pablo
  * @since 2023
  */
-public abstract class Pessoa {
+public abstract class Pessoa implements Serializable {
     /**
      * O atributo <b>id</b> serve para salvar a identificação interna daquela pessoa, seja um tecnico ou cliente<br>
      * Cada pessoa possui um id gerado aleatoriamente pela biblioteca <i>UUID</i><br>

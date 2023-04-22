@@ -1,5 +1,7 @@
 package com.example.sistema_gerenciamentofx.model;
 
+import java.io.Serializable;
+
 /**
  *Está classe serve para poder gerar objetos dela mesma, em que cada um desses contém um valor do tipo <i>String</i>,
  * utilizado para dar nome a peça, ou serviço, além de um valor do tipo <i>double</i> que serve para poder preencher com o valor da peça
@@ -7,7 +9,7 @@ package com.example.sistema_gerenciamentofx.model;
  * @author Naila Suele e Rhian Pablo
  * @since 2023
  */
-public class Produto {
+public class Produto implements Serializable {
     /**
      * O atributo <b>nome</b>, do tipo <i>String</i> serve para poder armazenar o nome do serviço, ou nome de uma peça.
      * Em que "nome de serviço", aparece outras vezes nesse sistema como: "tipo de serviço"
