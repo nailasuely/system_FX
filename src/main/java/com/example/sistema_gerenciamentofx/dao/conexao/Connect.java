@@ -19,16 +19,16 @@ public class Connect {
                 "123.789.101-10", 75);
 
 
-        Cliente cliente2 = new Cliente("João Sobrenome", "Rua XYZ, Bahia",
-                "456.789.101-10", 81);
-        Cliente cliente3 = new Cliente("Joaqu Sobrenome", "Rua XAFJZ, Bahia",
+        Cliente cliente2 = new Cliente("Pedro Santos", "Avenida XYZ, Rio de Janeiro",
+                "987.654.321-00", 25);
+        Cliente cliente3 = new Cliente("Joaquim Sobrenome", "Rua XAFJZ, Bahia",
                 "456.129.101-10", 42);
         cliente1 = DAO.getClienteDAO().create(cliente1);
         cliente2 = DAO.getClienteDAO().create(cliente2);
         cliente3 = DAO.getClienteDAO().create(cliente3);
 
         Tecnico tecnico1 = new Tecnico("Rhian Sobrenome", "Coité, Bahia",
-                "123.789.000-10", 75);
+                "234.567.890-11", 75);
 
 
         Tecnico tecnico2 = new Tecnico("João Sobrenome", "Rua XYZ, Bahia",
@@ -47,13 +47,13 @@ public class Connect {
     }
 
     public static void printa() throws Exception{
-        System.out.println("CLIENTES");
+        System.out.println("\nCLIENTES: ");
         DAO.getClienteDAO().listObjects();
-        System.out.println("TECNICOS");
+        System.out.println("\nTECNICOS: ");
         DAO.getTecnicoDAO().listObjects();
-        System.out.println("ORDENS");
+        System.out.println("\nORDENS: ");
         DAO.getOrdemServicoDAO().listObjects();
-        System.out.println("ESTOQUE");
+        System.out.println("\nESTOQUE: ");
         Map<Produto, Integer> hash = DAO.getEstoqueDAO().getList();
         for (Produto produto1 : hash.keySet()){
             System.out.println(produto1.getNome());
@@ -66,12 +66,17 @@ public class Connect {
         Connect.saveTecnico(new ArrayList<Tecnico>());
         Connect.saveEstoque(new HashMap<>());
     }
-    public static void saveCliente(List<Cliente> listaClientes) throws Exception {
-        File caminho = new File("cache\\clientes.nsr");
-        FileOutputStream teste = new FileOutputStream(caminho);
-        ObjectOutputStream gravador = new ObjectOutputStream(teste);
-        gravador.writeObject(listaClientes);
-        gravador.close();
+
+    public static void saveCliente(List<Cliente> listaClientes) throws Exception{
+        try {
+            File caminho = new File("cache\\clientes.nsr");
+            FileOutputStream teste = new FileOutputStream(caminho);
+            ObjectOutputStream gravador = new ObjectOutputStream(teste);
+            gravador.writeObject(listaClientes);
+            gravador.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static List<Cliente> openCliente() throws Exception{
@@ -80,31 +85,29 @@ public class Connect {
             ObjectInputStream recebedor = new ObjectInputStream(teste);
             List<Cliente> clientes = (List<Cliente>) recebedor.readObject();
             recebedor.close();
-            for (Cliente agora : clientes) {
-                System.out.println(agora.getFullName());
-            }
-            if(clientes.size() == 0){
-                return new ArrayList<Cliente>();
+            if (clientes.isEmpty()) {
+                return new ArrayList<>();
             }
             return clientes;
+        } catch (FileNotFoundException excep) {
+            throw new Exception("O arquivo não foi encontrado no sistema.", excep);
+        } catch (ClassNotFoundException excep) {
+            throw new Exception("Classe não encontrada.", excep);
+        } catch (IOException excep) {
+            throw new Exception("Problemas na leitura do arquivo.", excep);
         }
-        catch (FileNotFoundException e){
-            e.printStackTrace();
-        }
-        catch(ClassNotFoundException e){
-            e.printStackTrace();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        return null;
     }
 
+
     public static void saveTecnico(List<Tecnico> listaTecnicos) throws Exception{
-        FileOutputStream arquivo = new FileOutputStream("cache\\tecnicos.nsr");
-        ObjectOutputStream gravador = new ObjectOutputStream(arquivo);
-        gravador.writeObject(listaTecnicos);
-        gravador.close();
+        try {
+            FileOutputStream arquivo = new FileOutputStream("cache\\tecnicos.nsr");
+            ObjectOutputStream gravador = new ObjectOutputStream(arquivo);
+            gravador.writeObject(listaTecnicos);
+            gravador.close();
+        }catch (IOException excep){
+            excep.printStackTrace();
+        }
     }
 
     public static List<Tecnico> openTecnicos() throws Exception{
@@ -113,31 +116,28 @@ public class Connect {
             ObjectInputStream recebedor = new ObjectInputStream(arquivo);
             List<Tecnico> tecnicos = (List<Tecnico>) recebedor.readObject();
             recebedor.close();
-            for (Tecnico atual : tecnicos) {
-                System.out.println(atual.getFullName());
-            }
-            if(tecnicos.size() == 0){
+            if(tecnicos.isEmpty()){
                 return new ArrayList<Tecnico>();
             }
             return tecnicos;
+        } catch (FileNotFoundException excep) {
+            throw new Exception("O arquivo não foi encontrado no sistema.", excep);
+        } catch (ClassNotFoundException excep) {
+            throw new Exception("Classe não encontrada.", excep);
+        } catch (IOException excep) {
+            throw new Exception("Problemas na leitura do arquivo.", excep);
         }
-        catch (FileNotFoundException e){
-            e.printStackTrace();
-        }
-        catch(ClassNotFoundException e){
-            e.printStackTrace();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public static void saveOrder(List<OrdemServico> listaOrdens) throws Exception{
-        FileOutputStream arquivo = new FileOutputStream("cache\\ordensServico.nsr");
-        ObjectOutputStream gravador = new ObjectOutputStream(arquivo);
-        gravador.writeObject(listaOrdens);
-        gravador.close();
+        try {
+            FileOutputStream arquivo = new FileOutputStream("cache\\ordensServico.nsr");
+            ObjectOutputStream gravador = new ObjectOutputStream(arquivo);
+            gravador.writeObject(listaOrdens);
+            gravador.close();
+        }catch(IOException excep){
+            excep.printStackTrace();
+        }
     }
     public static List<OrdemServico> openOrdens() throws Exception{
         try {
@@ -145,31 +145,28 @@ public class Connect {
             ObjectInputStream recebedor = new ObjectInputStream(arquivo);
             List<OrdemServico> ordens = (List<OrdemServico>) recebedor.readObject();
             recebedor.close();
-            for (OrdemServico atual : ordens) {
-                System.out.println(atual);
-            }
-            if(ordens.size() == 0){
+            if(ordens.isEmpty()){
                 return new ArrayList<OrdemServico>();
             }
             return ordens;
+        } catch (FileNotFoundException excep) {
+            throw new Exception("O arquivo não foi encontrado no sistema.", excep);
+        } catch (ClassNotFoundException excep) {
+            throw new Exception("Classe não encontrada.", excep);
+        } catch (IOException excep) {
+            throw new Exception("Problemas na leitura do arquivo.", excep);
         }
-        catch (FileNotFoundException e){
-            e.printStackTrace();
-        }
-        catch(ClassNotFoundException e){
-            e.printStackTrace();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public static void saveEstoque(Map<Produto, Integer> estoque) throws Exception{
-        FileOutputStream arquivo = new FileOutputStream("cache\\estoque.nsr");
-        ObjectOutputStream gravador = new ObjectOutputStream(arquivo);
-        gravador.writeObject(estoque);
-        gravador.close();
+        try {
+            FileOutputStream arquivo = new FileOutputStream("cache\\estoque.nsr");
+            ObjectOutputStream gravador = new ObjectOutputStream(arquivo);
+            gravador.writeObject(estoque);
+            gravador.close();
+        }catch (IOException excep){
+            excep.printStackTrace();
+        }
     }
 
     public static Map<Produto, Integer> openEstoque() throws Exception{
@@ -182,18 +179,13 @@ public class Connect {
                 return new HashMap<>();
             }
             return estoque;
-
+        } catch (FileNotFoundException excep) {
+            throw new Exception("O arquivo não foi encontrado no sistema.", excep);
+        } catch (ClassNotFoundException excep) {
+            throw new Exception("Classe não encontrada.", excep);
+        } catch (IOException excep) {
+            throw new Exception("Problemas na leitura do arquivo.", excep);
         }
-        catch (FileNotFoundException e){
-            e.printStackTrace();
-        }
-        catch(ClassNotFoundException e){
-            e.printStackTrace();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        return null;
     }
 
 

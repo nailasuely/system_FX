@@ -45,21 +45,20 @@ public class Tecnico extends Pessoa {
     }
 
     /*
-    Esse método é responsável por adicionar serviços para o tecnico. Dessa forma, pensando
-    no requisito que um tecnico só pode aceitar uma ordem quando todas as suas ordens anteriores já
-    estiverem finalizadas, existe uma verificação.
-    Primeiro, é verificado se a lista de ordens está vazia. Nesse caso, a ordem é adiconada. Caso
-    contrário, um for percorre a lista para verificar se todas ordens estão finalizadas. Se sim, a nova
-    ordem é adicionada.
-     */
-    /**
-     * Método para realizar adição de uma ordem de serviço a lista de ordens do proprio tecnico<br>
-     *
-     * @param servico Objeto do tipo <i>OrdemServico</i>, que contém as informações de uma ordem de serviço criada
-     * @param tecID String para receber o id do tecnico e então realizar procuras na base de dados do sistema
-     * @return True ou False, a depender se o tecnico pode pegar aquela ordem de serviço para si, ou
-     * precisa passar para outro tecnico caso o retorno seja falso
-     */
+    Este método é responsável por adicionar serviços para o técnico.
+    Para garantir que um técnico só possa aceitar uma nova ordem de
+    serviço quando todas as suas ordens anteriores já estiverem
+    finalizadas, é realizada uma verificação.
+
+    Primeiro, é verificado se a lista de ordens está vazia.
+    Se sim, a nova ordem é adicionada. Caso contrário,
+    um loop for percorre a lista para verificar se todas
+    as ordens foram finalizadas. Se sim, a nova ordem é adicionada.
+    *//**
+    @param servico Objeto do tipo OrdemServico, que contém as informações de uma nova ordem de serviço criada.
+    @param tecID ID do técnico usado para realizar buscas na base de dados do sistema.
+    @return Valor booleano indicando se o técnico pode pegar a nova ordem de serviço ou se precisa ser passada para outro técnico, caso o retorno seja falso.
+    */
     public boolean addServiceOrder(OrdemServico servico, String tecID) {
         int quantidadeServicos = serviceOrders.size();
         int servicosFinalizados = 0;

@@ -26,7 +26,7 @@ import java.util.Map;
 public interface EstoqueDAO {
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação<br>
-     * Tal método serve para adicionar produtos ao estoque, sendo usado em operações de compra de produto para o estoque.
+     * Tal método serve para adicionar produtos ao estoque, usado em operações de compra de produto para o estoque.
      * @param produto Objeto do tipo <i>Produto</i> para indicar qual produto vai ser adicionado ao estoque, se for este ja estiver no
      *                sistema é somente adicionada a quantidade, porém se ainda não existir, é inserido no dicionário.
      * @param quantidade <i>Int</i> que representa a quantidade que vai ser adicionada no estoque

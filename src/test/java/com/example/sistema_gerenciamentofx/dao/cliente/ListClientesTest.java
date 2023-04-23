@@ -63,8 +63,6 @@ class ListClientesTest {
         DAO.getClienteDAO().create(cliente2);
         // Verifica se tem a quantidade de clientes esperada.
         assertEquals(2, DAO.getClienteDAO().amountItems());
-
-
     }
 
     @Test
