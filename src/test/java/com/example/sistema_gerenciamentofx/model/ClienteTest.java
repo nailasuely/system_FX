@@ -1,9 +1,12 @@
 package com.example.sistema_gerenciamentofx.model;
 
+import com.example.sistema_gerenciamentofx.dao.conexao.Connect;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,7 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class ClienteTest {
     Cliente cliente1;
     @BeforeEach
-    void setUp() {
+    void setUp() throws Exception {
+        Connect.generateCache();
         cliente1 = new Cliente();
     }
 

@@ -1,5 +1,6 @@
 package com.example.sistema_gerenciamentofx.model;
 
+import com.example.sistema_gerenciamentofx.dao.conexao.Connect;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,8 @@ class ProdutoTest {
     Produto produto1;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws Exception{
+        Connect.generateCache();
         produto1 = new Produto();
     }
 

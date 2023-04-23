@@ -60,6 +60,12 @@ public class Connect {
         }
     }
 
+    public static void generateCache() throws Exception{
+        Connect.saveCliente(new ArrayList<Cliente>());
+        Connect.saveOrder(new ArrayList<OrdemServico>());
+        Connect.saveTecnico(new ArrayList<Tecnico>());
+        Connect.saveEstoque(new HashMap<>());
+    }
     public static void saveCliente(List<Cliente> listaClientes) throws Exception {
         File caminho = new File("cache\\clientes.nsr");
         FileOutputStream teste = new FileOutputStream(caminho);

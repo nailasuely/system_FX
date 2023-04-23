@@ -1,6 +1,7 @@
 package com.example.sistema_gerenciamentofx.model;
 
 import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.dao.conexao.Connect;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,8 @@ class TecnicoTest {
     private static Cliente cliente1;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws Exception {
+        Connect.generateCache();
         tecnico1 = new Tecnico();
 
         // dps eu posso tirar isso, é apenas para um teste
@@ -104,7 +106,7 @@ class TecnicoTest {
     }
 
     @Test
-    void geraRelatorioFinal(){
+    void geraRelatorioFinal() throws Exception{
         DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.servicoFormatar());
         DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.789.101-10", ordem1);
         ordem1.finalize(3, "pix");

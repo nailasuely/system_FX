@@ -1,6 +1,7 @@
 package com.example.sistema_gerenciamentofx.dao.ordemServico;
 
 import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.dao.conexao.Connect;
 import com.example.sistema_gerenciamentofx.model.Cliente;
 import com.example.sistema_gerenciamentofx.model.OrdemServico;
 import com.example.sistema_gerenciamentofx.model.Produto;
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,7 +24,8 @@ class ListOrdensServicoTest {
 
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws Exception {
+        Connect.generateCache();
         tecnico1 = new Tecnico("Rhian Sobrenome", "Coité, Bahia",
                 "123.789.101-10", 75);
         cliente1 = new Cliente("Maria Sobrenome", "Rua ABC, Bahia",
@@ -34,7 +38,7 @@ class ListOrdensServicoTest {
     }
 
     @AfterEach
-    void tearDown() {
+    void tearDown() throws Exception {
         DAO.getOrdemServicoDAO().deleteMany();
         DAO.getEstoqueDAO().deleteMany();
         DAO.getTecnicoDAO().deleteMany();
@@ -42,7 +46,7 @@ class ListOrdensServicoTest {
     }
 
     @Test
-    void create() {
+    void create() throws Exception {
         DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
         // Verifica se o ‘id’ foi gerado.
         assertNotNull(ordem1.getId());
@@ -55,7 +59,7 @@ class ListOrdensServicoTest {
     }
 
     @Test
-    void update() {
+    void update() throws Exception {
         OrdemServico ordemAtt;
         Cliente cliente2 = new Cliente("Ana", "Rua A", "111.222.333-44", 72);
         DAO.getClienteDAO().create(cliente2);
@@ -77,7 +81,7 @@ class ListOrdensServicoTest {
     }
 
     @Test
-    void delete() {
+    void delete() throws Exception {
         DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
         // Verifica a quantidade depois de uma ordem adicionada.
         assertEquals(1,DAO.getOrdemServicoDAO().getList().size());
@@ -87,14 +91,14 @@ class ListOrdensServicoTest {
     }
 
     @Test
-    void findById() {
+    void findById() throws Exception {
         DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
         OrdemServico testeEncontrar = DAO.getOrdemServicoDAO().findById(ordem1.getId());
         assertEquals(ordem1, testeEncontrar);
     }
 
     @Test
-    void deleteMany() {
+    void deleteMany() throws Exception {
         ordem2 = new OrdemServico();
         Cliente cliente2 = new Cliente("Ana Sobrenome", "Rua ABC, Bahia",
                 "111.739.101-10", 81);
@@ -107,7 +111,7 @@ class ListOrdensServicoTest {
 
     }
     @Test
-    void amountItems() {
+    void amountItems() throws Exception {
         ordem2 = new OrdemServico();
         Cliente cliente2 = new Cliente("Ana Sobrenome", "Rua ABC, Bahia",
                 "111.739.101-10", 81);
@@ -118,7 +122,7 @@ class ListOrdensServicoTest {
     }
 
     @Test
-    void agendaAtendimento() {
+    void agendaAtendimento() throws Exception {
         ordem2 = new OrdemServico();
         Cliente cliente2 = new Cliente("Ana Sobrenome", "Rua ABC, Bahia",
                 "111.739.101-10", 81);

@@ -203,8 +203,8 @@ public class ListOrdensServico implements OrdemServicoDAO{
             Tecnico tecnico;
             for(OrdemServico ordem: this.listaOrdensServico){
                 System.out.println("ID da ordem: "+ordem.getId());
-                /*tecnico = DAO.getTecnicoDAO().findById(ordem.getTechnicianID());
-                System.out.println("Tecnico da ordem: " + tecnico.getFullName());*/
+                tecnico = DAO.getTecnicoDAO().findById(ordem.getTechnicianID());
+                System.out.println("Tecnico da ordem: " + tecnico.getFullName());
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.example.sistema_gerenciamentofx.model;
 
 import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.dao.conexao.Connect;
 import com.example.sistema_gerenciamentofx.dao.estoque.SemEstoqueException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +23,8 @@ class OrdemServicoTest {
     private static Tecnico tecnico2;
 
     @BeforeEach
-    void setUp() {
+    void setUp()  throws Exception{
+        Connect.generateCache();
         ordem1 = new OrdemServico();
         ordem2 = new OrdemServico();
         cliente1 = new Cliente("Maria Sobrenome", "Rua ABC, Bahia",
@@ -34,7 +36,7 @@ class OrdemServicoTest {
 
     }
     @Test
-    void getPriceServico() {
+    void getPriceServico() throws Exception {
         // Adicionado um serviço, ou seja, o preço deve ser apenas o preço do serviço.
         DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.servicoFormatar());
         DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.789.101-10", ordem1);
@@ -44,7 +46,7 @@ class OrdemServicoTest {
 
     // esse cálculo do preço difere, pois, ele requer o uso de uma lista com os produtos utilizados na montagem.
     @Test
-    void getPriceMontagem() throws SemEstoqueException, ProdutoErradoException {
+    void getPriceMontagem() throws SemEstoqueException, ProdutoErradoException, Exception {
         DAO.getEstoqueDAO().AdicionarEstoqueInicial();
         // Adicionado uma montagem, ou seja, o preço deve ser calculado com a quantidade.
         DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.servicoMontagem());
@@ -68,7 +70,7 @@ class OrdemServicoTest {
         }
     }
     @Test
-    void setStatus() {
+    void setStatus() throws Exception {
         DAO.getOrdemServicoDAO().create(ordem1);
         assertEquals("espera", ordem1.getStatus());
         DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.789.101-10", ordem1);
@@ -76,7 +78,7 @@ class OrdemServicoTest {
     }
 
     @Test
-    void getDescription() {
+    void getDescription() throws Exception {
         tecnico2 = new Tecnico("Everton Sobrenome", "Rua XYZ, Bahia",
                 "456.539.155-10", 81);
         DAO.getTecnicoDAO().create(tecnico2);
@@ -98,7 +100,7 @@ class OrdemServicoTest {
     }
 
     @Test
-    void generateInvoice() throws SemEstoqueException, ProdutoErradoException {
+    void generateInvoice() throws SemEstoqueException, ProdutoErradoException, Exception {
         DAO.getEstoqueDAO().AdicionarEstoqueInicial();
 
         ordem1.setListaProdutos(Produto.novaPlacaMae(), 2);
@@ -129,7 +131,7 @@ class OrdemServicoTest {
     }
 
     @Test
-    void testFinalize() {
+    void testFinalize() throws Exception {
         DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.servicoFormatar());
         DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.789.101-10", ordem1);
         ordem1.finalize(3, "pix");
