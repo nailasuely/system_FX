@@ -31,7 +31,7 @@ public interface EstoqueDAO {
      *                sistema é somente adicionada a quantidade, porém se ainda não existir, é inserido no dicionário.
      * @param quantidade <i>Int</i> que representa a quantidade que vai ser adicionada no estoque
      */
-    public void adicionarProduto(Produto produto, int quantidade);
+    public void adicionarProduto(Produto produto, int quantidade) throws Exception;
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação<br>
      * Tal método serve para obter a quantidade presente no estoque daquele determinado produto.
@@ -54,12 +54,12 @@ public interface EstoqueDAO {
      *     </li>
      * </ul>
      */
-    public void retirarEstoque(Produto produto, int quantidade) throws SemEstoqueException;
+    public void retirarEstoque(Produto produto, int quantidade) throws SemEstoqueException, Exception;
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação<br>
      * Tal método serve para realização de uma compra automaticamente, quando detectado baixa quantidade no estoque
      */
-    void ordemDeCompraAutomatica();
+    void ordemDeCompraAutomatica() throws Exception;
 
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação<br>
@@ -67,7 +67,7 @@ public interface EstoqueDAO {
      * é adicionado a quantidade de 20 itens para o estoque.<br>
      * Seu funcionamento é necessário, em prioridade na primeira inicialização do programa.
      */
-    public void AdicionarEstoqueInicial();
+    public void AdicionarEstoqueInicial() throws Exception;
 
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação<br>
@@ -80,5 +80,5 @@ public interface EstoqueDAO {
      * Assinatura de método que serve para acesso ao método contido na implementação<br>
      * Tal método serve para poder deletar os dados armazenados
      */
-    public void deleteMany();
+    public void deleteMany() throws Exception;
 }

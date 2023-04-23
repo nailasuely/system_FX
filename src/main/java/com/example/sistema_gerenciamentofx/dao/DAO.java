@@ -39,7 +39,7 @@ public class DAO {
      * para lidar com esses dados dos clientes.
      * @return Objeto do tipo <i>ClienteDAO</i> que contém os clientes armazenados
      */
-    public static ClienteDAO getClienteDAO(){
+    public static ClienteDAO getClienteDAO() throws Exception{
         if(clienteDAO == null){
             clienteDAO = new ListClientes();
         }
@@ -51,7 +51,7 @@ public class DAO {
      * para lidar com esses dados dos tecnicos.
      * @return Objeto do tipo <i>TecnicoDAO</i> que contém os tecnicos armazenados
      */
-    public static TecnicoDAO getTecnicoDAO(){
+    public static TecnicoDAO getTecnicoDAO() throws Exception{
         if(tecnicoDAO == null){
             tecnicoDAO = new ListTecnicos();
         }
@@ -62,7 +62,7 @@ public class DAO {
      * como métodos especifico para lidar com esses dados das ordens de serviço
      * @return Objeto do tipo <i>OrdemServiçoDAO</i> que contém as Ordens de Serviço armazenados
      */
-    public static OrdemServicoDAO getOrdemServicoDAO(){
+    public static OrdemServicoDAO getOrdemServicoDAO() throws Exception{
         if(ordemServicoDAO == null){
             ordemServicoDAO = new ListOrdensServico();
         }
@@ -74,7 +74,7 @@ public class DAO {
      * para lidar com esses dados a respeito do estoque.
      * @return Objeto do tipo <i>EstoqueDAO</i> que contém os produtos armazenados
      */
-    public static EstoqueDAO getEstoqueDAO(){
+    public static EstoqueDAO getEstoqueDAO() throws Exception{
         if(estoqueDAO == null){
             estoqueDAO = new ListEstoque();
         }

@@ -1,6 +1,7 @@
 package com.example.sistema_gerenciamentofx.dao.ordemServico;
 
 import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.dao.conexao.Connect;
 import com.example.sistema_gerenciamentofx.model.OrdemServico;
 import com.example.sistema_gerenciamentofx.model.Produto;
 import com.example.sistema_gerenciamentofx.model.Tecnico;
@@ -37,8 +38,9 @@ public class ListOrdensServico implements OrdemServicoDAO{
     /**
      * Método construtor da classe, em que inicializa a lista que irá conter as ordens de serviço do sistema
      */
-    public ListOrdensServico(){
+    public ListOrdensServico() throws Exception{
         this.listaOrdensServico = new ArrayList<OrdemServico>();
+        this.listaOrdensServico = Connect.openOrdens();
     }
 
     /**
@@ -57,7 +59,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
      * @return
      */
     @Override
-    public OrdemServico create(OrdemServico ordem, String clienteID, Produto type) {
+    public OrdemServico create(OrdemServico ordem, String clienteID, Produto type) throws Exception{
         LocalDate inicio = LocalDate.now();
         UUID newID = UUID.randomUUID();
         String newIDStrign = newID.toString();
@@ -67,7 +69,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
         ordem.setClientId(clienteID);
         ordem.setType(type);
         this.listaOrdensServico.add(ordem);
-
+        Connect.saveOrder(this.listaOrdensServico);
         return ordem;
     }
 
@@ -78,7 +80,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
      * @param cpfTecnico <i>String</i> contendo o CPF do tecnico o qual deseja procurar a ordem na fila de espera
      * @param ordem Objeto do tipo <i>OrdemServico</i> para ser atualizada
      */
-    public void atualizarStatusAndamento(String cpfTecnico, OrdemServico ordem){
+    public void atualizarStatusAndamento(String cpfTecnico, OrdemServico ordem) throws Exception{
        if (listaOrdensServico != null){
            // Aqui o método addservideorder retorna true se o tecnico está com a lista
            // de serviços vazia ou todas finalizadas. Se estiver ele atualiza a ordem para
@@ -87,6 +89,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
               DAO.getTecnicoDAO().findByCPF(cpfTecnico).getId())){
            listaOrdensServico.get(indiceClienteParaAtender).setStatus("andamento");
            indiceClienteParaAtender++;
+           Connect.saveOrder(this.listaOrdensServico);
            }
        }
        else{
@@ -120,7 +123,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
      * @return
      */
     @Override
-    public OrdemServico create(OrdemServico ordem) {
+    public OrdemServico create(OrdemServico ordem) throws Exception{
         LocalDate inicio = LocalDate.now();
         UUID newID = UUID.randomUUID();
         String newIDStrign = newID.toString();
@@ -128,6 +131,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
         ordem.setId(newIDStrign);
         ordem.setStart(inicio);
         this.listaOrdensServico.add(ordem);
+        Connect.saveOrder(this.listaOrdensServico);
         return null;
     }
 
@@ -137,11 +141,12 @@ public class ListOrdensServico implements OrdemServicoDAO{
      * @param ordem Objeto do tipo <i>OrdemServico</i> para ser trocada de lugar o objeto anterior com informações antigas, e adicionar o novo atualizado.
      */
     @Override
-    public void update(OrdemServico ordem) {
+    public void update(OrdemServico ordem) throws Exception{
         boolean status  = false;
         for (int i=0; i< this.listaOrdensServico.size();i++){
             if(listaOrdensServico.get(i).getId().equals(ordem.getId())){
                 this.listaOrdensServico.set(i, ordem);
+                Connect.saveOrder(this.listaOrdensServico);
                 return;
             }
         }
@@ -157,11 +162,12 @@ public class ListOrdensServico implements OrdemServicoDAO{
      *          Caso não seja encontrada a ordem de serviço, é gerado uma exceção
      */
     @Override
-    public void delete(String ID) {
+    public void delete(String ID) throws Exception{
         boolean deletado = false;
         for (int i=0; i< this.listaOrdensServico.size();i++){
             if(listaOrdensServico.get(i).getId().equals(ID)){
                 this.listaOrdensServico.remove(i);
+                Connect.saveOrder(this.listaOrdensServico);
                 return;
             }
         }
@@ -192,13 +198,13 @@ public class ListOrdensServico implements OrdemServicoDAO{
      * "Tecnico da ordem: nome completo do tecnico responsavel pela aquela ordem"
      */
     @Override
-    public void listObjects() {
+    public void listObjects() throws Exception{
         if(this.listaOrdensServico.size()>0){
             Tecnico tecnico;
             for(OrdemServico ordem: this.listaOrdensServico){
                 System.out.println("ID da ordem: "+ordem.getId());
-                tecnico = DAO.getTecnicoDAO().findById(ordem.getTechnicianID());
-                System.out.println("Tecnico da ordem: " + tecnico.getFullName());
+                /*tecnico = DAO.getTecnicoDAO().findById(ordem.getTechnicianID());
+                System.out.println("Tecnico da ordem: " + tecnico.getFullName());*/
             }
         }
     }
@@ -207,8 +213,9 @@ public class ListOrdensServico implements OrdemServicoDAO{
      * Método para deletar todos as ordens presentes no sistema, logo a lista de ordens se torna vazia
      */
     @Override
-    public void deleteMany() {
+    public void deleteMany() throws Exception{
         this.listaOrdensServico = new ArrayList<>();
+        Connect.saveOrder(this.listaOrdensServico);
     }
 
     /**
@@ -226,7 +233,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
      * @param cpf <i>String</i> contendo o CPF do tecnico o qual deseja realizar a busca
      * @return Objeto do tipo <i>OrdemServico</i> que esta com o status "em andamento", e associada ao tecnico do cpf passado
      */
-    public OrdemServico openOrderByTechnician(String cpf){
+    public OrdemServico openOrderByTechnician(String cpf) throws Exception{
         String idTecnico;
         idTecnico = DAO.getTecnicoDAO().findIdbyCPF(cpf);
         if(this.listaOrdensServico.size()>0){
@@ -251,7 +258,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
      * </ul>
      * @return <i>String</i> contendo as informações da agenda
      */
-   public String agendaAtendimento(){
+   public String agendaAtendimento() throws Exception{
        String agendaSaida = "";
        ArrayList<OrdemServico> esperando = new ArrayList<>();
        ArrayList<OrdemServico> andamento = new ArrayList<>();

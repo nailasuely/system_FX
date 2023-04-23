@@ -119,7 +119,7 @@ public class Tecnico extends Pessoa {
      *
      * @return <i>String</i> contendo as informações citadas acima
      */
-    public String gerarRelatorioFinal() {
+    public String gerarRelatorioFinal() throws Exception{
         int qntServicosFinalizados = 0;
         int qntServicosAndamento = 0;
         int qntServicosEspera = 0;

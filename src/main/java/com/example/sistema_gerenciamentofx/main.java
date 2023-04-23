@@ -23,7 +23,7 @@ ao decorrer das versões.
  * @since 2023
  */
 public class main{
-    public static void main1(String[] args) throws SemEstoqueException, ProdutoErradoException {
+    public static void main1(String[] args) throws SemEstoqueException, ProdutoErradoException, Exception {
         int escolha = 1; String id;
         int opcao=0;
 
@@ -358,16 +358,18 @@ public class main{
 
     }
     public static void main(String[] args) throws Exception {
+        /*Connect.saveCliente(new ArrayList<Cliente>());
+        Connect.saveOrder(new ArrayList<OrdemServico>());
+        Connect.saveTecnico(new ArrayList<Tecnico>());
+        Connect.saveEstoque(new HashMap<>());
         Connect.generate();
-        Connect.saveCliente(DAO.getClienteDAO().getList());
         Connect.openCliente();
-        Connect.saveTecnico(DAO.getTecnicoDAO().getList());
         Connect.openTecnicos();
-
-        Connect.saveEstoque(DAO.getEstoqueDAO().getList());
         Connect.openEstoque();
-        Connect.saveOrder(DAO.getOrdemServicoDAO().getList());
-        Connect.openOrdens();
+        Connect.openOrdens();*/
+        Connect.printa();
+
+
     }
 
 }

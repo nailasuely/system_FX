@@ -27,7 +27,7 @@ public interface OrdemServicoDAO extends CRUD<OrdemServico> {
      * @param cpf <i>String</i> contendo o CPF do tecnico o qual deseja procurar a ordem em aberto associada a ele
      * @return Objeto do tipo <i>OrdemServico</i> que foi encontrada no sistema, em caso de não encontrar é retornado nulo.
      */
-    public OrdemServico openOrderByTechnician(String cpf);
+    public OrdemServico openOrderByTechnician(String cpf) throws Exception;
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação<br>
      * Tal método serve para adicionar uma Ordem de Serviço ao sistema de dados, preenchendo com seu ID automaticamente
@@ -35,7 +35,7 @@ public interface OrdemServicoDAO extends CRUD<OrdemServico> {
      * @param ordem Objeto do tipo <i>OrdemServico</i> para ser atualizada
      * @param type Objeto do tipo <i>Produto</i> para indicar qual o tipo do serviço que está contido na ordem de serviço
      */
-    public OrdemServico create(OrdemServico ordem, String clienteID, Produto type);
+    public OrdemServico create(OrdemServico ordem, String clienteID, Produto type) throws Exception;
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação<br>
      * Tal método serve para atualizar o status da ordem, retirando-a da fila de espera e colocando com o status "em andamento"
@@ -43,7 +43,7 @@ public interface OrdemServicoDAO extends CRUD<OrdemServico> {
      * @param cpfTecnico <i>String</i> contendo o CPF do tecnico o qual deseja procurar a ordem na fila de espera
      * @param ordem Objeto do tipo <i>OrdemServico</i> para ser atualizada
      */
-    public void atualizarStatusAndamento(String cpfTecnico, OrdemServico ordem);
+    public void atualizarStatusAndamento(String cpfTecnico, OrdemServico ordem) throws Exception;
 
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação.<br>
@@ -58,5 +58,7 @@ public interface OrdemServicoDAO extends CRUD<OrdemServico> {
      * e as ordens que estão em espera, separadas por cada um dos tecnicos cadastrados
      * @return <i>String</i> contendo as informações, para apresentação na tela
      */
-    public String agendaAtendimento();
+    public String agendaAtendimento() throws Exception;
+
+
 }

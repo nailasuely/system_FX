@@ -1,6 +1,7 @@
 package com.example.sistema_gerenciamentofx.dao.tecnico;
 
 import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.dao.conexao.Connect;
 import com.example.sistema_gerenciamentofx.model.Cliente;
 import com.example.sistema_gerenciamentofx.model.Tecnico;
 
@@ -37,8 +38,9 @@ public class ListTecnicos implements TecnicoDAO {
     /**
      * Método construtor da classe, em que inicializa a lista que irá conter os tecnicos do sistema
      */
-    public ListTecnicos() {
+    public ListTecnicos() throws Exception{
         this.listaTecnicos = new ArrayList<Tecnico>();
+        this.listaTecnicos = Connect.openTecnicos();
     }
 
     /**
@@ -57,7 +59,7 @@ public class ListTecnicos implements TecnicoDAO {
      * @return Objeto do tipo <i>Tecnico</i> que contém agora o ID preenchido.<br>
      */
     @Override
-    public Tecnico create(Tecnico tecnico) {
+    public Tecnico create(Tecnico tecnico) throws Exception{
         if (findByCPFIsTrue(tecnico.getCpf()) | DAO.getClienteDAO().findByCpfIsTrue(tecnico.getCpf())) {
             return null;
         }
@@ -69,6 +71,7 @@ public class ListTecnicos implements TecnicoDAO {
             //lembrar de verificar dps;
             tecnico.setId(newIDStrign);
             this.listaTecnicos.add(tecnico);
+            Connect.saveTecnico(this.listaTecnicos);
             return tecnico;
         }
     }
@@ -80,12 +83,13 @@ public class ListTecnicos implements TecnicoDAO {
      *                antigas, e adicionar o novo atualizado.
      */
     @Override
-    public void update(Tecnico tecnico) {
+    public void update(Tecnico tecnico) throws Exception{
         boolean encontrado = false;
         for (int i = 0; i < this.listaTecnicos.size(); i++) {
             if (this.listaTecnicos.get(i).getId() == tecnico.getId()) {
                 this.listaTecnicos.set(i, tecnico);
                 encontrado = true;
+                Connect.saveTecnico(listaTecnicos);
                 return;
             }
         }
@@ -100,12 +104,13 @@ public class ListTecnicos implements TecnicoDAO {
      *            Caso não seja encontrado o cliente, é gerado uma exceção
      */
     @Override
-    public void delete(String cpf) {
+    public void delete(String cpf) throws Exception{
         boolean encontrado = false;
         for (int i = 0; i < this.listaTecnicos.size(); i++) {
             if (this.listaTecnicos.get(i).getCpf().equals(cpf)) {
                 this.listaTecnicos.remove(i);
                 encontrado = true;
+                Connect.saveTecnico(this.listaTecnicos);
                 return;
             }
         }
@@ -144,8 +149,9 @@ public class ListTecnicos implements TecnicoDAO {
      * Método para deletar todos os tecnicos presentes no sistema, logo a lista de tecnicos se torna vazia
      */
     @Override
-    public void deleteMany() {
+    public void deleteMany() throws Exception{
         this.listaTecnicos = new ArrayList<>();
+        Connect.saveTecnico(this.listaTecnicos);
     }
 
     /**

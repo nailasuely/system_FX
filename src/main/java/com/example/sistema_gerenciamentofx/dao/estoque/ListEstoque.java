@@ -1,4 +1,5 @@
 package com.example.sistema_gerenciamentofx.dao.estoque;
+import com.example.sistema_gerenciamentofx.dao.conexao.Connect;
 import com.example.sistema_gerenciamentofx.model.Produto;
 
 import java.util.ArrayList;
@@ -42,8 +43,9 @@ public class ListEstoque implements EstoqueDAO {
      * Método construtor da classe, em que ocorre a inicialização do dicionário que irá conter informações sobre o estoque, a
      * respeito do tipo do produto e sua quantidade em estoque.
      */
-    public ListEstoque() {
+    public ListEstoque() throws Exception{
         estoque = new HashMap<>();
+        estoque = Connect.openEstoque();
     }
 
     //Seguinte: Essa classe é utilizada apenas no início de programa para preencher o estoque;
@@ -51,12 +53,13 @@ public class ListEstoque implements EstoqueDAO {
      * Método para ao início do programa adicionar uma quantidade de produtos ao estoque.<br>
      * Nesse método é colocado a quantidade de 20 peças para cada um dos produtos pré-definidos no sistema
      */
-    public void AdicionarEstoqueInicial(){
+    public void AdicionarEstoqueInicial() throws Exception{
         estoque.put(Produto.novaRam(), 20);
         estoque.put(Produto.novaPlacaMae(), 20);
         estoque.put(Produto.novaFonte(), 20);
         estoque.put(Produto.novaPlacaDeVideo(), 20);
         estoque.put(Produto.novoHDSSD(), 20);
+        Connect.saveEstoque(this.estoque);
     }
 
     /**
@@ -76,15 +79,17 @@ public class ListEstoque implements EstoqueDAO {
      * @param produto Objeto do tipo <i>Produto</i> o qual ja contém o nome do produto a ser adicionado.
      * @param quantidade <i>Int</i> que contém o valor que vai ser adicionado ao estoque
      */
-    public void adicionarProdutotest(Produto produto, int quantidade) {
+    public void adicionarProdutotest(Produto produto, int quantidade) throws Exception{
         if (estoque.containsKey(produto)) {
             int quantidadeAtual = estoque.get(produto);
             System.out.println(quantidadeAtual);
             estoque.put(produto, quantidadeAtual + quantidade);
+
         }
         else {
             estoque.put(produto, quantidade);
         }
+        Connect.saveEstoque(this.estoque);
     }
     /**
      * Método responsável por adicionar produtos ao estoque.<br>
@@ -92,15 +97,17 @@ public class ListEstoque implements EstoqueDAO {
      * @param produto Objeto do tipo <i>Produto</i> o qual ja contém o nome do produto a ser adicionado.
      * @param quantidade <i>Int</i> que contém o valor que vai ser adicionado ao estoque
      */
-    public void adicionarProduto(Produto produto, int quantidade) {
+    public void adicionarProduto(Produto produto, int quantidade) throws Exception{
         for (Produto pd1 : this.estoque.keySet()) {
             if (pd1.getNome().equals(produto.getNome())) {
                 int quantidadeAtual = estoque.get(pd1);
                 estoque.put(pd1, quantidadeAtual + quantidade);
+                Connect.saveEstoque(this.estoque);
                 return;
             }
         }
         estoque.put(produto, quantidade);
+        Connect.saveEstoque(this.estoque);
     }
     /**
      * Método responsável por fazer a retirada do produto do estoque, para ser utilizado/instalado na realização da ordem de serviço.<br>
@@ -121,7 +128,7 @@ public class ListEstoque implements EstoqueDAO {
      * @param quantidade <i>Int</i> que representa a quantidade de produto requerida para ser utilizada na ordem de serviço
      * @throws SemEstoqueException Exceção criada diretamente para este método, afim de personalizar a mensagem de erro, quando este ocorrer
      */
-    public void retirarEstoque(Produto produto, int quantidade) throws SemEstoqueException {
+    public void retirarEstoque(Produto produto, int quantidade) throws SemEstoqueException, Exception {
         boolean produtoEncontrado = false;
         for (Produto produto1 : estoque.keySet()) {
             if (produto1.getNome().equals(produto.getNome())) {
@@ -129,6 +136,7 @@ public class ListEstoque implements EstoqueDAO {
                 int quantidadeAtual = estoque.get(produto1);
                 if (quantidadeAtual > 0 && quantidadeAtual >= quantidade) {
                     estoque.put(produto1, quantidadeAtual - quantidade);
+                    Connect.saveEstoque(this.estoque);
                     break;
                 } else {
                     throw new SemEstoqueException("O produto " + produto.getNome() + " não está no estoque.");
@@ -146,13 +154,14 @@ public class ListEstoque implements EstoqueDAO {
      * com essa quantidade, ou menos, é adicionado a quantidade de 20 unidades ao estoque.<br>
      * Acionado no decorrer do programa.<br>
      */
-    public void ordemDeCompraAutomatica() {
+    public void ordemDeCompraAutomatica() throws Exception {
         for (Map.Entry<Produto, Integer> entry : estoque.entrySet()) {
             Produto pdt = entry.getKey();
             int quantidade = entry.getValue();
             if (quantidade < 5) {
                 estoque.put(pdt, quantidade + 20);}
         }
+        Connect.saveEstoque(this.estoque);
     }
 
     /**
@@ -177,7 +186,9 @@ public class ListEstoque implements EstoqueDAO {
      * Método para deletar o estoque, criando um novo dicionário vazio e colocando no lugar do anterior
      */
     @Override
-    public void deleteMany() {
+    public void deleteMany() throws Exception{
         this.estoque = new HashMap<>();
+        Connect.saveEstoque(this.estoque);
     }
+
 }

@@ -1,5 +1,6 @@
 package com.example.sistema_gerenciamentofx.dao.cliente;
 import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.dao.conexao.Connect;
 import com.example.sistema_gerenciamentofx.model.Cliente;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ import java.util.UUID;
  * @author Naila Suele e Rhian Pablo
  * @since 2023
  */
-public class ListClientes implements ClienteDAO {
+public class ListClientes implements ClienteDAO{
     /**
      * O atributo <b>listaClientes</b> é do tipo <i>List</i>, e armazena a lista contendo objetos do tipo <i>Cliente</i>
      */
@@ -36,8 +37,9 @@ public class ListClientes implements ClienteDAO {
     /**
      * Método construtor da classe, em que inicializa a lista que irá conter os clientes do sistema
      */
-    public ListClientes() {
+    public ListClientes() throws Exception{
         this.listaClientes = new ArrayList<Cliente>();
+        this.listaClientes = Connect.openCliente();
     }
 
     /**
@@ -56,7 +58,7 @@ public class ListClientes implements ClienteDAO {
      * @return Objeto do tipo <i>Cliente</i> que contém agora o ID preenchido.<br>
      */
     @Override
-    public Cliente create(Cliente cliente) {
+    public Cliente create(Cliente cliente) throws Exception{
 
         //VERIFICAÇÃO PARA NAO CRIAR CLIENTE JA EXISTENTE
         if (findByCpfIsTrue(cliente.getCpf()) | DAO.getTecnicoDAO().findByCPFIsTrue(cliente.getCpf())) {
@@ -70,8 +72,9 @@ public class ListClientes implements ClienteDAO {
             String newIDStrign = newID.toString();
             //lembrar de verificar dps;
             cliente.setId(newIDStrign);
-            this.listaClientes.add(cliente);
 
+            this.listaClientes.add(cliente);
+            Connect.saveCliente(this.listaClientes);
             return cliente;
         }
     }
@@ -82,12 +85,13 @@ public class ListClientes implements ClienteDAO {
      * @param cliente Objeto do tipo <i>Cliente</i> para ser trocar de lugar o objeto anterior com informações antigas, e adicionar o novo atualizado.
      */
     @Override
-    public void update(Cliente cliente) {
+    public void update(Cliente cliente) throws Exception{
         boolean encontrado = false;
         for (int i = 0; i < this.listaClientes.size(); i++) {
             if (this.listaClientes.get(i).getId() == cliente.getId()) {
                 this.listaClientes.set(i, cliente);
                 encontrado = true;
+                Connect.saveCliente(this.listaClientes);
                 return;
             }
         }
@@ -101,12 +105,13 @@ public class ListClientes implements ClienteDAO {
      *            Caso não seja encontrado o cliente, é gerado uma exceção
      */
     @Override
-    public void delete(String cpf) {
+    public void delete(String cpf) throws Exception{
         boolean encontrado = false;
         for (int i = 0; i < this.listaClientes.size(); i++) {
             if (this.listaClientes.get(i).getCpf().equals(cpf)) {
                 this.listaClientes.remove(i);
                 encontrado = true;
+                Connect.saveCliente(this.listaClientes);
                 return;
             }
         }
@@ -201,8 +206,9 @@ public class ListClientes implements ClienteDAO {
      * Método para deletar todos os clientes presentes no sistema, logo a lista de clientes se torna vazia
      */
     @Override
-    public void deleteMany() {
+    public void deleteMany() throws Exception{
         this.listaClientes = new ArrayList<>();
+        Connect.saveCliente(this.listaClientes);
     }
 
     /**

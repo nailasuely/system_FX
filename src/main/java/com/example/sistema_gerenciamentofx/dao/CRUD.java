@@ -23,38 +23,38 @@ public interface CRUD<T> {
      *               irá virar objeto de um tipo existente no sistema
      * @return Objeto do tipo <i>T</i>, em que na aplicação dessa interface generica assumirá outro tipo, não mais generico
      */
-    public T create(T objeto);
+    public T create(T objeto) throws Exception;
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação.<br>
      * Tal método é responsável por fazer uma atualização do objeto ja armazenado
      * @param objeto Colocado como objeto do tipo <i>T</i>, para generalizar, em que esse <i>T</i>
      *               irá virar objeto de um tipo existente no sistema
      */
-    public void update(T objeto);
+    public void update(T objeto) throws Exception;
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação.<br>
      * Tal método serve para retirar um objeto do sistema de armazenamento
      * @param ID <i>String</i> contendo um valor de ID ao se referir a ordem de serviço, e ao se referir tanto a <b>tecnico</b>,
      *           como a <b>cliente</b>, tem de ser passado o <i><b>CPF</b></i>
      */
-    public void delete(String ID);
+    public void delete(String ID) throws Exception;
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação.<br>
      * Tal método serve para encontrar aquele objeto partindo do ID associado ao mesmo
      * @param id <i>String</i> contendo um valor de ID
      * @return Objeto do tipo que foi procurado
      */
-    public T findById(String id);
+    public T findById(String id) throws Exception;
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação.<br>
      * Tal método serve para listar os objetos armazenados
      */
-    public void listObjects();
+    public void listObjects() throws Exception;
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação.<br>
      * Tal método serve para deletar todos os objetos armazenados na sua implementação
      */
-    public void deleteMany();
+    public void deleteMany() throws Exception;
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação.<br>
      * Tal método serve para poder saber a quantidade de objetos que estão armazenados no sistema

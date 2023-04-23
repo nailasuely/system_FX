@@ -186,7 +186,7 @@ public class OrdemServico implements Serializable {
      * @throws ProdutoErradoException Representa a classe de erros, em que pode ser apresentada a mensagem de erro caso
      * tente adicionar na "lista" algo que não seja um produto.
      */
-    public void setListaProdutos(Produto produto, int quantidade) throws SemEstoqueException, ProdutoErradoException {
+    public void setListaProdutos(Produto produto, int quantidade) throws SemEstoqueException, ProdutoErradoException, Exception {
         // caso seja outro tipo de produto, isso será adicionado no if depois
         if (produto.getNome().equals("ram") || produto.getNome().equals("placa mae") ||
             produto.getNome().equals("fonte") || produto.getNome().equals("hd/ssd")) {
@@ -449,7 +449,7 @@ public class OrdemServico implements Serializable {
 
      * @return <i>String</i> contendo as informações citadas, de maneira formatada para ser apresentada no sistema
      */
-    public String generateInvoice() {
+    public String generateInvoice() throws Exception{
 
         if (type.getNome().equals("montagem")){
             String partsList = "";
