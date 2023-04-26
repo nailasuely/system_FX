@@ -87,9 +87,9 @@ public class ListOrdensServico implements OrdemServicoDAO{
            // andamento
            if(DAO.getTecnicoDAO().findByCPF(cpfTecnico).addServiceOrder(ordem,
               DAO.getTecnicoDAO().findByCPF(cpfTecnico).getId())){
-           listaOrdensServico.get(indiceClienteParaAtender).setStatus("andamento");
-           indiceClienteParaAtender++;
-           Connect.saveOrder(this.listaOrdensServico);
+               listaOrdensServico.get(indiceClienteParaAtender).setStatus("andamento");
+               indiceClienteParaAtender++;
+               Connect.saveOrder(this.listaOrdensServico);
            }
        }
        else{
