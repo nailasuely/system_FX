@@ -357,19 +357,5 @@ public class main{
         }while(escolha != 0);
 
     }
-    public static void main(String[] args) throws Exception {
-        /*Connect.saveCliente(new ArrayList<Cliente>());
-        Connect.saveOrder(new ArrayList<OrdemServico>());
-        Connect.saveTecnico(new ArrayList<Tecnico>());
-        Connect.saveEstoque(new HashMap<>());
-        Connect.generate();
-        Connect.openCliente();
-        Connect.openTecnicos();
-        Connect.openEstoque();
-        Connect.openOrdens();*/
-        Connect.printa();
-
-
-    }
 
 }

@@ -20,52 +20,6 @@ import java.util.Map;
  * após fechar o programa, ficando eles disponíveis para próxima abertura do programa.<br>
  */
 public class Connect {
-    public static void generate() throws Exception{
-        Cliente cliente1 = new Cliente("Maria Sobrenome", "Rua ABC, Bahia",
-                "123.789.101-10", 75);
-
-
-        Cliente cliente2 = new Cliente("Pedro Santos", "Avenida XYZ, Rio de Janeiro",
-                "987.654.321-00", 25);
-        Cliente cliente3 = new Cliente("Joaquim Sobrenome", "Rua XAFJZ, Bahia",
-                "456.129.101-10", 42);
-        cliente1 = DAO.getClienteDAO().create(cliente1);
-        cliente2 = DAO.getClienteDAO().create(cliente2);
-        cliente3 = DAO.getClienteDAO().create(cliente3);
-
-        Tecnico tecnico1 = new Tecnico("Rhian Sobrenome", "Coité, Bahia",
-                "234.567.890-11", 75);
-
-
-        Tecnico tecnico2 = new Tecnico("João Sobrenome", "Rua XYZ, Bahia",
-                "456.000.101-10", 81);
-        tecnico1 = DAO.getTecnicoDAO().create(tecnico1);
-        tecnico2 = DAO.getTecnicoDAO().create(tecnico2);
-
-        DAO.getEstoqueDAO().AdicionarEstoqueInicial();
-
-        OrdemServico ordem1 = new OrdemServico();
-        OrdemServico ordem2 = new OrdemServico();
-
-        DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
-        DAO.getOrdemServicoDAO().create(ordem2, cliente2.getId(), Produto.servicoInstalar());
-
-    }
-
-    public static void printa() throws Exception{
-        System.out.println("\nCLIENTES: ");
-        DAO.getClienteDAO().listObjects();
-        System.out.println("\nTECNICOS: ");
-        DAO.getTecnicoDAO().listObjects();
-        System.out.println("\nORDENS: ");
-        DAO.getOrdemServicoDAO().listObjects();
-        System.out.println("\nESTOQUE: ");
-        Map<Produto, Integer> hash = DAO.getEstoqueDAO().getList();
-        for (Produto produto1 : hash.keySet()){
-            System.out.println(produto1.getNome());
-        }
-    }
-
     /**
      * Este metodo estático, <i>static</i> serve para criação dos arquivos binários em caso de terem sido apagados,
      * ou na primeira vez que o sistema é utilizado naquela máquina.<br>
