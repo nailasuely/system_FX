@@ -82,7 +82,6 @@ public class ListEstoque implements EstoqueDAO {
     public void adicionarProdutotest(Produto produto, int quantidade) throws Exception{
         if (estoque.containsKey(produto)) {
             int quantidadeAtual = estoque.get(produto);
-            System.out.println(quantidadeAtual);
             estoque.put(produto, quantidadeAtual + quantidade);
 
         }
@@ -169,13 +168,11 @@ public class ListEstoque implements EstoqueDAO {
      * @param produto Objeto do tipo <i>Produto</i> que serve para identificar qual produto está sendo referido para obter a quantidade.
      * @return <i>Int</i> com a quantidade do produto presente no estoque, caso não tenha nenhum daqueles produtos, é retornado o valor 0
      */
-    public int getQuantidadetest(Produto produto) {
-        return estoque.getOrDefault(produto, 0);
-    }
     public int getQuantidade(Produto produto) {
+        int quantidade;
         for (Produto pd1 : this.estoque.keySet()) {
             if (pd1.getNome().equals(produto.getNome())) {
-                int quantidade = this.estoque.get(pd1);
+                quantidade = this.estoque.get(pd1);
                 return quantidade;
             }
         }

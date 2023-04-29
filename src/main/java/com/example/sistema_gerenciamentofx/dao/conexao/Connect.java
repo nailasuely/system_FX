@@ -72,7 +72,7 @@ public class Connect {
      * Este método deve ser utilizado ao iniciar do programa.<br>
      * Em caso dos arquivos não existirem e necessitar da criação, é inserida as estruturas vazias utilizadas por
      * cada classe do DAO.
-     * @throws Exception
+     * @throws Exception se ocorrer um problema para salvar o valor em arquivo.
      */
     public static void generateCache() throws Exception{
         if(!(new File("cache\\clientes.nsr")).exists()){
@@ -97,7 +97,7 @@ public class Connect {
      * nesse caso uma <i>ArrayList</i>, para o arquivo um arquivo binário, com final <i>.nsr</i><br>
      * Neste caso ele salva a lista de clientes cadastrados em um arquivo binário.
      * @param listaClientes <i>ArrayList</i>, contendo objetos do tipo <i>Cliente</i> que foram cadastrados no sistema
-     * @throws Exception
+     * @throws Exception se ocorrer um problema para salvar o valor em arquivo.
      */
     public static void saveCliente(List<Cliente> listaClientes) throws Exception{
         try {
@@ -118,7 +118,7 @@ public class Connect {
      * O método retorna a estrutura com os clientes que estão salvos no arquivo, caso o arquivo esteja
      * vazio, ele retorna a estrutura vazia.
      * @return <i>ArrayList</i> contendo objetos do tipo <i>CLiente</i>, que estão cadastrados no sistema
-     * @throws Exception
+     * @throws Exception Se ocorrer um problema para abrir ou realizar a leitura do arquivo.
      */
     public static List<Cliente> openCliente() throws Exception{
         try {
@@ -145,7 +145,7 @@ public class Connect {
      * nesse caso uma <i>ArrayList</i>, para o arquivo um arquivo binário, com final <i>.nsr</i><br>
      * Neste caso ele salva a lista de Técnicos cadastrados em um arquivo binário.
      * @param listaTecnicos <i>ArrayList</i>, contendo objetos do tipo <i>Tecnico</i> que foram cadastrados no sistema
-     * @throws Exception
+     * @throws Exception se ocorrer um problema para salvar o valor em arquivo.
      */
     public static void saveTecnico(List<Tecnico> listaTecnicos) throws Exception{
         try {
@@ -165,7 +165,7 @@ public class Connect {
      * O método retorna a estrutura com os tecnicos que estão salvos no arquivo, caso o
      * arquivo esteja vazio, ele retorna a estrutura vazia.
      * @return <i>ArrayList</i> contendo objetos do tipo <i>Tecnico</i>, que estão cadastrados no sistema
-     * @throws Exception
+     * @throws Exception Se ocorrer um problema para abrir ou realizar a leitura do arquivo.
      */
     public static List<Tecnico> openTecnicos() throws Exception{
         try {
@@ -191,7 +191,7 @@ public class Connect {
      * nesse caso uma <i>ArrayList</i>, para o arquivo um arquivo binário, com final <i>.nsr</i><br>
      * Neste caso ele salva a lista de ordens cadastradas em um arquivo.
      * @param listaOrdens <i>ArrayList</i>, contendo objetos do tipo <i>OrdemServico</i> que foram cadastrados no sistema
-     * @throws Exception
+     * @throws Exception se ocorrer um problema para salvar o valor em arquivo.
      */
     public static void saveOrder(List<OrdemServico> listaOrdens) throws Exception{
         try {
@@ -211,7 +211,7 @@ public class Connect {
      * O método retorna a estrutura com as Ordens de Serviço que estão salvas no arquivo, caso o arquivo
      * esteja vazio, ele retorna a estrutura vazia.
      * @return <i>ArrayList</i> contendo objetos do tipo <i>OrdemServico</i>, que estão cadastrados no sistema
-     * @throws Exception
+     * @throws Exception Se ocorrer um problema para abrir ou realizar a leitura do arquivo.
      */
     public static List<OrdemServico> openOrdens() throws Exception{
         try {
@@ -238,9 +238,9 @@ public class Connect {
      * estrutura passada, nesse caso um <i>Map<Produto, Integer</i>, em que a chave é um objeto do tipo <i>Produto</i>, e a
      * o valor é do tipo <i>Integer</i> que informa a quantidade daquele produto, para o arquivo um arquivo binário,
      * com final <i>.nsr</i><br>
-     * Neste caso ele salva o dicionário com o estoque presentes no arquivo.
+     * Neste caso ele salva o dicionário com o estoque presente no arquivo.
      * @param estoque <i>Map<></i>, contendo objetos do tipo <i>Produto</i> como chave, e <i>Integer</i> como valor da chave
-     * @throws Exception
+     * @throws Exception se ocorrer um problema para salvar o valor em arquivo.
      */
     public static void saveEstoque(Map<Produto, Integer> estoque) throws Exception{
         try {
@@ -260,8 +260,8 @@ public class Connect {
      * seja dele ter sido deletado, ou não encontrado, ou corrompido.<br>
      * O método retorna a estrutura com o estoque salvo no arquivo, caso o arquivo
      * esteja vazio, ele retorna a estrutura vazia.
-     * @return <i>Map<"Produto, Integer"></i> com as informações do estoque que estão salvas no arquivo
-     * @throws Exception
+     * @return <i>Map<"Produto, Integer"></i> com as informações do estoque salvas no arquivo
+     * @throws Exception Se ocorrer um problema para abrir ou realizar a leitura do arquivo.
      */
     public static Map<Produto, Integer> openEstoque() throws Exception{
         try {
@@ -282,7 +282,13 @@ public class Connect {
         }
     }
 
-
+    /**
+     * Este método salva um valor inteiro que representa o índice do cliente que deve se atendido
+     * na agenda de serviços. Ele foi criado para permitir a persistência deste índice em arquivo.
+     *
+     * @param indiceEspera O valor inteiro a ser salvo como índice da agenda de serviços.
+     * @throws Exception Se ocorrer um problema ao salvar o valor em arquivo.
+     */
     public static void saveIndice(int indiceEspera) throws Exception{
         try {
             FileOutputStream arquivo = new FileOutputStream("cache\\indiceEspera.nsr");
@@ -293,6 +299,14 @@ public class Connect {
             excep.printStackTrace();
         }
     }
+
+    /**
+     * Este método é utilizado para realizar a abertura do arquivo presente no sistema
+     * que armazena um indice do cliente que deve se atendido na agenda de serviços.
+     *
+     * @return <i>int</i> O valor inteiro do índice salvo no arquivo.
+     * @throws Exception Se ocorrer um problema para abrir ou realizar a leitura do arquivo.
+     */
     public static int openIndice() throws Exception{
         try {
             FileInputStream arquivo = new FileInputStream("cache\\indiceEspera.nsr");

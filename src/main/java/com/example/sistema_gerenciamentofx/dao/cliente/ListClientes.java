@@ -43,7 +43,7 @@ public class ListClientes implements ClienteDAO{
     }
 
     /**
-     * Método para poder criar e adicionar o cadastro de um novo cliente ao sistema de dados.<br>
+     * Método para criar e adicionar o cadastro de um novo cliente ao sistema de dados.<br>
      * Antes de salvar o objeto contendo as informações do cliente, existem verificações para evitar problemas no sistema,
      * dentre as verificações:<ul>
      *     <li>
@@ -163,7 +163,7 @@ public class ListClientes implements ClienteDAO{
     }
 
     /**
-     * Método para verificar a existencia daquele CPF de um cliente no sistema
+     * Método para verificar a existencia do CPF de um cliente no sistema
      * @param cpf <i>String</i> contendo o número do cpf do cliente que deseja se verificar
      * @return Booleano, em que se o CPF existe no sistema é retornado <b><i>True</i></b>, e no caso contrário, <b><i>False</i></b>
      */
@@ -212,7 +212,7 @@ public class ListClientes implements ClienteDAO{
     }
 
     /**
-     * Método para verificar a quantidade de clientes que estão cadastrados no sistema
+     * Método para verificar a quantidade de clientes cadastrados no sistema
      * @return <i>Int</i> contendo o tamanho da lista de clientes
      */
     public int amountItems() {

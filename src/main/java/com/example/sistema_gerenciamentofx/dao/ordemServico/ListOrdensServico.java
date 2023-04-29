@@ -222,7 +222,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
     }
 
     /**
-     * Método para verificar a quantidade de ordens que estão cadastrados no sistema
+     * Método para verificar a quantidade de ordens cadastradas no sistema
      * @return <i>Int</i> contendo o tamanho da lista de ordens de serviço
      */
     @Override

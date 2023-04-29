@@ -34,7 +34,7 @@ public interface EstoqueDAO {
     public void adicionarProduto(Produto produto, int quantidade) throws Exception;
     /**
      * Assinatura de método que serve para acesso ao método contido na implementação<br>
-     * Tal método serve para obter a quantidade presente no estoque daquele determinado produto.
+     * Esse método serve para obter a quantidade presente no estoque daquele determinado produto.
      * @param produto Objeto do tipo <i>Produto</i> para poder indicar qual dos produtos no estoque deseja saber a quantidade
      * @return <i>Int</i> contendo a quantidade daquele objeto presente no estoque
      */

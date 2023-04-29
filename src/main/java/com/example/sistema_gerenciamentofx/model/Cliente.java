@@ -17,7 +17,7 @@ public class Cliente extends Pessoa {
     /**
      * Declaração do construtor sobrecarrecado da classe
      * <b>Uso:</b><br>
-     * Cliente cliente = new Cliente("Naila Suele", "Rua Maria Quiteria, Nº100, Bairro: Papagaio, Feira de Santana-BA-BR", "00000000000", "11111111111")
+     * Cliente cliente = new Cliente("Rhian Pablo", "Rua Maria Quiteria, Nº100, Bairro: Papagaio, Feira de Santana-BA-BR", "00000000000", "11111111111")
      * @param nome String para armazenar o nome completo da pessoa
      * @param address String para armazenar o endereço da pessoa
      * @param cpf String para armazenar o cpf da pessoa
