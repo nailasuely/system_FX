@@ -69,7 +69,7 @@ public class Tecnico extends Pessoa {
              return true;}
         else{
             for(OrdemServico servicos: serviceOrders){
-                if (servicos.getStatus() == "Finalizado"){
+                if (servicos.getStatus().equals("Finalizado")){
                     servicosFinalizados += 1;
                 }
             }

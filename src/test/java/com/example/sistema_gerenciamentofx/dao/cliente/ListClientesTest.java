@@ -24,12 +24,12 @@ class ListClientesTest {
     @BeforeEach
     void setUp() throws Exception {
         Connect.generateCache();
-        cliente1 = new Cliente("Maria Sobrenome", "Rua ABC, Bahia",
-                "123.789.101-10", 75);
+        cliente1 = new Cliente("Ivete Sobrenome", "Rua ABC, Bahia",
+                "855.332.800-73", 75);
 
 
-        cliente2 = new Cliente("João Sobrenome", "Rua XYZ, Bahia",
-                "456.789.101-10", 81);
+        cliente2 = new Cliente("Isabel Sobrenome", "Rua XYZ, Bahia",
+                "638.989.410-43", 81);
 
     }
     @AfterEach
@@ -42,14 +42,14 @@ class ListClientesTest {
         // Cliente criado para verificar se ele adiciona um cliente que já existe
         Cliente teste;
         DAO.getClienteDAO().create(cliente1);
-        assertNotNull(DAO.getClienteDAO().findByCPF("123.789.101-10"));
+        assertNotNull(DAO.getClienteDAO().findByCPF("855.332.800-73"));
 
         //verifica se o ID foi realmente criado
         assertNotNull(cliente1.getId());
 
         //teste se o sistema permite criar um cliente, ja cadastrado como tecnico
-        Tecnico tecnico1 = new Tecnico("Guilherme Sobrenome", "Rua XYZ, Bahia",
-                "456.789.101-10", 81);
+        Tecnico tecnico1 = new Tecnico("Amanda Sobrenome", "Rua XYZ, Bahia",
+                "638.989.410-43", 81);
         Tecnico testeTecnico;
         testeTecnico = DAO.getTecnicoDAO().create(tecnico1);
         //se retornar null funcionou
@@ -70,20 +70,20 @@ class ListClientesTest {
         DAO.getClienteDAO().create(cliente1);
         cliente1.setFullName("Joana novo Sobrenome");
         DAO.getClienteDAO().update(cliente1);
-        assertEquals("Joana novo Sobrenome", DAO.getClienteDAO().findByCPF("123.789.101-10").getFullName());
+        assertEquals("Joana novo Sobrenome", DAO.getClienteDAO().findByCPF("855.332.800-73").getFullName());
     }
 
     @Test
     void delete() throws Exception {
         DAO.getClienteDAO().create(cliente1);
-        DAO.getClienteDAO().delete("123.789.101-10");
+        DAO.getClienteDAO().delete("855.332.800-73");
         assertEquals(0, DAO.getClienteDAO().amountItems());
     }
 
     @Test
     void findByCPF() throws Exception {
         DAO.getClienteDAO().create(cliente1);
-        Cliente testeEncontrar = DAO.getClienteDAO().findByCPF("123.789.101-10");
+        Cliente testeEncontrar = DAO.getClienteDAO().findByCPF("855.332.800-73");
         assertEquals(cliente1, testeEncontrar);
 
     }
@@ -93,7 +93,7 @@ class ListClientesTest {
         DAO.getClienteDAO().create(cliente1);
         DAO.getClienteDAO().create(cliente2);
         // Teste com um cpf de um cliente presente na lista.
-        assertTrue(DAO.getClienteDAO().findByCpfIsTrue("123.789.101-10"));
+        assertTrue(DAO.getClienteDAO().findByCpfIsTrue("855.332.800-73"));
         //Teste com um cpf de um cliente NÃO presente na lista.
         assertFalse(DAO.getClienteDAO().findByCpfIsTrue("111.123.456.10"));
     }
@@ -105,7 +105,7 @@ class ListClientesTest {
         String id1 = cliente1.getId();
 
         //Verificar primeiro com um cliente presente no sistema.
-        assertEquals(id1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"));
+        assertEquals(id1, DAO.getClienteDAO().findIdbyCPF("855.332.800-73"));
         // Verificar se a exception foi lançada pelo método.
         try {
             DAO.getClienteDAO().findIdbyCPF("111.123.456.10");

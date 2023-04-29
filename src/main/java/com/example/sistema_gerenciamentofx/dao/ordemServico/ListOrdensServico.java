@@ -33,7 +33,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
     /**
      * O atributo <b>indiceClienteParaAtender</b> é do tipo <i>Int</i>
      */
-    private int indiceClienteParaAtender = 0;
+    private int indiceClienteParaAtender = Connect.openIndice();
 
     /**
      * Método construtor da classe, em que inicializa a lista que irá conter as ordens de serviço do sistema
@@ -90,6 +90,7 @@ public class ListOrdensServico implements OrdemServicoDAO{
                listaOrdensServico.get(indiceClienteParaAtender).setStatus("andamento");
                indiceClienteParaAtender++;
                Connect.saveOrder(this.listaOrdensServico);
+               Connect.saveIndice(this.indiceClienteParaAtender);
            }
        }
        else{
@@ -215,7 +216,9 @@ public class ListOrdensServico implements OrdemServicoDAO{
     @Override
     public void deleteMany() throws Exception{
         this.listaOrdensServico = new ArrayList<>();
+        this.indiceClienteParaAtender =0;
         Connect.saveOrder(this.listaOrdensServico);
+        Connect.saveIndice(0);
     }
 
     /**
@@ -238,7 +241,8 @@ public class ListOrdensServico implements OrdemServicoDAO{
         idTecnico = DAO.getTecnicoDAO().findIdbyCPF(cpf);
         if(this.listaOrdensServico.size()>0){
             for(OrdemServico ordem: this.listaOrdensServico){
-                if(ordem.getTechnicianID().equals(idTecnico)){
+
+                if(idTecnico.equals(ordem.getTechnicianID())){
                     return ordem;
                 }
             }
@@ -281,4 +285,15 @@ public class ListOrdensServico implements OrdemServicoDAO{
        agendaSaida += "\n";
        return agendaSaida;
     }
+/*
+    public int getIndiceClienteParaAtender() {
+        return indiceClienteParaAtender;
+    }
+
+    public void setIndiceClienteParaAtender(int indiceClienteParaAtender) throws Exception {
+        this.indiceClienteParaAtender = indiceClienteParaAtender;
+        Connect.saveIndice(this.indiceClienteParaAtender);
+    }
+    */
+
 }

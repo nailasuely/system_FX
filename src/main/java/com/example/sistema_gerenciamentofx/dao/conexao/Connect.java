@@ -87,6 +87,9 @@ public class Connect {
         if(!(new File("cache\\estoque.nsr")).exists()){
             Connect.saveEstoque(new HashMap<>());
         }
+        if(!(new File("cache\\indiceEspera.nsr")).exists()){
+            Connect.saveIndice(0);
+        }
     }
 
     /**
@@ -279,6 +282,33 @@ public class Connect {
         }
     }
 
+
+    public static void saveIndice(int indiceEspera) throws Exception{
+        try {
+            FileOutputStream arquivo = new FileOutputStream("cache\\indiceEspera.nsr");
+            ObjectOutputStream gravador = new ObjectOutputStream(arquivo);
+            gravador.writeObject(indiceEspera);
+            gravador.close();
+        }catch (IOException excep){
+            excep.printStackTrace();
+        }
+    }
+    public static int openIndice() throws Exception{
+        try {
+            FileInputStream arquivo = new FileInputStream("cache\\indiceEspera.nsr");
+            ObjectInputStream recebedor = new ObjectInputStream(arquivo);
+            int indiceEspera = (int) recebedor.readObject();
+            recebedor.close();
+
+            return indiceEspera;
+        } catch (FileNotFoundException excep) {
+            throw new Exception("O arquivo não foi encontrado no sistema.", excep);
+        } catch (ClassNotFoundException excep) {
+            throw new Exception("Classe não encontrada.", excep);
+        } catch (IOException excep) {
+            throw new Exception("Problemas na leitura do arquivo.", excep);
+        }
+    }
 
 }
 

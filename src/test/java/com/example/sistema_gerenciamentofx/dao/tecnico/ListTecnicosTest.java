@@ -23,12 +23,12 @@ class ListTecnicosTest {
     @BeforeEach
     void setUp() throws Exception{
         Connect.generateCache();
-        tecnico1 = new Tecnico("Rhian Sobrenome", "Coité, Bahia",
-                "123.789.101-10", 75);
+        tecnico1 = new Tecnico("Italo Sobrenome", "Coité, Bahia",
+                "196.814.670-94", 75);
 
 
-        tecnico2 = new Tecnico("João Sobrenome", "Rua XYZ, Bahia",
-                "456.789.101-10", 81);
+        tecnico2 = new Tecnico("Maria Sobrenome", "Rua XYZ, Bahia",
+                "399.048.730-20", 81);
 
     }
     @AfterEach
@@ -38,9 +38,10 @@ class ListTecnicosTest {
 
     @Test
     void create() throws Exception{
+        DAO.getTecnicoDAO().deleteMany();
         Tecnico teste;
         DAO.getTecnicoDAO().create(tecnico1);
-        assertNotNull(DAO.getTecnicoDAO().findByCPF("123.789.101-10"));
+        assertNotNull(DAO.getTecnicoDAO().findByCPF("196.814.670-94"));
 
         //verifica se o ID foi realmente criado
         assertNotNull(tecnico1.getId());
@@ -48,7 +49,7 @@ class ListTecnicosTest {
         teste = DAO.getTecnicoDAO().create(tecnico1);
 
         Cliente teste1 = new Cliente("João Sobrenome", "Rua XYZ, Bahia",
-                "456.789.101-10", 81);
+                "399.048.730-20", 81);
         Cliente testeConflito;
         testeConflito = DAO.getClienteDAO().create(teste1);
         assertNull(DAO.getTecnicoDAO().create(tecnico2));
@@ -66,13 +67,13 @@ class ListTecnicosTest {
         DAO.getTecnicoDAO().create(tecnico1);
         tecnico1.setFullName("Joana novo Sobrenome");
         DAO.getTecnicoDAO().update(tecnico1);
-        assertEquals("Joana novo Sobrenome", DAO.getTecnicoDAO().findByCPF("123.789.101-10").getFullName());
+        assertEquals("Joana novo Sobrenome", DAO.getTecnicoDAO().findByCPF("196.814.670-94").getFullName());
     }
 
     @Test
     void delete() throws Exception {
         DAO.getTecnicoDAO().create(tecnico1);
-        DAO.getTecnicoDAO().delete("123.789.101-10");
+        DAO.getTecnicoDAO().delete("196.814.670-94");
         assertEquals(0, DAO.getTecnicoDAO().amountItems());
     }
 
@@ -98,7 +99,7 @@ class ListTecnicosTest {
     @Test
     void findByCPF() throws Exception {
         DAO.getTecnicoDAO().create(tecnico1);
-        Tecnico testeEncontrar = DAO.getTecnicoDAO().findByCPF("123.789.101-10");
+        Tecnico testeEncontrar = DAO.getTecnicoDAO().findByCPF("196.814.670-94");
         assertEquals(tecnico1, testeEncontrar);
     }
 
@@ -107,7 +108,7 @@ class ListTecnicosTest {
         Tecnico teste;
         boolean testando;
         DAO.getTecnicoDAO().create(tecnico1);
-        assertTrue(DAO.getTecnicoDAO().findByCPFIsTrue("123.789.101-10"));
+        assertTrue(DAO.getTecnicoDAO().findByCPFIsTrue("196.814.670-94"));
 
 
 

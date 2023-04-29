@@ -21,16 +21,18 @@ class OrdemServicoTest {
     private static Cliente cliente1;
     private static Tecnico tecnico1;
     private static Tecnico tecnico2;
+    private static Tecnico tecnico3;
 
     @BeforeEach
     void setUp()  throws Exception{
         Connect.generateCache();
+        DAO.getOrdemServicoDAO().deleteMany();
         ordem1 = new OrdemServico();
         ordem2 = new OrdemServico();
-        cliente1 = new Cliente("Maria Sobrenome", "Rua ABC, Bahia",
-                "123.789.101-10", 75);
-        tecnico1 = new Tecnico("João Sobrenome", "Rua XYZ, Bahia",
-                "456.789.101-10", 81);
+        cliente1 = new Cliente("Keila Sobrenome", "Rua ABC, Bahia",
+                "226.379.720-33", 75);
+        tecnico1 = new Tecnico("Ana Sobrenome", "Rua XYZ, Bahia",
+                "175.406.590-25", 81);
         DAO.getClienteDAO().create(cliente1);
         DAO.getTecnicoDAO().create(tecnico1);
 
@@ -38,8 +40,8 @@ class OrdemServicoTest {
     @Test
     void getPriceServico() throws Exception {
         // Adicionado um serviço, ou seja, o preço deve ser apenas o preço do serviço.
-        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.servicoFormatar());
-        DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.789.101-10", ordem1);
+        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("226.379.720-33"), Produto.servicoFormatar());
+        DAO.getOrdemServicoDAO().atualizarStatusAndamento("175.406.590-25", ordem1);
         assertEquals(50, ordem1.getPrice());
 
     }
@@ -48,9 +50,10 @@ class OrdemServicoTest {
     @Test
     void getPriceMontagem() throws SemEstoqueException, ProdutoErradoException, Exception {
         DAO.getEstoqueDAO().AdicionarEstoqueInicial();
+        DAO.getEstoqueDAO().AdicionarEstoqueInicial();
         // Adicionado uma montagem, ou seja, o preço deve ser calculado com a quantidade.
-        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.servicoMontagem());
-        DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.789.101-10", ordem1);
+        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("226.379.720-33"), Produto.servicoMontagem());
+        DAO.getOrdemServicoDAO().atualizarStatusAndamento("175.406.590-25", ordem1);
         ordem1.setListaProdutos(Produto.novaPlacaMae(), 10);
         assertEquals(1000, ordem1.getPrice());
 
@@ -71,29 +74,31 @@ class OrdemServicoTest {
     }
     @Test
     void setStatus() throws Exception {
+
         DAO.getOrdemServicoDAO().create(ordem1);
         assertEquals("espera", ordem1.getStatus());
-        DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.789.101-10", ordem1);
+        DAO.getOrdemServicoDAO().atualizarStatusAndamento("175.406.590-25", ordem1);
         assertEquals("andamento", ordem1.getStatus());
     }
 
     @Test
     void getDescription() throws Exception {
-        tecnico2 = new Tecnico("Everton Sobrenome", "Rua XYZ, Bahia",
-                "456.539.155-10", 81);
-        DAO.getTecnicoDAO().create(tecnico2);
-        DAO.getOrdemServicoDAO().create(ordem2, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.servicoFormatar());
-        DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.539.155-10", ordem2);
+        tecnico2 = new Tecnico("Naila Sobrenome", "Rua XYZ, Bahia",
+                "886.948.540-40", 81);
+        tecnico2 = DAO.getTecnicoDAO().create(tecnico2);
+        ordem2.setTechnicianID(DAO.getTecnicoDAO().findIdbyCPF("886.948.540-40"));
+        DAO.getOrdemServicoDAO().create(ordem2, DAO.getClienteDAO().findIdbyCPF("226.379.720-33"), Produto.servicoFormatar());
+        DAO.getOrdemServicoDAO().atualizarStatusAndamento("886.948.540-40", ordem2);
         OrdemServico teste1;
-        teste1 =DAO.getOrdemServicoDAO().openOrderByTechnician("456.539.155-10");
+        teste1 =DAO.getOrdemServicoDAO().openOrderByTechnician("886.948.540-40");
         teste1.finalize(5, "pix");
         assertEquals("------NOTA FISCAL DA ORDEM------" + "\n"+
                 "Serviço                    Preço un." + "\n"+
                 "formatacao"+" --------------- R$" + 50.0+"\n"+
                 "======================================" +"\n"+
                 "Preço total da ordem de serviço: R$" + 50.0+ "\n"+
-                "Tecnico responsável: " + "Everton Sobrenome" +"\n"+
-                "Cliente requisitante: " + "Maria Sobrenome" +"\n"+
+                "Tecnico responsável: " + "Naila Sobrenome" +"\n"+
+                "Cliente requisitante: " + "Keila Sobrenome" +"\n"+
                 "Forma de pagamento: "+ "pix" +"\n"+
                 "Tempo de duração da ordem: " + "Foram gastos 0 dias" + "\n"+
                 "ID da ordem de serviço: "+ teste1.getId(), DAO.getOrdemServicoDAO().findById(teste1.getId()).generateInvoice() );
@@ -102,13 +107,15 @@ class OrdemServicoTest {
     @Test
     void generateInvoice() throws SemEstoqueException, ProdutoErradoException, Exception {
         DAO.getEstoqueDAO().AdicionarEstoqueInicial();
-
+        tecnico3 = new Tecnico("Aquino Sobrenome", "Rua XYZ, Bahia",
+                "065.199.050-54", 81);
+        DAO.getTecnicoDAO().create(tecnico3);
         ordem1.setListaProdutos(Produto.novaPlacaMae(), 2);
-
-        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.servicoMontagem());
-        DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.789.101-10", ordem1);
+    //conferir p evitar erros
+        ordem1 = DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("226.379.720-33"), Produto.servicoMontagem());
+        DAO.getOrdemServicoDAO().atualizarStatusAndamento("065.199.050-54", ordem1);
         OrdemServico teste;
-        teste =DAO.getOrdemServicoDAO().openOrderByTechnician("456.789.101-10");
+        teste =DAO.getOrdemServicoDAO().openOrderByTechnician("065.199.050-54");
         teste.finalize(5, "cartao");
         assertEquals("-------NOTA FISCAL DA ORDEM-------" + "\n"+
                 "Peça/produto   Quantidade   Preço un." + "\n"+
@@ -116,8 +123,8 @@ class OrdemServicoTest {
                 "======================================" +"\n"+
                 "Quantidade total de itens: " + 2+ "\n"+
                 "Preço total da ordem de serviço: R$" + 200.0 +"\n"+
-                "Tecnico responsável: " + "João Sobrenome" +"\n"+
-                "Cliente requisitante: " + "Maria Sobrenome" +"\n" +
+                "Tecnico responsável: " + "Aquino Sobrenome" +"\n"+
+                "Cliente requisitante: " + "Keila Sobrenome" +"\n" +
                 "Forma de pagamento: "+ "cartao" +"\n"+
                 "Tempo de duração da ordem: " + "Foram gastos 0 dias" +"\n"+
                 "ID da ordem de serviço: "+ teste.getId(), teste.generateInvoice());
@@ -132,8 +139,8 @@ class OrdemServicoTest {
 
     @Test
     void testFinalize() throws Exception {
-        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.servicoFormatar());
-        DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.789.101-10", ordem1);
+        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("226.379.720-33"), Produto.servicoFormatar());
+        DAO.getOrdemServicoDAO().atualizarStatusAndamento("175.406.590-25", ordem1);
         ordem1.finalize(3, "pix");
         System.out.println(ordem1);
     }

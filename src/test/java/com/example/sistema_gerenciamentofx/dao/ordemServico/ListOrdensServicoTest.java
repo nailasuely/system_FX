@@ -26,10 +26,10 @@ class ListOrdensServicoTest {
     @BeforeEach
     void setUp() throws Exception {
         Connect.generateCache();
-        tecnico1 = new Tecnico("Rhian Sobrenome", "Coité, Bahia",
-                "123.789.101-10", 75);
-        cliente1 = new Cliente("Maria Sobrenome", "Rua ABC, Bahia",
-                "456.789.101-10", 81);
+        tecnico1 = new Tecnico("Mirela Sobrenome", "Coité, Bahia",
+                "227.605.650-92", 75);
+        cliente1 = new Cliente("Lara Sobrenome", "Rua ABC, Bahia",
+                "610.819.650-53", 81);
         ordem1 = new OrdemServico();
         DAO.getTecnicoDAO().create(tecnico1);
         DAO.getClienteDAO().create(cliente1);
@@ -61,7 +61,7 @@ class ListOrdensServicoTest {
     @Test
     void update() throws Exception {
         OrdemServico ordemAtt;
-        Cliente cliente2 = new Cliente("Ana", "Rua A", "111.222.333-44", 72);
+        Cliente cliente2 = new Cliente("Latiele Sobrenome", "Rua A", "770.603.570-09", 72);
         DAO.getClienteDAO().create(cliente2);
         DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
         ordemAtt = DAO.getOrdemServicoDAO().findById(ordem1.getId());
@@ -100,8 +100,8 @@ class ListOrdensServicoTest {
     @Test
     void deleteMany() throws Exception {
         ordem2 = new OrdemServico();
-        Cliente cliente2 = new Cliente("Ana Sobrenome", "Rua ABC, Bahia",
-                "111.739.101-10", 81);
+        Cliente cliente2 = new Cliente("Laisa Sobrenome", "Rua ABC, Bahia",
+                "257.705.020-88", 81);
         DAO.getClienteDAO().create(cliente2);
         DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
         DAO.getOrdemServicoDAO().create(ordem2, cliente2.getId(), Produto.servicoFormatar());
@@ -113,8 +113,8 @@ class ListOrdensServicoTest {
     @Test
     void amountItems() throws Exception {
         ordem2 = new OrdemServico();
-        Cliente cliente2 = new Cliente("Ana Sobrenome", "Rua ABC, Bahia",
-                "111.739.101-10", 81);
+        Cliente cliente2 = new Cliente("Yasmim Sobrenome", "Rua ABC, Bahia",
+                "640.540.980-53", 81);
         DAO.getClienteDAO().create(cliente2);
         DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
         DAO.getOrdemServicoDAO().create(ordem2, cliente2.getId(), Produto.servicoFormatar());
@@ -124,23 +124,23 @@ class ListOrdensServicoTest {
     @Test
     void agendaAtendimento() throws Exception {
         ordem2 = new OrdemServico();
-        Cliente cliente2 = new Cliente("Ana Sobrenome", "Rua ABC, Bahia",
-                "111.739.101-10", 81);
+        Cliente cliente2 = new Cliente("Vitor Sobrenome", "Rua ABC, Bahia",
+                "579.997.120-51", 81);
         DAO.getClienteDAO().create(cliente2);
         DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
         DAO.getOrdemServicoDAO().create(ordem2, cliente2.getId(), Produto.servicoInstalar());
         //System.out.println(DAO.getTecnicoDAO().getList());
-        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("456.789.101-10"), Produto.servicoFormatar());
-        DAO.getOrdemServicoDAO().atualizarStatusAndamento("123.789.101-10", ordem1);
+        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("610.819.650-53"), Produto.servicoFormatar());
+        DAO.getOrdemServicoDAO().atualizarStatusAndamento("227.605.650-92", ordem1);
         System.out.println(DAO.getOrdemServicoDAO().agendaAtendimento());
-        assertEquals("Tecnico: Rhian Sobrenome\n" +
+        assertEquals("Tecnico: Mirela Sobrenome\n" +
                 "Ordem em andamento: \n" +
                 "ID da ordem: "+ ordem1.getId()+"\n" +
-                "Nome do cliente: Maria Sobrenome\n" +
+                "Nome do cliente: Lara Sobrenome\n" +
                 "\n" +
                 "Ordem em espera: \n" +
                 "ID da ordem: "+ ordem2.getId()+"\n" +
-                "Nome do cliente: Ana Sobrenome\n" +
+                "Nome do cliente: Vitor Sobrenome\n" +
                 "\n",DAO.getOrdemServicoDAO().agendaAtendimento() );
 
 

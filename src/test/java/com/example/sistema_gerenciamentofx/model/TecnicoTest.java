@@ -22,10 +22,10 @@ class TecnicoTest {
 
         // dps eu posso tirar isso, é apenas para um teste
         ordem1 = new OrdemServico();
-        cliente1 = new Cliente("Maria Sobrenome", "Rua ABC, Bahia",
-                "123.789.101-10", 75);
+        cliente1 = new Cliente("Rhian Sobrenome", "Rua ABC, Bahia",
+                "211.131.280-03", 75);
         tecnico1 = new Tecnico("João Sobrenome", "Rua XYZ, Bahia",
-                "456.789.101-10", 81);
+                "300.272.440-83", 81);
         DAO.getClienteDAO().create(cliente1);
         DAO.getTecnicoDAO().create(tecnico1);
     }
@@ -63,8 +63,8 @@ class TecnicoTest {
     }
     @Test
     void getCpf() {
-        tecnico1.setCpf("123.456.789-00");
-        assertEquals("123.456.789-00", tecnico1.getCpf());
+        tecnico1.setCpf("300.272.440-83");
+        assertEquals("300.272.440-83", tecnico1.getCpf());
 
         tecnico1.setCpf(null);
         assertNull(tecnico1.getCpf());
@@ -79,7 +79,7 @@ class TecnicoTest {
 
     @Test
     void addServiceOrder() {
-        tecnico1 = new Tecnico("Maria Sobrenome", "Rua ABC, Bahia", "123.456.789.-00", 12345678);
+        tecnico1 = new Tecnico("Maria Sobrenome", "Rua ABC, Bahia", "300.272.440-83", 12345678);
         OrdemServico ordem1 = new OrdemServico();
         UUID newID = UUID.randomUUID();
         String tecnicoID = newID.toString();
@@ -107,8 +107,8 @@ class TecnicoTest {
 
     @Test
     void geraRelatorioFinal() throws Exception{
-        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("123.789.101-10"), Produto.servicoFormatar());
-        DAO.getOrdemServicoDAO().atualizarStatusAndamento("456.789.101-10", ordem1);
+        DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("211.131.280-03"), Produto.servicoFormatar());
+        DAO.getOrdemServicoDAO().atualizarStatusAndamento("300.272.440-83", ordem1);
         ordem1.finalize(3, "pix");
         System.out.println(tecnico1.gerarRelatorioFinal());
     }
