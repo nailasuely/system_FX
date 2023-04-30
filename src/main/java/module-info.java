@@ -11,8 +11,10 @@ module com.example.sistema_gerenciamentofx {
     exports com.example.sistema_gerenciamentofx.dao.ordemServico;
     exports com.example.sistema_gerenciamentofx.dao.tecnico;
 
-    //opens com.uefs.gestaoacademica.dao.aluno;
-    //opens com.uefs.gestaoacademica.dao.inscricao;
+    opens com.example.sistema_gerenciamentofx.dao.cliente;
+    opens com.example.sistema_gerenciamentofx.dao.estoque;
+    opens com.example.sistema_gerenciamentofx.dao.ordemServico;
+    opens com.example.sistema_gerenciamentofx.dao.tecnico;
     opens com.example.sistema_gerenciamentofx.model;
 
 

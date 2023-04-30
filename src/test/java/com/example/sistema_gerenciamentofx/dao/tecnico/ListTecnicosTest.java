@@ -8,15 +8,12 @@ import com.example.sistema_gerenciamentofx.model.Tecnico;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(JUnitPlatform.class)
 public class ListTecnicosTest {
     private static Tecnico tecnico1;
     private static Tecnico tecnico2;
@@ -111,9 +108,6 @@ public class ListTecnicosTest {
         boolean testando;
         DAO.getTecnicoDAO().create(tecnico1);
         assertTrue(DAO.getTecnicoDAO().findByCPFIsTrue("196.814.670-94"));
-
-
-
 
     }
 }

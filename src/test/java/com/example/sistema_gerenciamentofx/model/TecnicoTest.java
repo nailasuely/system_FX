@@ -5,13 +5,10 @@ import com.example.sistema_gerenciamentofx.dao.conexao.Connect;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
-@RunWith(JUnitPlatform.class)
 public class TecnicoTest {
     private static Tecnico tecnico1;
     private static OrdemServico ordem1;
