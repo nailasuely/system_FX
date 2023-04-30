@@ -9,20 +9,23 @@ import com.example.sistema_gerenciamentofx.model.Tecnico;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ListClientesTest {
+@RunWith(JUnitPlatform.class)
+public class ListClientesTest {
     private static ClienteDAO clienteDAO;
     ArrayList<Cliente> listaDeClientes = new ArrayList<Cliente>();
     private static Cliente cliente1;
     private static Cliente cliente2;
 
     @BeforeEach
-    void setUp() throws Exception {
+    public void setUp() throws Exception {
         Connect.generateCache();
         cliente1 = new Cliente("Ivete Sobrenome", "Rua ABC, Bahia",
                 "855.332.800-73", 75);
@@ -33,12 +36,12 @@ class ListClientesTest {
 
     }
     @AfterEach
-    void tearDown() throws Exception {
+    public void tearDown() throws Exception {
         DAO.getClienteDAO().deleteMany();
     }
 
     @Test
-    void create() throws Exception {
+    public void create() throws Exception {
         // Cliente criado para verificar se ele adiciona um cliente que já existe
         Cliente teste;
         DAO.getClienteDAO().create(cliente1);
@@ -66,7 +69,7 @@ class ListClientesTest {
     }
 
     @Test
-    void update() throws Exception {
+    public void update() throws Exception {
         DAO.getClienteDAO().create(cliente1);
         cliente1.setFullName("Joana novo Sobrenome");
         DAO.getClienteDAO().update(cliente1);
@@ -74,14 +77,14 @@ class ListClientesTest {
     }
 
     @Test
-    void delete() throws Exception {
+    public void delete() throws Exception {
         DAO.getClienteDAO().create(cliente1);
         DAO.getClienteDAO().delete("855.332.800-73");
         assertEquals(0, DAO.getClienteDAO().amountItems());
     }
 
     @Test
-    void findByCPF() throws Exception {
+    public void findByCPF() throws Exception {
         DAO.getClienteDAO().create(cliente1);
         Cliente testeEncontrar = DAO.getClienteDAO().findByCPF("855.332.800-73");
         assertEquals(cliente1, testeEncontrar);
@@ -89,7 +92,7 @@ class ListClientesTest {
     }
 
     @Test
-    void findByCpfIsTrue() throws Exception {
+    public void findByCpfIsTrue() throws Exception {
         DAO.getClienteDAO().create(cliente1);
         DAO.getClienteDAO().create(cliente2);
         // Teste com um cpf de um cliente presente na lista.
@@ -99,7 +102,7 @@ class ListClientesTest {
     }
 
     @Test
-    void findIdbyCPF() throws Exception {
+    public void findIdbyCPF() throws Exception {
         DAO.getClienteDAO().create(cliente1);
         DAO.getClienteDAO().create(cliente2);
         String id1 = cliente1.getId();

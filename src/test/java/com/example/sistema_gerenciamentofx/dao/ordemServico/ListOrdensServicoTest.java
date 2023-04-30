@@ -9,14 +9,16 @@ import com.example.sistema_gerenciamentofx.model.Tecnico;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-class ListOrdensServicoTest {
+@RunWith(JUnitPlatform.class)
+public class ListOrdensServicoTest {
     private OrdemServico ordem1;
     private OrdemServico ordem2;
     private static Cliente cliente1;
@@ -24,7 +26,7 @@ class ListOrdensServicoTest {
 
 
     @BeforeEach
-    void setUp() throws Exception {
+    public void setUp() throws Exception {
         Connect.generateCache();
         tecnico1 = new Tecnico("Mirela Sobrenome", "Coité, Bahia",
                 "227.605.650-92", 75);
@@ -38,7 +40,7 @@ class ListOrdensServicoTest {
     }
 
     @AfterEach
-    void tearDown() throws Exception {
+    public void tearDown() throws Exception {
         DAO.getOrdemServicoDAO().deleteMany();
         DAO.getEstoqueDAO().deleteMany();
         DAO.getTecnicoDAO().deleteMany();
@@ -46,7 +48,7 @@ class ListOrdensServicoTest {
     }
 
     @Test
-    void create() throws Exception {
+    public void create() throws Exception {
         DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
         // Verifica se o ‘id’ foi gerado.
         assertNotNull(ordem1.getId());
@@ -59,7 +61,7 @@ class ListOrdensServicoTest {
     }
 
     @Test
-    void update() throws Exception {
+    public void update() throws Exception {
         OrdemServico ordemAtt;
         Cliente cliente2 = new Cliente("Latiele Sobrenome", "Rua A", "770.603.570-09", 72);
         DAO.getClienteDAO().create(cliente2);
@@ -81,7 +83,7 @@ class ListOrdensServicoTest {
     }
 
     @Test
-    void delete() throws Exception {
+    public void delete() throws Exception {
         DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
         // Verifica a quantidade depois de uma ordem adicionada.
         assertEquals(1,DAO.getOrdemServicoDAO().getList().size());
@@ -91,14 +93,14 @@ class ListOrdensServicoTest {
     }
 
     @Test
-    void findById() throws Exception {
+    public void findById() throws Exception {
         DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
         OrdemServico testeEncontrar = DAO.getOrdemServicoDAO().findById(ordem1.getId());
         assertEquals(ordem1, testeEncontrar);
     }
 
     @Test
-    void deleteMany() throws Exception {
+    public void deleteMany() throws Exception {
         ordem2 = new OrdemServico();
         Cliente cliente2 = new Cliente("Laisa Sobrenome", "Rua ABC, Bahia",
                 "257.705.020-88", 81);
@@ -111,7 +113,7 @@ class ListOrdensServicoTest {
 
     }
     @Test
-    void amountItems() throws Exception {
+    public void amountItems() throws Exception {
         ordem2 = new OrdemServico();
         Cliente cliente2 = new Cliente("Yasmim Sobrenome", "Rua ABC, Bahia",
                 "640.540.980-53", 81);
@@ -122,7 +124,7 @@ class ListOrdensServicoTest {
     }
 
     @Test
-    void agendaAtendimento() throws Exception {
+    public void agendaAtendimento() throws Exception {
         ordem2 = new OrdemServico();
         Cliente cliente2 = new Cliente("Vitor Sobrenome", "Rua ABC, Bahia",
                 "579.997.120-51", 81);

@@ -5,18 +5,20 @@ import com.example.sistema_gerenciamentofx.dao.conexao.Connect;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-class TecnicoTest {
+@RunWith(JUnitPlatform.class)
+public class TecnicoTest {
     private static Tecnico tecnico1;
     private static OrdemServico ordem1;
     private static Cliente cliente1;
 
     @BeforeEach
-    void setUp() throws Exception {
+    public void setUp() throws Exception {
         Connect.generateCache();
         tecnico1 = new Tecnico();
 
@@ -31,13 +33,13 @@ class TecnicoTest {
     }
 
     @Test
-    void getFullName() {
+    public void getFullName() {
         tecnico1.setFullName("Maria");
         assertEquals("Maria", tecnico1.getFullName());
     }
 
     @Test
-    void setFullName() {
+    public void setFullName() {
         tecnico1.setFullName("Maria");
         assertEquals("Maria", tecnico1.getFullName());
 
@@ -46,14 +48,14 @@ class TecnicoTest {
     }
 
     @Test
-    void setId() {
+    public void setId() {
         UUID newID = UUID.randomUUID();
         String newIDStrign = newID.toString();
         tecnico1.setId(newIDStrign);
         assertEquals(newIDStrign, tecnico1.getId());
     }
     @Test
-    void setAddress(){
+    public void setAddress(){
         tecnico1.setAddress("Rua ABC, Bahia");
         assertEquals("Rua ABC, Bahia", tecnico1.getAddress());
 
@@ -62,7 +64,7 @@ class TecnicoTest {
 
     }
     @Test
-    void getCpf() {
+    public void getCpf() {
         tecnico1.setCpf("300.272.440-83");
         assertEquals("300.272.440-83", tecnico1.getCpf());
 
@@ -71,14 +73,14 @@ class TecnicoTest {
 
     }
     @Test
-    void getTelephone() {
+    public void getTelephone() {
         tecnico1.setTelephone(12345678);
         assertEquals(12345678, tecnico1.getTelephone());
     }
 
 
     @Test
-    void addServiceOrder() {
+    public void addServiceOrder() {
         tecnico1 = new Tecnico("Maria Sobrenome", "Rua ABC, Bahia", "300.272.440-83", 12345678);
         OrdemServico ordem1 = new OrdemServico();
         UUID newID = UUID.randomUUID();
@@ -100,13 +102,8 @@ class TecnicoTest {
         assertEquals(2, Tecnico.getServiceOrders().size());
     }
 
-    // Essa classe foi feita em OrdemDeServiço, ela pode ser apagada dq;
     @Test
-    void finalizeServiceOrder() {
-    }
-
-    @Test
-    void geraRelatorioFinal() throws Exception{
+    public void geraRelatorioFinal() throws Exception{
         DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("211.131.280-03"), Produto.servicoFormatar());
         DAO.getOrdemServicoDAO().atualizarStatusAndamento("300.272.440-83", ordem1);
         ordem1.finalize(3, "pix");

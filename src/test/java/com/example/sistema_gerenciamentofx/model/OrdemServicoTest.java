@@ -6,6 +6,8 @@ import com.example.sistema_gerenciamentofx.dao.estoque.SemEstoqueException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import java.sql.SQLOutput;
 import java.time.LocalDate;
@@ -14,8 +16,8 @@ import java.time.Period;
 import java.time.temporal.ChronoUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-class OrdemServicoTest {
+@RunWith(JUnitPlatform.class)
+public class OrdemServicoTest {
     private static OrdemServico ordem1;
     private static OrdemServico ordem2;
     private static Cliente cliente1;
@@ -24,7 +26,7 @@ class OrdemServicoTest {
     private static Tecnico tecnico3;
 
     @BeforeEach
-    void setUp()  throws Exception{
+    public void setUp()  throws Exception{
         Connect.generateCache();
         DAO.getOrdemServicoDAO().deleteMany();
         ordem1 = new OrdemServico();
@@ -38,7 +40,7 @@ class OrdemServicoTest {
 
     }
     @Test
-    void getPriceServico() throws Exception {
+    public void getPriceServico() throws Exception {
         // Adicionado um serviço, ou seja, o preço deve ser apenas o preço do serviço.
         DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("226.379.720-33"), Produto.servicoFormatar());
         DAO.getOrdemServicoDAO().atualizarStatusAndamento("175.406.590-25", ordem1);
@@ -48,7 +50,7 @@ class OrdemServicoTest {
 
     // esse cálculo do preço difere, pois, ele requer o uso de uma lista com os produtos utilizados na montagem.
     @Test
-    void getPriceMontagem() throws SemEstoqueException, ProdutoErradoException, Exception {
+    public void getPriceMontagem() throws SemEstoqueException, ProdutoErradoException, Exception {
         DAO.getEstoqueDAO().AdicionarEstoqueInicial();
         DAO.getEstoqueDAO().AdicionarEstoqueInicial();
         // Adicionado uma montagem, ou seja, o preço deve ser calculado com a quantidade.
@@ -59,7 +61,7 @@ class OrdemServicoTest {
 
     }
     @Test
-    void getPaymentType() {
+    public void getPaymentType() {
         ordem1.setPaymentType("transferencia");
         assertEquals("transferencia", ordem1.getPaymentType());
     }
@@ -73,7 +75,7 @@ class OrdemServicoTest {
         }
     }
     @Test
-    void setStatus() throws Exception {
+    public void setStatus() throws Exception {
 
         DAO.getOrdemServicoDAO().create(ordem1);
         assertEquals("espera", ordem1.getStatus());
@@ -82,7 +84,7 @@ class OrdemServicoTest {
     }
 
     @Test
-    void getDescription() throws Exception {
+    public void getDescription() throws Exception {
         tecnico2 = new Tecnico("Naila Sobrenome", "Rua XYZ, Bahia",
                 "886.948.540-40", 81);
         tecnico2 = DAO.getTecnicoDAO().create(tecnico2);
@@ -105,7 +107,7 @@ class OrdemServicoTest {
     }
 
     @Test
-    void generateInvoice() throws SemEstoqueException, ProdutoErradoException, Exception {
+    public void generateInvoice() throws SemEstoqueException, ProdutoErradoException, Exception {
         DAO.getEstoqueDAO().AdicionarEstoqueInicial();
         tecnico3 = new Tecnico("Aquino Sobrenome", "Rua XYZ, Bahia",
                 "065.199.050-54", 81);
@@ -131,14 +133,14 @@ class OrdemServicoTest {
     }
 
     @Test
-    void calculateExpendTime() {
+    public void calculateExpendTime() {
         LocalDate start = LocalDate.now();
         Period periodo = Period.between(start, LocalDate.now());
         assertEquals(periodo, ordem1.calculateExpendTime());
     }
 
     @Test
-    void testFinalize() throws Exception {
+    public void testFinalize() throws Exception {
         DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("226.379.720-33"), Produto.servicoFormatar());
         DAO.getOrdemServicoDAO().atualizarStatusAndamento("175.406.590-25", ordem1);
         ordem1.finalize(3, "pix");
@@ -146,7 +148,7 @@ class OrdemServicoTest {
     }
 
     @Test
-    void getStart() {
+    public void getStart() {
         LocalDate start = LocalDate.now();
         assertEquals(start, ordem1.getStart());
     }

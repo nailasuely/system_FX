@@ -9,6 +9,8 @@ import com.example.sistema_gerenciamentofx.model.Tecnico;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,14 +18,14 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-class ListEstoqueTest {
+@RunWith(JUnitPlatform.class)
+public class ListEstoqueTest {
     Produto produto1;
     Produto produto2;
     Produto produto3;
 
     @BeforeEach
-    void setUp() throws Exception {
+    public void setUp() throws Exception {
         Connect.generateCache();
         produto1 = Produto.novaFonte();
         produto2 = Produto.novaPlacaMae();
@@ -32,12 +34,12 @@ class ListEstoqueTest {
     }
 
     @AfterEach
-    void tearDown() throws Exception {
+    public void tearDown() throws Exception {
         DAO.getEstoqueDAO().deleteMany();
     }
 
     @Test
-    void adicionarEstoqueInicial()  throws Exception{
+    public void adicionarEstoqueInicial()  throws Exception{
         assertEquals(20, DAO.getEstoqueDAO().getQuantidade(Produto.novaFonte()));
         assertEquals(20, DAO.getEstoqueDAO().getQuantidade(Produto.novaPlacaMae()));
         assertEquals(20, DAO.getEstoqueDAO().getQuantidade(Produto.novaPlacaDeVideo()));
@@ -45,7 +47,7 @@ class ListEstoqueTest {
 
 
     @Test
-    void adicionarProduto()  throws Exception{
+    public void adicionarProduto()  throws Exception{
 
         assertEquals(30, produto1.getPreco());
         DAO.getEstoqueDAO().adicionarProduto(produto1, 20);
@@ -55,14 +57,14 @@ class ListEstoqueTest {
 
     }
     @Test
-    void retirarEstoque() throws SemEstoqueException, Exception {
+    public void retirarEstoque() throws SemEstoqueException, Exception {
         DAO.getEstoqueDAO().retirarEstoque(produto1, 5);
         assertEquals(15, DAO.getEstoqueDAO().getQuantidade(produto1));
 
 
     }
     @Test
-    void ordemDeCompraAutomatica() throws SemEstoqueException, Exception {
+    public void ordemDeCompraAutomatica() throws SemEstoqueException, Exception {
         // Primeiro verificar a quantidade itens adicionados na inicicialização
         assertEquals(20, DAO.getEstoqueDAO().getQuantidade(Produto.novaFonte()));
         assertEquals(20, DAO.getEstoqueDAO().getQuantidade(Produto.novaPlacaMae()));

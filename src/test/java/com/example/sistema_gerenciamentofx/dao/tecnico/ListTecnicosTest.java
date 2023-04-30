@@ -8,20 +8,22 @@ import com.example.sistema_gerenciamentofx.model.Tecnico;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
-class ListTecnicosTest {
+@RunWith(JUnitPlatform.class)
+public class ListTecnicosTest {
     private static Tecnico tecnico1;
     private static Tecnico tecnico2;
 
 
     @BeforeEach
-    void setUp() throws Exception{
+    public void setUp() throws Exception{
         Connect.generateCache();
         tecnico1 = new Tecnico("Italo Sobrenome", "Coité, Bahia",
                 "196.814.670-94", 75);
@@ -32,12 +34,12 @@ class ListTecnicosTest {
 
     }
     @AfterEach
-    void tearDown() throws Exception {
+    public void tearDown() throws Exception {
         DAO.getTecnicoDAO().deleteMany();
     }
 
     @Test
-    void create() throws Exception{
+    public void create() throws Exception{
         DAO.getTecnicoDAO().deleteMany();
         Tecnico teste;
         DAO.getTecnicoDAO().create(tecnico1);
@@ -63,7 +65,7 @@ class ListTecnicosTest {
     }
 
     @Test
-    void update() throws Exception {
+    public void update() throws Exception {
         DAO.getTecnicoDAO().create(tecnico1);
         tecnico1.setFullName("Joana novo Sobrenome");
         DAO.getTecnicoDAO().update(tecnico1);
@@ -71,7 +73,7 @@ class ListTecnicosTest {
     }
 
     @Test
-    void delete() throws Exception {
+    public void delete() throws Exception {
         DAO.getTecnicoDAO().create(tecnico1);
         DAO.getTecnicoDAO().delete("196.814.670-94");
         assertEquals(0, DAO.getTecnicoDAO().amountItems());
@@ -79,7 +81,7 @@ class ListTecnicosTest {
 
 
     @Test
-    void deleteMany() throws Exception {
+    public void deleteMany() throws Exception {
         DAO.getTecnicoDAO().create(tecnico1);
         DAO.getTecnicoDAO().create(tecnico2);
         DAO.getTecnicoDAO().deleteMany();
@@ -87,7 +89,7 @@ class ListTecnicosTest {
     }
 
     @Test
-    void amountItems() throws Exception {
+    public void amountItems() throws Exception {
         int amount;
         DAO.getTecnicoDAO().create(tecnico1);
         DAO.getTecnicoDAO().create(tecnico2);
@@ -97,14 +99,14 @@ class ListTecnicosTest {
     }
 
     @Test
-    void findByCPF() throws Exception {
+    public void findByCPF() throws Exception {
         DAO.getTecnicoDAO().create(tecnico1);
         Tecnico testeEncontrar = DAO.getTecnicoDAO().findByCPF("196.814.670-94");
         assertEquals(tecnico1, testeEncontrar);
     }
 
     @Test
-    void findByCPFIsTrue() throws Exception {
+    public void findByCPFIsTrue() throws Exception {
         Tecnico teste;
         boolean testando;
         DAO.getTecnicoDAO().create(tecnico1);
