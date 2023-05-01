@@ -189,11 +189,11 @@ public class Connect {
 
     /**
      * Este método estático serve para realizar o procedimento de gravação da
-     * estrutura passada, nesse caso um <i>Map<Produto, Integer</i>, em que a chave é um objeto do tipo <i>Produto</i>, e a
+     * estrutura passada, nesse caso um <i>Map</i>, em que a chave é um objeto do tipo <i>Produto</i>, e a
      * o valor é do tipo <i>Integer</i> que informa a quantidade daquele produto, para o arquivo um arquivo binário,
      * com final <i>.nsr</i><br>
      * Neste caso ele salva o dicionário com o estoque presente no arquivo.
-     * @param estoque <i>Map<></i>, contendo objetos do tipo <i>Produto</i> como chave, e <i>Integer</i> como valor da chave
+     * @param estoque <i>Map</i>, contendo objetos do tipo <i>Produto</i> como chave, e <i>Integer</i> como valor da chave
      * @throws Exception se ocorrer um problema para salvar o valor em arquivo.
      */
     public static void saveEstoque(Map<Produto, Integer> estoque) throws Exception{
@@ -214,7 +214,7 @@ public class Connect {
      * seja dele ter sido deletado, ou não encontrado, ou corrompido.<br>
      * O método retorna a estrutura com o estoque salvo no arquivo, caso o arquivo
      * esteja vazio, ele retorna a estrutura vazia.
-     * @return <i>Map<"Produto, Integer"></i> com as informações do estoque salvas no arquivo
+     * @return <i>Map</i> com as informações do estoque salvas no arquivo
      * @throws Exception Se ocorrer um problema para abrir ou realizar a leitura do arquivo.
      */
     public static Map<Produto, Integer> openEstoque() throws Exception{
