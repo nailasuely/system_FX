@@ -150,7 +150,7 @@ public class Tecnico extends Pessoa {
                "\nQuantidade de serviços em andamento: "+ qntServicosAndamento +
                "\nQuantidade de serviços em espera: "+ qntServicosEspera +
                "\nTotal de faturamento obtido: "+ totalObtido +
-               "\nQuantidade média de dias de ordem aberta"+ mediaQuantidadeDias +
+               "\nQuantidade média de dias de ordem aberta: "+ mediaQuantidadeDias +
                "\nMédia de sastifação: "+ mediaSastifacao;
     }
 

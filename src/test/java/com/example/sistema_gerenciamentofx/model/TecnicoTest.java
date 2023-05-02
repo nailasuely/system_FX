@@ -104,7 +104,6 @@ public class TecnicoTest {
         DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("211.131.280-03"), Produto.servicoFormatar());
         DAO.getOrdemServicoDAO().atualizarStatusAndamento("300.272.440-83", ordem1);
         ordem1.finalize(3, "pix");
-        System.out.println(tecnico1.gerarRelatorioFinal());
     }
 
 

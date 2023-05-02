@@ -127,10 +127,8 @@ public class ListOrdensServicoTest {
         DAO.getClienteDAO().create(cliente2);
         DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
         DAO.getOrdemServicoDAO().create(ordem2, cliente2.getId(), Produto.servicoInstalar());
-        //System.out.println(DAO.getTecnicoDAO().getList());
         DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("610.819.650-53"), Produto.servicoFormatar());
         DAO.getOrdemServicoDAO().atualizarStatusAndamento("227.605.650-92", ordem1);
-        System.out.println(DAO.getOrdemServicoDAO().agendaAtendimento());
         assertEquals("Tecnico: Mirela Sobrenome\n" +
                 "Ordem em andamento: \n" +
                 "ID da ordem: "+ ordem1.getId()+"\n" +

@@ -27,7 +27,6 @@ public class ListClientesTest {
         cliente1 = new Cliente("Ivete Sobrenome", "Rua ABC, Bahia",
                 "855.332.800-73", 75);
 
-
         cliente2 = new Cliente("Isabel Sobrenome", "Rua XYZ, Bahia",
                 "638.989.410-43", 81);
 

@@ -109,7 +109,6 @@ public class OrdemServicoTest {
                 "065.199.050-54", 81);
         DAO.getTecnicoDAO().create(tecnico3);
         ordem1.setListaProdutos(Produto.novaPlacaMae(), 2);
-    //conferir p evitar erros
         ordem1 = DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("226.379.720-33"), Produto.servicoMontagem());
         DAO.getOrdemServicoDAO().atualizarStatusAndamento("065.199.050-54", ordem1);
         OrdemServico teste;
@@ -140,7 +139,6 @@ public class OrdemServicoTest {
         DAO.getOrdemServicoDAO().create(ordem1, DAO.getClienteDAO().findIdbyCPF("226.379.720-33"), Produto.servicoFormatar());
         DAO.getOrdemServicoDAO().atualizarStatusAndamento("175.406.590-25", ordem1);
         ordem1.finalize(3, "pix");
-        System.out.println(ordem1);
     }
 
     @Test
