@@ -2,11 +2,9 @@ package com.example.sistema_gerenciamentofx;
 
 
 import com.example.sistema_gerenciamentofx.dao.DAO;
-import com.example.sistema_gerenciamentofx.dao.conexao.Connect;
 import com.example.sistema_gerenciamentofx.dao.estoque.SemEstoqueException;
 import com.example.sistema_gerenciamentofx.model.*;
 
-import java.io.IOException;
 import java.util.*;
 
 
@@ -22,7 +20,7 @@ ao decorrer das versões.
  * @author Naila Suele e Rhian Pablo
  * @since 2023
  */
-public class main{
+public class mainTeste {
     public static void main1(String[] args) throws SemEstoqueException, ProdutoErradoException, Exception {
         int escolha = 1; String id;
         int opcao=0;
