@@ -2,14 +2,27 @@ package com.example.sistema_gerenciamentofx.controller;
 
 import com.example.sistema_gerenciamentofx.dao.DAO;
 import com.example.sistema_gerenciamentofx.model.Tecnico;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class LoginController {
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
 
     @FXML
     private Button loginButton;
@@ -24,10 +37,22 @@ public class LoginController {
     private PasswordField password1;
 
     @FXML
+    private Hyperlink registerLink;
+
+    @FXML
     private TextField username;
 
     @FXML
     private TextField username1;
+
+    private ObservableList<Tecnico> tecnicoData;
+    @FXML
+    void initialize() throws Exception {
+        this.tecnicoData = FXCollections.observableArrayList();
+        this.tecnicoData.addAll(DAO.getTecnicoDAO().getList());
+
+    }
+
     //passaword eh o cpf
     @FXML
     void login(ActionEvent event) throws Exception {
@@ -40,8 +65,6 @@ public class LoginController {
         }
         else{
         System.out.println("cpf n existe no sistema ou cpf vazio");}
-
-
 
 
     }
