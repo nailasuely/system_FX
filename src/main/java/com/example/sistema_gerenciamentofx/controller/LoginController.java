@@ -4,10 +4,14 @@ import com.example.sistema_gerenciamentofx.dao.DAO;
 import com.example.sistema_gerenciamentofx.model.Tecnico;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class LoginController {
 
@@ -48,6 +52,17 @@ public class LoginController {
 
     @FXML
     void showRegisterStage(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/register-view.fxml"));
+            Parent root = loader.load();
+            Stage registerStage = new Stage();
+            Scene scene = new Scene(root);
+            registerStage.setScene(scene);
+            registerStage.show();
+        } catch (Exception excep) {
+            excep.printStackTrace();
+        }
+
 
     }
 
