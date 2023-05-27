@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: fffafa;" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistema_gerenciamentofx.controller.RegisterController">
+   <children>
+      <ImageView fitHeight="58.0" fitWidth="94.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/1.png" />
+         </image>
+      </ImageView>
+      <Text fill="#404040" layoutX="23.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sing up" wrappingWidth="167.24869537353516">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="23.0" />
+         </font>
+      </Text>
+      <Text fill="#404040" layoutX="23.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" wrappingWidth="117.24869537353516">
+         <font>
+            <Font name="Calibri Light" size="15.0" />
+         </font>
+      </Text>
+      <Pane layoutX="412.0" layoutY="-51.0" prefHeight="451.0" prefWidth="200.0" style="-fx-background-color: #47077F;">
+         <children>
+            <ImageView fitHeight="284.0" fitWidth="269.0" layoutX="-46.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/5.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="32.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account?" wrappingWidth="136.24869537353516">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="23.0" />
+               </font>
+            </Text>
+            <Button fx:id="loginButton11" layoutX="9.0" layoutY="336.0" mnemonicParsing="false" onAction="#login" prefHeight="32.0" prefWidth="159.0" style="-fx-background-color: #8228D1; -fx-background-radius: 10;" text="SING UP" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <TextField layoutX="14.0" layoutY="151.0" prefHeight="27.0" prefWidth="270.0" style="-fx-border-color: #47077F; -fx-background-insets: fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <Text fill="#404040" layoutX="23.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" wrappingWidth="117.24869537353516">
+         <font>
+            <Font name="Calibri Light" size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="14.0" layoutY="206.0" prefHeight="27.0" prefWidth="270.0" style="-fx-border-color: #47077F; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" />
+      <Text fill="#404040" layoutX="23.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CPF" wrappingWidth="117.24869537353516">
+         <font>
+            <Font name="Calibri Light" size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="14.0" layoutY="255.0" prefHeight="27.0" prefWidth="270.0" style="-fx-border-color: #47077F; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" />
+      <Text fill="#404040" layoutX="23.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone" wrappingWidth="117.24869537353516">
+         <font>
+            <Font name="Calibri Light" size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="14.0" layoutY="305.0" prefHeight="27.0" prefWidth="270.0" style="-fx-border-color: #47077F; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" />
+      <Button fx:id="loginButton1" layoutX="14.0" layoutY="344.0" mnemonicParsing="false" onAction="#login" prefHeight="32.0" prefWidth="270.0" style="-fx-background-color: #47077F; -fx-background-radius: 10;" text="SING UP" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
