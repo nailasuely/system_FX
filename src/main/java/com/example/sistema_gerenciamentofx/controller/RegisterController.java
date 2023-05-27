@@ -56,11 +56,8 @@ public class RegisterController {
             DAO.getTecnicoDAO().create(tecnico);
             System.out.println("Prontinho.");
             System.out.println(DAO.getTecnicoDAO().getList());
-            // Fechar a janela atual
             Stage stage = (Stage) address.getScene().getWindow();
             stage.close();
-
-            // Carregar a tela de login
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/login-view.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
