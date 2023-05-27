@@ -160,6 +160,6 @@ public class Tecnico extends Pessoa {
      */
     @Override
     public String toString() {
-        return "Nome do Tecnico: "+ getFullName() + "\nID do tecnico: "+ getId();
+        return "\nNome do Tecnico: "+ getFullName() + "\nID do tecnico: "+ getId();
     }
 }

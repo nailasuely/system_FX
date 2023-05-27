@@ -5,6 +5,7 @@ import com.example.sistema_gerenciamentofx.model.Tecnico;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -53,17 +54,17 @@ public class LoginController {
     @FXML
     void showRegisterStage(MouseEvent event) {
         try {
+            Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentScreen.close();
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/register-view.fxml"));
             Parent root = loader.load();
             Stage registerStage = new Stage();
             Scene scene = new Scene(root);
+            registerStage.setResizable(false);
             registerStage.setScene(scene);
             registerStage.show();
+
         } catch (Exception excep) {
             excep.printStackTrace();
-        }
-
-
-    }
-
-}
+        }}}

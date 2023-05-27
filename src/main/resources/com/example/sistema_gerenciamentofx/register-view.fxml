@@ -49,25 +49,25 @@
             </Button>
          </children>
       </Pane>
-      <TextField layoutX="14.0" layoutY="151.0" prefHeight="27.0" prefWidth="270.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="fullname1" layoutX="14.0" layoutY="151.0" prefHeight="27.0" prefWidth="270.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
       <Text fill="#404040" layoutX="23.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" wrappingWidth="117.24869537353516">
          <font>
             <Font name="Calibri Light" size="15.0" />
          </font>
       </Text>
-      <TextField layoutX="14.0" layoutY="206.0" prefHeight="27.0" prefWidth="270.0" style="-fx-border-color: #47077F; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="address" layoutX="14.0" layoutY="206.0" prefHeight="27.0" prefWidth="270.0" style="-fx-border-color: #47077F; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" />
       <Text fill="#404040" layoutX="23.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CPF" wrappingWidth="117.24869537353516">
          <font>
             <Font name="Calibri Light" size="15.0" />
          </font>
       </Text>
-      <TextField layoutX="14.0" layoutY="255.0" prefHeight="27.0" prefWidth="270.0" style="-fx-border-color: #47077F; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="cpf" layoutX="14.0" layoutY="255.0" prefHeight="27.0" prefWidth="270.0" style="-fx-border-color: #47077F; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" />
       <Text fill="#404040" layoutX="23.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone" wrappingWidth="117.24869537353516">
          <font>
             <Font name="Calibri Light" size="15.0" />
          </font>
       </Text>
-      <TextField layoutX="14.0" layoutY="305.0" prefHeight="27.0" prefWidth="270.0" style="-fx-border-color: #47077F; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="telephone" layoutX="14.0" layoutY="305.0" prefHeight="27.0" prefWidth="270.0" style="-fx-border-color: #47077F; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" />
       <Button fx:id="loginButton1" layoutX="14.0" layoutY="344.0" mnemonicParsing="false" onAction="#login" prefHeight="32.0" prefWidth="270.0" style="-fx-background-color: #47077F; -fx-background-radius: 10;" text="SING UP" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
