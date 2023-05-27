@@ -8,6 +8,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -18,6 +20,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
+    @FXML
+    private Label OrdersWaiting;
+
     @FXML
     private Button btnManageClients;
 
@@ -40,6 +45,15 @@ public class HomeController implements Initializable {
     private Button btnSignout;
 
     @FXML
+    private Label ordersConcluded;
+
+    @FXML
+    private Label ordersPeding;
+
+    @FXML
+    private Label ordersTotal;
+
+    @FXML
     private VBox pnItems;
 
     @FXML
@@ -53,6 +67,13 @@ public class HomeController implements Initializable {
 
     @FXML
     private Pane pnlOverview;
+
+    @FXML
+    private TextField search_order;
+
+    @FXML
+    private Label techinicianName;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -77,6 +98,8 @@ public class HomeController implements Initializable {
                 e.printStackTrace();
             }
         }
+
+
 
     }
 
@@ -108,6 +131,24 @@ public class HomeController implements Initializable {
             currentScreen.close();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/login-view.fxml"));
+            Parent root = loader.load();
+            Stage loginStage = new Stage();
+            Scene scene = new Scene(root);
+            loginStage.setResizable(false);
+            loginStage.setScene(scene);
+            loginStage.show();
+
+        } catch (Exception excep) {
+            excep.printStackTrace();
+        }
+    }
+    @FXML
+    void showClientsStage(ActionEvent event){
+        try {
+            Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentScreen.close();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/clients-view.fxml"));
             Parent root = loader.load();
             Stage loginStage = new Stage();
             Scene scene = new Scene(root);
