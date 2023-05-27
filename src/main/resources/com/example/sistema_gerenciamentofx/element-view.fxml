@@ -18,7 +18,7 @@
                 <Insets left="10.0" />
             </HBox.margin>
         </ImageView>
-        <Label text="ID" textFill="#47077f" />
+        <Label style="-fx-text-overrun: #fffafa;" text="ID" textFill="#47077f" />
         <Label text="CLIENTE" textFill="#47077f">
             <HBox.margin>
                 <Insets />
@@ -34,7 +34,7 @@
                 <Insets />
             </HBox.margin>
         </Label>
-        <Button mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent;" stylesheets="@css/styles.css" text="active">
+        <Button mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="active">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
