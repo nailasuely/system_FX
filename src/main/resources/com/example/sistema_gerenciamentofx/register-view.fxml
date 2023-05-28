@@ -39,7 +39,7 @@
                   <Font name="Arial Rounded MT Bold" size="23.0" />
                </font>
             </Text>
-            <Button fx:id="loginButton11" layoutX="9.0" layoutY="336.0" mnemonicParsing="false" onAction="#login" prefHeight="32.0" prefWidth="159.0" style="-fx-background-color: #8228D1; -fx-background-radius: 10;" text="SING UP" textFill="WHITE">
+            <Button fx:id="loginButton11" layoutX="9.0" layoutY="336.0" mnemonicParsing="false" onAction="#login" prefHeight="32.0" prefWidth="159.0" style="-fx-background-color: #8228D1; -fx-background-radius: 10;" text="LOGIN" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>

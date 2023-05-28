@@ -44,3 +44,12 @@
     -fx-background-color: black;
 }
 
+.ordens-conluidas{
+    -fx-background-color: #8228D1;
+    -fx-background-radius: 30;
+}
+
+.button-cadastro{
+    -fx-background-color: #8228D1;
+    -fx-background-radius: 30 30 30 30;
+}

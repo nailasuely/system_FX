@@ -1,113 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0" style="-fx-background-color: #fffafa;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistema_gerenciamentofx.controller.TechnicianController">
    <children>
-      <TextField fx:id="search_order" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="Cliente CPF" style="-fx-background-color: #fffafa; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
-      <Label layoutX="57.0" layoutY="25.0" text="Gerenciar tecnico" textFill="#47077f">
+      <Label layoutX="44.0" layoutY="25.0" text="Nome tecnico" textFill="#47077f">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER_LEFT" layoutX="66.0" layoutY="96.0" prefHeight="92.0" prefWidth="661.0" spacing="50.0">
-         <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Label fx:id="ordersTotal" text="22000" textFill="#9f32ab">
-                     <font>
-                        <Font name="System Bold" size="26.0" />
-                     </font>
-                  </Label>
-                  <Label text="Total Orders" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Label fx:id="ordersConcluded" text="1500" textFill="#26bfbc">
-                     <font>
-                        <Font name="System Bold" size="26.0" />
-                     </font>
-                  </Label>
-                  <Label text="Total delivered" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Label fx:id="ordersPeding" text="1000" textFill="#fa5f7e">
-                     <font>
-                        <Font name="System Bold" size="26.0" />
-                     </font>
-                  </Label>
-                  <Label text="Peding Orders" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Label fx:id="OrdersWaiting" text="780" textFill="#de0000">
-                     <font>
-                        <Font name="System Bold" size="26.0" />
-                     </font>
-                  </Label>
-                  <Label text="Orders on Hold" />
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="178.0" prefHeight="42.0" prefWidth="712.0" spacing="80.0" style="-fx-background-color: #fffafa;">
-         <children>
-            <Label text="ID da Ordem" textFill="#47077f">
-               <HBox.margin>
-                  <Insets left="50.0" />
-               </HBox.margin>
-               <font>
-                  <Font name="Segoe UI Historic" size="12.0" />
-               </font>
-            </Label>
-            <Label text="Cliente" textFill="#47077f">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-            <Label text="Data início" textFill="#47077f">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-            <Label text="Valor" textFill="#47077f">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-            <Label text="Status" textFill="#47077f">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-      <ScrollPane layoutX="14.0" layoutY="232.0" prefHeight="320.0" prefWidth="746.0" stylesheets="@style.css">
+      <ScrollPane layoutX="393.0" layoutY="94.0" prefHeight="460.0" prefWidth="400.0" stylesheets="@css/styles.css">
          <content>
-            <VBox fx:id="pnItems" prefHeight="318.0" prefWidth="744.0" spacing="5.0" style="-fx-background-color: #fffafa;">
+            <VBox fx:id="pnItems" prefHeight="459.0" prefWidth="400.0" spacing="5.0" style="-fx-background-color: #fffafa;">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </VBox>
          </content>
       </ScrollPane>
-      <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/icon%20(8).png" />
-         </image>
-      </ImageView>
+      <TextField fx:id="fullname1" layoutX="24.0" layoutY="161.0" prefHeight="27.0" prefWidth="350.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="address" layoutX="24.0" layoutY="211.0" prefHeight="27.0" prefWidth="350.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="telephone" layoutX="24.0" layoutY="264.0" prefHeight="27.0" prefWidth="350.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="cpf" layoutX="24.0" layoutY="313.0" prefHeight="27.0" prefWidth="350.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <VBox alignment="CENTER" layoutX="22.0" layoutY="404.0" prefHeight="100.0" prefWidth="139.0" styleClass="ordens-conluidas" stylesheets="@css/styles.css">
+         <children>
+            <Label prefHeight="47.0" prefWidth="44.0" text="20 " textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="completedOrders" nodeOrientation="LEFT_TO_RIGHT" prefHeight="28.0" prefWidth="153.0" text="  ORDENS CONCLUÍDAS" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="Segoe UI Semibold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Text fill="#404040" layoutX="33.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Completo" wrappingWidth="117.24869537353516">
+         <font>
+            <Font name="Calibri Light" size="15.0" />
+         </font>
+      </Text>
+      <Text fill="#404040" layoutX="33.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Endereço" wrappingWidth="117.24869537353516">
+         <font>
+            <Font name="Calibri Light" size="15.0" />
+         </font>
+      </Text>
+      <Text fill="#404040" layoutX="33.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tefefone" wrappingWidth="117.24869537353516">
+         <font>
+            <Font name="Calibri Light" size="15.0" />
+         </font>
+      </Text>
+      <Text fill="#404040" layoutX="33.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CPF" wrappingWidth="117.24869537353516">
+         <font>
+            <Font name="Calibri Light" size="15.0" />
+         </font>
+      </Text>
+      <Button fx:id="loginButton1" layoutX="24.0" layoutY="354.0" mnemonicParsing="false" onAction="#login" prefHeight="32.0" prefWidth="350.0" style="-fx-background-color: #47077F; -fx-background-radius: 10;" text="ATUALIZAR" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="519.0" layoutY="66.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="28.0" prefWidth="132.0" text="Outros Tecnicos" textAlignment="CENTER" textFill="#47077f" textOverrun="CLIP">
+         <font>
+            <Font name="Calibri" size="17.0" />
+         </font>
+      </Label>
+      <VBox alignment="CENTER" layoutX="176.0" layoutY="404.0" prefHeight="100.0" prefWidth="139.0" styleClass="ordens-conluidas" stylesheets="@css/styles.css">
+         <children>
+            <Label prefHeight="47.0" prefWidth="44.0" text="20 " textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="openOrders" nodeOrientation="LEFT_TO_RIGHT" prefHeight="28.0" prefWidth="153.0" text="   ORDENS EM ABERTO" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="Segoe UI Semibold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Label fx:id="ordersTotal" layoutX="66.0" layoutY="51.0" prefHeight="30.0" prefWidth="139.0" text="212131332232" textFill="#9f32ab">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
