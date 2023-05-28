@@ -131,7 +131,6 @@ public class HomeController implements Initializable {
                 pnlManagerClients.setStyle("-fx-background-color : #fffafa");
                 pnlManagerClients.toFront();
             }
-            // aqui só funciona no primeiro clique
         if (event.getSource() == btnManageTec) {
             pnlManageTec.setStyle("-fx-background-color : #fffafa");
             pnlManageTec.toFront();
