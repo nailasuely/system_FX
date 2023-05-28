@@ -49,7 +49,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnManageClients" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#showClientsStage" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #47077F;" stylesheets="@css/styles.css" text="Gerenciar Clientes">
+            <Button fx:id="btnManageClients" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #47077F;" stylesheets="@css/styles.css" text="Gerenciar Clientes">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -109,7 +109,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#showLoginStage" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #47077F;" stylesheets="@css/styles.css" text="Sign Out">
+            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #47077F;" stylesheets="@css/styles.css" text="Sign Out">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>

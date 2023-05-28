@@ -85,6 +85,7 @@ public class HomeController implements Initializable {
     private Label techinicianName;
 
     private TechnicianController technicianViewController;
+    private ClientsController clientsController;
 
     public void setTechinicianName(String name) {
         this.techinicianName.setText(name);
@@ -157,6 +158,19 @@ public class HomeController implements Initializable {
             {
                 pnlManagerClients.setStyle("-fx-background-color : #fffafa");
                 pnlManagerClients.toFront();
+                try {
+                    //Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    //currentScreen.close();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/clients-view.fxml"));
+                    Pane pane2 = loader.load();{
+                        pnlManagerClients.getChildren().clear();
+                        pnlManagerClients.getChildren().add(pane2);
+                        //clientsController = loader.getController();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
         if (event.getSource() == btnManageTec) {
             pnlManageTec.setStyle("-fx-background-color : #fffafa");

@@ -1,4 +1,4 @@
-package com.example.sistema_gerenciamentofx.controller;
+/*package com.example.sistema_gerenciamentofx.controller;
 
 import com.example.sistema_gerenciamentofx.dao.DAO;
 import com.example.sistema_gerenciamentofx.model.Cliente;
@@ -143,4 +143,82 @@ public class ClientsController implements Initializable {
 
         }
     }
+}
+*/
+
+package com.example.sistema_gerenciamentofx.controller;
+
+import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.model.Cliente;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ClientsController implements Initializable {
+
+    @FXML
+    private VBox pnItems;
+
+    @FXML
+    private Pane pnlOverview;
+
+    @FXML
+    private TextField search_order;
+
+    private ObservableList<Cliente> clientsData;
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        try {
+            this.clientsData = FXCollections.observableArrayList();
+            this.clientsData.addAll(DAO.getClienteDAO().getList());
+            //this.clientsData.setText(Integer.toString(DAO.getOrdemServicoDAO().amountItems()));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+        Node[] nodes = new Node[clientsData.size()];
+        for (int i = 0; i < nodes.length; i++) {
+            try {
+
+                final int j = i;
+                //nodes[i] = FXMLLoader.load(getClass().getResource("/com/example/sistema_gerenciamentofx/element-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/client-element-view.fxml"));
+                nodes[i] = loader.load();
+                ClientElementController clientElementController = loader.getController();
+                clientElementController.setNameClient(clientsData.get(i).getFullName());
+                clientElementController.setCpfClient(clientsData.get(i).getCpf());
+                clientElementController.setTelephoneClient(Integer.toString(clientsData.get(i).getTelephone()));
+                clientElementController.setAdressClient(clientsData.get(i).getAddress());
+                //give the items some effect
+
+                nodes[i].setOnMouseEntered(event -> {
+                    nodes[j].setStyle("-fx-background-color : #0A0E3F");
+                });
+                nodes[i].setOnMouseExited(event -> {
+                    nodes[j].setStyle("-fx-background-color : #fffafa");
+                });
+                pnItems.getChildren().add(nodes[i]);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+    }
+
 }
