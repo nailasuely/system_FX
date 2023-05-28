@@ -36,38 +36,7 @@ public class LoginController {
     @FXML
     private TextField username1;
     //passaword eh o cpf
-
-
-    @FXML
-    void login(KeyEvent event) throws Exception {
-        String passawordText = password1.getText();
-        if(event.getCode() == KeyCode.ENTER) {
-
-
-            if (!passawordText.isEmpty() && DAO.getTecnicoDAO().findByCPFIsTrue(password1.getText())) {
-                System.out.println("pode passar para prox tela");
-                try {
-                    Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    currentScreen.close();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/home-view.fxml"));
-                    Parent root = loader.load();
-                    HomeController homeController = loader.getController();
-                    homeController.setTechinicianName(DAO.getTecnicoDAO().findByCPF(passawordText).getFullName());
-                    Stage registerStage = new Stage();
-                    Scene scene = new Scene(root);
-                    registerStage.setResizable(false);
-                    registerStage.setScene(scene);
-                    registerStage.show();
-
-                } catch (Exception excep) {
-                    excep.printStackTrace();
-                }
-            } else {
-                System.out.println("cpf n existe no sistema ou cpf vazio");
-            }
-        }
-    }
-
+    
     @FXML
     void login(ActionEvent event) throws Exception {
         String passawordText = password1.getText();
