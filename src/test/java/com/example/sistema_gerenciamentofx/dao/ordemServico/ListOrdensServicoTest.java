@@ -37,10 +37,12 @@ public class ListOrdensServicoTest {
 
     @AfterEach
     public void tearDown() throws Exception {
-        DAO.getOrdemServicoDAO().deleteMany();
+       /* DAO.getOrdemServicoDAO().deleteMany();
         DAO.getEstoqueDAO().deleteMany();
         DAO.getTecnicoDAO().deleteMany();
         DAO.getClienteDAO().deleteMany();
+
+        */
     }
 
     @Test

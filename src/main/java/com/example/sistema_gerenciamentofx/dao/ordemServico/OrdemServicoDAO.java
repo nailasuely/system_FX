@@ -59,6 +59,6 @@ public interface OrdemServicoDAO extends CRUD<OrdemServico> {
      * @return <i>String</i> contendo as informações, para apresentação na tela
      */
     public String agendaAtendimento() throws Exception;
-
+    public List<OrdemServico> getListOpening();
 
 }

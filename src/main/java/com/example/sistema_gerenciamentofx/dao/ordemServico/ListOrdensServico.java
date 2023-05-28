@@ -106,7 +106,17 @@ public class ListOrdensServico implements OrdemServicoDAO{
     public List<OrdemServico> getList() {
         return this.listaOrdensServico;
     }
-
+    @Override
+    public List<OrdemServico> getListOpening() {
+        List<OrdemServico> openingOrders = new ArrayList<OrdemServico>();
+        //VERIFICAR SE PRECISA SEPARAR POR DIA, TIPO DEIXAR APARECENDO SO AS ORDENS DAQUELE DIA
+        for (OrdemServico ordem: this.listaOrdensServico) {
+            if(ordem.getStatus().equals("espera")){
+                openingOrders.add(ordem);
+            }
+        }
+        return openingOrders;
+    }
     // essa classe é apenas para não gerar erros no crud;
 
     /**

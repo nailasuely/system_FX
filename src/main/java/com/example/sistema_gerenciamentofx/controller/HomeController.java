@@ -1,5 +1,9 @@
 package com.example.sistema_gerenciamentofx.controller;
 
+import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.model.OrdemServico;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -82,18 +86,38 @@ public class HomeController implements Initializable {
 
     private TechnicianController technicianViewController;
 
+    public void setTechinicianName(String name) {
+        this.techinicianName.setText(name);
+    }
+
+    private ObservableList<OrdemServico> ordersData;
+
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources){
+        try {
+            this.ordersData = FXCollections.observableArrayList();
+            this.ordersData.addAll(DAO.getOrdemServicoDAO().getListOpening());
+            this.ordersTotal.setText(Integer.toString(DAO.getOrdemServicoDAO().amountItems()));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         // ISSO AQUI É APENAS PARA FINS DE TESTE
-        Node[] nodes = new Node[10];
+        Node[] nodes = new Node[ordersData.size()];
         for (int i = 0; i < nodes.length; i++) {
             try {
 
                 final int j = i;
-                nodes[i] = FXMLLoader.load(getClass().getResource("/com/example/sistema_gerenciamentofx/element-view.fxml"));
-
+                //nodes[i] = FXMLLoader.load(getClass().getResource("/com/example/sistema_gerenciamentofx/element-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/element-view.fxml"));
+                nodes[i] = loader.load();
+                ElementController elementController = loader.getController();
+                elementController.setClientName(DAO.getClienteDAO().findById(ordersData.get(i).getClientId()).getFullName());
+                elementController.setDateOrder(ordersData.get(i).getStart());
+                elementController.setIdOrder(ordersData.get(i).getId());
+                elementController.setStatusOrder(ordersData.get(i).getStatus());
+                elementController.setValueOrder(Double.toString(ordersData.get(i).getPrice()));
                 //give the items some effect
 
                 nodes[i].setOnMouseEntered(event -> {
@@ -105,7 +129,10 @@ public class HomeController implements Initializable {
                 pnItems.getChildren().add(nodes[i]);
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (Exception e){
+                e.printStackTrace();
             }
+
         }
 
 

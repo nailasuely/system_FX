@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox fx:id="itemC" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="695.0" spacing="80.0" style="-fx-background-color: #fffafa; -fx-background-radius: 5; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistema_gerenciamentofx.controller.ElementController">
+<HBox fx:id="itemC" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="695.0" spacing="8.0" style="-fx-background-color: #fffafa; -fx-background-radius: 5; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistema_gerenciamentofx.controller.ElementController">
     <children>
         <ImageView fitHeight="58.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -18,23 +18,23 @@
                 <Insets left="10.0" />
             </HBox.margin>
         </ImageView>
-        <Label style="-fx-text-overrun: #fffafa;" text="ID" textFill="#47077f" />
-        <Label text="CLIENTE" textFill="#47077f">
+        <Label fx:id="idOrder" prefHeight="18.0" prefWidth="130.0" style="-fx-text-overrun: #fffafa;" text="ID" textFill="#47077f" />
+        <Label fx:id="clientName" prefHeight="18.0" prefWidth="230.0" text="CLIENTE" textFill="#47077f">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
         </Label>
-        <Label text="10/11/2018" textFill="#47077f">
+        <Label fx:id="dateOrder" prefHeight="18.0" prefWidth="86.0" text="10/11/2018" textFill="#47077f">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
         </Label>
-        <Label text="\$100" textFill="#47077f">
+        <Label fx:id="valueOrder" prefHeight="18.0" prefWidth="65.0" stylesheets="@css/styles.css" text="\$100" textFill="#47077f">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
         </Label>
-        <Button mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="active">
+        <Button fx:id="statusOrder" mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="active">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
