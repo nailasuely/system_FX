@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -63,16 +64,24 @@ public class HomeController implements Initializable {
     private Pane pnlManageStock;
 
     @FXML
-    private Pane pnlOrders;
+    private Pane pnlManagerClients;
 
     @FXML
+    private Pane pnlManageTec;
+    @FXML
     private Pane pnlOverview;
+
+    @FXML
+    private Pane pane;
 
     @FXML
     private TextField search_order;
 
     @FXML
     private Label techinicianName;
+
+    private TechnicianController technicianViewController;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -110,7 +119,7 @@ public class HomeController implements Initializable {
                 pnlManageStock.toFront();
             }
             if (event.getSource() == btnManageOrders) {
-                pnlManageOrders.setStyle("-fx-background-color : #8228D1");
+                pnlManageOrders.setStyle("-fx-background-color : #010333");
                 pnlManageOrders.toFront();
             }
             if (event.getSource() == btnOverview) {
@@ -119,9 +128,27 @@ public class HomeController implements Initializable {
             }
             if(event.getSource() == btnManageClients)
             {
-                pnlOrders.setStyle("-fx-background-color : #fffafa");
-                pnlOrders.toFront();
+                pnlManagerClients.setStyle("-fx-background-color : #fffafa");
+                pnlManagerClients.toFront();
             }
+            // aqui só funciona no primeiro clique
+        if (event.getSource() == btnManageTec) {
+            pnlManageTec.setStyle("-fx-background-color : #fffafa");
+            pnlManageTec.toFront();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/technician-view.fxml"));
+                Pane pane1 = loader.load();{
+                    pnlManageTec.getChildren().clear();
+                    pnlManageTec.getChildren().add(pane1);
+
+                    technicianViewController = loader.getController();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
     }
 
     @FXML
@@ -160,4 +187,17 @@ public class HomeController implements Initializable {
             excep.printStackTrace();
         }
     }
+
+    private void loadPage(String view) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/" + view + "-view.fxml"));
+            Parent root = loader.load();
+            pane.getChildren().clear();
+            pane.getChildren().add(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
