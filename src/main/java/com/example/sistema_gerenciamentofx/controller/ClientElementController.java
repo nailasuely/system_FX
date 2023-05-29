@@ -74,7 +74,6 @@ public class ClientElementController {
             clientsController.updateClientList();
         }
         if (event.getSource() == updateClient) {
-            System.out.println("opa");
             clientsController.getPnlUpdate().setStyle("-fx-background-color : #fffafa");
             clientsController.getPnlUpdate().toFront();
             try {

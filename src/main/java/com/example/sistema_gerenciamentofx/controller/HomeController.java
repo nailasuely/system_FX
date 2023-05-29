@@ -1,6 +1,7 @@
 package com.example.sistema_gerenciamentofx.controller;
 
 import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.model.Cliente;
 import com.example.sistema_gerenciamentofx.model.OrdemServico;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -94,7 +95,7 @@ public class HomeController implements Initializable {
     private ObservableList<OrdemServico> ordersData;
 
 
-    @Override
+    /*@Override
     public void initialize(URL location, ResourceBundle resources){
         try {
             this.ordersData = FXCollections.observableArrayList();
@@ -108,7 +109,6 @@ public class HomeController implements Initializable {
         Node[] nodes = new Node[ordersData.size()];
         for (int i = 0; i < nodes.length; i++) {
             try {
-
                 final int j = i;
                 //nodes[i] = FXMLLoader.load(getClass().getResource("/com/example/sistema_gerenciamentofx/element-view.fxml"));
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/element-view.fxml"));
@@ -139,7 +139,60 @@ public class HomeController implements Initializable {
 
 
 
+    }*/
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            this.ordersData = FXCollections.observableArrayList();
+            this.ordersData.addAll(DAO.getOrdemServicoDAO().getListOpening());
+            this.ordersTotal.setText(Integer.toString(DAO.getOrdemServicoDAO().amountItems()));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        // ISSO AQUI É APENAS PARA FINS DE TESTE
+        Node[] nodes = new Node[ordersData.size()];
+        for (int i = 0; i < nodes.length; i++) {
+            try {
+                final int j = i;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/element-view.fxml"));
+                nodes[i] = loader.load();
+                ElementController elementController = loader.getController();
+                OrdemServico order = ordersData.get(i);
+                Cliente cliente = DAO.getClienteDAO().findById(order.getClientId());
+                if (cliente != null) {
+                        elementController.setClientName(DAO.getClienteDAO().findById(ordersData.get(i).getClientId()).getFullName());
+                }
+                else {
+                        elementController.setClientName("Sem cliente até o momento.");
+                    }
+                if (order.getStart() != null) {
+                    elementController.setDateOrder(order.getStart());
+                }
+
+                elementController.setIdOrder(order.getId());
+
+                if (order.getStatus() != null) {
+                    elementController.setStatusOrder(order.getStatus());
+                }
+                elementController.setValueOrder(Double.toString(order.getPrice()));
+                nodes[i].setOnMouseEntered(event -> {
+                    nodes[j].setStyle("-fx-background-color : #0A0E3F");
+                });
+                nodes[i].setOnMouseExited(event -> {
+                    nodes[j].setStyle("-fx-background-color : #fffafa");
+                });
+                pnItems.getChildren().add(nodes[i]);
+                pnlOverview.toFront();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
+
 
     @FXML
     void handleClicks(ActionEvent event) {
