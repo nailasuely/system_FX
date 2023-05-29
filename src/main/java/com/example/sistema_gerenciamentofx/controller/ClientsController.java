@@ -32,36 +32,51 @@ public class ClientsController implements Initializable {
     @FXML
     private Pane pnlView;
 
+    private AddNewClientController addNewClientController;
 
+    public void setAddNewClientController(AddNewClientController addNewClientController1) {
+        this.addNewClientController= addNewClientController1;
+    }
+    public void showViewPane() {
+        pnlView.toFront();
+
+    }
+
+    public void clearViewPane() {
+        pnItems.getChildren().clear();
+    }
     @FXML
     void login(ActionEvent event) {
         if (event.getSource() == bttAdd) {
-        pnlAddClient.setStyle("-fx-background-color : #fffafa");
-        pnlAddClient.toFront();
-        try {
-            //Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            //currentScreen.close();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/add-new-client-view.fxml"));
-            Pane pane2 = loader.load();{
+            pnlAddClient.setStyle("-fx-background-color : #fffafa");
+            pnlAddClient.toFront();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/add-new-client-view.fxml"));
+                Pane pane2 = loader.load();
+
+                AddNewClientController addNewClientController = loader.getController();
+                addNewClientController.setClientsController(this);
+
                 pnlAddClient.getChildren().clear();
                 pnlAddClient.getChildren().add(pane2);
-                //clientsController = loader.getController();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         }
 
         if (event.getSource() == bttView) {
             pnlView.toFront();
         }
     }
+
     private ObservableList<Cliente> clientsData;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        updateClientList();
+    }
+    public void updateClientList() {
         try {
             this.clientsData = FXCollections.observableArrayList();
             this.clientsData.addAll(DAO.getClienteDAO().getList());
@@ -69,8 +84,6 @@ public class ClientsController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-
         Node[] nodes = new Node[clientsData.size()];
         for (int i = 0; i < nodes.length; i++) {
             try {
@@ -93,6 +106,7 @@ public class ClientsController implements Initializable {
                     nodes[j].setStyle("-fx-background-color : #fffafa");
                 });
                 pnItems.getChildren().add(nodes[i]);
+                clientElementController.setClientsController(this);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (Exception e){
@@ -100,7 +114,35 @@ public class ClientsController implements Initializable {
             }
 
         }
-    }
 
-}
+
+
+       /* pnItems.getChildren().clear();
+
+        for (Cliente client : clientsData) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/client-element-view.fxml"));
+                Node node = loader.load();
+                ClientElementController clientElementController = loader.getController();
+                clientElementController.setNameClient(client.getFullName());
+                clientElementController.setCpfClient(client.getCpf());
+                clientElementController.setTelephoneClient(Integer.toString(client.getTelephone()));
+                clientElementController.setAdressClient(client.getAddress());
+
+                node.setOnMouseEntered(event -> {
+                    node.setStyle("-fx-background-color : #0A0E3F");
+                });
+                node.setOnMouseExited(event -> {
+                    node.setStyle("-fx-background-color : #fffafa");
+                });
+                pnItems.getChildren().add(node);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }*/
+
+
+
+}}
 

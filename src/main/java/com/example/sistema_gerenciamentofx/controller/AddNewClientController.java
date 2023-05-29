@@ -28,7 +28,11 @@ public class AddNewClientController {
 
     @FXML
     private TextField telephone;
+    private ClientsController clientsController;
 
+    public void setClientsController(ClientsController clientsController) {
+        this.clientsController = clientsController;
+    }
     @FXML
     void login(ActionEvent event) throws Exception {
         String addressText = address.getText();
@@ -37,22 +41,17 @@ public class AddNewClientController {
         String telephoneText = telephone.getText();
 
         if (addressText.isEmpty() || cpfText.isEmpty() || fullnameText.isEmpty() || telephoneText.isEmpty()) {
-            System.out.println("Erro, algum campo não foi digitado.");
+            System.out.println("Algum campo não foi digitado.");
         } else {
-            int telephoneNumber = Integer.parseInt(telephoneText);
-            Cliente cliente = new Cliente(fullnameText, addressText,
-                    cpfText,  Integer.parseInt(telephoneText));
+            Cliente cliente = new Cliente(fullnameText, addressText, cpfText,  Integer.parseInt(telephoneText));
             DAO.getClienteDAO().create(cliente);
-            System.out.println("Prontinho.");
-            System.out.println(DAO.getClienteDAO().getList());
-            Stage stage = (Stage) address.getScene().getWindow();
-            stage.close();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/home-view.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage loginStage = new Stage();
-            loginStage.setScene(scene);
-            loginStage.show();
+
+            if (clientsController != null) {
+                clientsController.clearViewPane();
+                clientsController.updateClientList();
+                clientsController.showViewPane();
+
+            }
         }
 
     }
