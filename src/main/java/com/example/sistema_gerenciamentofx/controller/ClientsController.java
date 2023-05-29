@@ -22,11 +22,7 @@ public class ClientsController implements Initializable {
     private Button bttAdd;
 
     @FXML
-    private Button bttAtt;
-
-    @FXML
     private Button bttView;
-
     @FXML
     private VBox pnItems;
     @FXML

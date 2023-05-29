@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane prefHeight="389.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistema_gerenciamentofx.controller.AddNewClientController">
    <children>
       <Label layoutX="302.0" layoutY="89.0" text="Novo cliente" textFill="#47077f">
@@ -16,7 +15,7 @@
          </font>
       </Label>
       <TextField fx:id="fullname1" layoutX="21.0" layoutY="155.0" prefHeight="27.0" prefWidth="337.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
-      <TextField fx:id="Address" layoutX="408.0" layoutY="155.0" prefHeight="27.0" prefWidth="337.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="address" layoutX="408.0" layoutY="155.0" prefHeight="27.0" prefWidth="337.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
       <TextField fx:id="cpf" layoutX="21.0" layoutY="215.0" prefHeight="27.0" prefWidth="337.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
       <TextField fx:id="telephone" layoutX="405.0" layoutY="215.0" prefHeight="27.0" prefWidth="343.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
       <Button fx:id="loginButton1" layoutX="249.0" layoutY="276.0" mnemonicParsing="false" onAction="#login" prefHeight="32.0" prefWidth="270.0" style="-fx-background-color: #47077F; -fx-background-radius: 10;" text="CADASTRAR CLIENTE" textFill="WHITE">
