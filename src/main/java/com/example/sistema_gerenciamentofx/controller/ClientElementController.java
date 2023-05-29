@@ -4,10 +4,14 @@ import com.example.sistema_gerenciamentofx.dao.DAO;
 import com.example.sistema_gerenciamentofx.model.Cliente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+
+import java.io.IOException;
 
 public class ClientElementController {
 
@@ -69,8 +73,21 @@ public class ClientElementController {
             clientsController.clearViewPane();
             clientsController.updateClientList();
         }
-
+        if (event.getSource() == updateClient) {
+            System.out.println("opa");
+            clientsController.getPnlUpdate().setStyle("-fx-background-color : #fffafa");
+            clientsController.getPnlUpdate().toFront();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/update-client-view.fxml"));
+                Pane pane2 = loader.load();
+                clientsController.getPnlUpdate().getChildren().clear();
+                clientsController.getPnlUpdate().getChildren().add(pane2);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            }
         }
+
 }
 
 

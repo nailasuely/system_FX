@@ -31,6 +31,8 @@ public class ClientsController implements Initializable {
     private Pane pnlOverview;
     @FXML
     private Pane pnlView;
+    @FXML
+    private Pane pnlUpdate;
 
     private AddNewClientController addNewClientController;
 
@@ -45,6 +47,16 @@ public class ClientsController implements Initializable {
     public void clearViewPane() {
         pnItems.getChildren().clear();
     }
+
+    public void showUpdatePane() {
+        pnlUpdate.toFront();
+
+    }
+
+    public Pane getPnlUpdate() {
+        return pnlUpdate;
+    }
+
     @FXML
     void login(ActionEvent event) {
         if (event.getSource() == bttAdd) {
