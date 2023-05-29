@@ -128,6 +128,7 @@ public class HomeController implements Initializable {
                     nodes[j].setStyle("-fx-background-color : #fffafa");
                 });
                 pnItems.getChildren().add(nodes[i]);
+                pnlOverview.toFront();
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (Exception e){

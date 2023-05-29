@@ -75,6 +75,7 @@ public class ClientsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         updateClientList();
+        pnlView.toFront();
     }
     public void updateClientList() {
         try {
