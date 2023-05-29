@@ -34,11 +34,7 @@
             <Insets />
          </HBox.margin>
       </Label>
-      <Button fx:id="updateClient" mnemonicParsing="false" onAction="#handleClicks" prefHeight="10.0" prefWidth="60.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="update">
-         <HBox.margin>
-            <Insets />
-         </HBox.margin>
-      </Button>
+      <Button fx:id="updateClient" mnemonicParsing="false" onAction="#handleClicks" prefHeight="10.0" prefWidth="60.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="update" />
       <Button fx:id="deleteClient" mnemonicParsing="false" onAction="#handleClicks" prefHeight="10.0" prefWidth="60.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="delete" />
    </children>
    <effect>

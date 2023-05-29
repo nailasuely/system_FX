@@ -68,7 +68,8 @@ public class ClientElementController {
             DAO.getClienteDAO().delete(getCpfClient().getText());
             clientsController.clearViewPane();
             clientsController.updateClientList();
-    }
+        }
+
         }
 }
 

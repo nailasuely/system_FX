@@ -78,5 +78,6 @@
             </Button>
          </children>
       </HBox>
+      <Pane fx:id="pnlUpdate" layoutY="186.0" prefHeight="389.0" prefWidth="793.0" />
    </children>
 </Pane>
