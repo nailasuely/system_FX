@@ -29,6 +29,9 @@ public class ClientsController implements Initializable {
     private Pane pnlAddClient;
     @FXML
     private Pane pnlOverview;
+    @FXML
+    private Pane pnlView;
+
 
     @FXML
     void login(ActionEvent event) {
@@ -50,21 +53,7 @@ public class ClientsController implements Initializable {
         }
 
         if (event.getSource() == bttView) {
-            pnlOverview.setStyle("-fx-background-color : #fffafa");
-            pnlOverview.toFront();
-            try {
-                //Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                //currentScreen.close();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/clients-view.fxml"));
-                Pane pane2 = loader.load();{
-                    pnlOverview.getChildren().clear();
-                    pnlOverview.getChildren().add(pane2);
-                    //clientsController = loader.getController();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
+            pnlView.toFront();
         }
     }
     private ObservableList<Cliente> clientsData;

@@ -19,7 +19,7 @@
          </font>
       </Label>
       <Pane fx:id="pnlAddClient" layoutX="2.0" layoutY="170.0" prefHeight="389.0" prefWidth="793.0" />
-      <Pane layoutX="1.0" layoutY="165.0" prefHeight="389.0" prefWidth="793.0">
+      <Pane fx:id="pnlView" layoutX="1.0" layoutY="165.0" prefHeight="389.0" prefWidth="793.0">
          <children>
             <ScrollPane layoutX="24.0" layoutY="56.0" prefHeight="320.0" prefWidth="746.0" stylesheets="@css/styles.css">
                <content>
@@ -71,7 +71,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="bttView" mnemonicParsing="false" prefHeight="100.0" prefWidth="159.0" styleClass="button-cadastro" stylesheets="@css/styles.css" text="VISUALIZAR">
+            <Button fx:id="bttView" mnemonicParsing="false" onAction="#login" prefHeight="100.0" prefWidth="159.0" styleClass="button-cadastro" stylesheets="@css/styles.css" text="VISUALIZAR">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
