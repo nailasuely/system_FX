@@ -113,7 +113,7 @@ public class ClientsController implements Initializable {
                 //give the items some effect
 
                 nodes[i].setOnMouseEntered(event -> {
-                    nodes[j].setStyle("-fx-background-color : #0A0E3F");
+                    nodes[j].setStyle("-fx-background-color : #7c57d1");
                 });
                 nodes[i].setOnMouseExited(event -> {
                     nodes[j].setStyle("-fx-background-color : #fffafa");

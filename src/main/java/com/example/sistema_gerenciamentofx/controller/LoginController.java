@@ -36,7 +36,7 @@ public class LoginController {
     @FXML
     private TextField username1;
     //passaword eh o cpf
-    
+
     @FXML
     void login(ActionEvent event) throws Exception {
         String passawordText = password1.getText();

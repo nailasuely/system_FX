@@ -9,7 +9,7 @@
 
 <Pane prefHeight="389.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistema_gerenciamentofx.controller.AddNewClientController">
    <children>
-      <Label layoutX="302.0" layoutY="89.0" text="Novo cliente" textFill="#47077f">
+      <Label layoutX="328.0" layoutY="93.0" text="Novo cliente" textFill="#47077f">
          <font>
             <Font size="20.0" />
          </font>

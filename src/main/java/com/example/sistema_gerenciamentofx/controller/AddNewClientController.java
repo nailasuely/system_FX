@@ -6,13 +6,17 @@ import com.example.sistema_gerenciamentofx.model.Tecnico;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class AddNewClientController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AddNewClientController implements Initializable {
 
     @FXML
     private TextField address;
@@ -33,6 +37,14 @@ public class AddNewClientController {
     public void setClientsController(ClientsController clientsController) {
         this.clientsController = clientsController;
     }
+
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
     @FXML
     void login(ActionEvent event) throws Exception {
         String addressText = address.getText();

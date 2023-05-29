@@ -14,7 +14,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="fullname1" layoutX="21.0" layoutY="155.0" prefHeight="27.0" prefWidth="337.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="fullname1" layoutX="21.0" layoutY="155.0" prefHeight="27.0" prefWidth="337.0" promptText="name" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
       <TextField fx:id="address" layoutX="408.0" layoutY="155.0" prefHeight="27.0" prefWidth="337.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
       <TextField fx:id="cpf" layoutX="21.0" layoutY="215.0" prefHeight="27.0" prefWidth="337.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
       <TextField fx:id="telephone" layoutX="405.0" layoutY="215.0" prefHeight="27.0" prefWidth="343.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />

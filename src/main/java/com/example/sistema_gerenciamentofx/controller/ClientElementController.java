@@ -79,6 +79,8 @@ public class ClientElementController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/update-client-view.fxml"));
                 Pane pane2 = loader.load();
+                
+
                 clientsController.getPnlUpdate().getChildren().clear();
                 clientsController.getPnlUpdate().getChildren().add(pane2);
             } catch (IOException e) {
