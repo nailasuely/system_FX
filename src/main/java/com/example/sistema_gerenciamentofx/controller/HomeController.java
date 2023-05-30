@@ -87,9 +87,14 @@ public class HomeController implements Initializable {
 
     private TechnicianController technicianViewController;
     private ClientsController clientsController;
-
-    public void setTechinicianName(String name) {
-        this.techinicianName.setText(name);
+    private String cpfTecnico;
+    public void setTechinicianCpf(String cpf) {
+        this.cpfTecnico = cpf;
+        try {
+            this.techinicianName.setText(DAO.getTecnicoDAO().findByCPF(cpf).getFullName());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private ObservableList<OrdemServico> ordersData;
@@ -234,8 +239,9 @@ public class HomeController implements Initializable {
                 Pane pane1 = loader.load();{
                     pnlManageTec.getChildren().clear();
                     pnlManageTec.getChildren().add(pane1);
-
-                    technicianViewController = loader.getController();
+                    //technicianViewController = loader.getController();
+                    TechnicianController technicianController = loader.getController();
+                    technicianController.setInformationsBase(this.cpfTecnico, this.techinicianName.getText());
                 }
             } catch (IOException e) {
                 e.printStackTrace();

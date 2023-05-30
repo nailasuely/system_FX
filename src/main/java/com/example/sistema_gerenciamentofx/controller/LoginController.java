@@ -48,7 +48,7 @@ public class LoginController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/home-view.fxml"));
                 Parent root = loader.load();
                 HomeController homeController = loader.getController();
-                homeController.setTechinicianName(DAO.getTecnicoDAO().findByCPF(passawordText).getFullName());
+                homeController.setTechinicianCpf(passawordText);
                 Stage registerStage = new Stage();
                 Scene scene = new Scene(root);
                 registerStage.setResizable(false);

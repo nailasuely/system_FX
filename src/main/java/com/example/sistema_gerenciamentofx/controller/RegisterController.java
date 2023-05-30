@@ -8,6 +8,7 @@ import com.example.sistema_gerenciamentofx.model.Tecnico;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -67,6 +68,23 @@ public class RegisterController {
         }
     }
 
+    @FXML
+    void showLoginStage(ActionEvent event) {
+        try {
+            Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentScreen.close();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/login-view.fxml"));
+            Parent root = loader.load();
+            Stage loginStage = new Stage();
+            Scene scene = new Scene(root);
+            loginStage.setResizable(false);
+            loginStage.setScene(scene);
+            loginStage.show();
+
+        } catch (Exception excep) {
+            excep.printStackTrace();
+        }
+    }
     @FXML
     void initialize() {
         assert address != null : "fx:id=\"address\" was not injected: check your FXML file 'register-view.fxml'.";
