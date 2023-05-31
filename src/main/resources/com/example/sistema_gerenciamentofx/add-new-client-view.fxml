@@ -4,21 +4,25 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane prefHeight="389.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistema_gerenciamentofx.controller.AddNewClientController">
    <children>
-      <Label layoutX="328.0" layoutY="93.0" text="Novo cliente" textFill="#47077f">
+      <Label layoutX="21.0" layoutY="53.0" prefHeight="50.0" prefWidth="231.0" text="Register a new Client" textFill="#47077f">
          <font>
-            <Font size="20.0" />
+            <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="fullname1" layoutX="21.0" layoutY="155.0" prefHeight="27.0" prefWidth="337.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
-      <TextField fx:id="address" layoutX="408.0" layoutY="155.0" prefHeight="27.0" prefWidth="337.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
-      <TextField fx:id="cpf" layoutX="21.0" layoutY="215.0" prefHeight="27.0" prefWidth="337.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
-      <TextField fx:id="telephone" layoutX="405.0" layoutY="215.0" prefHeight="27.0" prefWidth="343.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
-      <Button fx:id="loginButton1" layoutX="249.0" layoutY="276.0" mnemonicParsing="false" onAction="#login" prefHeight="32.0" prefWidth="270.0" style="-fx-background-color: #47077F; -fx-background-radius: 10;" text="CADASTRAR CLIENTE" textFill="WHITE">
+      <TextField fx:id="fullname1" layoutX="34.0" layoutY="139.0" prefHeight="27.0" prefWidth="340.0" promptText="Fulano Da Siva Santos" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="cpf" layoutX="34.0" layoutY="188.0" prefHeight="27.0" prefWidth="339.0" promptText="000.111.222-33" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="address" layoutX="34.0" layoutY="237.0" prefHeight="27.0" prefWidth="339.0" promptText="Av: Getulio Vargas, N111, AlphaVIlle, Feira De Santa - BA" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="telephone" layoutX="35.0" layoutY="288.0" prefHeight="27.0" prefWidth="337.0" promptText="75 91234 5678" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <Button fx:id="loginButton1" layoutX="76.0" layoutY="333.0" mnemonicParsing="false" onAction="#login" prefHeight="32.0" prefWidth="270.0" style="-fx-background-color: #47077F; -fx-background-radius: 10;" text="CADASTRAR CLIENTE" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
@@ -26,25 +30,41 @@
             <Font name="Calibri Bold" size="15.0" />
          </font>
       </Button>
-      <Label layoutX="143.0" layoutY="138.0" text="Nome Cliente" textFill="#47077f">
+      <Label layoutX="49.0" layoutY="119.0" prefHeight="20.0" prefWidth="99.0" text="Nome Cliente" textFill="#47077f">
          <font>
-            <Font name="Segoe UI Historic" size="12.0" />
+            <Font name="Segoe UI Historic" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="547.0" layoutY="138.0" text="Endereço" textFill="#47077f">
+      <Label layoutX="49.0" layoutY="218.0" prefHeight="20.0" prefWidth="69.0" text="Endereço" textFill="#47077f">
          <font>
-            <Font name="Segoe UI Historic" size="12.0" />
+            <Font name="Segoe UI Historic" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="169.0" layoutY="195.0" text="CPF" textFill="#47077f">
+      <Label layoutX="50.0" layoutY="168.0" prefHeight="20.0" prefWidth="36.0" text="CPF" textFill="#47077f">
          <font>
-            <Font name="Segoe UI Historic" size="12.0" />
+            <Font name="Segoe UI Historic" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="549.0" layoutY="195.0" text="Telefone" textFill="#47077f">
+      <Label layoutX="48.0" layoutY="268.0" prefHeight="20.0" prefWidth="69.0" text="Telefone" textFill="#47077f">
          <font>
-            <Font name="Segoe UI Historic" size="12.0" />
+            <Font name="Segoe UI Historic" size="14.0" />
          </font>
       </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#47077f" height="389.0" layoutX="470.0" stroke="TRANSPARENT" strokeType="INSIDE" width="315.0" />
+      <ImageView fitHeight="244.0" fitWidth="241.0" layoutX="470.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+         <image>
+            <Image url="@images/5.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="232.0" fitWidth="263.0" layoutX="553.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/5.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="527.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Say hello, to the new experience in assistance!" wrappingWidth="200.6947021484375">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="28.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

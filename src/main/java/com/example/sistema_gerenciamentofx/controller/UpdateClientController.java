@@ -1,5 +1,7 @@
 package com.example.sistema_gerenciamentofx.controller;
 
+import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.model.Cliente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,25 +33,34 @@ public class UpdateClientController implements Initializable {
         this.clientsController = clientsController;
     }
 
-    public void setAddress(String currentAddress) {
-        this.address.setPromptText(currentAddress);
+    public void setInfos(String currentAddress, String currentCpf, String currentFullName, String CurrentTelephone) {
+        this.address.setText(currentAddress);
+        this.cpf.setText(currentCpf);
+        this.fullname1.setText(currentFullName);
+        this.telephone.setText(CurrentTelephone);
     }
-
-    public void setCpf(String currentCpf) {
-        this.cpf.setPromptText(currentCpf);
-    }
-
-    public void setFullname1(String currentFullName) {
-        this.fullname1.setPromptText(currentFullName);
-    }
-
-    public void setTelephone(String CurrentTelephone) {
-        this.telephone.setPromptText(CurrentTelephone);
-    }
-
     @FXML
-    void login(ActionEvent event) {
+    void updateClient(ActionEvent event) {
+        try {
+            String nameText = fullname1.getText();
+            String adressText = address.getText();
+            String cpfText = cpf.getText();
+            String telephoneText = telephone.getText();
+            Cliente cliente = DAO.getClienteDAO().findByCPF(cpfText);
+            cliente.setAddress(adressText);
+            cliente.setTelephone(Integer.parseInt(telephoneText));
+            cliente.setCpf(cpfText);
+            cliente.setFullName(nameText);
+            DAO.getClienteDAO().update(cliente);
+            clientsController.getPnlUpdate().getChildren().clear();
+            clientsController.clearViewPane();
+            clientsController.updateClientList();
+            clientsController.showViewPane();
 
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

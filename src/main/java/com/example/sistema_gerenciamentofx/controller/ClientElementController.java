@@ -48,9 +48,7 @@ public class ClientElementController {
         this.cpfClient.setText(cpf);
     }
 
-    public Label getCpfClient() {
-        return cpfClient;
-    }
+
 
     public void setNameClient(String name) {
         this.nameClient.setText(name);
@@ -65,11 +63,26 @@ public class ClientElementController {
         this.cliente = cliente;
     }
 
+    public String getAdressClient() {
+        return adressClient.getText();
+    }
+
+    public String getNameClient() {
+        return nameClient.getText();
+    }
+
+    public String getTelephoneClient() {
+        return telephoneClient.getText();
+    }
+
+    public String getCpfClient(){
+        return cpfClient.getText();
+    }
     @FXML
     void handleClicks(ActionEvent event) throws Exception {
         if (event.getSource() == deleteClient) {
-            System.out.println(getCpfClient().getText());
-            DAO.getClienteDAO().delete(getCpfClient().getText());
+            System.out.println(getCpfClient());
+            DAO.getClienteDAO().delete(getCpfClient());
             clientsController.clearViewPane();
             clientsController.updateClientList();
         }
@@ -80,8 +93,9 @@ public class ClientElementController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/update-client-view.fxml"));
                 Pane pane2 = loader.load();
-                
-
+                UpdateClientController updateClientController = loader.getController();
+                updateClientController.setInfos(getAdressClient(),getCpfClient(),getNameClient(),getTelephoneClient());
+                updateClientController.setClientsController(clientsController);
                 clientsController.getPnlUpdate().getChildren().clear();
                 clientsController.getPnlUpdate().getChildren().add(pane2);
             } catch (IOException e) {

@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox fx:id="itemC" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="695.0" spacing="8.0" style="-fx-background-color: #fffafa; -fx-background-radius: 5; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistema_gerenciamentofx.controller.ElementController">
+<HBox fx:id="itemC" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="718.0" spacing="8.0" style="-fx-background-color: #fffafa; -fx-background-radius: 5; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistema_gerenciamentofx.controller.ElementController">
     <children>
         <ImageView fitHeight="58.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -18,7 +18,7 @@
                 <Insets left="10.0" />
             </HBox.margin>
         </ImageView>
-        <Label fx:id="idOrder" prefHeight="18.0" prefWidth="130.0" text="ID" textFill="#47077f" />
+        <Label fx:id="idOrder" prefHeight="18.0" prefWidth="146.0" text="ID" textFill="#47077f" />
         <Label fx:id="clientName" prefHeight="18.0" prefWidth="230.0" text="CLIENTE" textFill="#47077f">
             <HBox.margin>
                 <Insets />

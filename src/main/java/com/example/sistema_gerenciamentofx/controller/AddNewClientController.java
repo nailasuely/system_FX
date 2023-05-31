@@ -7,10 +7,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -34,6 +36,11 @@ public class AddNewClientController implements Initializable {
     private TextField telephone;
     private ClientsController clientsController;
 
+    private Pane pnl;
+
+    public void setPnl(Pane pnlChildren){
+        this.pnl = pnlChildren;
+    }
     public void setClientsController(ClientsController clientsController) {
         this.clientsController = clientsController;
     }
@@ -59,7 +66,8 @@ public class AddNewClientController implements Initializable {
             DAO.getClienteDAO().create(cliente);
 
             if (clientsController != null) {
-                clientsController.clearViewPane();
+                pnl.getChildren().clear();
+                clientsController.getPnlUpdate().getChildren().clear();
                 clientsController.updateClientList();
                 clientsController.showViewPane();
 

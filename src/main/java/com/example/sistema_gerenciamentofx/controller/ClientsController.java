@@ -68,7 +68,7 @@ public class ClientsController implements Initializable {
 
                 AddNewClientController addNewClientController = loader.getController();
                 addNewClientController.setClientsController(this);
-
+                addNewClientController.setPnl(pnlAddClient);
                 pnlAddClient.getChildren().clear();
                 pnlAddClient.getChildren().add(pane2);
             } catch (IOException e) {
@@ -77,6 +77,8 @@ public class ClientsController implements Initializable {
         }
 
         if (event.getSource() == bttView) {
+            pnlAddClient.getChildren().clear();
+            pnlUpdate.getChildren().clear();
             pnlView.toFront();
         }
     }

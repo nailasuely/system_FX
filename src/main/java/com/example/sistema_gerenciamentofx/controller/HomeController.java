@@ -179,7 +179,7 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            initialize2();
+            //initialize2();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

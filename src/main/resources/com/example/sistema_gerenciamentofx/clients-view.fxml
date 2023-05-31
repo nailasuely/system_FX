@@ -21,7 +21,7 @@
       <Pane fx:id="pnlAddClient" layoutX="2.0" layoutY="170.0" prefHeight="389.0" prefWidth="793.0" />
       <Pane fx:id="pnlView" layoutX="1.0" layoutY="165.0" prefHeight="389.0" prefWidth="793.0">
          <children>
-            <ScrollPane layoutX="24.0" layoutY="56.0" prefHeight="320.0" prefWidth="746.0" stylesheets="@css/styles.css">
+            <ScrollPane hbarPolicy="NEVER" layoutX="24.0" layoutY="56.0" prefHeight="320.0" prefWidth="746.0" stylesheets="@css/styles.css">
                <content>
                   <VBox fx:id="pnItems" prefHeight="318.0" prefWidth="744.0" spacing="5.0" style="-fx-background-color: #fffafa;">
                      <padding>

@@ -29,7 +29,7 @@
       </Text>
       <Pane layoutX="412.0" layoutY="-51.0" prefHeight="451.0" prefWidth="200.0" style="-fx-background-color: #47077F;">
          <children>
-            <ImageView fitHeight="284.0" fitWidth="269.0" layoutX="-46.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="269.0" fitWidth="259.0" layoutX="-36.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/5.png" />
                </image>
