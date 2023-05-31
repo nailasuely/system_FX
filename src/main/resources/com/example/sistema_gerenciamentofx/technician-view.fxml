@@ -6,6 +6,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -13,12 +17,7 @@
 
 <Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0" style="-fx-background-color: #fffafa;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistema_gerenciamentofx.controller.TechnicianController">
    <children>
-      <Label fx:id="technicianName" layoutX="44.0" layoutY="25.0" text="Nome tecnico" textFill="#47077f">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <TextField fx:id="fullname1" layoutX="24.0" layoutY="161.0" prefHeight="27.0" prefWidth="350.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="fullname1" layoutX="24.0" layoutY="190.0" prefHeight="27.0" prefWidth="350.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
       <Pane fx:id="pnlView" layoutX="394.0" layoutY="94.0" prefHeight="464.0" prefWidth="390.0">
          <children>
             <ScrollPane hbarPolicy="NEVER" prefHeight="460.0" prefWidth="400.0" stylesheets="@css/styles.css">
@@ -32,10 +31,10 @@
             </ScrollPane>
          </children>
       </Pane>
-      <TextField fx:id="address" layoutX="24.0" layoutY="211.0" prefHeight="27.0" prefWidth="350.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
-      <TextField fx:id="telephone" layoutX="24.0" layoutY="264.0" prefHeight="27.0" prefWidth="350.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
-      <TextField fx:id="cpf" layoutX="24.0" layoutY="313.0" prefHeight="27.0" prefWidth="350.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
-      <VBox alignment="CENTER" layoutX="22.0" layoutY="404.0" prefHeight="100.0" prefWidth="139.0" styleClass="ordens-conluidas" stylesheets="@css/styles.css">
+      <TextField fx:id="address" layoutX="24.0" layoutY="241.0" prefHeight="27.0" prefWidth="350.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="telephone" layoutX="24.0" layoutY="291.0" prefHeight="27.0" prefWidth="350.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="cpf" layoutX="24.0" layoutY="338.0" prefHeight="27.0" prefWidth="350.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <VBox alignment="TOP_CENTER" layoutX="53.0" layoutY="421.0" prefHeight="76.0" prefWidth="139.0" styleClass="ordens-conluidas" stylesheets="@css/styles.css">
          <children>
             <Label prefHeight="47.0" prefWidth="44.0" text="20 " textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -45,34 +44,34 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <Label fx:id="completedOrders" nodeOrientation="LEFT_TO_RIGHT" prefHeight="28.0" prefWidth="153.0" text="  ORDENS CONCLUÍDAS" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+            <Label fx:id="completedOrders" nodeOrientation="LEFT_TO_RIGHT" prefHeight="16.0" prefWidth="123.0" text="  ORDENS CONCLUÍDAS" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
                <font>
-                  <Font name="Segoe UI Semibold" size="12.0" />
+                  <Font name="Segoe UI Semibold" size="11.0" />
                </font>
             </Label>
          </children>
       </VBox>
-      <Text fill="#404040" layoutX="33.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Completo" wrappingWidth="117.24869537353516">
+      <Text fill="#404040" layoutX="33.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Completo" wrappingWidth="117.24869537353516">
          <font>
             <Font name="Calibri Light" size="15.0" />
          </font>
       </Text>
-      <Text fill="#404040" layoutX="33.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Endereço" wrappingWidth="117.24869537353516">
+      <Text fill="#404040" layoutX="33.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Endereço" wrappingWidth="117.24869537353516">
          <font>
             <Font name="Calibri Light" size="15.0" />
          </font>
       </Text>
-      <Text fill="#404040" layoutX="33.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tefefone" wrappingWidth="117.24869537353516">
+      <Text fill="#404040" layoutX="33.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tefefone" wrappingWidth="117.24869537353516">
          <font>
             <Font name="Calibri Light" size="15.0" />
          </font>
       </Text>
-      <Text fill="#404040" layoutX="33.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CPF" wrappingWidth="117.24869537353516">
+      <Text fill="#404040" layoutX="33.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CPF" wrappingWidth="117.24869537353516">
          <font>
             <Font name="Calibri Light" size="15.0" />
          </font>
       </Text>
-      <Button fx:id="loginButton1" layoutX="24.0" layoutY="354.0" mnemonicParsing="false" onAction="#updateData" prefHeight="32.0" prefWidth="350.0" style="-fx-background-color: #47077F; -fx-background-radius: 10;" text="ATUALIZAR" textFill="WHITE">
+      <Button fx:id="loginButton1" layoutX="24.0" layoutY="378.0" mnemonicParsing="false" onAction="#updateData" prefHeight="32.0" prefWidth="350.0" style="-fx-background-color: #47077F; -fx-background-radius: 10;" text="ATUALIZAR" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
@@ -80,12 +79,45 @@
             <Font name="Calibri Bold" size="15.0" />
          </font>
       </Button>
-      <Label layoutX="519.0" layoutY="66.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="28.0" prefWidth="132.0" text="Outros Tecnicos" textAlignment="CENTER" textFill="#47077f" textOverrun="CLIP">
+      <Label layoutX="523.0" layoutY="24.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="28.0" prefWidth="132.0" text="Outros Tecnicos" textAlignment="CENTER" textFill="#47077f" textOverrun="CLIP">
          <font>
             <Font name="Calibri" size="17.0" />
          </font>
       </Label>
-      <VBox alignment="CENTER" layoutX="176.0" layoutY="404.0" prefHeight="100.0" prefWidth="139.0" styleClass="ordens-conluidas" stylesheets="@css/styles.css">
+      <ImageView fitHeight="130.0" fitWidth="132.0" layoutX="127.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/7.png" />
+         </image>
+      </ImageView>
+      <HBox alignment="CENTER_LEFT" layoutX="494.0" layoutY="52.0" prefHeight="42.0" prefWidth="171.0" spacing="80.0" style="-fx-background-color: #fffafa;">
+         <children>
+            <Label text="Técnico" textFill="#47077f">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label text="CPF" textFill="#47077f">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" layoutX="58.0" layoutY="118.0" prefHeight="42.0" prefWidth="266.0" rowValignment="TOP">
+         <children>
+            <Label fx:id="technicianName" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="269.0" text="Nome tecnico" textAlignment="CENTER" textFill="#47077f">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="cpfTecnico" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="266.0" text="212131332232" textAlignment="CENTER" textFill="#9f32ab">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </FlowPane>
+      <VBox alignment="TOP_CENTER" layoutX="216.0" layoutY="421.0" prefHeight="76.0" prefWidth="139.0" styleClass="ordens-conluidas" stylesheets="@css/styles.css">
          <children>
             <Label prefHeight="47.0" prefWidth="44.0" text="20 " textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -95,17 +127,12 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <Label fx:id="openOrders" nodeOrientation="LEFT_TO_RIGHT" prefHeight="28.0" prefWidth="153.0" text="   ORDENS EM ABERTO" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+            <Label fx:id="completedOrders1" nodeOrientation="LEFT_TO_RIGHT" prefHeight="16.0" prefWidth="123.0" text="  ORDENS EM ABERTO" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
                <font>
-                  <Font name="Segoe UI Semibold" size="12.0" />
+                  <Font name="Segoe UI Semibold" size="11.0" />
                </font>
             </Label>
          </children>
       </VBox>
-      <Label fx:id="cpfTecnico" layoutX="66.0" layoutY="51.0" prefHeight="30.0" prefWidth="139.0" text="212131332232" textFill="#9f32ab">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
    </children>
 </Pane>
