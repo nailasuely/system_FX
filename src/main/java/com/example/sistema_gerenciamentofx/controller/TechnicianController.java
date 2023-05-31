@@ -63,7 +63,7 @@ public class TechnicianController implements Initializable {
         this.telephone.setText(telephone);
         this.address.setText(address);
         this.technicianName.setText(technicianFullName);
-        this.cpfTecnico.setText(technicianFullName);
+        this.cpfTecnico.setText(cpf.getText());
 
 
     }
