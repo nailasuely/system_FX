@@ -1,10 +1,12 @@
 package com.example.sistema_gerenciamentofx.controller;
 
 import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.dao.conexao.Connect;
 import com.example.sistema_gerenciamentofx.model.Tecnico;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,7 +18,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.input.KeyEvent;
 
-public class LoginController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class LoginController implements Initializable{
 
     @FXML
     private Button loginButton;
@@ -33,6 +38,7 @@ public class LoginController {
     @FXML
     void login(ActionEvent event) throws Exception {
         String passawordText = password1.getText();
+
         if (!passawordText.isEmpty() && DAO.getTecnicoDAO().findByCPFIsTrue(password1.getText())) {
             System.out.println("pode passar para prox tela");
             try {
@@ -72,4 +78,15 @@ public class LoginController {
 
         } catch (Exception excep) {
             excep.printStackTrace();
-        }}}
+        }}
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            Connect.generateCache();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}

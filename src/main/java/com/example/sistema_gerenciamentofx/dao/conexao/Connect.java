@@ -29,6 +29,12 @@ public class Connect {
      * @throws Exception se ocorrer um problema para salvar o valor em arquivo.
      */
     public static void generateCache() throws Exception{
+        if(!(new File("cache")).exists()){
+            File file = new File("cache");
+            if (!file.exists()) {
+                file.mkdirs();
+            }
+        }
         if(!(new File("cache\\clientes.nsr")).exists()){
             Connect.saveCliente(new ArrayList<Cliente>());
         }

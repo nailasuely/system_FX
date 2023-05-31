@@ -1,5 +1,6 @@
 package com.example.sistema_gerenciamentofx;
 
+import com.example.sistema_gerenciamentofx.dao.conexao.Connect;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
