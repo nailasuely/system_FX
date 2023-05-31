@@ -76,6 +76,7 @@ public class ClientElementController {
         if (event.getSource() == updateClient) {
             clientsController.getPnlUpdate().setStyle("-fx-background-color : #fffafa");
             clientsController.getPnlUpdate().toFront();
+
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/update-client-view.fxml"));
                 Pane pane2 = loader.load();

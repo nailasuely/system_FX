@@ -18,7 +18,7 @@
                 <Insets left="10.0" />
             </HBox.margin>
         </ImageView>
-        <Label fx:id="idOrder" prefHeight="18.0" prefWidth="130.0" style="-fx-text-overrun: #fffafa;" text="ID" textFill="#47077f" />
+        <Label fx:id="idOrder" prefHeight="18.0" prefWidth="130.0" text="ID" textFill="#47077f" />
         <Label fx:id="clientName" prefHeight="18.0" prefWidth="230.0" text="CLIENTE" textFill="#47077f">
             <HBox.margin>
                 <Insets />
