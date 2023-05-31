@@ -61,7 +61,7 @@
             <Image url="@images/5.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="527.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Say hello, to the new experience in assistance!" wrappingWidth="200.6947021484375">
+      <Text fill="WHITE" layoutX="537.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Say hello, to the new experience in assistance!" wrappingWidth="200.6947021484375">
          <font>
             <Font name="Arial Rounded MT Bold" size="28.0" />
          </font>

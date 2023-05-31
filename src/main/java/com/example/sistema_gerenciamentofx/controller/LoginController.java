@@ -58,7 +58,13 @@ public class LoginController implements Initializable{
                 excep.printStackTrace();
             }
         } else {
-            System.out.println("cpf n existe no sistema ou cpf vazio");
+            AlertMessageController alertMessageController = new AlertMessageController();
+            if(passawordText.isEmpty()){
+                alertMessageController.showAlertMensage("Digite seu CPF para realizar o login");
+            } else if (!DAO.getTecnicoDAO().findByCPFIsTrue(passawordText)) {
+                alertMessageController.showAlertMensage("CPF não cadastrado\nPor favor registre-se");
+            }
+
         }
 
     }

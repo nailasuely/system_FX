@@ -49,7 +49,10 @@ public class RegisterController {
         String telephoneText = telephone.getText();
 
         if (addressText.isEmpty() || cpfText.isEmpty() || fullnameText.isEmpty() || telephoneText.isEmpty()) {
-            System.out.println("Erro, algum campo não foi digitado.");
+            AlertMessageController alertMessageController = new AlertMessageController();
+            alertMessageController.showAlertMensage("Você se esqueceu de preencher todos os campos...");
+
+
         } else {
             int telephoneNumber = Integer.parseInt(telephoneText);
             Tecnico tecnico = new Tecnico(fullnameText, addressText,

@@ -61,6 +61,8 @@ public class AddNewClientController implements Initializable {
 
         if (addressText.isEmpty() || cpfText.isEmpty() || fullnameText.isEmpty() || telephoneText.isEmpty()) {
             System.out.println("Algum campo não foi digitado.");
+            AlertMessageController alertMessageController = new AlertMessageController();
+            alertMessageController.showAlertMensage("Você se esqueceu de digitar algum campo...");
         } else {
             Cliente cliente = new Cliente(fullnameText, addressText, cpfText,  Integer.parseInt(telephoneText));
             DAO.getClienteDAO().create(cliente);

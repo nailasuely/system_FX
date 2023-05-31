@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistema_gerenciamentofx.controller.AlertMessageController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#47077f" height="250.0" stroke="TRANSPARENT" strokeType="INSIDE" width="153.0" />
+      <ImageView fitHeight="116.0" fitWidth="98.0" layoutX="28.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/1.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="alert" fill="#47077f" layoutX="176.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Show alert mensage" wrappingWidth="209.64871978759766">
+         <font>
+            <Font name="Wingdings 3" size="20.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
