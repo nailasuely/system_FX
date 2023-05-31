@@ -31,13 +31,6 @@ public class LoginController {
     private PasswordField password1;
 
     @FXML
-    private TextField username;
-
-    @FXML
-    private TextField username1;
-    //passaword eh o cpf
-
-    @FXML
     void login(ActionEvent event) throws Exception {
         String passawordText = password1.getText();
         if (!passawordText.isEmpty() && DAO.getTecnicoDAO().findByCPFIsTrue(password1.getText())) {
