@@ -57,9 +57,15 @@ public class TechnicianController implements Initializable {
     @FXML
     private Label cpfTecnico;
 
-    public void setInformationsBase(String technicianCpf, String technicianFullName){
-        this.cpfTecnico.setText(technicianCpf);
+    public void setInformationsBase(String technicianCpf, String technicianFullName, String telephone, String address){
+        this.fullname1.setText(technicianFullName);
+        this.cpf.setText(technicianCpf);
+        this.telephone.setText(telephone);
+        this.address.setText(address);
         this.technicianName.setText(technicianFullName);
+        this.cpfTecnico.setText(technicianFullName);
+
+
     }
     private ObservableList<Tecnico> technicianData;
 
@@ -112,25 +118,25 @@ public class TechnicianController implements Initializable {
     void updateData(ActionEvent event) {
         Tecnico tecnico = new Tecnico();
         try {
-            tecnico = DAO.getTecnicoDAO().findByCPF(this.cpfTecnico.getText());
-            System.out.println(cpfTecnico.getText());
-            System.out.println(tecnico.getFullName());
+            tecnico = DAO.getTecnicoDAO().findByCPF(this.cpf.getText());
             String cpfText =cpf.getText();
             String adressText = address.getText();
             String fullNameText = fullname1.getText();
             String telephoneText = telephone.getText();
             if(!cpfText.isEmpty()){
                 tecnico.setCpf(cpfText);
-            } else if (!adressText.isEmpty()) {
+            }
+            if (!adressText.isEmpty()) {
                 tecnico.setAddress(this.address.getText());
-            } else if (!fullNameText.isEmpty()) {
+            }
+            if (!fullNameText.isEmpty()) {
                 tecnico.setFullName(this.fullname1.getText());
-            } else if (!telephoneText.isEmpty()) {
+            }
+            if (!telephoneText.isEmpty()) {
                 tecnico.setTelephone(Integer.parseInt(this.telephone.getText()));
             }
-
-
             DAO.getTecnicoDAO().update(tecnico);
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

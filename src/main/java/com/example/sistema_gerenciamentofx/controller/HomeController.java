@@ -1,8 +1,11 @@
 package com.example.sistema_gerenciamentofx.controller;
 
 import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.dao.conexao.Connect;
 import com.example.sistema_gerenciamentofx.model.Cliente;
 import com.example.sistema_gerenciamentofx.model.OrdemServico;
+import com.example.sistema_gerenciamentofx.model.Produto;
+import com.example.sistema_gerenciamentofx.model.Tecnico;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -145,9 +148,41 @@ public class HomeController implements Initializable {
 
 
     }*/
+    void initialize2() throws Exception {
+        DAO.getOrdemServicoDAO().deleteMany();
+        DAO.getClienteDAO().deleteMany();
+        Connect.generateCache();
 
+        Cliente cliente1 = new Cliente("Latiele Sobrenome", "Rua A", "770.603.570-09", 72);
+
+        Tecnico tecnico1 = new Tecnico("Mirela Sobrenome", "Coité, Bahia",
+                "227.605.1650-92", 75);
+        Cliente cliente2 = new Cliente("Lara Sobrenome", "Rua ABC, Bahia",
+                "610.819.650-53", 81);
+        Cliente cliente3 = new Cliente("Julia Sobrenome", "Rua ABC, Bahia",
+                "257.705.020-88", 81);
+        Cliente cliente4 = new Cliente("Yasmim Sobrenome", "Rua ABC, Bahia",
+                "640.540.980-53", 81);
+        DAO.getClienteDAO().create(cliente1);
+        DAO.getClienteDAO().create(cliente2);
+        DAO.getClienteDAO().create(cliente4);
+        DAO.getTecnicoDAO().create(tecnico1);
+        DAO.getClienteDAO().create(cliente3);
+        DAO.getOrdemServicoDAO().deleteMany();
+        OrdemServico ordem1 = new OrdemServico();
+        OrdemServico ordem2 = new OrdemServico();
+        DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
+        DAO.getOrdemServicoDAO().create(ordem2, cliente2.getId(), Produto.servicoFormatar());
+
+
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            initialize2();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         try {
             this.ordersData = FXCollections.observableArrayList();
             this.ordersData.addAll(DAO.getOrdemServicoDAO().getListOpening());
@@ -241,10 +276,12 @@ public class HomeController implements Initializable {
                     pnlManageTec.getChildren().add(pane1);
                     //technicianViewController = loader.getController();
                     TechnicianController technicianController = loader.getController();
-                    technicianController.setInformationsBase(this.cpfTecnico, this.techinicianName.getText());
+                    technicianController.setInformationsBase(this.cpfTecnico, this.techinicianName.getText(), Integer.toString(DAO.getTecnicoDAO().findByCPF(cpfTecnico).getTelephone()), DAO.getTecnicoDAO().findByCPF(cpfTecnico).getAddress());
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         }
 
