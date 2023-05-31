@@ -129,7 +129,7 @@ public class TechnicianController implements Initializable {
                 tecnico.setTelephone(Integer.parseInt(this.telephone.getText()));
             }
 
-            
+
             DAO.getTecnicoDAO().update(tecnico);
         } catch (Exception e) {
             throw new RuntimeException(e);
