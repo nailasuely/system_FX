@@ -49,19 +49,19 @@
             </Button>
          </children>
       </Pane>
-      <TextField fx:id="fullname1" layoutX="14.0" layoutY="151.0" prefHeight="27.0" prefWidth="270.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="fullname1" layoutX="14.0" layoutY="151.0" prefHeight="27.0" prefWidth="270.0" promptText="Fulano Da Siva Santos" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
       <Text fill="#404040" layoutX="23.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" wrappingWidth="117.24869537353516">
          <font>
             <Font name="Calibri Light" size="15.0" />
          </font>
       </Text>
-      <TextField fx:id="address" layoutX="14.0" layoutY="206.0" prefHeight="27.0" prefWidth="270.0" style="-fx-border-color: #47077F; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="address" layoutX="14.0" layoutY="206.0" prefHeight="27.0" prefWidth="270.0" promptText="Av: Getulio Vargas, N111, AlphaVIlle, Feira De Santa - BA" style="-fx-border-color: #47077F; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" />
       <Text fill="#404040" layoutX="23.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CPF" wrappingWidth="117.24869537353516">
          <font>
             <Font name="Calibri Light" size="15.0" />
          </font>
       </Text>
-      <TextField fx:id="cpf" layoutX="14.0" layoutY="255.0" prefHeight="27.0" prefWidth="270.0" style="-fx-border-color: #47077F; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" />
+      <TextField fx:id="cpf" layoutX="14.0" layoutY="255.0" prefHeight="27.0" prefWidth="270.0" promptText="000.111.222-33" style="-fx-border-color: #47077F; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" />
       <Text fill="#404040" layoutX="23.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone" wrappingWidth="117.24869537353516">
          <font>
             <Font name="Calibri Light" size="15.0" />

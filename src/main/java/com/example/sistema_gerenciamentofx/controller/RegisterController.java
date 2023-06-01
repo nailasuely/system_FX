@@ -1,5 +1,6 @@
 package com.example.sistema_gerenciamentofx.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -41,6 +42,8 @@ public class RegisterController {
     @FXML
     private TextField telephone;
 
+
+
     @FXML
     void login(ActionEvent event) throws Exception {
         String addressText = address.getText();
@@ -57,6 +60,13 @@ public class RegisterController {
             int telephoneNumber = Integer.parseInt(telephoneText);
             Tecnico tecnico = new Tecnico(fullnameText, addressText,
                     cpfText,  Integer.parseInt(telephoneText));
+            /*AdmPasswordController admPasswordController = new AdmPasswordController();
+            admPasswordController.getPasswordAdm();
+            System.out.println(admPasswordController.isAccess());
+            if(admPasswordController.isAccess()){
+                System.out.println("Oi");
+
+            }*/
             DAO.getTecnicoDAO().create(tecnico);
             System.out.println("Prontinho.");
             System.out.println(DAO.getTecnicoDAO().getList());
@@ -68,6 +78,7 @@ public class RegisterController {
             Stage loginStage = new Stage();
             loginStage.setScene(scene);
             loginStage.show();
+
         }
     }
 
