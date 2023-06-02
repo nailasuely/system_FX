@@ -18,19 +18,19 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="565.0" layoutY="153.0" text="Client Info" textFill="#47077f">
+      <Label layoutX="550.0" layoutY="155.0" text="Client Info" textFill="#47077f">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
       <Pane layoutX="556.0" layoutY="178.0" prefHeight="263.0" prefWidth="232.0">
          <children>
-            <ImageView fitHeight="66.0" fitWidth="77.0" layoutX="80.0" layoutY="20.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgClient" fitHeight="66.0" fitWidth="77.0" layoutX="80.0" layoutY="20.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/icon12.png" />
                </image>
             </ImageView>
-            <Label layoutX="14.0" layoutY="105.0" prefHeight="35.0" prefWidth="214.0" text="Fulaninho de Tal" textFill="#47077f">
+            <Label fx:id="nameClient" layoutX="14.0" layoutY="105.0" prefHeight="35.0" prefWidth="214.0" text="Fulaninho de Tal" textFill="#863cc7">
                <font>
                   <Font size="14.0" />
                </font>
@@ -45,7 +45,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="155.0" prefHeight="35.0" prefWidth="214.0" text="000.111.222.333-44" textFill="#47077f">
+            <Label fx:id="cpfClient" layoutX="14.0" layoutY="155.0" prefHeight="35.0" prefWidth="214.0" text="000.111.222.333-44" textFill="#863cc7">
                <font>
                   <Font size="14.0" />
                </font>
@@ -55,7 +55,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="196.0" prefHeight="35.0" prefWidth="212.0" text="R: Armagura, N123, Bairro: Centro, Bahia, Brazil" textFill="#47077f">
+            <Label fx:id="adressClient" layoutX="14.0" layoutY="196.0" prefHeight="35.0" prefWidth="212.0" text="R: Armagura, N123, Bairro: Centro, Bahia, Brazil" textFill="#863cc7">
                <font>
                   <Font size="14.0" />
                </font>
@@ -65,7 +65,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="235.0" prefHeight="35.0" prefWidth="214.0" text="11 91234 5678" textFill="#47077f">
+            <Label fx:id="telephoneClient" layoutX="14.0" layoutY="235.0" prefHeight="35.0" prefWidth="214.0" text="11 91234 5678" textFill="#863cc7">
                <font>
                   <Font size="14.0" />
                </font>
@@ -76,7 +76,7 @@
          <children>
             <ScrollPane hbarPolicy="ALWAYS" layoutY="205.0" prefHeight="165.0" prefWidth="521.0" stylesheets="@css/styles.css" vbarPolicy="NEVER">
                <content>
-                  <HBox prefHeight="100.0" prefWidth="515.0" />
+                  <HBox prefHeight="150.0" prefWidth="521.0" />
                </content>
             </ScrollPane>
             <Label layoutX="14.0" layoutY="170.0" prefHeight="39.0" prefWidth="160.0" text="Parts List" textFill="#47077f">
@@ -89,12 +89,12 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <ImageView fitHeight="66.0" fitWidth="77.0" layoutX="37.0" layoutY="44.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgTypeService" fitHeight="66.0" fitWidth="77.0" layoutX="37.0" layoutY="44.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/icon12.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" layoutX="22.0" layoutY="102.0" prefHeight="35.0" prefWidth="97.0" text="montagem" textAlignment="CENTER" textFill="#47077f">
+            <Label fx:id="typeService" alignment="CENTER" layoutX="22.0" layoutY="102.0" prefHeight="35.0" prefWidth="97.0" text="montagem" textAlignment="CENTER" textFill="#47077f">
                <font>
                   <Font size="14.0" />
                </font>
@@ -104,55 +104,55 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <ImageView fitHeight="66.0" fitWidth="77.0" layoutX="182.0" layoutY="44.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgStartDate" fitHeight="66.0" fitWidth="77.0" layoutX="182.0" layoutY="44.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/icon12.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" layoutX="166.0" layoutY="102.0" prefHeight="35.0" prefWidth="97.0" text="12/05/2023" textAlignment="CENTER" textFill="#47077f">
+            <Label fx:id="startDate" alignment="CENTER" layoutX="166.0" layoutY="102.0" prefHeight="35.0" prefWidth="97.0" text="12/05/2023" textAlignment="CENTER" textFill="#47077f">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
             <Pane layoutX="295.0" layoutY="7.0" prefHeight="195.0" prefWidth="226.0">
                <children>
-                  <Label layoutX="4.0" layoutY="9.0" prefHeight="30.0" prefWidth="152.0" text="Payment method" textFill="#47077f">
+                  <Label layoutX="4.0" layoutY="5.0" prefHeight="24.0" prefWidth="152.0" text="Payment method" textFill="#47077f" translateY="4.0">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ChoiceBox layoutX="20.0" layoutY="44.0" prefHeight="25.0" prefWidth="134.0" />
-                  <Label layoutX="3.0" layoutY="70.0" prefHeight="30.0" prefWidth="152.0" text="Client satisfaction" textFill="#47077f">
+                  <ChoiceBox fx:id="setPaymentMethod" layoutX="20.0" layoutY="44.0" prefHeight="25.0" prefWidth="134.0" />
+                  <Label layoutX="4.0" layoutY="70.0" prefHeight="30.0" prefWidth="152.0" text="Client satisfaction" textFill="#47077f">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <RadioButton alignment="BOTTOM_RIGHT" layoutX="17.0" layoutY="98.0" mnemonicParsing="false" />
-                  <RadioButton alignment="BOTTOM_RIGHT" layoutX="17.0" layoutY="158.0" mnemonicParsing="false" />
-                  <RadioButton alignment="BOTTOM_RIGHT" layoutX="17.0" layoutY="138.0" mnemonicParsing="false" />
-                  <RadioButton alignment="BOTTOM_RIGHT" layoutX="17.0" layoutY="178.0" mnemonicParsing="false" />
-                  <RadioButton alignment="BOTTOM_RIGHT" layoutX="17.0" layoutY="118.0" mnemonicParsing="false" />
-                  <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="35.0" layoutY="99.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                  <RadioButton fx:id="oneStar" alignment="BOTTOM_RIGHT" layoutX="20.0" layoutY="98.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="fourStar" alignment="BOTTOM_RIGHT" layoutX="20.0" layoutY="158.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="threeStar" alignment="BOTTOM_RIGHT" layoutX="20.0" layoutY="138.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="fiveStar" alignment="BOTTOM_RIGHT" layoutX="20.0" layoutY="178.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="twoStar" alignment="BOTTOM_RIGHT" layoutX="20.0" layoutY="118.0" mnemonicParsing="false" />
+                  <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="40.0" layoutY="99.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/star.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="15.0" fitWidth="32.0" layoutX="35.0" layoutY="119.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="15.0" fitWidth="32.0" layoutX="40.0" layoutY="119.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/2_star.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="17.0" fitWidth="44.0" layoutX="36.0" layoutY="139.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="17.0" fitWidth="44.0" layoutX="40.0" layoutY="139.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/3_star.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="16.0" fitWidth="74.0" layoutX="35.0" layoutY="179.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="16.0" fitWidth="74.0" layoutX="40.0" layoutY="179.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/5_star.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="15.0" fitWidth="58.0" layoutX="35.0" layoutY="159.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="15.0" fitWidth="58.0" layoutX="40.0" layoutY="159.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/4_star.png" />
                      </image>
@@ -163,10 +163,10 @@
       </Pane>
       <Pane layoutX="576.0" layoutY="63.0" prefHeight="95.0" prefWidth="212.0">
          <children>
-            <Button fx:id="updateClient1" layoutX="139.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="39.0" prefWidth="65.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="delete" />
-            <Button fx:id="updateClient11" layoutX="69.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="39.0" prefWidth="65.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="cancel" />
-            <Button fx:id="updateClient" layoutY="1.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="39.0" prefWidth="65.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="update" />
-            <Button fx:id="updateClient12" layoutX="2.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="39.0" prefWidth="204.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="finalize" />
+            <Button fx:id="deleteClient1" layoutX="138.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="39.0" prefWidth="65.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="delete" />
+            <Button fx:id="cancelOrder" layoutX="69.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="39.0" prefWidth="65.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="cancel" />
+            <Button fx:id="updateOrder" layoutY="1.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="39.0" prefWidth="65.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="update" />
+            <Button fx:id="finalizeOrder" layoutX="1.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="39.0" prefWidth="203.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="finalize" />
          </children>
       </Pane>
    </children>
