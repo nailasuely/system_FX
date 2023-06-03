@@ -242,8 +242,22 @@ public class HomeController implements Initializable {
                 pnlManageStock.toFront();
             }
             if (event.getSource() == btnManageOrders) {
-                pnlManageOrders.setStyle("-fx-background-color : #010333");
+                pnlManageOrders.setStyle("-fx-background-color : #fffafa");
                 pnlManageOrders.toFront();
+                try {
+                    //Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    //currentScreen.close();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/manage-orders.fxml"));
+                    Pane pane2 = loader.load();{
+                        pnlManageOrders.getChildren().clear();
+                        pnlManageOrders.getChildren().add(pane2);
+
+                    }
+                    ManagerOrders managerOrders = loader.getController();
+                    managerOrders.setTechnicianCPF(this.cpfTecnico);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             if (event.getSource() == btnOverview) {
                 pnlOverview.setStyle("-fx-background-color : #fffafa");

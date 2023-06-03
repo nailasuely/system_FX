@@ -21,6 +21,23 @@ ao decorrer das versões.
  * @since 2023
  */
 public class mainTeste {
+    public static void main2(String[] args) throws Exception {
+        Tecnico tecnico1 = new Tecnico("Miguel Calmon Sobrenome", "Coité, Bahia",
+                "133", 75);
+        Cliente cliente2 = new Cliente("Laressa Sobrenome", "Rua ABC, Bahia",
+                "610.819.690-53", 81);
+        Cliente cliente3 = new Cliente("Juliana Amanda Sobrenome", "Rua ABC, Bahia",
+                "257.705.460-88", 81);
+        tecnico1 = DAO.getTecnicoDAO().create(tecnico1);
+        cliente2 = DAO.getClienteDAO().create(cliente2);
+        cliente3 = DAO.getClienteDAO().create(cliente3);
+        OrdemServico ordem1 = new OrdemServico();
+        OrdemServico ordem2 = new OrdemServico();
+        ordem1.setTechnicianID(tecnico1.getId());
+        DAO.getOrdemServicoDAO().create(ordem1, cliente2.getId(), Produto.servicoFormatar());
+        DAO.getOrdemServicoDAO().atualizarStatusAndamento(tecnico1.getCpf(), ordem1);
+        //DAO.getOrdemServicoDAO().create(ordem2, cliente3.getId(), Produto.servicoFormatar());
+    }
     public static void main1(String[] args) throws SemEstoqueException, ProdutoErradoException, Exception {
         int escolha = 1; String id;
         int opcao=0;
