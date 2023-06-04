@@ -17,10 +17,15 @@ public class ClientElementNewOrderController {
     @FXML
     private Button selectClient;
 
+    private NewOrderController newOrderController;
+
+    public void setNewOrderController(NewOrderController newOrderController) {
+        this.newOrderController = newOrderController;
+    }
+
     @FXML
     void getClient(ActionEvent event) {
         NewOrderController.setCpfClient(cpfClient.getText());
-        NewOrderController newOrderController = new NewOrderController();
         newOrderController.setCpfSelected(cpfClient.getText());
 
     }

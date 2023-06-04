@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,8 +26,9 @@ import java.util.StringTokenizer;
 
 public class NewOrderController implements Initializable {
 
+
     @FXML
-    private Label cpfSelected;
+    private Text cpfSelected;
 
     @FXML
     private VBox ClientsList;
@@ -61,7 +63,45 @@ public class NewOrderController implements Initializable {
 
     private static String cpfClient;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        setTypeService.getItems().addAll(typeService);
+        clientsData = FXCollections.observableArrayList();
+        try {
+            clientsData.addAll(DAO.getClienteDAO().getList());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        Node[] nodes = new Node[clientsData.size()];
+        for (int i = 0; i < nodes.length; i++) {
+            try {
+
+                final int j = i;
+                //nodes[i] = FXMLLoader.load(getClass().getResource("/com/example/sistema_gerenciamentofx/element-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/client-element-new-order-view.fxml"));
+                nodes[i] = loader.load();
+                ClientElementNewOrderController clientElementNewOrderController = loader.getController();
+                clientElementNewOrderController.setClientInfos(clientsData.get(i).getFullName(), clientsData.get(i).getCpf());
+                clientElementNewOrderController.setNewOrderController(this);
+                //give the items some effect
+
+                nodes[i].setOnMouseEntered(event -> {
+                    nodes[j].setStyle("-fx-background-color : #7c57d1");
+                });
+                nodes[i].setOnMouseExited(event -> {
+                    nodes[j].setStyle("-fx-background-color : #fffafa");
+                });
+                ClientsList.getChildren().add(nodes[i]);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
 
     public static void setCpfClient(String cpf) {
         cpfClient = cpf;
@@ -73,8 +113,11 @@ public class NewOrderController implements Initializable {
     }
 
 
-    public void setCpfSelected(String cpfSelected) {
-        this.cpfSelected.setText(cpfSelected);
+    @FXML
+    public void setCpfSelected(String selected) {
+        System.out.println(selected);
+
+        cpfSelected.setText(selected);
     }
 
     @FXML
@@ -120,42 +163,5 @@ public class NewOrderController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        cpfSelected.setText("Nobody");
-        setTypeService.getItems().addAll(typeService);
-        clientsData = FXCollections.observableArrayList();
-        try {
-            clientsData.addAll(DAO.getClienteDAO().getList());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        Node[] nodes = new Node[clientsData.size()];
-        for (int i = 0; i < nodes.length; i++) {
-            try {
 
-                final int j = i;
-                //nodes[i] = FXMLLoader.load(getClass().getResource("/com/example/sistema_gerenciamentofx/element-view.fxml"));
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/client-element-new-order-view.fxml"));
-                nodes[i] = loader.load();
-                ClientElementNewOrderController clientElementNewOrderController = loader.getController();
-                clientElementNewOrderController.setClientInfos(clientsData.get(i).getFullName(), clientsData.get(i).getCpf());
-                //give the items some effect
-
-                nodes[i].setOnMouseEntered(event -> {
-                    nodes[j].setStyle("-fx-background-color : #7c57d1");
-                });
-                nodes[i].setOnMouseExited(event -> {
-                    nodes[j].setStyle("-fx-background-color : #fffafa");
-                });
-                ClientsList.getChildren().add(nodes[i]);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-    }
 }

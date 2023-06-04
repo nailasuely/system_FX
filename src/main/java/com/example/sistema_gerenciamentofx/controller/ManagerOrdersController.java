@@ -1,5 +1,6 @@
 package com.example.sistema_gerenciamentofx.controller;
 
+import com.example.sistema_gerenciamentofx.dao.DAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -67,16 +68,31 @@ public class ManagerOrdersController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        pnlManageActual.setStyle("-fx-background-color : #fffafa");
-        //pnlManageActual.toFront();
+
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/actual-order-view.fxml"));
-            Pane pane2 = loader.load();
-            ActualOrderController actualOrderController = loader.getController();
-            actualOrderController.setManagerOrdersController(this);
-            pnlGeral.getChildren().clear();
-            pnlManageActual.getChildren().clear();
-            pnlManageActual.getChildren().add(pane2);
+            if(DAO.getOrdemServicoDAO().openOrderByTechnician(HomeController.getCpfTecnico()) !=null){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/actual-order-view.fxml"));
+                Pane pane2 = loader.load();
+                ActualOrderController actualOrderController = loader.getController();
+                actualOrderController.setManagerOrdersController(this);
+                pnlGeral.getChildren().clear();
+                pnlManageActual.getChildren().clear();
+                pnlManageActual.getChildren().add(pane2);
+            }
+            else{
+                pnlGeral.setStyle("-fx-background-color : #fffafa");
+                pnlGeral.toFront();
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/fucture-orders-view.fxml"));
+                    Pane pane2 = loader.load();
+                    pnlGeral.getChildren().clear();
+                    pnlGeral.getChildren().add(pane2);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -124,7 +140,6 @@ public class ManagerOrdersController implements Initializable {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/fucture-orders-view.fxml"));
                 Pane pane2 = loader.load();
-                //pnlGeral.getChildren().clear();
                 pnlGeral.getChildren().clear();
                 pnlGeral.getChildren().add(pane2);
             } catch (IOException e) {
