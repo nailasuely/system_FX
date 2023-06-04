@@ -110,19 +110,21 @@ public class ActualOrderController implements Initializable{
             throw new RuntimeException(e);
         }
     }
-    public void setInformations(){
+    public void setInformations() {
         try {
             this.adressClient.setText(DAO.getClienteDAO().findById(order.getClientId()).getAddress());
             this.cpfClient.setText(DAO.getClienteDAO().findById(order.getClientId()).getCpf());
             this.telephoneClient.setText(Integer.toString(DAO.getClienteDAO().findById(order.getClientId()).getTelephone()));
             this.nameClient.setText(DAO.getClienteDAO().findById(order.getClientId()).getFullName());
             this.startDate.setText(String.valueOf(order.getStart()));
-            this.typeService.setText(order.getType().getNome());
+            if (order != null && order.getType() != null) {
+                this.typeService.setText(order.getType().getNome());
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
+
 
     @FXML
     void handleClicks(ActionEvent event) {
