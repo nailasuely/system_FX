@@ -313,6 +313,7 @@ public class OrdemServico implements Serializable {
         // Lembrando que nessa lista só é adicionada PRODUTOS/PEÇAS, só vai ser maior doq
         // zero se for uma montagem.
         double price = 0.0;
+        if (this.type != null){
         if (this.type.getNome().equals("montagem")) {
             if (!this.produtoLists.isEmpty()) {
                 for (Produto produto : this.produtoLists.keySet()) {
@@ -322,7 +323,7 @@ public class OrdemServico implements Serializable {
             }
         } else if (this.type != null) {
             price += type.getPreco();
-        }
+        }}
         return price;
     }
 
