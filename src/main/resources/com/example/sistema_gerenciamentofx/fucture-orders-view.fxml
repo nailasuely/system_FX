@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane fx:id="pnlGeral" prefHeight="455.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistema_gerenciamentofx.controller.FuctureOrdersController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="Yours future orders" textFill="#47077f">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <ScrollPane focusTraversable="false" hbarPolicy="NEVER" layoutX="50.0" layoutY="53.0" prefHeight="402.0" prefWidth="473.0" stylesheets="@css/styles.css">
+         <content>
+            <VBox fx:id="pnItems" prefHeight="402.0" prefWidth="473.0" spacing="5.0" style="-fx-background-color: #fffafa;">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#47077f" height="402.0" layoutX="524.0" layoutY="53.0" stroke="TRANSPARENT" strokeType="INSIDE" width="271.0" />
+      <ImageView fitHeight="244.0" fitWidth="241.0" layoutX="524.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+         <image>
+            <Image url="@images/5.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="271.0" fitWidth="232.0" layoutX="563.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/5.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="579.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Great jobs come with great rewards" wrappingWidth="200.6947021484375">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="28.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>

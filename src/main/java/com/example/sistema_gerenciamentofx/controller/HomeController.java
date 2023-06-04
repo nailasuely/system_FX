@@ -90,7 +90,13 @@ public class HomeController implements Initializable {
 
     private TechnicianController technicianViewController;
     private ClientsController clientsController;
-    private String cpfTecnico;
+    private static String cpfTecnico;
+
+    public static String getCpfTecnico(){
+        return cpfTecnico;
+    }
+
+
     public void setTechinicianCpf(String cpf) {
         this.cpfTecnico = cpf;
         try {
@@ -244,17 +250,17 @@ public class HomeController implements Initializable {
             if (event.getSource() == btnManageOrders) {
                 pnlManageOrders.setStyle("-fx-background-color : #fffafa");
                 pnlManageOrders.toFront();
+                System.out.println(cpfTecnico);
                 try {
                     //Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     //currentScreen.close();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/manage-orders.fxml"));
-                    Pane pane2 = loader.load();{
-                        pnlManageOrders.getChildren().clear();
-                        pnlManageOrders.getChildren().add(pane2);
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/manage-orders-view.fxml"));
+                    Pane pane2 = loader.load();
+                    pnlManageOrders.getChildren().clear();
+                    pnlManageOrders.getChildren().add(pane2);
 
-                    }
-                    ManagerOrders managerOrders = loader.getController();
-                    managerOrders.setTechnicianCPF(this.cpfTecnico);
+
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="455.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="pnlNewOrder" prefHeight="455.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistema_gerenciamentofx.controller.NewOrderController">
    <children>
       <Label layoutX="19.0" layoutY="14.0" prefHeight="50.0" prefWidth="172.0" text="New Service" textFill="#47077f">
          <font>
@@ -71,7 +71,7 @@
             </Button>
             <ScrollPane hbarPolicy="NEVER" layoutY="72.0" prefHeight="229.0" prefWidth="329.0" stylesheets="@css/styles.css">
                <content>
-                  <VBox prefHeight="230.0" prefWidth="312.0" />
+                  <VBox fx:id="ClientsList" prefHeight="230.0" prefWidth="312.0" />
                </content>
             </ScrollPane>
             <Button fx:id="loginButton11" layoutX="220.0" layoutY="33.0" mnemonicParsing="false" onAction="#newClientCreate" prefHeight="31.0" prefWidth="107.0" style="-fx-background-color: #47077F; -fx-background-radius: 10;" text="New client" textFill="WHITE">
@@ -84,5 +84,15 @@
             </Button>
          </children>
       </Pane>
+      <Label alignment="CENTER" layoutX="236.0" layoutY="81.0" prefHeight="30.0" prefWidth="140.0" text="Client selected:" textFill="#47077f">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="cpfSelected" alignment="CENTER" layoutX="269.0" layoutY="109.0" prefHeight="30.0" prefWidth="107.0" text="111.222.333-44" textFill="#47077f">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

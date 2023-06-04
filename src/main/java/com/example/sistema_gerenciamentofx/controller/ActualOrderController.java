@@ -4,19 +4,23 @@ import com.example.sistema_gerenciamentofx.dao.DAO;
 import com.example.sistema_gerenciamentofx.model.OrdemServico;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ActualOrderController implements Initializable {
+public class ActualOrderController implements Initializable{
 
+    @FXML
+    private Pane pnlActualService;
     @FXML
     private Label adressClient;
 
@@ -24,10 +28,13 @@ public class ActualOrderController implements Initializable {
     private Button cancelOrder;
 
     @FXML
+    private Pane clientData;
+
+    @FXML
     private Label cpfClient;
 
     @FXML
-    private Button deleteClient1;
+    private Button deleteOrder;
 
     @FXML
     private Button finalizeOrder;
@@ -37,6 +44,8 @@ public class ActualOrderController implements Initializable {
 
     @FXML
     private RadioButton fourStar;
+
+
 
     @FXML
     private ImageView imgClient;
@@ -50,11 +59,13 @@ public class ActualOrderController implements Initializable {
     @FXML
     private Label nameClient;
 
+
+
     @FXML
     private RadioButton oneStar;
 
     @FXML
-    private ChoiceBox<?> setPaymentMethod;
+    private ChoiceBox<String> setPaymentMethod;
 
     @FXML
     private Label startDate;
@@ -74,7 +85,18 @@ public class ActualOrderController implements Initializable {
     @FXML
     private Button updateOrder;
 
+    @FXML
+    private Pane pnlCreateNewOrder;
+
     private OrdemServico order;
+
+    private String paymentsType[] = {"Transferecia", "Pix", "Cartão", "Dinheiro"};
+
+    private ManagerOrdersController managerOrdersController;
+
+    public void setManagerOrdersController(ManagerOrdersController managerOrdersController) {
+        this.managerOrdersController = managerOrdersController;
+    }
 
     public OrdemServico getOrder() {
         return order;
@@ -83,7 +105,7 @@ public class ActualOrderController implements Initializable {
 
     public void setOrder(){
         try {
-            this.order = DAO.getOrdemServicoDAO().openOrderByTechnician(ManagerOrders.getTechnicianCPF());
+            this.order = DAO.getOrdemServicoDAO().openOrderByTechnician(HomeController.getCpfTecnico());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -113,13 +135,13 @@ public class ActualOrderController implements Initializable {
         if(order == null){
             AlertMessageController alertMessageController = new AlertMessageController();
             try {
-                alertMessageController.showAlertMensage("asgfegw");
+                alertMessageController.showAlertMensage("Ordem não encontrada");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }else{
             setInformations();
         }
-
+        setPaymentMethod.getItems().addAll(paymentsType);
     }
 }
