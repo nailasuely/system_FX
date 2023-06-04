@@ -27,8 +27,9 @@ import java.util.StringTokenizer;
 public class NewOrderController implements Initializable {
 
 
+
     @FXML
-    private Text cpfSelected;
+    private Label cpfSelected;
 
     @FXML
     private VBox ClientsList;
