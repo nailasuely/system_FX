@@ -18,6 +18,8 @@ public class AlertMessageController {
     public void setAlert(String warning) {
         this.alert.setText(warning);
     }
+
+    //gracas ao GETCLASS nao pode ser um metodo static
     public void showAlertMensage(String mensage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/alert-mensage-view.fxml"));
         Parent root = loader.load();

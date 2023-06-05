@@ -42,7 +42,15 @@ public class RegisterController {
     @FXML
     private TextField telephone;
 
+    private boolean permission;
 
+    public boolean isPermission() {
+        return permission;
+    }
+
+    public void setPermission(boolean permission) {
+        this.permission = permission;
+    }
 
     @FXML
     void login(ActionEvent event) throws Exception {
@@ -50,7 +58,7 @@ public class RegisterController {
         String cpfText = cpf.getText();
         String fullnameText = fullname1.getText();
         String telephoneText = telephone.getText();
-
+        setPermission(false);
         if (addressText.isEmpty() || cpfText.isEmpty() || fullnameText.isEmpty() || telephoneText.isEmpty()) {
             AlertMessageController alertMessageController = new AlertMessageController();
             alertMessageController.showAlertMensage("Você se esqueceu de preencher todos os campos...");
@@ -61,12 +69,16 @@ public class RegisterController {
             Tecnico tecnico = new Tecnico(fullnameText, addressText,
                     cpfText,  Integer.parseInt(telephoneText));
             /*AdmPasswordController admPasswordController = new AdmPasswordController();
+            admPasswordController.setRegisterController(this);
             admPasswordController.getPasswordAdm();
-            System.out.println(admPasswordController.isAccess());
-            if(admPasswordController.isAccess()){
+            setPermission(admPasswordController.isAccess());
+
+            if(isPermission()){
                 System.out.println("Oi");
 
-            }*/
+            }
+
+             */
             DAO.getTecnicoDAO().create(tecnico);
             System.out.println("Prontinho.");
             System.out.println(DAO.getTecnicoDAO().getList());

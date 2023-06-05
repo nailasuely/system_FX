@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox prefHeight="45.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistema_gerenciamentofx.controller.FutureOrdersElementController">
+   <children>
+      <ImageView fitHeight="54.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/icon12.png" />
+         </image>
+         <HBox.margin>
+            <Insets top="3.0" />
+         </HBox.margin>
+      </ImageView>
+      <Label fx:id="nameClient" layoutX="14.0" layoutY="10.0" prefHeight="18.0" prefWidth="170.0" text="Chiquinho Produções" textFill="#47077f">
+         <HBox.margin>
+            <Insets left="4.0" top="12.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="cpfClient" prefHeight="18.0" prefWidth="131.0" text="000.111.222-33" textFill="#47077f">
+         <HBox.margin>
+            <Insets top="12.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="typeService" layoutX="155.0" layoutY="10.0" prefHeight="18.0" prefWidth="90.0" text="Type Service" textFill="#47077f">
+         <HBox.margin>
+            <Insets top="12.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="startDate" prefHeight="18.0" prefWidth="90.0" text="DD/MM/YYYY" textFill="#47077f">
+         <HBox.margin>
+            <Insets top="12.0" />
+         </HBox.margin>
+      </Label>
+   </children>
+</HBox>

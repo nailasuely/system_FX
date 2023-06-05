@@ -24,8 +24,35 @@ public class AdmPasswordController {
     @FXML
     private Text alert;
 
+    private static RegisterController registerController;
+
+    private TechnicianElementController technicianElementController;
+
+    private AlertMessageController alertMessageController;
+
+
+
+    public void setAlertMessageController(){
+        alertMessageController = new AlertMessageController();
+    }
+
     private boolean access;
 
+    public void setRegisterController(RegisterController controller) {
+        this.registerController = controller;
+    }
+
+    public static RegisterController getRegisterController() {
+        return registerController;
+    }
+
+    public void setTechnicianElementController(TechnicianElementController technicianElementController) {
+        this.technicianElementController = technicianElementController;
+    }
+
+    public AdmPasswordController getAdmPassword(){
+        return this;
+    }
     public boolean isAccess() {
         return access;
     }
@@ -39,6 +66,8 @@ public class AdmPasswordController {
         Parent root = loader.load();
         Stage alertStage = new Stage();
         Scene scene = new Scene(root);
+        System.out.println(registerController);
+        setAlertMessageController();
         alertStage.setResizable(false);
         alertStage.setScene(scene);
         alertStage.show();
@@ -49,18 +78,20 @@ public class AdmPasswordController {
 
         String passwordText = admPassword.getText();
         String passwordCorrect = "adm1234";
-        AlertMessageController alertMessageController = new AlertMessageController();
         try {
             if(passwordText.isEmpty()){
                 alertMessageController.showAlertMensage("Campo vazio");
                 setAccess(false);
             } else if (passwordText.equals(passwordCorrect)) {
                 setAccess(true);
-
+                registerController.setPermission(true);
             } else if (!passwordText.equals(passwordCorrect)) {
                 alertMessageController.showAlertMensage("Senha incorreta");
                 setAccess(false);
             }
+
+            Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentScreen.close();
 
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -256,6 +256,8 @@ public class HomeController implements Initializable {
                     //currentScreen.close();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/manage-orders-view.fxml"));
                     Pane pane2 = loader.load();
+                    ManagerOrdersController managerOrdersController = loader.getController();
+                    managerOrdersController.setHomeController(this);
                     pnlManageOrders.getChildren().clear();
                     pnlManageOrders.getChildren().add(pane2);
 
@@ -329,6 +331,7 @@ public class HomeController implements Initializable {
     }
     @FXML
     void showClientsStage(ActionEvent event){
+        /*
         try {
             Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentScreen.close();
@@ -343,6 +346,22 @@ public class HomeController implements Initializable {
 
         } catch (Exception excep) {
             excep.printStackTrace();
+        }
+        */
+        pnlManagerClients.setStyle("-fx-background-color : #fffafa");
+        pnlManagerClients.toFront();
+        try {
+            //Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            //currentScreen.close();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/clients-view.fxml"));
+            Pane pane2 = loader.load();{
+                pnlManagerClients.getChildren().clear();
+                pnlManagerClients.getChildren().add(pane2);
+                ClientsController clientsController = loader.getController();
+                clientsController.showAddPane();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

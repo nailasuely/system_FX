@@ -48,6 +48,8 @@ public class ManagerOrdersController implements Initializable {
 
     private static String technicianCPF;
 
+    private HomeController homeController;
+
     public static String getTechnicianCPF() {
         return technicianCPF;
     }
@@ -58,6 +60,10 @@ public class ManagerOrdersController implements Initializable {
 
     public Pane getPnlCreateNewOrder() {
         return pnlCreateNewOrder;
+    }
+
+    public void setHomeController(HomeController homeController) {
+        this.homeController = homeController;
     }
 
     @FXML
@@ -78,6 +84,7 @@ public class ManagerOrdersController implements Initializable {
                 pnlGeral.getChildren().clear();
                 pnlManageActual.getChildren().clear();
                 pnlManageActual.getChildren().add(pane2);
+                pnlManageActual.toFront();
             }
             else{
                 pnlGeral.setStyle("-fx-background-color : #fffafa");
@@ -108,6 +115,9 @@ public class ManagerOrdersController implements Initializable {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/new-order-service-view.fxml"));
                 Pane pane2 = loader.load();
+                NewOrderController newOrderController = loader.getController();
+                newOrderController.setManagerOrdersController(this);
+                newOrderController.setHomeController(homeController);
 
                 pnlGeral.getChildren().clear();
                 pnlCreateNewOrder.getChildren().clear();
@@ -140,6 +150,7 @@ public class ManagerOrdersController implements Initializable {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/fucture-orders-view.fxml"));
                 Pane pane2 = loader.load();
+
                 pnlGeral.getChildren().clear();
                 pnlGeral.getChildren().add(pane2);
             } catch (IOException e) {

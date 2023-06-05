@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ActualOrderController implements Initializable{
@@ -94,6 +95,12 @@ public class ActualOrderController implements Initializable{
 
     private ManagerOrdersController managerOrdersController;
 
+    private AlertMessageController alertMessageController;
+
+    public void setAlertMessageController() {
+        this.alertMessageController = new AlertMessageController();
+    }
+
     public void setManagerOrdersController(ManagerOrdersController managerOrdersController) {
         this.managerOrdersController = managerOrdersController;
     }
@@ -120,15 +127,67 @@ public class ActualOrderController implements Initializable{
             if (order != null && order.getType() != null) {
                 this.typeService.setText(order.getType().getNome());
             }
+            if(order.getPaymentType()!=null){
+                setPaymentMethod.setValue(order.getPaymentType());
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
+    public Integer setClientRate(){
+        Integer rate=0;
+        if(oneStar.isSelected()){
+            rate=1;
+        } else if (twoStar.isSelected()) {
+            rate=2;
+        } else if (threeStar.isSelected()) {
+            rate=3;
+        } else if (fourStar.isSelected()) {
+            rate=4;
+        } else if (fiveStar.isSelected()) {
+            rate=5;
+        }
+        return rate;
+    }
 
     @FXML
     void handleClicks(ActionEvent event) {
+        AlertMessageController alertMessageController = new AlertMessageController();
+        try {
+            if(event.getSource()==cancelOrder){
 
+            }
+            if(event.getSource()==updateOrder){
+
+                if(setPaymentMethod.getValue()!=null && setClientRate()==0){
+                    this.order.setPaymentType(setPaymentMethod.getValue().toLowerCase());
+                    DAO.getOrdemServicoDAO().update(this.order);
+                } else if (setPaymentMethod.getValue()==null) {
+                    alertMessageController.showAlertMensage("Metodo de pagamento não selecionado para poder atualizar");
+                } else if (setClientRate()!=0) {
+                    alertMessageController.showAlertMensage("Avaliação do cliente só está disponível ao finalizar a ordem");
+                }
+            }
+            if(event.getSource()==deleteOrder){
+                DAO.getOrdemServicoDAO().delete(this.order.getId());
+            }
+            if(event.getSource()==finalizeOrder){
+
+
+                if(setPaymentMethod.getValue()!=null && (setClientRate()!=0)){
+
+                    DAO.getOrdemServicoDAO().openOrderByTechnician(HomeController.getCpfTecnico()).finalize(setClientRate(),setPaymentMethod.getValue().toLowerCase());
+                } else{
+
+                    alertMessageController.showAlertMensage("Forma de pagamento não selecionada");
+                }
+
+
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -137,7 +196,7 @@ public class ActualOrderController implements Initializable{
         if(order == null){
             AlertMessageController alertMessageController = new AlertMessageController();
             try {
-                alertMessageController.showAlertMensage("Ordem não encontrada");
+                alertMessageController.showAlertMensage("Não foi encontrada ordem em aberto");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -57,6 +57,21 @@ public class ClientsController implements Initializable {
         return pnlUpdate;
     }
 
+    public void showAddPane(){
+        pnlAddClient.setStyle("-fx-background-color : #fffafa");
+        pnlAddClient.toFront();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/add-new-client-view.fxml"));
+            Pane pane2 = loader.load();
+            AddNewClientController addNewClientController = loader.getController();
+            addNewClientController.setClientsController(this);
+            addNewClientController.setPnl(pnlAddClient);
+            pnlAddClient.getChildren().clear();
+            pnlAddClient.getChildren().add(pane2);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     void login(ActionEvent event) {
         if (event.getSource() == bttAdd) {

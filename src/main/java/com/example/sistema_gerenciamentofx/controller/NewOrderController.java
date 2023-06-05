@@ -64,10 +64,25 @@ public class NewOrderController implements Initializable {
 
     private static String cpfClient;
 
+    private ManagerOrdersController managerOrdersController;
+    private HomeController homeController;
+
+    public void setManagerOrdersController(ManagerOrdersController managerOrdersController) {
+        this.managerOrdersController = managerOrdersController;
+    }
+
+    public void setHomeController(HomeController homeController) {
+        this.homeController = homeController;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         setTypeService.getItems().addAll(typeService);
+        updateListClients();
+    }
+
+    public void updateListClients(){
         clientsData = FXCollections.observableArrayList();
         try {
             clientsData.addAll(DAO.getClienteDAO().getList());
@@ -75,6 +90,7 @@ public class NewOrderController implements Initializable {
             throw new RuntimeException(e);
         }
         Node[] nodes = new Node[clientsData.size()];
+        ClientsList.getChildren().clear();
         for (int i = 0; i < nodes.length; i++) {
             try {
 
@@ -85,6 +101,7 @@ public class NewOrderController implements Initializable {
                 ClientElementNewOrderController clientElementNewOrderController = loader.getController();
                 clientElementNewOrderController.setClientInfos(clientsData.get(i).getFullName(), clientsData.get(i).getCpf());
                 clientElementNewOrderController.setNewOrderController(this);
+
                 //give the items some effect
 
                 nodes[i].setOnMouseEntered(event -> {
@@ -93,7 +110,14 @@ public class NewOrderController implements Initializable {
                 nodes[i].setOnMouseExited(event -> {
                     nodes[j].setStyle("-fx-background-color : #fffafa");
                 });
-                ClientsList.getChildren().add(nodes[i]);
+                if(searchClient.getText().isEmpty()){
+                    System.out.println("211"+searchClient.getText());
+                    ClientsList.getChildren().add(nodes[i]);
+                } else if (!searchClient.getText().isEmpty() && clientsData.get(i).getCpf().equals(searchClient.getText())) {
+                    System.out.println("56" +searchClient.getText());
+                    ClientsList.getChildren().add(nodes[i]);
+                }
+
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -103,7 +127,6 @@ public class NewOrderController implements Initializable {
 
         }
     }
-
     public static void setCpfClient(String cpf) {
         cpfClient = cpf;
 
@@ -148,12 +171,16 @@ public class NewOrderController implements Initializable {
                 throw new RuntimeException(e);
             }
         }
+        if(event.getSource()==clearData){
+            cpfSelected.setText("Nobody");
+            setTypeService.setValue("");
+        }
 
     }
 
     @FXML
     void newClientCreate(ActionEvent event) {
-
+        homeController.showClientsStage(event);
 
 
 
@@ -161,7 +188,8 @@ public class NewOrderController implements Initializable {
 
     @FXML
     void searchClient(ActionEvent event) {
-
+        clientsData.removeAll();
+        updateListClients();
     }
 
 
