@@ -18,9 +18,9 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <ScrollPane focusTraversable="false" hbarPolicy="NEVER" layoutX="50.0" layoutY="53.0" prefHeight="402.0" prefWidth="473.0" stylesheets="@css/styles.css">
+      <ScrollPane focusTraversable="false" hbarPolicy="NEVER" layoutX="50.0" layoutY="80.0" prefHeight="375.0" prefWidth="473.0" stylesheets="@css/styles.css">
          <content>
-            <VBox fx:id="pnItems" prefHeight="402.0" prefWidth="473.0" spacing="5.0" style="-fx-background-color: #fffafa;">
+            <VBox fx:id="pnItems" prefHeight="375.0" prefWidth="474.0" spacing="5.0" style="-fx-background-color: #fffafa;">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
@@ -43,5 +43,25 @@
             <Font name="Arial Rounded MT Bold" size="28.0" />
          </font>
       </Text>
+      <Label layoutX="69.0" layoutY="60.0" text="Client Name" textFill="#47077f">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="298.0" layoutY="60.0" prefHeight="20.0" prefWidth="83.0" text="Type Service" textFill="#47077f">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="410.0" layoutY="60.0" prefHeight="20.0" prefWidth="83.0" text="Create Date" textFill="#47077f">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="201.0" layoutY="60.0" prefHeight="20.0" prefWidth="76.0" text="Client CPF" textFill="#47077f">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
