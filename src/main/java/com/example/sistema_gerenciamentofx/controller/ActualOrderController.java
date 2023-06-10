@@ -193,6 +193,7 @@ public class ActualOrderController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setOrder();
+        clientData.setStyle("-fx-background-color : #FFF9F9");
         if(order == null){
             AlertMessageController alertMessageController = new AlertMessageController();
             try {

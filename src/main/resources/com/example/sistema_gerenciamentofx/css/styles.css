@@ -85,6 +85,12 @@
     -fx-background-radius: 30;
 }
 
+.client-item{
+    -fx-background-color: #FFF9F9;
+    -fx-background-radius: 30;
+}
+
+
 .shadow{
     -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
 }
@@ -93,4 +99,26 @@
     -fx-background-color: #fffafa;
     -fx-background-color: rgba(0,0,0,0);
 }
-1
+
+
+.choice-box {
+    -fx-background-color: #fffafa;
+    -fx-border-color: #8228D1;
+    -fx-border-width: 1px;
+    -fx-border-radius: 2px;
+    -fx-padding: 2px;
+}
+
+.choice-box .arrow-button {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 0;
+}
+
+.choice-box .arrow {
+    -fx-background-color: #000000;
+    -fx-padding: 3px;
+}
+
+.choice-box .label {
+    -fx-font-size: 10px;
+}
