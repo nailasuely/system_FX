@@ -244,8 +244,22 @@ public class HomeController implements Initializable {
     @FXML
     void handleClicks(ActionEvent event) {
             if (event.getSource() == btnManagerStock) {
-                pnlManageStock.setStyle("-fx-background-color : #8228D1");
+                pnlManageStock.setStyle("-fx-background-color : #fffafa");
                 pnlManageStock.toFront();
+
+                try {
+                    //Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    //currentScreen.close();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/manage-stock2-view.fxml"));
+                    Pane pane2 = loader.load();{
+                        pnlManageStock.getChildren().clear();
+                        pnlManageStock.getChildren().add(pane2);
+                        //clientsController = loader.getController();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
             if (event.getSource() == btnManageOrders) {
                 pnlManageOrders.setStyle("-fx-background-color : #fffafa");
@@ -307,8 +321,6 @@ public class HomeController implements Initializable {
                 throw new RuntimeException(e);
             }
         }
-
-
     }
 
     @FXML
