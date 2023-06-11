@@ -129,7 +129,7 @@ public class Tecnico extends Pessoa {
         long mediaQuantidadeDias = 0;
 
         for(OrdemServico servico: DAO.getOrdemServicoDAO().getList()){
-            if(servico.getStatus().equals("finalizada")) {
+            if (servico.getStatus().equals("finalizada")) {
                 quantidadeDias = ChronoUnit.DAYS.between(servico.getStart(), servico.getEnd());
                 qntServicosFinalizados += 1;
                 totalObtido += servico.getPrice();

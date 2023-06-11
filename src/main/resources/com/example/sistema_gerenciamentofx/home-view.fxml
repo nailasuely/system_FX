@@ -229,6 +229,7 @@
                </children>
             </Pane>
             <Pane fx:id="pnlManageTec" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="pnlGenerateReport" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </StackPane>
    </children>

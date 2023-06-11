@@ -64,6 +64,8 @@ public class HomeController implements Initializable {
 
     @FXML
     private VBox pnItems;
+    @FXML
+    private Pane pnlGenerateReport;
 
     @FXML
     private Pane pnlManageOrders;
@@ -242,11 +244,11 @@ public class HomeController implements Initializable {
 
 
     @FXML
-    void handleClicks(ActionEvent event) {
+    void handleClicks(ActionEvent event) throws Exception {
             if (event.getSource() == btnManagerStock) {
                 pnlManageStock.setStyle("-fx-background-color : #fffafa");
                 pnlManageStock.toFront();
-
+                System.out.println(DAO.getTecnicoDAO().findByCPF("1").gerarRelatorioFinal());
                 try {
                     //Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     //currentScreen.close();
@@ -321,7 +323,21 @@ public class HomeController implements Initializable {
                 throw new RuntimeException(e);
             }
         }
-    }
+        if (event.getSource() == btnManageReports) {
+            pnlGenerateReport.setStyle("-fx-background-color : #fffafa");
+            pnlGenerateReport.toFront();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/generate-report-view.fxml"));
+                Pane pane1 = loader.load();{
+                    pnlGenerateReport.getChildren().clear();
+                    pnlGenerateReport.getChildren().add(pane1);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+    }}
 
     @FXML
     void showLoginStage(ActionEvent event){
