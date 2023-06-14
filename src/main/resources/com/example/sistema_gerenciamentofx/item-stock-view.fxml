@@ -12,7 +12,7 @@
 
 <AnchorPane onMousePressed="#click" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistema_gerenciamentofx.controller.ItemStockController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="63.0" layoutY="8.0" prefHeight="215.0" prefWidth="225.0" styleClass="transparent" stylesheets="@css/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" prefHeight="215.0" prefWidth="225.0" styleClass="transparent" stylesheets="@css/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="img" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -26,7 +26,7 @@
                         <Font name="Arial" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="priceLable" prefHeight="21.0" prefWidth="143.0" text="10" textFill="#47077f">
+                  <Label fx:id="priceLabel" prefHeight="21.0" prefWidth="143.0" text="10" textFill="#47077f">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
@@ -38,6 +38,20 @@
             </HBox>
          </children>
       </VBox>
+      <HBox layoutX="20.0" layoutY="240.0" prefHeight="22.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="nameLabel1" prefHeight="22.0" prefWidth="230.0" text="Qtd" textFill="#47077f">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="qtdItem" prefHeight="21.0" prefWidth="143.0" text="10" textFill="#47077f">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
    </children>
    <styleClass>
       <String fx:value="stock-item" />

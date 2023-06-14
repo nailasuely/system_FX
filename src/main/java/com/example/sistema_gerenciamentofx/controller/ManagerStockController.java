@@ -1,5 +1,9 @@
 package com.example.sistema_gerenciamentofx.controller;
 
+import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.model.Produto;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -89,7 +93,19 @@ public class ManagerStockController implements Initializable {
             "/com/example/sistema_gerenciamentofx/images/placavideo.png",
             "/com/example/sistema_gerenciamentofx/images/ssd.png"
     };
+    private String[] names = {
+            "Fonte",
+            "RAM memory",
+            "HDD",
+            "Mother Board",
+            "Graphic Board",
+            "SSD"
+    };
 
+    private String prices =
+            "50";
+
+    private ObservableMap<Produto, Integer> itensData;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         pnlView.toFront();
@@ -98,11 +114,17 @@ public class ManagerStockController implements Initializable {
 
         try {
             for (int i = 0; i < 6; ++i) {
+                itensData = FXCollections.observableMap(DAO.getEstoqueDAO().getList());
+                //LEMBRAR DE CONFERIR SE TEM ITENS NO STOCK, PODE SER A CAUSA DO RETORNO VAZIO
+                System.out.println(itensData);
+
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(this.getClass().getResource("/com/example/sistema_gerenciamentofx/item-stock-view.fxml"));
                 AnchorPane anchorPane = (AnchorPane) fxmlLoader.load();
                 ItemStockController itemController = (ItemStockController) fxmlLoader.getController();
                 itemController.setData(imageNames[i % imageNames.length]);
+                //VALORES PARA TESTE
+                itemController.setInfos(names[i % imageNames.length], prices, "41");
                 if (column == 3) {
                     column = 0;
                     ++row;
@@ -119,6 +141,8 @@ public class ManagerStockController implements Initializable {
             }
         } catch (IOException var9) {
             var9.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }
