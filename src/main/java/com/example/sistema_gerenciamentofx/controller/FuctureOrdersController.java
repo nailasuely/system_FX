@@ -30,9 +30,10 @@ public class FuctureOrdersController implements Initializable{
         ordensData = FXCollections.observableArrayList();
         try {
             for (OrdemServico ordem: DAO.getOrdemServicoDAO().getList()) {
-                if(ordem.getStatus().equals("espera") && ordem.getTechnicianID().equals(DAO.getTecnicoDAO().findIdbyCPF(HomeController.getCpfTecnico()))){
+                if (ordem.getTechnicianID() != null){
+                if(ordem.getStatus().equals("espera") && ordem.getTechnicianID().equals(DAO.getTecnicoDAO().findIdbyCPF(HomeController.getCpfTecnico()))) {
                     ordensData.add(ordem);
-                }
+                }}
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
