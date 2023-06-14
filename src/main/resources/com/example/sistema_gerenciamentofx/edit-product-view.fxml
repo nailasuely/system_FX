@@ -21,7 +21,7 @@
       </Label>
       <TextField fx:id="peca" layoutX="35.0" layoutY="148.0" prefHeight="27.0" prefWidth="340.0" promptText="Peça" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
       <TextField fx:id="price" layoutX="36.0" layoutY="197.0" prefHeight="27.0" prefWidth="339.0" promptText="20" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
-      <Button fx:id="loginButton1" layoutX="70.0" layoutY="236.0" mnemonicParsing="false" onAction="#login" prefHeight="32.0" prefWidth="270.0" style="-fx-background-color: #47077F; -fx-background-radius: 10;" text="EDIT PRODUCT" textFill="WHITE">
+      <Button fx:id="loginButton1" layoutX="70.0" layoutY="276.0" mnemonicParsing="false" onAction="#login" prefHeight="32.0" prefWidth="270.0" style="-fx-background-color: #47077F; -fx-background-radius: 10;" text="EDIT PRODUCT" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
@@ -56,5 +56,11 @@
          </font>
       </Text>
       <ChoiceBox fx:id="setTypeProduct" layoutX="89.0" layoutY="102.0" prefHeight="25.0" prefWidth="232.0" />
+      <TextField fx:id="qntd" layoutX="36.0" layoutY="242.0" prefHeight="27.0" prefWidth="339.0" promptText="5" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
+      <Label layoutX="49.0" layoutY="222.0" prefHeight="20.0" prefWidth="70.0" text="Quantity" textFill="#47077f">
+         <font>
+            <Font name="Segoe UI Historic" size="14.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

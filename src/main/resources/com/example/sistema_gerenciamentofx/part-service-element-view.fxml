@@ -20,22 +20,22 @@
       </Label>
       <Label layoutX="4.0" layoutY="107.0" prefHeight="30.0" prefWidth="31.0" text="Qtd:" textFill="#47077f">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
       <Label layoutX="4.0" layoutY="128.0" prefHeight="30.0" prefWidth="42.0" text="Price: " textFill="#47077f">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
       <Label fx:id="qtdPart" layoutX="40.0" layoutY="107.0" prefHeight="30.0" prefWidth="106.0" text="15" textFill="#47077f">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
       <Label fx:id="pricePart" layoutX="46.0" layoutY="128.0" prefHeight="30.0" prefWidth="106.0" text="R$ 3000.00" textFill="#47077f">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
    </children>

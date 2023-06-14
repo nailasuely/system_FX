@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="pnlView" prefHeight="413.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistema_gerenciamentofx.controller.ViewServicesController">
+   <children>
+      <Label layoutX="20.0" layoutY="4.0" text="List of Services" textFill="#47077f">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Pane fx:id="pnlText" layoutX="539.0" layoutY="35.0" opacity="0.0" prefHeight="375.0" prefWidth="251.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#47077f" height="380.0" stroke="TRANSPARENT" strokeType="INSIDE" width="257.0" />
+            <ImageView fitHeight="244.0" fitWidth="241.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+               <image>
+                  <Image url="@images/5.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <ScrollPane fx:id="scroll" layoutX="17.0" layoutY="33.0" prefHeight="380.0" prefWidth="759.0" style="-fx-background-color: #fffafa;" styleClass="transparent" stylesheets="@css/styles.css">
+         <content>
+            <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #fffafa;">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+   </children>
+</Pane>

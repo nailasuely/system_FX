@@ -81,4 +81,6 @@ public interface EstoqueDAO {
      * Tal método serve para poder deletar os dados armazenados
      */
     public void deleteMany() throws Exception;
+
+    public void atualizarProduto(Produto produto, int quantidade) throws Exception;
 }

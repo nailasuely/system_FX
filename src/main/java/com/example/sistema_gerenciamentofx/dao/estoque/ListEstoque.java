@@ -72,7 +72,6 @@ public class ListEstoque implements EstoqueDAO {
     }
 
 
-    // essa classe também funciona como ordem de compra.
     /**
      * Método responsável por adicionar produtos ao estoque.<br>
      * Um de seus usos ocorre na realização da "ordem de compra" dentro do sistema
@@ -101,6 +100,19 @@ public class ListEstoque implements EstoqueDAO {
             if (pd1.getNome().equals(produto.getNome())) {
                 int quantidadeAtual = estoque.get(pd1);
                 estoque.put(pd1, quantidadeAtual + quantidade);
+                Connect.saveEstoque(this.estoque);
+                return;
+            }
+        }
+        estoque.put(produto, quantidade);
+        Connect.saveEstoque(this.estoque);
+    }
+
+    public void atualizarProduto(Produto produto, int quantidade) throws Exception{
+        for (Produto pd1 : this.estoque.keySet()) {
+            if (pd1.getNome().equals(produto.getNome())) {
+                int quantidadeAtual = estoque.get(pd1);
+                estoque.put(pd1, quantidade);
                 Connect.saveEstoque(this.estoque);
                 return;
             }
