@@ -19,7 +19,7 @@ public class ManagerStockController implements Initializable {
     private Button bttAdd;
 
     @FXML
-    private Button bttAdd1;
+    private Button bttEdit;
 
     @FXML
     private GridPane grid;
@@ -28,13 +28,56 @@ public class ManagerStockController implements Initializable {
     private Pane pnlOverview;
 
     @FXML
+    private Pane pnlAddProduct;
+
+    @FXML
+    private Pane pnlView;
+    @FXML
     private Pane pnlText;
 
     @FXML
+    private Pane pnlEditProduct;
+    @FXML
     private ScrollPane scroll;
+
+
 
     @FXML
     void login(ActionEvent event) {
+        if (event.getSource() == bttAdd) {
+            pnlAddProduct.setStyle("-fx-background-color : #fffafa");
+            pnlAddProduct.toFront();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/add-new-product-view.fxml"));
+                Pane pane2 = loader.load();
+
+                AddNewProductController addNewProductController = loader.getController();
+                addNewProductController.setManageStock(this);
+                //addNewProductController.setPnl(pnlAddProduct);
+                pnlAddProduct.getChildren().clear();
+                pnlAddProduct.getChildren().add(pane2);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if (event.getSource() == bttEdit) {
+            pnlEditProduct.setStyle("-fx-background-color : #fffafa");
+            pnlEditProduct.toFront();
+            System.out.println("oi");
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/edit-product-view.fxml"));
+                Pane pane2 = loader.load();
+                EditProductController editProductController = loader.getController();
+                editProductController.setManageStock(this);
+                //addNewProductController.setPnl(pnlAddProduct);
+                pnlEditProduct.getChildren().clear();
+                pnlEditProduct.getChildren().add(pane2);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
 
     }
 
@@ -49,6 +92,7 @@ public class ManagerStockController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        pnlView.toFront();
         int column = 0;
         int row = 1;
 

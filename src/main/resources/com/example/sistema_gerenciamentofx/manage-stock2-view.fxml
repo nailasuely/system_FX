@@ -24,7 +24,7 @@
             <Image url="@images/5.png" />
          </image>
       </ImageView>
-      <Pane layoutY="141.0" prefHeight="413.0" prefWidth="793.0">
+      <Pane fx:id="pnlView" layoutY="141.0" prefHeight="413.0" prefWidth="793.0">
          <children>
             <Label layoutX="20.0" layoutY="4.0" text="List of Parts" textFill="#47077f">
                <font>
@@ -52,19 +52,21 @@
             </ScrollPane>
          </children>
       </Pane>
-      <HBox alignment="CENTER_RIGHT" layoutX="290.0" layoutY="101.0" prefHeight="73.0" prefWidth="469.0" spacing="10.0">
+      <HBox alignment="CENTER_RIGHT" layoutX="275.0" layoutY="81.0" prefHeight="73.0" prefWidth="469.0" spacing="10.0">
          <children>
-            <Button fx:id="bttAdd" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="178.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="Edit product">
+            <Button fx:id="bttEdit" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="178.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="Edit product">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="bttAdd1" mnemonicParsing="false" onAction="#login" prefHeight="37.0" prefWidth="178.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="Add new product">
+            <Button fx:id="bttAdd" mnemonicParsing="false" onAction="#login" prefHeight="37.0" prefWidth="178.0" style="-fx-border-color: #47077F; -fx-border-radius: 20; -fx-background-color: transparent; -fx-text-fill: #47077F;" stylesheets="@css/styles.css" text="Add new product">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
          </children>
       </HBox>
+      <Pane fx:id="pnlAddProduct" layoutX="2.0" layoutY="141.0" prefHeight="413.0" prefWidth="793.0" />
+      <Pane fx:id="pnlEditProduct" layoutX="1.0" layoutY="142.0" prefHeight="413.0" prefWidth="793.0" />
    </children>
 </Pane>

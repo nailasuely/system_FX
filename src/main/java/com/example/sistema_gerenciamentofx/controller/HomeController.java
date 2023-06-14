@@ -248,7 +248,6 @@ public class HomeController implements Initializable {
             if (event.getSource() == btnManagerStock) {
                 pnlManageStock.setStyle("-fx-background-color : #fffafa");
                 pnlManageStock.toFront();
-                System.out.println(DAO.getTecnicoDAO().findByCPF("1").gerarRelatorioFinal());
                 try {
                     //Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     //currentScreen.close();
