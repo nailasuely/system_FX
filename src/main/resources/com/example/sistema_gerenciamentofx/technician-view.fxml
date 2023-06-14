@@ -119,7 +119,7 @@
       </FlowPane>
       <VBox alignment="TOP_CENTER" layoutX="216.0" layoutY="421.0" prefHeight="76.0" prefWidth="139.0" styleClass="ordens-conluidas" stylesheets="@css/styles.css">
          <children>
-            <Label prefHeight="47.0" prefWidth="44.0" text="20 " textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="ordersInProgress" prefHeight="47.0" prefWidth="44.0" text="20 " textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="30.0" />
                </font>
@@ -127,7 +127,7 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <Label fx:id="completedOrders1" nodeOrientation="LEFT_TO_RIGHT" prefHeight="16.0" prefWidth="123.0" text="  ORDENS EM ABERTO" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+            <Label alignment="CENTER" contentDisplay="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="16.0" prefWidth="132.0" text=" EM ANDAMENTO" textFill="WHITE" textOverrun="CLIP">
                <font>
                   <Font name="Segoe UI Semibold" size="11.0" />
                </font>

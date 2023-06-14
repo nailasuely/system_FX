@@ -39,6 +39,7 @@ public class ClientsController implements Initializable {
     public void setAddNewClientController(AddNewClientController addNewClientController1) {
         this.addNewClientController= addNewClientController1;
     }
+
     public void showViewPane() {
         pnlView.toFront();
 
@@ -144,35 +145,6 @@ public class ClientsController implements Initializable {
             }
 
         }
-
-
-
-       /* pnItems.getChildren().clear();
-
-        for (Cliente client : clientsData) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/client-element-view.fxml"));
-                Node node = loader.load();
-                ClientElementController clientElementController = loader.getController();
-                clientElementController.setNameClient(client.getFullName());
-                clientElementController.setCpfClient(client.getCpf());
-                clientElementController.setTelephoneClient(Integer.toString(client.getTelephone()));
-                clientElementController.setAdressClient(client.getAddress());
-
-                node.setOnMouseEntered(event -> {
-                    node.setStyle("-fx-background-color : #0A0E3F");
-                });
-                node.setOnMouseExited(event -> {
-                    node.setStyle("-fx-background-color : #fffafa");
-                });
-                pnItems.getChildren().add(node);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }*/
-
-
 
 }}
 

@@ -205,7 +205,7 @@ public class ListTecnicos implements TecnicoDAO {
                 return tecnico.getId();
             }
         }
-        throw new IllegalArgumentException("Tecnico não detectado no banco de dados");
+       throw new IllegalArgumentException("Tecnico não detectado no banco de dados");
 
     }
 
