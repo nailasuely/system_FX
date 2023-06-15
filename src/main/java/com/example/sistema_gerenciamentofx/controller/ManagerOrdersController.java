@@ -76,7 +76,7 @@ public class ManagerOrdersController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         try {
-            if(DAO.getOrdemServicoDAO().openOrderByTechnician(HomeController.getCpfTecnico()) !=null){
+            if(DAO.getOrdemServicoDAO().ordersByTechnician(HomeController.getCpfTecnico()) !=null){
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/actual-order-view.fxml"));
                 Pane pane2 = loader.load();
                 ActualOrderController actualOrderController = loader.getController();

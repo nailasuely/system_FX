@@ -28,6 +28,8 @@ import java.util.ResourceBundle;
 public class ActualOrderController implements Initializable{
 
     @FXML
+    private Label priceOrder;
+    @FXML
     private HBox pnlItens;
     @FXML
     private Pane pnlInfosOrder;
@@ -133,8 +135,14 @@ public class ActualOrderController implements Initializable{
 
 
     public void setOrder(){
+
         try {
-            this.order = DAO.getOrdemServicoDAO().openOrderByTechnician(HomeController.getCpfTecnico());
+            if(DAO.getOrdemServicoDAO().ordersByTechnician(HomeController.getCpfTecnico()) == null){
+                this.order = null;
+            } else{
+                this.order = DAO.getOrdemServicoDAO().ordersByTechnician(HomeController.getCpfTecnico()).get(0);
+            }
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -152,6 +160,7 @@ public class ActualOrderController implements Initializable{
             if(order.getPaymentType()!=null){
                 setPaymentMethod.setValue(order.getPaymentType());
             }
+            this.priceOrder.setText("R$"+String.valueOf(order.getPrice()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -198,8 +207,20 @@ public class ActualOrderController implements Initializable{
 
 
                 if(setPaymentMethod.getValue()!=null && (setClientRate()!=0)){
-                    DAO.getOrdemServicoDAO().openOrderByTechnician(HomeController.getCpfTecnico()).finalize(setClientRate(),setPaymentMethod.getValue().toLowerCase());
 
+                    DAO.getOrdemServicoDAO().ordersByTechnician(HomeController.getCpfTecnico()).get(0).finalize(setClientRate(),setPaymentMethod.getValue().toLowerCase());
+                    setOrder();
+                    if(this.order != null){
+                        setInformations();
+                        itensData.clear();
+                        insertNodes();
+                        fiveStar.disarm();
+                        fourStar.disarm();
+                        threeStar.disarm();
+                        twoStar.disarm();
+                        oneStar.disarm();
+                    }
+                    setPaymentMethod.setValue("");
                 } else{
 
                     alertMessageController.showAlertMensage("Forma de pagamento não selecionada");
@@ -215,6 +236,7 @@ public class ActualOrderController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setOrder();
+
         clientData.setStyle("-fx-background-color : #FFF9F9");
         if(order == null){
             AlertMessageController alertMessageController = new AlertMessageController();
@@ -225,16 +247,23 @@ public class ActualOrderController implements Initializable{
             }
         }else{
             setInformations();
+            try {
+                if(DAO.getOrdemServicoDAO().ordersByTechnician(HomeController.getCpfTecnico())!= null){
+                    itensData = FXCollections.observableMap(DAO.getOrdemServicoDAO().ordersByTechnician(HomeController.getCpfTecnico()).get(0).getProdutoLists());
+                    insertNodes();
+                }
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         setPaymentMethod.getItems().addAll(paymentsType);
 
 
-        try {
-            itensData = FXCollections.observableMap(DAO.getOrdemServicoDAO().openOrderByTechnician(HomeController.getCpfTecnico()).getProdutoLists());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
 
+    }
+
+    public void insertNodes(){
         ArrayList<Produto> itens = new ArrayList<>();
         itens.addAll(itensData.keySet());
         // ISSO AQUI É APENAS PARA FINS DE TESTE
@@ -273,9 +302,8 @@ public class ActualOrderController implements Initializable{
                 e.printStackTrace();
             }
         }
-
-
-
-
     }
+
 }
+
+

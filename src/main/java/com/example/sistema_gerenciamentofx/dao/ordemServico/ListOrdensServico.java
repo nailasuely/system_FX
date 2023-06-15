@@ -322,6 +322,29 @@ public class ListOrdensServico implements OrdemServicoDAO{
         return quantidade;
     }
 
+    public List<OrdemServico> ordersByTechnician(String cpf){
+        ArrayList<OrdemServico> orders = new ArrayList<>();
+
+        for (OrdemServico ordem: this.listaOrdensServico) {
+            try {
+                if(ordem.getTechnicianID() != null){
+                    if(ordem.getTechnicianID().equals(DAO.getTecnicoDAO().findIdbyCPF(cpf)) && (ordem.getStatus().equals("andamento") || ordem.getStatus().equals("espera"))){
+                        orders.add(ordem);
+                    }
+                }
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        if(orders.size()>0){
+            return orders;
+        } else {
+            return null;
+        }
+
+    }
+
 /*
     public int getIndiceClienteParaAtender() {
         return indiceClienteParaAtender;

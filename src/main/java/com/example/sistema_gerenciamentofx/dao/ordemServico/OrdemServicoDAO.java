@@ -63,4 +63,5 @@ public interface OrdemServicoDAO extends CRUD<OrdemServico> {
 
     public int getQuantidadeOrdensEmAndamento(String cpfTecnico) throws Exception;
 
+    public List<OrdemServico> ordersByTechnician(String cpf);
 }

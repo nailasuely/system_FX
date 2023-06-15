@@ -1,5 +1,6 @@
 package com.example.sistema_gerenciamentofx.model;
 import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.dao.conexao.Connect;
 import com.example.sistema_gerenciamentofx.dao.estoque.SemEstoqueException;
 
 import java.io.Serializable;
@@ -568,7 +569,11 @@ public class OrdemServico implements Serializable {
         /*
         this.setPrice(this.calculatePrice(this.getType(), this.getItemsList()));
          */
-
+        try {
+            Connect.saveOrder(DAO.getOrdemServicoDAO().getList());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

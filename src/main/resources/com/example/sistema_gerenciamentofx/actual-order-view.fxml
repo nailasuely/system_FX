@@ -136,6 +136,16 @@
                   </ImageView>
                </children>
             </Pane>
+            <Label alignment="CENTER" layoutX="7.0" layoutY="141.0" prefHeight="30.0" prefWidth="115.0" text="Total Price:" textFill="#47077f">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="priceOrder" layoutX="117.0" layoutY="143.0" prefHeight="30.0" prefWidth="115.0" text="R$0,00" textFill="#47077f">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane layoutX="553.0" layoutY="31.0" prefHeight="127.0" prefWidth="235.0">
