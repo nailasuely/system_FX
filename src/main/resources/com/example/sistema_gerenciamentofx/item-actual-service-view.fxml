@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane onMousePressed="#click" prefHeight="120.0" prefWidth="200.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistema_gerenciamentofx.controller.ItemActualServiceController">
+   <styleClass>
+      <String fx:value="stock-item" />
+      <String fx:value="shadow" />
+   </styleClass>
+   <children>
+      <Pane layoutX="3.0" prefHeight="120.0" prefWidth="198.0">
+         <children>
+            <Label fx:id="nameLabel" layoutX="14.0" layoutY="96.0" prefHeight="21.0" prefWidth="146.0" text="Model" textFill="#47077f">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="nameLabel1" layoutX="138.0" layoutY="74.0" prefHeight="22.0" prefWidth="81.0" text="Qtd" textFill="#47077f">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="quantLabel" layoutX="158.0" layoutY="96.0" prefHeight="22.0" prefWidth="40.0" text="10" textFill="#47077f">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="img" fitHeight="100.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/ram2.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

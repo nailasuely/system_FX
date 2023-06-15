@@ -55,11 +55,16 @@
             <Font name="Arial Rounded MT Bold" size="28.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="setTypeProduct" layoutX="89.0" layoutY="102.0" prefHeight="25.0" prefWidth="232.0" />
+      <ChoiceBox fx:id="setTypeProduct" layoutX="181.0" layoutY="105.0" prefHeight="25.0" prefWidth="215.0" />
       <TextField fx:id="qntd" layoutX="36.0" layoutY="242.0" prefHeight="27.0" prefWidth="339.0" promptText="5" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
       <Label layoutX="49.0" layoutY="222.0" prefHeight="20.0" prefWidth="70.0" text="Quantity" textFill="#47077f">
          <font>
             <Font name="Segoe UI Historic" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="33.0" layoutY="105.0" prefHeight="25.0" prefWidth="144.0" text="Select the product:" textFill="#47077f">
+         <font>
+            <Font name="Segoe UI Historic" size="16.0" />
          </font>
       </Label>
    </children>

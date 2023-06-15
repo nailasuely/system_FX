@@ -1,25 +1,36 @@
 package com.example.sistema_gerenciamentofx.controller;
 
 import com.example.sistema_gerenciamentofx.dao.DAO;
+import com.example.sistema_gerenciamentofx.model.Cliente;
 import com.example.sistema_gerenciamentofx.model.OrdemServico;
+import com.example.sistema_gerenciamentofx.model.Produto;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ActualOrderController implements Initializable{
 
+    @FXML
+    private HBox pnlItens;
+    @FXML
+    private Pane pnlInfosOrder;
     @FXML
     private Pane pnlActualService;
     @FXML
@@ -96,6 +107,17 @@ public class ActualOrderController implements Initializable{
     private ManagerOrdersController managerOrdersController;
 
     private AlertMessageController alertMessageController;
+
+    private ObservableMap<Produto, Integer> itensData;
+
+    private String[] imageNames = {
+            "/com/example/sistema_gerenciamentofx/images/ram2.png",
+            "/com/example/sistema_gerenciamentofx/images/placamae.png",
+            "/com/example/sistema_gerenciamentofx/images/fonte.png",
+            "/com/example/sistema_gerenciamentofx/images/placavideo.png",
+            "/com/example/sistema_gerenciamentofx/images/hd.png",
+            "/com/example/sistema_gerenciamentofx/images/ssd.png"
+    };
 
     public void setAlertMessageController() {
         this.alertMessageController = new AlertMessageController();
@@ -176,8 +198,8 @@ public class ActualOrderController implements Initializable{
 
 
                 if(setPaymentMethod.getValue()!=null && (setClientRate()!=0)){
-
                     DAO.getOrdemServicoDAO().openOrderByTechnician(HomeController.getCpfTecnico()).finalize(setClientRate(),setPaymentMethod.getValue().toLowerCase());
+
                 } else{
 
                     alertMessageController.showAlertMensage("Forma de pagamento não selecionada");
@@ -205,5 +227,55 @@ public class ActualOrderController implements Initializable{
             setInformations();
         }
         setPaymentMethod.getItems().addAll(paymentsType);
+
+
+        try {
+            itensData = FXCollections.observableMap(DAO.getOrdemServicoDAO().openOrderByTechnician(HomeController.getCpfTecnico()).getProdutoLists());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        ArrayList<Produto> itens = new ArrayList<>();
+        itens.addAll(itensData.keySet());
+        // ISSO AQUI É APENAS PARA FINS DE TESTE
+        Node[] nodes = new Node[itensData.size()];
+        for (int i = 0; i < nodes.length; i++) {
+            try {
+                int indexItem =0;
+                final int j = i;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/item-actual-service-view.fxml"));
+                nodes[i] = loader.load();
+                ItemActualServiceController itemActualServiceController = loader.getController();
+                if(itens.get(i).getNome().equals("ram")){
+                    indexItem = 0;
+                } else if (itens.get(i).getNome().equals("placa mae")) {
+                    indexItem = 1;
+                } else if (itens.get(i).getNome().equals("fonte")) {
+                    indexItem = 2;
+                } else if (itens.get(i).getNome().equals("placa de video")) {
+                    indexItem = 3;
+                } else if (itens.get(i).getNome().equals("hd/ssd")) {
+                    indexItem = 4;
+                }
+                itemActualServiceController.setInfos(Integer.toString(itensData.get(itens.get(i))), itens.get(i).getNome(), imageNames[indexItem]);
+                nodes[i].setOnMouseEntered(event -> {
+                    nodes[j].setStyle("-fx-background-color : #0A0E3F");
+                });
+                nodes[i].setOnMouseExited(event -> {
+                    nodes[j].setStyle("-fx-background-color : #fffafa");
+                });
+                pnlItens.getChildren().add(nodes[i]);
+                pnlInfosOrder.toFront();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
+
     }
 }

@@ -9,9 +9,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -45,11 +46,11 @@
          <children>
             <ScrollPane focusTraversable="false" hbarPolicy="NEVER" layoutX="43.0" layoutY="39.0" prefHeight="375.0" prefWidth="495.0" stylesheets="@css/styles.css">
                <content>
-                  <VBox fx:id="pnItems" prefHeight="375.0" prefWidth="477.0" spacing="5.0" style="-fx-background-color: #fffafa;">
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </VBox>
+                  <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #fffafa;">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
                </content>
             </ScrollPane>
             <Label layoutX="14.0" layoutY="4.0" text="List of Parts" textFill="#47077f">

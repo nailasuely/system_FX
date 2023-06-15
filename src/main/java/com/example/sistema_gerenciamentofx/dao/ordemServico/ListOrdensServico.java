@@ -106,6 +106,11 @@ public class ListOrdensServico implements OrdemServicoDAO{
     public List<OrdemServico> getList() {
         return this.listaOrdensServico;
     }
+
+    /**
+     * Método para retornar a lista de ordens que estão com o status "em andamento"
+     * @return Uma lista com objetos do tipo <i>OrdemServico</i>
+     */
     @Override
     public List<OrdemServico> getListOpening() {
         List<OrdemServico> openingOrders = new ArrayList<OrdemServico>();
