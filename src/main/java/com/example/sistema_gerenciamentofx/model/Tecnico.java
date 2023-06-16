@@ -1,6 +1,7 @@
 package com.example.sistema_gerenciamentofx.model;
 import com.example.sistema_gerenciamentofx.dao.DAO;
 
+import java.math.BigDecimal;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
@@ -128,6 +129,9 @@ public class Tecnico extends Pessoa {
         long quantidadeDias = 0;
         long mediaQuantidadeDias = 0;
 
+
+
+
         for(OrdemServico servico: DAO.getOrdemServicoDAO().getList()){
             if (servico.getStatus().equals("finalizada")) {
                 quantidadeDias = ChronoUnit.DAYS.between(servico.getStart(), servico.getEnd());
@@ -145,6 +149,7 @@ public class Tecnico extends Pessoa {
         if (qntServicosFinalizados > 0){
             mediaSastifacao = sastifacao / qntServicosFinalizados;
             mediaQuantidadeDias = quantidadeDias / qntServicosFinalizados;
+
         }
         return "Quantidade de serviços finalizados: "+ qntServicosFinalizados +
                "\nQuantidade de serviços em andamento: "+ qntServicosAndamento +

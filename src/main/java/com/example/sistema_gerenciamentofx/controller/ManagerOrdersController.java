@@ -71,6 +71,20 @@ public class ManagerOrdersController implements Initializable {
 
     }
 
+    public void seeFutureOrders(){
+        pnlGeral.setStyle("-fx-background-color : #fffafa");
+        pnlGeral.toFront();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/fucture-orders-view.fxml"));
+        Pane pane2 = null;
+        try {
+            pane2 = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        pnlGeral.getChildren().clear();
+        pnlGeral.getChildren().add(pane2);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -135,6 +149,8 @@ public class ManagerOrdersController implements Initializable {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/actual-order-view.fxml"));
                 Pane pane2 = loader.load();
+                ActualOrderController actualOrderController = loader.getController();
+                actualOrderController.setManagerOrdersController(this);
                 pnlGeral.getChildren().clear();
                 pnlManageActual.getChildren().clear();
                 pnlManageActual.getChildren().add(pane2);

@@ -52,7 +52,7 @@ public class GenerateReportsController implements Initializable {
         waitingOrders.setText(valoresRelatorio.get(2));
         invoicing.setText(valoresRelatorio.get(3));
         averageDays.setText(valoresRelatorio.get(4));
-        customerSatisfaction.setText(valoresRelatorio.get(5));
+        customerSatisfaction.setText(valoresRelatorio.get(5).substring(0,4));
 
 
 

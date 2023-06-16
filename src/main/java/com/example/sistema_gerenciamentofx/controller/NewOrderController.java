@@ -296,6 +296,8 @@ public class NewOrderController implements Initializable {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+            cpfSelected.setText("Nobody");
+            setTypeService.setValue("");
         }
 
             if(event.getSource()==clearData){

@@ -141,6 +141,8 @@ public class ActualOrderController implements Initializable{
                 this.order = null;
             } else{
                 this.order = DAO.getOrdemServicoDAO().ordersByTechnician(HomeController.getCpfTecnico()).get(0);
+                this.order.setStatus("andamento");
+                DAO.getOrdemServicoDAO().update(this.order);
             }
 
         } catch (Exception e) {
@@ -213,18 +215,24 @@ public class ActualOrderController implements Initializable{
                     if(this.order != null){
                         setInformations();
                         itensData.clear();
+                        itensData = FXCollections.observableMap(DAO.getOrdemServicoDAO().ordersByTechnician(HomeController.getCpfTecnico()).get(0).getProdutoLists());
                         insertNodes();
                         fiveStar.disarm();
                         fourStar.disarm();
                         threeStar.disarm();
                         twoStar.disarm();
                         oneStar.disarm();
+
+                    } else {
+                        managerOrdersController.seeFutureOrders();
                     }
                     setPaymentMethod.setValue("");
                 } else{
 
+
                     alertMessageController.showAlertMensage("Forma de pagamento não selecionada");
                 }
+
 
 
             }
