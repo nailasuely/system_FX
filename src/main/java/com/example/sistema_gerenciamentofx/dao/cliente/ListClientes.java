@@ -184,12 +184,17 @@ public class ListClientes implements ClienteDAO{
      * é gerado uma exceção
      */
     public String findIdbyCPF(String CPF){
-        for(Cliente cliente: this.listaClientes){
-            if(cliente.getCpf().equals(CPF)){
-                return cliente.getId();
+        try{
+            for(Cliente cliente: this.listaClientes){
+                if(cliente.getCpf().equals(CPF)){
+                    return cliente.getId();
+                }
             }
+            return null;
+        }catch (Exception e){
+            throw new IllegalArgumentException("Cliente não detectado no banco de dados");
         }
-        throw new IllegalArgumentException("Cliente não detectado no banco de dados");
+
 
     }
 

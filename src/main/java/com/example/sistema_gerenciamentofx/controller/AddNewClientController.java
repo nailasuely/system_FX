@@ -70,7 +70,7 @@ public class AddNewClientController implements Initializable {
             if (clientsController != null) {
                 pnl.getChildren().clear();
                 clientsController.getPnlUpdate().getChildren().clear();
-                clientsController.updateClientList();
+                clientsController.updateClientList(false);
                 clientsController.showViewPane();
 
             }

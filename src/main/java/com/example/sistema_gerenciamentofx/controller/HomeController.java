@@ -18,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -93,6 +95,9 @@ public class HomeController implements Initializable {
     private TechnicianController technicianViewController;
     private ClientsController clientsController;
     private static String cpfTecnico;
+
+    @FXML
+    private Button searchBtn;
 
     public static String getCpfTecnico(){
         return cpfTecnico;
@@ -193,53 +198,14 @@ public class HomeController implements Initializable {
             throw new RuntimeException(e);
         }
         try {
-            this.ordersData = FXCollections.observableArrayList();
-            this.ordersData.addAll(DAO.getOrdemServicoDAO().getListOpening());
+
             this.ordersTotal.setText(Integer.toString(DAO.getOrdemServicoDAO().amountItems()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
         // ISSO AQUI É APENAS PARA FINS DE TESTE
-        Node[] nodes = new Node[ordersData.size()];
-        for (int i = 0; i < nodes.length; i++) {
-            try {
-                final int j = i;
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/element-view.fxml"));
-                nodes[i] = loader.load();
-                ElementController elementController = loader.getController();
-                OrdemServico order = ordersData.get(i);
-                Cliente cliente = DAO.getClienteDAO().findById(order.getClientId());
-                if (cliente != null) {
-                        elementController.setClientName(DAO.getClienteDAO().findById(ordersData.get(i).getClientId()).getFullName());
-                }
-                else {
-                        elementController.setClientName("Sem cliente até o momento.");
-                    }
-                if (order.getStart() != null) {
-                    elementController.setDateOrder(order.getStart());
-                }
-
-                elementController.setIdOrder(order.getId());
-
-                if (order.getStatus() != null) {
-                    elementController.setStatusOrder(order.getStatus());
-                }
-                elementController.setValueOrder(Double.toString(order.getPrice()));
-                nodes[i].setOnMouseEntered(event -> {
-                    nodes[j].setStyle("-fx-background-color : #0A0E3F");
-                });
-                nodes[i].setOnMouseExited(event -> {
-                    nodes[j].setStyle("-fx-background-color : #fffafa");
-                });
-                pnItems.getChildren().add(nodes[i]);
-                pnlOverview.toFront();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        updateListOrders(false);
     }
 
 
@@ -283,6 +249,7 @@ public class HomeController implements Initializable {
                 }
             }
             if (event.getSource() == btnOverview) {
+                updateListOrders(false);
                 pnlOverview.setStyle("-fx-background-color : #fffafa");
                 pnlOverview.toFront();
             }
@@ -351,6 +318,7 @@ public class HomeController implements Initializable {
             loginStage.setResizable(false);
             loginStage.setScene(scene);
             loginStage.show();
+            loginStage.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/sistema_gerenciamentofx/images/1.png")));
 
         } catch (Exception excep) {
             excep.printStackTrace();
@@ -401,6 +369,84 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void updateListOrders(boolean validator){
+        if(this.ordersData != null){
+            this.ordersData.removeAll();
+        }
+
+        this.ordersData = FXCollections.observableArrayList();
+        try {
+            this.ordersData.addAll(DAO.getOrdemServicoDAO().getListOpening());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        pnItems.getChildren().clear();
+        Node[] nodes = new Node[ordersData.size()];
+        for (int i = 0; i < nodes.length; i++) {
+            try {
+                final int j = i;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/element-view.fxml"));
+                nodes[i] = loader.load();
+                ElementController elementController = loader.getController();
+                OrdemServico order = ordersData.get(i);
+                Cliente cliente = DAO.getClienteDAO().findById(order.getClientId());
+                if (cliente != null) {
+                    elementController.setClientName(DAO.getClienteDAO().findById(ordersData.get(i).getClientId()).getFullName());
+                }
+                else {
+                    elementController.setClientName("Sem cliente até o momento.");
+                }
+                if (order.getStart() != null) {
+                    elementController.setDateOrder(order.getStart());
+                }
+
+                elementController.setIdOrder(DAO.getTecnicoDAO().findById(order.getTechnicianID()).getCpf());
+
+                if (order.getStatus() != null) {
+                    elementController.setStatusOrder(order.getStatus());
+                }
+                elementController.setValueOrder(Double.toString(order.getPrice()));
+                nodes[i].setOnMouseEntered(event -> {
+                    nodes[j].setStyle("-fx-background-color : #0A0E3F");
+                });
+                nodes[i].setOnMouseExited(event -> {
+                    nodes[j].setStyle("-fx-background-color : #fffafa");
+                });
+                if(search_order.getText().isEmpty()){
+                    pnItems.getChildren().add(nodes[i]);
+                } else if (!search_order.getText().isEmpty() && DAO.getClienteDAO().findIdbyCPF(search_order.getText())!=null && ordersData.get(i).getClientId().equals(DAO.getClienteDAO().findIdbyCPF(search_order.getText()))) {
+                    pnItems.getChildren().add(nodes[i]);
+                }
+
+                pnlOverview.toFront();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        pnlOverview.toFront();
+        if(pnItems.getChildren().size()==0 && validator){
+            AlertMessageController alertMessageController = new AlertMessageController();
+            try {
+                alertMessageController.showAlertMensage("Nenhuma ordem em espera foi encontrada para esse CPF");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
+
+    @FXML
+    void searchClient(ActionEvent event) {
+        updateListOrders(true);
+    }
+
+    @FXML
+    void searchClients(KeyEvent event) {
+        updateListOrders(false);
     }
 
 

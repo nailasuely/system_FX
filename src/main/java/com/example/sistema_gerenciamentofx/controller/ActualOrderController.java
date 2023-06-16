@@ -104,7 +104,7 @@ public class ActualOrderController implements Initializable{
 
     private OrdemServico order;
 
-    private String paymentsType[] = {"Transferecia", "Pix", "Cartão", "Dinheiro"};
+    private String paymentsType[] = {"Transferencia", "Pix", "Cartao", "Dinheiro"};
 
     private ManagerOrdersController managerOrdersController;
 

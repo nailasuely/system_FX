@@ -9,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -34,6 +36,8 @@ public class ClientsController implements Initializable {
     @FXML
     private Pane pnlUpdate;
 
+    @FXML
+    private TextField searchClient;
     private AddNewClientController addNewClientController;
 
     public void setAddNewClientController(AddNewClientController addNewClientController1) {
@@ -104,10 +108,12 @@ public class ClientsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        updateClientList();
+        updateClientList(false);
         pnlView.toFront();
     }
-    public void updateClientList() {
+
+
+    public void updateClientList(boolean validator) {
         try {
             this.clientsData = FXCollections.observableArrayList();
             this.clientsData.addAll(DAO.getClienteDAO().getList());
@@ -115,6 +121,7 @@ public class ClientsController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        pnItems.getChildren().clear();
         Node[] nodes = new Node[clientsData.size()];
         for (int i = 0; i < nodes.length; i++) {
             try {
@@ -136,8 +143,15 @@ public class ClientsController implements Initializable {
                 nodes[i].setOnMouseExited(event -> {
                     nodes[j].setStyle("-fx-background-color : #fffafa");
                 });
-                pnItems.getChildren().add(nodes[i]);
-                clientElementController.setClientsController(this);
+                if(searchClient.getText().isEmpty()){
+                    pnItems.getChildren().add(nodes[i]);
+                    clientElementController.setClientsController(this);
+                } else if(!searchClient.getText().isEmpty() && clientsData.get(i).getCpf().equals(searchClient.getText())){
+                    pnItems.getChildren().add(nodes[i]);
+                    clientElementController.setClientsController(this);
+                }
+
+
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (Exception e){
@@ -145,6 +159,30 @@ public class ClientsController implements Initializable {
             }
 
         }
+        if(validator && pnItems.getChildren().size()==0){
+            AlertMessageController alertMessageController = new AlertMessageController();
+            try {
+                alertMessageController.showAlertMensage("Nenhum cliente foi encontrado com esse CPF");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
-}}
+    }
+
+
+    @FXML
+    void searchClient(ActionEvent event) {
+        this.clientsData.removeAll();
+        updateClientList(true);
+    }
+
+    @FXML
+    void searchClients(KeyEvent event) {
+        this.clientsData.removeAll();
+        updateClientList(false);
+    }
+
+
+}
 

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -29,7 +30,10 @@ public class AlertMessageController {
         Scene scene = new Scene(root);
         alertStage.setResizable(false);
         alertStage.setScene(scene);
-        alertStage.show();
+        alertStage.showAndWait();
+        alertStage.setAlwaysOnTop(true);
+
+        alertStage.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/sistema_gerenciamentofx/images/1.png")));
     }
 
 

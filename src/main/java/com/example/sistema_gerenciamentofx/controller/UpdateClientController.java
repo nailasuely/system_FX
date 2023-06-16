@@ -54,7 +54,7 @@ public class UpdateClientController implements Initializable {
             DAO.getClienteDAO().update(cliente);
             clientsController.getPnlUpdate().getChildren().clear();
             clientsController.clearViewPane();
-            clientsController.updateClientList();
+            clientsController.updateClientList(false);
             clientsController.showViewPane();
 
 

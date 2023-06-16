@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -53,6 +54,7 @@ public class LoginController implements Initializable{
                 registerStage.setResizable(false);
                 registerStage.setScene(scene);
                 registerStage.show();
+                registerStage.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/sistema_gerenciamentofx/images/1.png")));
 
             } catch (Exception excep) {
                 excep.printStackTrace();
@@ -81,6 +83,7 @@ public class LoginController implements Initializable{
             registerStage.setResizable(false);
             registerStage.setScene(scene);
             registerStage.show();
+            registerStage.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/sistema_gerenciamentofx/images/1.png")));
 
         } catch (Exception excep) {
             excep.printStackTrace();

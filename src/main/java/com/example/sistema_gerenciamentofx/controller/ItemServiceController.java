@@ -85,21 +85,23 @@ public class ItemServiceController implements Initializable {
             values.add(0);
             values.add(0);
             values.add(0);
+            values.add(0);
             for (Map.Entry<Produto, Integer> entry : DAO.getEstoqueDAO().getList().entrySet()) {
                 Produto produtinho = entry.getKey();
                 int quantidade = entry.getValue();
                 if(produtinho.getNome().equals("ram")){
-                    values.add(0,quantidade);
+                    values.set(0,quantidade);
                 } else if(produtinho.getNome().equals("placa mae")){
-                    values.add(1,quantidade);
+                    values.set(1,quantidade);
                 } else if (produtinho.getNome().equals("fonte")) {
-                    values.add(2,quantidade);
+                    values.set(2,quantidade);
                 } else if (produtinho.getNome().equals("placa de video")) {
-                    values.add(3,quantidade);
+                    values.set(3,quantidade);
                 } else if (produtinho.getNome().equals("hd/ssd")) {
-                    values.add(4,quantidade);
+                    values.set(4,quantidade);
                 }
             }
+            System.out.println(values);
             if(nameLabel.getText().equals("RAM memory")){
                 SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, values.get(0));
                 this.qtdRequested.setValueFactory(valueFactory);
@@ -119,7 +121,7 @@ public class ItemServiceController implements Initializable {
                 SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, values.get(4));
                 this.qtdRequested.setValueFactory(valueFactory);
             } else{
-                System.out.println("ahg");
+
                 SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0);
                 this.qtdRequested.setValueFactory(valueFactory);
             }

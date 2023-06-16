@@ -84,7 +84,7 @@ public class ClientElementController {
             System.out.println(getCpfClient());
             DAO.getClienteDAO().delete(getCpfClient());
             clientsController.clearViewPane();
-            clientsController.updateClientList();
+            clientsController.updateClientList(false);
         }
         if (event.getSource() == updateClient) {
             clientsController.getPnlUpdate().setStyle("-fx-background-color : #fffafa");
