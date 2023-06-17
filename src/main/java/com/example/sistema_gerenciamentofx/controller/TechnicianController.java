@@ -59,6 +59,12 @@ public class TechnicianController implements Initializable {
     @FXML
     private Label cpfTecnico;
 
+    private HomeController homeController;
+
+    public void setHomeController(HomeController controller){
+        this.homeController = controller;
+    }
+
     public void clearViewPane() {
         pnItems.getChildren().clear();
     }
@@ -109,6 +115,7 @@ public class TechnicianController implements Initializable {
                 TechnicianElementController technicianElementController = loader.getController();
                 technicianElementController.setTechinicianName(technicianData.get(i).getFullName());
                 technicianElementController.setTechinicianCPF(technicianData.get(i).getCpf());
+                technicianElementController.setHomeController(this.homeController);
                 //give the items some effect
 
                 nodes[i].setOnMouseEntered(event -> {

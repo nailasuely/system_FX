@@ -290,6 +290,7 @@ public class HomeController implements Initializable {
                     pnlManageTec.getChildren().add(pane1);
                     TechnicianController technicianController = loader.getController();
                     technicianController.setInformationsBase(this.cpfTecnico, this.techinicianName.getText(), Integer.toString(DAO.getTecnicoDAO().findByCPF(cpfTecnico).getTelephone()), DAO.getTecnicoDAO().findByCPF(cpfTecnico).getAddress());
+                    technicianController.setHomeController(this);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
