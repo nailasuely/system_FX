@@ -103,6 +103,14 @@ public class HomeController implements Initializable {
 
     private String relatorio;
 
+    private Boolean generateData = false;
+
+    public void setGenerateData(Boolean generate) throws Exception {
+        if (generate) {
+            this.generateData = generate;
+            initialize2();}
+
+    };
     public void setRelatorio(String relatorio) {
         this.relatorio = relatorio;
     }
@@ -176,12 +184,15 @@ public class HomeController implements Initializable {
     void initialize2() throws Exception {
         DAO.getOrdemServicoDAO().deleteMany();
         DAO.getClienteDAO().deleteMany();
+        //DAO.getTecnicoDAO().deleteMany();
         Connect.generateCache();
 
         Cliente cliente1 = new Cliente("Latiele Sobrenome", "Rua A", "770.603.570-09", 72);
 
         Tecnico tecnico1 = new Tecnico("Mirela Sobrenome", "Coité, Bahia",
                 "227.605.1650-92", 75);
+        Tecnico tecnico2 = new Tecnico("Maria Sobrenome", "Serrinha, Bahia",
+                "112.605.1650-92", 75);
         Cliente cliente2 = new Cliente("Lara Sobrenome", "Rua ABC, Bahia",
                 "610.819.650-53", 81);
         Cliente cliente3 = new Cliente("Julia Sobrenome", "Rua ABC, Bahia",
@@ -192,13 +203,13 @@ public class HomeController implements Initializable {
         DAO.getClienteDAO().create(cliente2);
         DAO.getClienteDAO().create(cliente4);
         DAO.getTecnicoDAO().create(tecnico1);
+        DAO.getTecnicoDAO().create(tecnico2);
         DAO.getClienteDAO().create(cliente3);
         DAO.getOrdemServicoDAO().deleteMany();
         OrdemServico ordem1 = new OrdemServico();
         OrdemServico ordem2 = new OrdemServico();
         DAO.getOrdemServicoDAO().create(ordem1, cliente1.getId(), Produto.servicoFormatar());
         DAO.getOrdemServicoDAO().create(ordem2, cliente2.getId(), Produto.servicoFormatar());
-
 
     }
     @Override

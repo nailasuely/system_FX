@@ -288,7 +288,6 @@ public class NewOrderController implements Initializable {
             }
             try {
                 DAO.getOrdemServicoDAO().create(ordemServico);
-                System.out.println(ordemServico);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

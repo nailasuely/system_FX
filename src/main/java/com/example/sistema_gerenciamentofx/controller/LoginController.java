@@ -45,7 +45,6 @@ public class LoginController implements Initializable{
         String passawordText = password1.getText();
 
         if (!passawordText.isEmpty() && DAO.getTecnicoDAO().findByCPFIsTrue(password1.getText())) {
-            System.out.println("pode passar para prox tela");
             try {
                 Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 currentScreen.close();
@@ -113,4 +112,6 @@ public class LoginController implements Initializable{
             throw new RuntimeException(e);
         }
     }
+
+
 }
