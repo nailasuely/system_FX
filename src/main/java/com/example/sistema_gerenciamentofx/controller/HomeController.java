@@ -363,7 +363,7 @@ public class HomeController implements Initializable {
         }
     }
 
-    public void updateListOrders(boolean validator){
+   /* public void updateListOrders(boolean validator){
         if(this.ordersData != null){
             this.ordersData.removeAll();
         }
@@ -429,7 +429,89 @@ public class HomeController implements Initializable {
             }
         }
 
-    }
+    }*/
+   public void updateListOrders(boolean validator) {
+       if (this.ordersData != null) {
+           this.ordersData.clear();
+       } else {
+           this.ordersData = FXCollections.observableArrayList();
+       }
+
+       try {
+           List<OrdemServico> openingList = DAO.getOrdemServicoDAO().getListOpening();
+           if (openingList != null) {
+               this.ordersData.addAll(openingList);
+           } else {
+               // Lida com o caso em que a lista retornada é nula
+           }
+       } catch (Exception e) {
+           throw new RuntimeException(e);
+       }
+
+       pnItems.getChildren().clear();
+       Node[] nodes = new Node[ordersData.size()];
+       for (int i = 0; i < nodes.length; i++) {
+           try {
+               final int j = i;
+               FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/element-view.fxml"));
+               try {
+                   nodes[i] = loader.load();
+               } catch (IOException e) {
+               }
+               ElementController elementController = loader.getController();
+               OrdemServico order = ordersData.get(i);
+               if (order != null) {
+                   Cliente cliente = DAO.getClienteDAO().findById(order.getClientId());
+                   if (cliente != null) {
+                       elementController.setClientName(cliente.getFullName());
+                   } else {
+                       elementController.setClientName("Sem cliente até o momento.");
+                   }
+
+                   if (order.getStart() != null) {
+                       elementController.setDateOrder(order.getStart());
+                   }
+                   System.out.println("ordem: "+ order.getTechnicianID());
+                   Tecnico tecnico = DAO.getTecnicoDAO().findById(order.getTechnicianID());
+                   if (tecnico != null) {
+                       elementController.setIdOrder(tecnico.getCpf());
+                   }
+
+                   if (order.getStatus() != null) {
+                       elementController.setStatusOrder(order.getStatus());
+                   }
+                   elementController.setValueOrder(Double.toString(order.getPrice()));
+                   nodes[i].setOnMouseEntered(event -> {
+                       nodes[j].setStyle("-fx-background-color : #0A0E3F");
+                   });
+                   nodes[i].setOnMouseExited(event -> {
+                       nodes[j].setStyle("-fx-background-color : #fffafa");
+                   });
+                   if (search_order.getText().isEmpty()) {
+                       pnItems.getChildren().add(nodes[i]);
+                   } else if (!search_order.getText().isEmpty() && DAO.getClienteDAO().findIdbyCPF(search_order.getText()) != null && order.getClientId().equals(DAO.getClienteDAO().findIdbyCPF(search_order.getText()))) {
+                       pnItems.getChildren().add(nodes[i]);
+                   }
+
+                   pnlOverview.toFront();
+               }
+           } catch (IOException e) {
+               e.printStackTrace();
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+       }
+       pnlOverview.toFront();
+       if (pnItems.getChildren().isEmpty() && validator) {
+           AlertMessageController alertMessageController = new AlertMessageController();
+           try {
+               alertMessageController.showAlertMensage("Nenhuma ordem em espera foi encontrada para esse CPF");
+           } catch (IOException e) {
+               throw new RuntimeException(e);
+           }
+       }
+   }
+
 
     public void loadData(){
         //String cpfTecnico =
