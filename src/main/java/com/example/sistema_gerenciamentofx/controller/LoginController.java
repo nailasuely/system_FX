@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable{
@@ -36,6 +37,9 @@ public class LoginController implements Initializable{
     @FXML
     private PasswordField password1;
 
+    public String getPassword() {
+        return password.getText();
+    }
     @FXML
     void login(ActionEvent event) throws Exception {
         String passawordText = password1.getText();
@@ -49,13 +53,13 @@ public class LoginController implements Initializable{
                 Parent root = loader.load();
                 HomeController homeController = loader.getController();
                 homeController.setTechinicianCpf(passawordText);
+
                 Stage registerStage = new Stage();
                 Scene scene = new Scene(root);
                 registerStage.setResizable(false);
                 registerStage.setScene(scene);
                 registerStage.show();
                 registerStage.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/sistema_gerenciamentofx/images/1.png")));
-
             } catch (Exception excep) {
                 excep.printStackTrace();
             }
@@ -89,7 +93,18 @@ public class LoginController implements Initializable{
             excep.printStackTrace();
         }}
 
-
+    public String loadData(){
+        //String cpfTecnico =
+        // System.out.println(cpfTecnico);
+        System.out.println(password1.getText());
+        String relatorio;
+        try {
+            relatorio = DAO.getTecnicoDAO().findByCPF(password1.getText()).gerarRelatorioFinal();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return relatorio;
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {

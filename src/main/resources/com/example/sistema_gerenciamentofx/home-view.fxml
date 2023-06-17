@@ -176,17 +176,17 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label fx:id="ordersPeding" text="1000" textFill="#fa5f7e">
+                              <Label fx:id="ordersProgress" text="1000" textFill="#fa5f7e">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
                               </Label>
-                              <Label text="Peding Orders" />
+                              <Label text="Orders in progress" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label fx:id="OrdersWaiting" text="780" textFill="#de0000">
+                              <Label fx:id="ordersWaiting" text="780" textFill="#de0000">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>

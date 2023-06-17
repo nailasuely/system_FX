@@ -28,11 +28,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
     @FXML
-    private Label OrdersWaiting;
+    private Label ordersWaiting;
 
     @FXML
     private Button btnManageClients;
@@ -59,7 +61,7 @@ public class HomeController implements Initializable {
     private Label ordersConcluded;
 
     @FXML
-    private Label ordersPeding;
+    private Label ordersProgress;
 
     @FXML
     private Label ordersTotal;
@@ -99,11 +101,15 @@ public class HomeController implements Initializable {
     @FXML
     private Button searchBtn;
 
+    private String relatorio;
+
+    public void setRelatorio(String relatorio) {
+        this.relatorio = relatorio;
+    }
+
     public static String getCpfTecnico(){
         return cpfTecnico;
     }
-
-
     public void setTechinicianCpf(String cpf) {
         this.cpfTecnico = cpf;
         try {
@@ -114,6 +120,11 @@ public class HomeController implements Initializable {
     }
 
     private ObservableList<OrdemServico> ordersData;
+    @FXML
+    void simulateButtonClick() throws Exception {
+        ActionEvent event = new ActionEvent(btnOverview, null);
+        handleClicks(event);
+    }
 
 
     /*@Override
@@ -193,12 +204,10 @@ public class HomeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             //initialize2();
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         try {
-
             this.ordersTotal.setText(Integer.toString(DAO.getOrdemServicoDAO().amountItems()));
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -206,6 +215,7 @@ public class HomeController implements Initializable {
 
         // ISSO AQUI É APENAS PARA FINS DE TESTE
         updateListOrders(false);
+        //loadData();
     }
 
 
@@ -231,7 +241,6 @@ public class HomeController implements Initializable {
             if (event.getSource() == btnManageOrders) {
                 pnlManageOrders.setStyle("-fx-background-color : #fffafa");
                 pnlManageOrders.toFront();
-                System.out.println(cpfTecnico);
                 try {
                     //Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     //currentScreen.close();
@@ -250,6 +259,8 @@ public class HomeController implements Initializable {
             }
             if (event.getSource() == btnOverview) {
                 updateListOrders(false);
+                // teste
+                loadData();
                 pnlOverview.setStyle("-fx-background-color : #fffafa");
                 pnlOverview.toFront();
             }
@@ -439,6 +450,23 @@ public class HomeController implements Initializable {
 
     }
 
+    public void loadData(){
+        //String cpfTecnico =
+       // System.out.println(cpfTecnico);
+        String relatorio;
+        try {
+            relatorio = DAO.getTecnicoDAO().findByCPF(cpfTecnico).gerarRelatorioFinal();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        List<String> valoresRelatorio = ReceberValoresRelatorio(relatorio);
+
+        ordersConcluded.setText(valoresRelatorio.get(0));
+        ordersProgress.setText(valoresRelatorio.get(1));
+        ordersWaiting.setText(valoresRelatorio.get(2));
+    }
+
+
     @FXML
     void searchClient(ActionEvent event) {
         updateListOrders(true);
@@ -447,6 +475,23 @@ public class HomeController implements Initializable {
     @FXML
     void searchClients(KeyEvent event) {
         updateListOrders(false);
+    }
+
+    public List<String> ReceberValoresRelatorio(String relatorioString) {
+        List<String> valoresRelatorio = new ArrayList<>();
+
+        String[] linhas = relatorioString.split("\n");
+        for (String linha : linhas) {
+            String[] partes = linha.split(":");
+            if (partes.length == 2) {
+                String valor = partes[1].trim();
+                valoresRelatorio.add(valor);
+            }
+        }
+        for (String valor : valoresRelatorio) {
+            System.out.println(valor);
+        }
+        return valoresRelatorio;
     }
 
 
