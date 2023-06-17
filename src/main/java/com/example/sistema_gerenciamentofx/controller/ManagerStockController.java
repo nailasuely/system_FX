@@ -96,7 +96,6 @@ public class ManagerStockController implements Initializable {
             "/com/example/sistema_gerenciamentofx/images/placamae.png",
             "/com/example/sistema_gerenciamentofx/images/fonte.png",
             "/com/example/sistema_gerenciamentofx/images/placavideo.png",
-            "/com/example/sistema_gerenciamentofx/images/hd.png",
             "/com/example/sistema_gerenciamentofx/images/ssd.png"
     };
     private String[] names = {
@@ -104,8 +103,7 @@ public class ManagerStockController implements Initializable {
             "Mother Board",
             "Fonte",
             "Graphic Board",
-            "HDD",
-            "SSD"
+            "SSD/HD"
     };
 
     private String[] names2 = {
@@ -165,7 +163,7 @@ public class ManagerStockController implements Initializable {
         }
 
         try {
-            for (int i = 0; i < 6; ++i) {
+            for (int i = 0; i < 5; ++i) {
                 itensData = FXCollections.observableMap(DAO.getEstoqueDAO().getList());
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(this.getClass().getResource("/com/example/sistema_gerenciamentofx/item-stock-view.fxml"));
