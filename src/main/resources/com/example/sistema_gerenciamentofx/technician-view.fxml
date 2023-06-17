@@ -36,7 +36,7 @@
       <TextField fx:id="cpf" layoutX="24.0" layoutY="338.0" prefHeight="27.0" prefWidth="350.0" style="-fx-border-color: #47077F; -fx-background-color: #fffafa; -fx-border-radius: 20;" styleClass="text-input" />
       <VBox alignment="TOP_CENTER" layoutX="53.0" layoutY="421.0" prefHeight="76.0" prefWidth="139.0" styleClass="ordens-conluidas" stylesheets="@css/styles.css">
          <children>
-            <Label prefHeight="47.0" prefWidth="44.0" text="20 " textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="completedOrders" prefHeight="47.0" prefWidth="44.0" text="20 " textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="30.0" />
                </font>
@@ -44,7 +44,7 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <Label fx:id="completedOrders" nodeOrientation="LEFT_TO_RIGHT" prefHeight="16.0" prefWidth="123.0" text="  ORDENS CONCLUÍDAS" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+            <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="16.0" prefWidth="123.0" text="  ORDENS CONCLUÍDAS" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
                <font>
                   <Font name="Segoe UI Semibold" size="11.0" />
                </font>

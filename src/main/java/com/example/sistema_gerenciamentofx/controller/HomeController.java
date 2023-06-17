@@ -215,6 +215,11 @@ public class HomeController implements Initializable {
 
         // ISSO AQUI É APENAS PARA FINS DE TESTE
         updateListOrders(false);
+        try {
+            System.out.println(DAO.getOrdemServicoDAO().getList());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         //loadData();
     }
 

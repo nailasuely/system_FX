@@ -314,10 +314,17 @@ public class ListOrdensServico implements OrdemServicoDAO{
             if (ordem.getTechnicianID() != null && technicianId != null && ordem.getTechnicianID().equals(technicianId) && ordem.getStatus().equals("andamento")){
                 quantidade++;
             }
+        }
+        return quantidade;
+    }
 
-        /*if (ordem.getTechnicianID().equals(DAO.getTecnicoDAO().findIdbyCPF(cpfTecnico)) && ordem.getStatus().equals("andamento")) {
-            quantidade++;
-        }*/
+    public int getQuantidadeOrdensConcluidas(String cpfTecnico) throws Exception {
+        int quantidade = 0;
+        for (OrdemServico ordem : DAO.getOrdemServicoDAO().getList()) {
+            String technicianId = DAO.getTecnicoDAO().findIdbyCPF(cpfTecnico);
+            if (ordem.getTechnicianID() != null && technicianId != null && ordem.getTechnicianID().equals(technicianId) && ordem.getStatus().equals("finalizada")){
+                quantidade++;
+            }
         }
         return quantidade;
     }

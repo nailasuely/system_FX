@@ -60,6 +60,7 @@ public interface OrdemServicoDAO extends CRUD<OrdemServico> {
      */
     public String agendaAtendimento() throws Exception;
     public List<OrdemServico> getListOpening();
+    public int getQuantidadeOrdensConcluidas(String cpfTecnico) throws Exception;
 
     public int getQuantidadeOrdensEmAndamento(String cpfTecnico) throws Exception;
 

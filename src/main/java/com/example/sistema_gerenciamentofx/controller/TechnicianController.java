@@ -72,6 +72,7 @@ public class TechnicianController implements Initializable {
         this.cpfTecnico.setText(cpf.getText());
         try {
             this.ordersInProgress.setText(String.valueOf(DAO.getOrdemServicoDAO().getQuantidadeOrdensEmAndamento(cpfTecnico.getText())));
+            this.completedOrders.setText(String.valueOf(DAO.getOrdemServicoDAO().getQuantidadeOrdensConcluidas(cpfTecnico.getText())));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
