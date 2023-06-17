@@ -19,7 +19,7 @@ public class Main extends Application{
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Hello!");
+        stage.setTitle("Assistência técnica");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
