@@ -245,54 +245,60 @@ public class NewOrderController implements Initializable {
     }
 
     @FXML
-    void handleClicks(ActionEvent event) {
+    void handleClicks(ActionEvent event) throws IOException {
+        AlertMessageController alertMessageController = new AlertMessageController();
         if(event.getSource() == createOrder){
-            OrdemServico ordemServico = new OrdemServico();
+            if(getCpfClient()!= null){
+                OrdemServico ordemServico = new OrdemServico();
 
-            try {
-                ordemServico.setTechnicianID(DAO.getTecnicoDAO().findIdbyCPF(HomeController.getCpfTecnico()));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-            if(setTypeService.getValue() == null){
-                AlertMessageController alertMessageController = new AlertMessageController();
                 try {
-                    alertMessageController.showAlertMensage("Selecione um tipo de serviço antes!");
-                } catch (IOException e) {
+                    ordemServico.setTechnicianID(DAO.getTecnicoDAO().findIdbyCPF(HomeController.getCpfTecnico()));
+                } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-            } else{
-                if(setTypeService.getValue().equals("Montagem")){
-                    ordemServico.setType(Produto.servicoMontagem());
-                    for (Map.Entry<Produto, Integer> entry : produtoLists.entrySet()) {
-                        Produto produto = entry.getKey();
-                        int quantidade = entry.getValue();
-                        try {
-                            ordemServico.setListaProdutos(produto, quantidade);
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
+                if(setTypeService.getValue() == null){
+                    try {
+                        alertMessageController.showAlertMensage("Selecione um tipo de serviço antes!");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
-                } else if (setTypeService.getValue().equals("Formatação")) {
-                    ordemServico.setType(Produto.servicoFormatar());
-                }else if(setTypeService.getValue().equals("Instalação")){
-                    ordemServico.setType(Produto.servicoInstalar());
-                } else if (setTypeService.getValue().equals("Limpeza")) {
-                    ordemServico.setType(Produto.servicoLimpeza());
+                } else{
+                    if(setTypeService.getValue().equals("Montagem")){
+                        ordemServico.setType(Produto.servicoMontagem());
+                        for (Map.Entry<Produto, Integer> entry : produtoLists.entrySet()) {
+                            Produto produto = entry.getKey();
+                            int quantidade = entry.getValue();
+                            try {
+                                ordemServico.setListaProdutos(produto, quantidade);
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    } else if (setTypeService.getValue().equals("Formatação")) {
+                        ordemServico.setType(Produto.servicoFormatar());
+                    }else if(setTypeService.getValue().equals("Instalação")){
+                        ordemServico.setType(Produto.servicoInstalar());
+                    } else if (setTypeService.getValue().equals("Limpeza")) {
+                        ordemServico.setType(Produto.servicoLimpeza());
+                    }
                 }
+                try {
+                    ordemServico.setClientId(DAO.getClienteDAO().findIdbyCPF(getCpfClient()));
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    DAO.getOrdemServicoDAO().create(ordemServico);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                cpfSelected.setText("Nobody");
+                setTypeService.setValue("");
+
+            } else{
+                alertMessageController.showAlertMensage("Selecione um cliente primeiro.");
             }
-            try {
-                ordemServico.setClientId(DAO.getClienteDAO().findIdbyCPF(getCpfClient()));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-            try {
-                DAO.getOrdemServicoDAO().create(ordemServico);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-            cpfSelected.setText("Nobody");
-            setTypeService.setValue("");
+
         }
 
             if(event.getSource()==clearData){

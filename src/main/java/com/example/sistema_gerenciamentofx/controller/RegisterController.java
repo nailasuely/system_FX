@@ -80,8 +80,6 @@ public class RegisterController {
 
              */
             DAO.getTecnicoDAO().create(tecnico);
-            System.out.println("Prontinho.");
-            System.out.println(DAO.getTecnicoDAO().getList());
             Stage stage = (Stage) address.getScene().getWindow();
             stage.close();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/login-view.fxml"));
