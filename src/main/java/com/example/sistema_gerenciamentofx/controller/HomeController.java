@@ -471,7 +471,6 @@ public class HomeController implements Initializable {
                    if (order.getStart() != null) {
                        elementController.setDateOrder(order.getStart());
                    }
-                   System.out.println("ordem: "+ order.getTechnicianID());
                    Tecnico tecnico = DAO.getTecnicoDAO().findById(order.getTechnicianID());
                    if (tecnico != null) {
                        elementController.setIdOrder(tecnico.getCpf());

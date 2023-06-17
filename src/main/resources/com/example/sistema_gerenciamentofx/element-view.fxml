@@ -19,17 +19,17 @@
             </HBox.margin>
         </ImageView>
         <Label fx:id="idOrder" prefHeight="18.0" prefWidth="146.0" text="ID" textFill="#47077f" />
-        <Label fx:id="clientName" prefHeight="18.0" prefWidth="230.0" text="CLIENTE" textFill="#47077f">
+        <Label fx:id="clientName" prefHeight="18.0" prefWidth="152.0" text="CLIENTE" textFill="#47077f">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
         </Label>
-        <Label fx:id="dateOrder" prefHeight="18.0" prefWidth="86.0" text="10/11/2018" textFill="#47077f">
+        <Label fx:id="dateOrder" prefHeight="18.0" prefWidth="120.0" text="10/11/2018" textFill="#47077f">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
         </Label>
-        <Label fx:id="valueOrder" prefHeight="18.0" prefWidth="65.0" stylesheets="@css/styles.css" text="\$100" textFill="#47077f">
+        <Label fx:id="valueOrder" prefHeight="18.0" prefWidth="87.0" stylesheets="@css/styles.css" text="\$100" textFill="#47077f">
             <HBox.margin>
                 <Insets />
             </HBox.margin>

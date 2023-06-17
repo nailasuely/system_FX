@@ -317,7 +317,13 @@ public class ListOrdensServico implements OrdemServicoDAO{
         }
         return quantidade;
     }
-
+    /**
+     * Retorna a quantidade de ordens de serviço concluídas para um técnico específico.
+     *
+     * @param cpfTecnico O CPF do técnico para o qual se deseja obter a quantidade de ordens concluídas.
+     * @return A quantidade de ordens de serviço concluídas para o técnico escolhido.
+     * @throws Exception Se ocorrer uma exceção durante a recuperação das informações das ordens de serviço.
+     */
     public int getQuantidadeOrdensConcluidas(String cpfTecnico) throws Exception {
         int quantidade = 0;
         for (OrdemServico ordem : DAO.getOrdemServicoDAO().getList()) {
@@ -328,7 +334,14 @@ public class ListOrdensServico implements OrdemServicoDAO{
         }
         return quantidade;
     }
-
+    /**
+     * Retorna uma lista de ordens de serviço associadas a um determinado tecnico.
+     *
+     * @param cpf O CPF do técnico para o qual se deseja obter as ordens de serviço.
+     * @return Uma lista contendo objetos do tipo OrdemServico associados ao técnico especificado.
+     *         Retorna null se não houver nenhuma ordem de serviço associada ao técnico.
+     * @throws RuntimeException Se ocorrer uma exceção durante a recuperação das informações das ordens de serviço.
+     */
     public List<OrdemServico> ordersByTechnician(String cpf){
         ArrayList<OrdemServico> orders = new ArrayList<>();
 

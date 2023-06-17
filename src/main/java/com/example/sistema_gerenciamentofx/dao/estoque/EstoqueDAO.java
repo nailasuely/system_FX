@@ -81,6 +81,9 @@ public interface EstoqueDAO {
      * Tal método serve para poder deletar os dados armazenados
      */
     public void deleteMany() throws Exception;
-
+    /**
+     * Assinatura de método que serve para acessar o produto que o usuário deseja atualziar.<br>
+     * Tal método serve para atualizar o produto desejado.
+     */
     public void atualizarProduto(Produto produto, int quantidade) throws Exception;
 }

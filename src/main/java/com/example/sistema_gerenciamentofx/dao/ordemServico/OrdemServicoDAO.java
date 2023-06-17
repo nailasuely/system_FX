@@ -59,10 +59,36 @@ public interface OrdemServicoDAO extends CRUD<OrdemServico> {
      * @return <i>String</i> contendo as informações, para apresentação na tela
      */
     public String agendaAtendimento() throws Exception;
+
+    /**
+     * Retorna uma lista de ordens de serviço com o status "em andamento".
+     *
+     * @return Uma lista contendo objetos do tipo OrdemServico com o status "espera".
+     */
     public List<OrdemServico> getListOpening();
+    /**
+     * Assinatura de método que serve para o acesso ao metodo que retorna a quantidade
+     * de ordens de serviço concluídas para um técnico específico.
+     * @param cpfTecnico O CPF do técnico para o qual se deseja obter a quantidade de ordens concluídas.
+     * @return A quantidade de ordens de serviço concluídas para o técnico escolhido.
+     * @throws Exception Se ocorrer uma exceção durante a recuperação das informações das ordens de serviço.
+     */
     public int getQuantidadeOrdensConcluidas(String cpfTecnico) throws Exception;
-
+    /**
+     * Assinatura de método que serve para o acesso ao metodo que retorna a quantidade
+     * de ordens de serviço em andamento para um técnico específico.
+     * @param cpfTecnico O CPF do técnico para o qual se deseja obter a quantidade de ordens concluídas.
+     * @return A quantidade de ordens de serviço em andamento para o técnico escolhido.
+     * @throws Exception Se ocorrer uma exceção durante a recuperação das informações das ordens de serviço.
+     */
     public int getQuantidadeOrdensEmAndamento(String cpfTecnico) throws Exception;
-
+    /**
+     * Assinatura de método que serve para retornar uma lista de serviços de determinao tecnico..
+     *
+     * @param cpf O CPF do técnico para o qual se deseja obter as ordens de serviço.
+     * @return Uma lista contendo objetos do tipo OrdemServico associados ao técnico especificado.
+     *         Retorna null se não houver nenhuma ordem de serviço associada ao técnico.
+     * @throws RuntimeException Se ocorrer uma exceção durante a recuperação das informações das ordens de serviço.
+     */
     public List<OrdemServico> ordersByTechnician(String cpf);
 }

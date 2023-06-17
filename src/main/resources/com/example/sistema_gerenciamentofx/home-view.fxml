@@ -196,7 +196,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="178.0" prefHeight="42.0" prefWidth="712.0" spacing="80.0" style="-fx-background-color: #fffafa;">
+                  <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="178.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="712.0" spacing="80.0" style="-fx-background-color: #fffafa;">
                      <children>
                         <Label text="Technician of Order" textFill="#47077f">
                            <HBox.margin>
