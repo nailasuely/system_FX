@@ -112,6 +112,7 @@ public class HomeController implements Initializable {
     }
     public void setTechinicianCpf(String cpf) {
         this.cpfTecnico = cpf;
+        loadData();
         try {
             this.techinicianName.setText(DAO.getTecnicoDAO().findByCPF(cpf).getFullName());
         } catch (Exception e) {
