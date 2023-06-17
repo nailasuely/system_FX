@@ -215,24 +215,12 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            //initialize2();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        try {
             this.ordersTotal.setText(Integer.toString(DAO.getOrdemServicoDAO().amountItems()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        // ISSO AQUI É APENAS PARA FINS DE TESTE
         updateListOrders(false);
-        try {
-            System.out.println(DAO.getOrdemServicoDAO().getList());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        //loadData();
     }
 
 
@@ -242,13 +230,10 @@ public class HomeController implements Initializable {
                 pnlManageStock.setStyle("-fx-background-color : #fffafa");
                 pnlManageStock.toFront();
                 try {
-                    //Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    //currentScreen.close();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/manage-stock2-view.fxml"));
                     Pane pane2 = loader.load();{
                         pnlManageStock.getChildren().clear();
                         pnlManageStock.getChildren().add(pane2);
-                        //clientsController = loader.getController();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -276,7 +261,6 @@ public class HomeController implements Initializable {
             }
             if (event.getSource() == btnOverview) {
                 updateListOrders(false);
-                // teste
                 loadData();
                 pnlOverview.setStyle("-fx-background-color : #fffafa");
                 pnlOverview.toFront();
@@ -286,13 +270,10 @@ public class HomeController implements Initializable {
                 pnlManagerClients.setStyle("-fx-background-color : #fffafa");
                 pnlManagerClients.toFront();
                 try {
-                    //Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    //currentScreen.close();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/clients-view.fxml"));
                     Pane pane2 = loader.load();{
                         pnlManagerClients.getChildren().clear();
                         pnlManagerClients.getChildren().add(pane2);
-                        //clientsController = loader.getController();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -307,7 +288,6 @@ public class HomeController implements Initializable {
                 Pane pane1 = loader.load();{
                     pnlManageTec.getChildren().clear();
                     pnlManageTec.getChildren().add(pane1);
-                    //technicianViewController = loader.getController();
                     TechnicianController technicianController = loader.getController();
                     technicianController.setInformationsBase(this.cpfTecnico, this.techinicianName.getText(), Integer.toString(DAO.getTecnicoDAO().findByCPF(cpfTecnico).getTelephone()), DAO.getTecnicoDAO().findByCPF(cpfTecnico).getAddress());
                 }
@@ -354,23 +334,6 @@ public class HomeController implements Initializable {
     }
     @FXML
     void showClientsStage(ActionEvent event){
-        /*
-        try {
-            Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentScreen.close();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/clients-view.fxml"));
-            Parent root = loader.load();
-            Stage loginStage = new Stage();
-            Scene scene = new Scene(root);
-            loginStage.setResizable(false);
-            loginStage.setScene(scene);
-            loginStage.show();
-
-        } catch (Exception excep) {
-            excep.printStackTrace();
-        }
-        */
         pnlManagerClients.setStyle("-fx-background-color : #fffafa");
         pnlManagerClients.toFront();
         try {
@@ -504,9 +467,6 @@ public class HomeController implements Initializable {
                 String valor = partes[1].trim();
                 valoresRelatorio.add(valor);
             }
-        }
-        for (String valor : valoresRelatorio) {
-            System.out.println(valor);
         }
         return valoresRelatorio;
     }

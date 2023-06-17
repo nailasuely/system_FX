@@ -98,7 +98,6 @@ public class ItemServiceController implements Initializable {
                     values.set(4,quantidade);
                 }
             }
-            System.out.println(values);
             if(nameLabel.getText().equals("RAM memory")){
                 SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, values.get(0));
                 this.qtdRequested.setValueFactory(valueFactory);

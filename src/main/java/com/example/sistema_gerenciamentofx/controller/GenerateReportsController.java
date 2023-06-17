@@ -74,9 +74,6 @@ public class GenerateReportsController implements Initializable {
                 valoresRelatorio.add(valor);
             }
         }
-        for (String valor : valoresRelatorio) {
-            System.out.println(valor);
-        }
         return valoresRelatorio;
     }
 }
