@@ -59,36 +59,30 @@ public class RegisterController {
         String fullnameText = fullname1.getText();
         String telephoneText = telephone.getText();
         setPermission(false);
+
         if (addressText.isEmpty() || cpfText.isEmpty() || fullnameText.isEmpty() || telephoneText.isEmpty()) {
             AlertMessageController alertMessageController = new AlertMessageController();
             alertMessageController.showAlertMensage("Você se esqueceu de preencher todos os campos...");
-
-
         } else {
-            int telephoneNumber = Integer.parseInt(telephoneText);
-            Tecnico tecnico = new Tecnico(fullnameText, addressText,
-                    cpfText,  Integer.parseInt(telephoneText));
-            /*AdmPasswordController admPasswordController = new AdmPasswordController();
-            admPasswordController.setRegisterController(this);
-            admPasswordController.getPasswordAdm();
-            setPermission(admPasswordController.isAccess());
-
-            if(isPermission()){
-                System.out.println("Oi");
-
+            if (!telephoneText.matches("\\d+")) {
+                AlertMessageController alertMessageController = new AlertMessageController();
+                alertMessageController.showAlertMensage("Por favor, insira somente números inteiros no campo de telefone.");
+                return;
             }
 
-             */
+            int telephoneNumber = Integer.parseInt(telephoneText);
+            Tecnico tecnico = new Tecnico(fullnameText, addressText, cpfText, telephoneNumber);
             DAO.getTecnicoDAO().create(tecnico);
+
             Stage stage = (Stage) address.getScene().getWindow();
             stage.close();
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistema_gerenciamentofx/login-view.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage loginStage = new Stage();
             loginStage.setScene(scene);
             loginStage.show();
-
         }
     }
 

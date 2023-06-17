@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,54 +33,62 @@ public class TechnicianElementController {
     }
 
     @FXML
-    void techinicianDelete(ActionEvent event) {
+    void techinicianDelete(ActionEvent event) throws IOException {
         String cpfText = techinicianCPF.getText();
         AlertMessageController alertMessageController = new AlertMessageController();
+
+        if (cpfText.equals(HomeController.getCpfTecnico())) {
+            alertMessageController.showAlertMensage("Você não pode se deletar do sistema.");
+            return;
+        }
+
         try {
             List<OrdemServico> ordens = DAO.getOrdemServicoDAO().ordersByTechnician(cpfText);
             List<Tecnico> tecnicos = DAO.getTecnicoDAO().getList();
             Integer quantTechinician = DAO.getTecnicoDAO().getList().size();
             Integer quantOrdersPorTechnician = 0;
-            if(quantTechinician == 1 && ordens!=null && ordens.size()>0){
+
+            if (quantTechinician == 1 && ordens != null && ordens.size() > 0) {
                 alertMessageController.showAlertMensage("Você ainda tem ordens ativas, por favor, complete-as antes de realizar a operação");
-            } else if(quantTechinician == 2 ){
-                for(OrdemServico ordem : ordens){
-                    ordem.setTechnicianID(DAO.getTecnicoDAO().findIdbyCPF(HomeController.getCpfTecnico()));
-                    DAO.getOrdemServicoDAO().update(ordem);
+            } else if (quantTechinician == 2) {
+                if (ordens != null) {
+                    for (OrdemServico ordem : ordens) {
+                        ordem.setTechnicianID(DAO.getTecnicoDAO().findIdbyCPF(HomeController.getCpfTecnico()));
+                        DAO.getOrdemServicoDAO().update(ordem);
+                    }
                 }
+
                 DAO.getTecnicoDAO().delete(cpfText);
-            } else if(quantTechinician ==1 && ordens==null){
+            } else if (quantTechinician == 1 && ordens == null) {
                 alertMessageController.showAlertMensage("Foi um prazer ter você na nossa equipe!");
                 DAO.getTecnicoDAO().delete(cpfText);
                 homeController.showLoginStage(event);
-            } else{
-                quantOrdersPorTechnician = ordens.size()/(quantTechinician - 1);
+            } else {
+                if (ordens != null) {
+                    quantOrdersPorTechnician = ordens.size() / (quantTechinician - 1);
+                }
 
-                System.out.println("isso é a quant de tecnicos: " + quantTechinician);
-                System.out.println("isso é a quant por tecnicos: " + quantOrdersPorTechnician);
-                System.out.println("isso é a quant de ordens: "+ordens.size());
-                for (Tecnico technician: tecnicos) {
-                    System.out.println("Tecnico do for: "+ technician.getFullName());
-                    if(!technician.getCpf().equals(cpfText)){
-
-                        System.out.println("Cpf do tecnico: "+cpfText);
-                        for(int i=0; i<quantOrdersPorTechnician; i++){
+                for (Tecnico technician : tecnicos) {
+                    if (!technician.getCpf().equals(cpfText)) {
+                        for (int i = 0; i < quantOrdersPorTechnician; i++) {
                             ordens.get(i).setTechnicianID(technician.getId());
                             DAO.getOrdemServicoDAO().update(ordens.get(i));
                             ordens.remove(i);
+                            i--; // Corrigir o índice após a remoção
                         }
                     }
                 }
-                if(ordens.size()>0){
-                    for(int i=0;i<ordens.size();i++){
-                        ordens.get(i).setTechnicianID(DAO.getTecnicoDAO().findIdbyCPF(HomeController.getCpfTecnico()));
-                        DAO.getOrdemServicoDAO().update(ordens.get(i));
+                if (ordens != null) {
+                    if (ordens.size() > 0) {
+                        for (int i = 0; i < ordens.size(); i++) {
+                            ordens.get(i).setTechnicianID(DAO.getTecnicoDAO().findIdbyCPF(HomeController.getCpfTecnico()));
+                            DAO.getOrdemServicoDAO().update(ordens.get(i));
+                        }
                     }
-                    System.out.println("Diz pra mim oq ta acontecendo");
                 }
+
                 DAO.getTecnicoDAO().delete(cpfText);
             }
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -152,7 +152,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" layoutX="66.0" layoutY="96.0" prefHeight="92.0" prefWidth="661.0" spacing="50.0">
+                  <HBox alignment="CENTER_LEFT" layoutX="109.0" layoutY="96.0" prefHeight="92.0" prefWidth="640.0" spacing="50.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
