@@ -1,5 +1,6 @@
 module:com.example.sistema_gerenciamentofx
 com.example.sistema_gerenciamentofx
+com.example.sistema_gerenciamentofx.controller
 com.example.sistema_gerenciamentofx.dao
 com.example.sistema_gerenciamentofx.dao.cliente
 com.example.sistema_gerenciamentofx.dao.conexao
@@ -7,3 +8,4 @@ com.example.sistema_gerenciamentofx.dao.estoque
 com.example.sistema_gerenciamentofx.dao.ordemServico
 com.example.sistema_gerenciamentofx.dao.tecnico
 com.example.sistema_gerenciamentofx.model
+com.example.sistema_gerenciamentofx.utilities
