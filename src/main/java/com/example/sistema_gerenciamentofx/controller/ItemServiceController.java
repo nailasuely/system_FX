@@ -77,7 +77,6 @@ public class ItemServiceController implements Initializable {
 
     public void attSpinner(){
         try {
-            System.out.println(nameLabel.getText());
             ArrayList<Integer> values = new ArrayList<Integer>();
             values.add(0);
             values.add(0);

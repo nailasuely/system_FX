@@ -16,7 +16,12 @@
    <children>
       <VBox alignment="TOP_CENTER" layoutX="63.0" layoutY="8.0" prefHeight="215.0" prefWidth="225.0" styleClass="transparent" stylesheets="@css/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <CheckBox fx:id="selected" mnemonicParsing="false" onAction="#addItens" prefHeight="18.0" prefWidth="211.0" text="Selection" textFill="#47077f">
+            <ImageView fx:id="img" fitHeight="200.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/ram2.png" />
+               </image>
+            </ImageView>
+            <CheckBox fx:id="selected" mnemonicParsing="false" onAction="#addItens" prefHeight="20.0" prefWidth="97.0" text="Selection" textFill="#47077f">
                <VBox.margin>
                   <Insets left="12.0" top="8.0" />
                </VBox.margin>
@@ -24,21 +29,16 @@
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <ImageView fx:id="img" fitHeight="200.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/ram2.png" />
-               </image>
-            </ImageView>
             <HBox prefHeight="51.0" prefWidth="185.0">
                <children>
-                  <Label fx:id="nameLabel" prefHeight="21.0" prefWidth="223.0" text="Model" textFill="#47077f">
+                  <Label fx:id="nameLabel" prefHeight="16.0" prefWidth="137.0" text="Model" textFill="#47077f">
                      <font>
-                        <Font name="Arial" size="18.0" />
+                        <Font name="Arial" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="priceLabel" prefHeight="21.0" prefWidth="143.0" text="10" textFill="#47077f">
+                  <Label fx:id="priceLabel" contentDisplay="CENTER" prefHeight="19.0" prefWidth="101.0" text="10" textFill="#47077f">
                      <font>
-                        <Font name="Arial" size="18.0" />
+                        <Font name="Arial" size="14.0" />
                      </font>
                   </Label>
                </children>
@@ -50,13 +50,13 @@
                <children>
                   <Label fx:id="nameLabel1" prefHeight="22.0" prefWidth="107.0" text="Qtd" textFill="#47077f">
                      <font>
-                        <Font name="Arial" size="18.0" />
+                        <Font name="Arial" size="14.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="19.0" />
                      </HBox.margin>
                   </Label>
-                  <Spinner fx:id="qtdRequested" editable="true" prefHeight="26.0" prefWidth="123.0">
+                  <Spinner fx:id="qtdRequested" editable="true" prefHeight="25.0" prefWidth="94.0">
                      <padding>
                         <Insets right="10.0" />
                      </padding>

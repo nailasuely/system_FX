@@ -28,10 +28,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class NewOrderController implements Initializable {
 
@@ -151,6 +148,11 @@ public class NewOrderController implements Initializable {
 
         setTypeService.getItems().addAll(typeService);
         updateListClients();
+        try {
+            fillPrices();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         int column = 0;
         int row = 1;
         try {
@@ -238,7 +240,6 @@ public class NewOrderController implements Initializable {
 
     @FXML
     public void setCpfSelected(String selected) {
-        System.out.println(selected);
 
         cpfSelected.setText(selected);
     }
