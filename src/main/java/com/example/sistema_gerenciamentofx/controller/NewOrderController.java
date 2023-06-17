@@ -94,7 +94,6 @@ public class NewOrderController implements Initializable {
             "/com/example/sistema_gerenciamentofx/images/placamae.png",
             "/com/example/sistema_gerenciamentofx/images/fonte.png",
             "/com/example/sistema_gerenciamentofx/images/placavideo.png",
-            "/com/example/sistema_gerenciamentofx/images/hd.png",
             "/com/example/sistema_gerenciamentofx/images/ssd.png"
     };
     private String[] names = {
@@ -102,8 +101,7 @@ public class NewOrderController implements Initializable {
             "Mother Board",
             "Fonte",
             "Graphic Board",
-            "HDD",
-            "SSD"
+            "HD/SSD",
     };
 
     private String[] names2 = {
@@ -112,13 +110,12 @@ public class NewOrderController implements Initializable {
             "fonte",
             "placa de video",
             "hd/ssd",
-            "hd/ssd"
     };
 
 
-    private double[] prices = new double[6];
+    private double[] prices = new double[5];
 
-    private Integer[] qntd = new Integer[6];
+    private Integer[] qntd = new Integer[5];
 
     private HashMap<Produto, Integer> produtoLists = new HashMap<>();
 
@@ -157,7 +154,7 @@ public class NewOrderController implements Initializable {
         int column = 0;
         int row = 1;
         try {
-            for (int i = 0; i < 6; ++i) {
+            for (int i = 0; i < 5; ++i) {
                 itensData = FXCollections.observableMap(DAO.getEstoqueDAO().getList());
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(this.getClass().getResource("/com/example/sistema_gerenciamentofx/item-service-view.fxml"));
@@ -215,10 +212,8 @@ public class NewOrderController implements Initializable {
                     nodes[j].setStyle("-fx-background-color : #fffafa");
                 });
                 if(searchClient.getText().isEmpty()){
-                    System.out.println("211"+searchClient.getText());
                     ClientsList.getChildren().add(nodes[i]);
                 } else if (!searchClient.getText().isEmpty() && clientsData.get(i).getCpf().equals(searchClient.getText())) {
-                    System.out.println("56" +searchClient.getText());
                     ClientsList.getChildren().add(nodes[i]);
                 }
 

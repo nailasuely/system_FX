@@ -63,9 +63,7 @@ public class ItemServiceController implements Initializable {
             newOrderController.putItens(Produto.novaFonte(),qtdRequested.getValue());
         } else if (nameLabel.getText().equals("Graphic Board")) {
             newOrderController.putItens(Produto.novaPlacaDeVideo(),qtdRequested.getValue());
-        } else if (nameLabel.getText().equals("HDD")) {
-            newOrderController.putItens(Produto.novoHDSSD(),qtdRequested.getValue());
-        } else if (nameLabel.getText().equals("SSD")) {
+        } else if (nameLabel.getText().equals("HD/SSD")) {
             newOrderController.putItens(Produto.novoHDSSD(),qtdRequested.getValue());
         }
     }
@@ -114,10 +112,7 @@ public class ItemServiceController implements Initializable {
             } else if (nameLabel.getText().equals("Graphic Board")) {
                 SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, values.get(3));
                 this.qtdRequested.setValueFactory(valueFactory);
-            } else if (nameLabel.getText().equals("HDD")) {
-                SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, values.get(4));
-                this.qtdRequested.setValueFactory(valueFactory);
-            } else if (nameLabel.getText().equals("SSD")) {
+            } else if (nameLabel.getText().equals("HD/SSD")) {
                 SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, values.get(4));
                 this.qtdRequested.setValueFactory(valueFactory);
             } else{
