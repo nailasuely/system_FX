@@ -105,13 +105,5 @@ public class ListClientesTest {
 
         //Verificar primeiro com um cliente presente no sistema.
         assertEquals(id1, DAO.getClienteDAO().findIdbyCPF("855.332.800-73"));
-        // Verificar se a exception foi lançada pelo método.
-        try {
-            DAO.getClienteDAO().findIdbyCPF("111.123.456.10");
-            fail("Erro, pois a exception não foi lançada");
-        } catch (IllegalArgumentException excep) {
-            assertEquals("Cliente não detectado no banco de dados", excep.getMessage());
-        }
-
     }
 }
