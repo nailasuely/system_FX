@@ -1,5 +1,5 @@
 <div align= "center" >
-<img width="200px" src="https://user-images.githubusercontent.com/98486996/230782930-ab1492bc-a037-4d87-a933-fe4ecb2c2871.png">
+<img width="200px" src="https://github.com/nailasuely/system_FX/assets/98486996/fc47e4aa-b369-4579-a295-3023f5dd198d">
 <h1>🖥️ Sistema para gerenciamento</h1>
 
 <div align="center">
@@ -24,6 +24,15 @@ Esse é um projeto da disciplina EXA 863 - MI Programação, no qual ocorre a cr
 ```
 git clone https://github.com/nailasuely/system_FX.git
 ```
+## JAVAFX
+> Login
+
+![Design sem nome (1)](https://github.com/nailasuely/system_FX/assets/98486996/6cfe37ed-b6cf-430b-847c-e67211cbe775)
+
+> Tela cliente, estoque e técnico.
+
+![Design sem nome (2)](https://github.com/nailasuely/system_FX/assets/98486996/0e734644-8865-4e96-991c-1afbd070be84)
+
 ## Tecnologias 
 
 Em conformidade com o desenvolvimento do projeto, iremos atualizando as tecnologias que estão sendo utilizadas
