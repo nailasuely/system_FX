@@ -1,5 +1,5 @@
 <div align= "center" >
-<img width="200px" src="https://github.com/nailasuely/system_FX/assets/98486996/fc47e4aa-b369-4579-a295-3023f5dd198d">
+<img width="200px" src="https://github.com/nailasuely/system_FX/assets/98486996/754658dd-b5b1-400b-8f09-c080277054fb">
 <h1>🖥️ Sistema para gerenciamento</h1>
 
 <div align="center">
