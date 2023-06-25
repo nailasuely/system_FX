@@ -151,22 +151,30 @@ public class ActualOrderController implements Initializable{
     }
     public void setInformations() {
         try {
-            this.adressClient.setText(DAO.getClienteDAO().findById(order.getClientId()).getAddress());
-            this.cpfClient.setText(DAO.getClienteDAO().findById(order.getClientId()).getCpf());
-            this.telephoneClient.setText(Integer.toString(DAO.getClienteDAO().findById(order.getClientId()).getTelephone()));
-            this.nameClient.setText(DAO.getClienteDAO().findById(order.getClientId()).getFullName());
+            Cliente cliente = DAO.getClienteDAO().findById(order.getClientId());
+            if (cliente != null) {
+                this.adressClient.setText(cliente.getAddress());
+                this.cpfClient.setText(cliente.getCpf());
+                this.telephoneClient.setText(Integer.toString(cliente.getTelephone()));
+                this.nameClient.setText(cliente.getFullName());
+            }
+
             this.startDate.setText(String.valueOf(order.getStart()));
+
             if (order != null && order.getType() != null) {
                 this.typeService.setText(order.getType().getNome());
             }
-            if(order.getPaymentType()!=null){
+
+            if (order.getPaymentType() != null) {
                 setPaymentMethod.setValue(order.getPaymentType());
             }
-            this.priceOrder.setText("R$"+String.valueOf(order.getPrice()));
+
+            this.priceOrder.setText("R$" + String.valueOf(order.getPrice()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
+
 
     public Integer setClientRate(){
         Integer rate=0;

@@ -18,8 +18,8 @@
             <Insets left="10.0" />
          </HBox.margin>
       </ImageView>
-      <Label fx:id="nameClient" prefHeight="18.0" prefWidth="150.0" text="Chiquinho Produções" textFill="#47077f" />
-      <Label fx:id="cpfClient" prefHeight="18.0" prefWidth="95.0" text="123.456.789-60" textFill="#47077f">
+      <Label fx:id="nameClient" prefHeight="18.0" prefWidth="137.0" text="Chiquinho Produções" textFill="#47077f" />
+      <Label fx:id="cpfClient" prefHeight="18.0" prefWidth="120.0" text="123.456.789-60" textFill="#47077f">
          <HBox.margin>
             <Insets />
          </HBox.margin>
