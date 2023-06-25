@@ -27,11 +27,11 @@ git clone https://github.com/nailasuely/system_FX.git
 ## JAVAFX
 > Login
 
-![Design sem nome (1)](https://github.com/nailasuely/system_FX/assets/98486996/6cfe37ed-b6cf-430b-847c-e67211cbe775)
+![Design sem nome](https://github.com/nailasuely/system_FX/assets/98486996/9a625c6e-0ca4-42ea-aa75-957a3b718887)
 
 > Tela cliente, estoque e técnico.
-
-![Design sem nome (2)](https://github.com/nailasuely/system_FX/assets/98486996/0e734644-8865-4e96-991c-1afbd070be84)
+> 
+![Design sem nome (2)](https://github.com/nailasuely/system_FX/assets/98486996/316d5fd0-4de2-4fcd-b8e2-5154dae1143c)
 
 ## Tecnologias 
 
